@@ -1,0 +1,36 @@
+require:
+  - rubocop-rails
+
+# Alguns projetos podem ter .rubocop_todo.yml, então herdamos deste arquivo.
+# Se ele não existir, remova essas linhas
+inherit_from:
+  - .rubocop_todo.yml
+
+# Mude para a versão de Ruby a ser utilizada e inclua aqui outros arquivos que
+# você considera importante que o RuboCop não execute como: node_modules, etc..
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/rails_helper.rb'
+
+# Trabalhamos bastante com testes como a documentação viva do projeto então
+# desabilitamos a Cop de documentação com comentário
+Style/Documentation:
+  Enabled: false
+
+# Esta é uma Cop polêmica, pois pode ajudar na performance. Isso se tornará
+# padrão no Ruby 3, mas deixamos a seu critério. Caso deseje manter esta Cop,
+# basta remover estas linhas
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Escrevemos mais linhas em arquivos de teste do que em arquivos de 
+# código, então é importante poder ter esses arquivos do tamanho necessário
+Metrics/BlockLength:
+  AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+
