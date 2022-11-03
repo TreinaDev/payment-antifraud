@@ -1,0 +1,2 @@
+class Promo < ApplicationRecord
+end
