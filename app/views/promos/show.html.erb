@@ -1,0 +1,10 @@
+<h2>Promoção: <%= @promo.name %></h2>
+<dl>
+  <dt><strong>Data de início: </strong><%= @promo.starting_date%></dt>
+  <dt><strong>Data de fim: </strong><%= @promo.ending_date %></dt>
+  <dt><strong>Quantidade de usos: </strong><%= @promo.usages_max %></dt>
+  <dt><strong>Cupom: </strong><%= @promo.voucher %></dt>
+  <dt><strong>Porcentagem de desconto: </strong><%= @promo.discount_percentage %></dt>
+  <dt><strong>Valor máximo de desconto: </strong>R$ <%= @promo.discount_max/100 %></dt>
+  <dt><strong>Lista de produtos: </strong> <%= @promo.product_list %></dt>
+</dl>
