@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
+  <nav>
+    <section>
+      <% if user_signed_in? %>
+        <%= user_greetings(current_user) %>
+        <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
+      <% end %>
+    </section>
+    <section>
+      <% if admin_signed_in? %>
+      <%= user_greetings(current_admin) %>
+      <%= button_to 'Logout', destroy_admin_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
+    <% end %>
+    </section>
+  </nav>
+
   <body>
+    <%= notice %>
     <%= yield %>
   </body>
 </html>
