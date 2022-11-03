@@ -4,7 +4,7 @@ class CreatePaymentMethods < ActiveRecord::Migration[7.0]
       t.string :name
       t.integer :tax_percentage
       t.integer :tax_maximum
-      t.string :type
+      t.string :payment_type
       t.integer :status, default: 0
 
       t.timestamps

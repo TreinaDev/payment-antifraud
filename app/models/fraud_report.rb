@@ -1,3 +1,3 @@
 class FraudReport < ApplicationRecord
-    enum status: {0 : pending }
+    enum status: {pending: 0}
 end
