@@ -1,0 +1,33 @@
+<h1> Cadastrar Novo Meio de Pagamento </h1>
+
+<% if @payment_method.errors.any? %>
+  <p> Verifique os erros abaixo: </p>
+  <ul>
+    <% @payment_method.errors.full_messages.each do | msg |%>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_with model: @payment_method do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :tax_percentage %>
+    <%= f.text_field :tax_percentage %>
+  </div>
+  <div>
+    <%= f.label :tax_maximum %>
+    <%= f.text_field :tax_maximum %>
+  </div>
+  <div>
+    <%= f.label :payment_type %>
+    <%= f.select :payment_type, @payment_types %>
+  </div>
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>

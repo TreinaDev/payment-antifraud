@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      payment_method:
+        one: 'Meio de Pagamento'
+        other: 'Meios de Pagamento'
+    attributes:
+      payment_method:
+        name: 'Nome'
+        tax_percentage: 'Taxa por Cobrança'
+        tax_maximum: 'Taxa Máxima'
+        payment_type: 'Tipo de Pagamento'
+        status: 'Status'
+     
