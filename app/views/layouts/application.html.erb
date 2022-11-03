@@ -14,13 +14,18 @@
       <% if user_signed_in? %>
         <%= user_greetings(current_user) %>
         <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
+        <% if current_user.pending? %>
+          <%= 'Aguardando aprovação do administrador do sistema.' %>
+        <%end %>
+      <% else %>
+        <%= link_to 'Fazer Login', new_user_session_path %>
       <% end %>
     </section>
     <section>
       <% if admin_signed_in? %>
-      <%= user_greetings(current_admin) %>
-      <%= button_to 'Logout', destroy_admin_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
-    <% end %>
+        <%= user_greetings(current_admin) %>
+        <%= button_to 'Logout', destroy_admin_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
+      <% end %>
     </section>
   </nav>
 

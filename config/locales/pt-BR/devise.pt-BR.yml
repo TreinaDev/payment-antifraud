@@ -28,6 +28,7 @@ pt-BR:
         updated_at: Atualizado em
       user:
         name: 'Nome'
+        registration_number: 'CPF'
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
@@ -171,3 +172,4 @@ pt-BR:
       not_saved:
         one: 'Não foi possível salvar %{resource}: 1 erro'
         other: 'Não foi possível salvar %{resource}: %{count} erros.'
+
