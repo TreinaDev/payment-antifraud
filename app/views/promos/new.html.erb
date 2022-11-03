@@ -1,3 +1,12 @@
+<% if(@promo.errors.any?) %>
+<p>Verifique os erros abaixo:</p>
+<ul>
+  <% @promo.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
 <h1>Cadastrar promoção</h1>
 <%= form_with(model: @promo, url: promos_path)  do |f| %>
   <div>
@@ -14,11 +23,11 @@
   </div>
   <div>
     <%= f.label :discount_percentage %>
-    <%= f.text_field :discount_percentage, class: "form-control" %>
+    <%= f.number_field :discount_percentage, class: "form-control" %>
   </div>
   <div>
     <%= f.label :discount_max %>
-    <%= f.text_field :discount_max, class: "form-control" %>
+    <%= f.number_field :discount_max, class: "form-control" %>
   </div>
   <div>
     <%= f.label :product_list %>
@@ -26,7 +35,7 @@
   </div>
   <div>
     <%= f.label :usages_max %>
-    <%= f.text_field :usages_max, class: "form-control" %>
+    <%= f.number_field :usages_max, class: "form-control" %>
   </div>
   <div>
     <%= f.submit 'Salvar' %>

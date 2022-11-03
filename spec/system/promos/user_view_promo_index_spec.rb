@@ -25,6 +25,6 @@ describe "Funcionário visita a pagina de promoção" do
     expect(current_path).to eq promos_path
     expect(page).to have_content 'Promoções'
     expect(page).to have_content 'Cadastrar promoção'
-    expect(page).to have_content('Nenhuma promoção cadastrada.')
+    expect(page).to have_content 'Nenhuma promoção cadastrada.'
   end
 end
