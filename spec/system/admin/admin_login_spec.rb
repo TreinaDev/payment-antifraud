@@ -3,12 +3,13 @@ require 'rails_helper'
 describe 'Admin tenta fazer login no sistema' do
   it 'e acessa a pagina de login diretamente pelo link' do   
 	
-	visit new_admin_session_path
+	  visit new_admin_session_path
 
-	expect(page).to have_field 'E-mail'
-	expect(page).to have_field 'Senha'
-	expect(page).to have_button 'Login'
+	  expect(page).to have_field 'E-mail'
+  	expect(page).to have_field 'Senha'
+	  expect(page).to have_button 'Login'
   end
+
   it 'e faz login com sucesso' do
 	
     FactoryBot.create(:admin, name: 'Petra Paola', 
@@ -23,7 +24,7 @@ describe 'Admin tenta fazer login no sistema' do
 
     expect(current_path).to eq root_path
     expect(page).to have_content 'Login efetuado com sucesso.'
-	expect(page).to have_content 'Olá Petra Paola - petrapaola@email.com'
-	expect(page).to have_button 'Logout'
+	  expect(page).to have_content 'Olá Petra Paola - petrapaola@email.com'
+   	expect(page).to have_button 'Logout'
   end
 end
