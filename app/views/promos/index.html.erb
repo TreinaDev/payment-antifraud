@@ -1,0 +1,15 @@
+<h1>Promoções</h1>
+<%= link_to 'Cadastrar promoção', new_promo_path %>
+
+<% if @promos.any? %>
+  <% @promos.each do |p| %>
+    <div>
+      <h3>Promoção <%= p.name %></h3>
+      <dl>
+        <dt><strong>Cupom:</strong> <%= p.voucher %> </dt>
+      </dl>
+    </div>
+  <% end %>
+<% else %> 
+  <p>Nenhuma promoção cadastrada.</p>
+<% end %>
