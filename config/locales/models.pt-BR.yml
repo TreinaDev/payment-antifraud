@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      promo: 
+        one: Promoção
+        other: Promoções
+    attributes:
+      promo:
+        starting_date: Data de início
+        discount_max: Valor máximo de desconto
+        voucher: Cupom
+        usages_max: Quantidade de usos
+        product_list: Lista de produtos
+        ending_date: Data de fim
+        discount_percentage: Porcentagem de desconto
+        name: Nome
