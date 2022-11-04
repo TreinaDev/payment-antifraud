@@ -15,7 +15,7 @@
         <%= user_greetings(current_user) %>
         <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
         <% if current_user.pending? %>
-          <%= 'Aguardando aprovação do administrador do sistema.' %>
+          </h4> Aguardando aprovação do administrador do sistema <h4>
         <%end %>
       <% else %>
         <%= link_to 'Fazer Login', new_user_session_path %>
@@ -24,6 +24,7 @@
     <section>
       <% if admin_signed_in? %>
         <%= user_greetings(current_admin) %>
+        <%= link_to 'Usuários cadastrados', registered_users_path %>
         <%= button_to 'Logout', destroy_admin_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
       <% end %>
     </section>
