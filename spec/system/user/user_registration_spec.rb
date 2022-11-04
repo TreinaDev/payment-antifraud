@@ -18,11 +18,9 @@ describe 'Funcionário faz cadastro no sistema' do
   it 'com sucesso' do
 
   	visit root_path
-
   	within('nav') do
   		click_on 'Fazer Login'
   	end
-
   	click_on 'Criar Conta'
   	within('div#signup-fields') do
   		fill_in 'E-mail', with: 'petra@seguradoradapaola'
@@ -33,6 +31,6 @@ describe 'Funcionário faz cadastro no sistema' do
   		click_on 'Registrar'
   	end  
 	
-  	expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
+    expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
   end	
 end

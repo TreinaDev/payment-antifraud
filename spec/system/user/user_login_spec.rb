@@ -2,20 +2,18 @@ require 'rails_helper'
 
 describe 'Funcionário faz login no sistema' do
   it 'com sucesso' do
-
   	FactoryBot.create(:user, 
-  										email: 'petra@seguradoradapaola',
-  										password: 'password',
-  										name:'Petra',
-  										registration_number: '39401929301',
-  										status: :pending
+  					  email: 'petra@seguradoradapaola',
+  					  password: 'password',
+  					  name:'Petra',
+  					  registration_number: '39401929301',
+  					  status: :pending
   	)  
 
     visit root_path
   	within('nav') do
   		click_on 'Fazer Login'
   	end
-
   	within('div#login-fields') do
   		fill_in 'E-mail', with: 'petra@seguradoradapaola'
   		fill_in 'Senha', with: 'password'
@@ -30,7 +28,6 @@ describe 'Funcionário faz login no sistema' do
   end  
 
   it 'e não preenche todos os campos' do
-
   	FactoryBot.create(:user, 
   										email: 'petra@seguradoradapaola',
   										password: 'password',
@@ -44,7 +41,6 @@ describe 'Funcionário faz login no sistema' do
   	within('nav') do
   		click_on 'Fazer Login'
   	end
-
   	within('div#login-fields') do
   		fill_in 'E-mail', with: ''
   		fill_in 'Senha', with: ''
