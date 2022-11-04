@@ -6,6 +6,6 @@ class Promo < ApplicationRecord
   private
 
   def generate_voucher
-    self.voucher = SecureRandom.alphanumeric(8).upcase 
+    self.voucher = SecureRandom.alphanumeric(8).upcase
   end
 end

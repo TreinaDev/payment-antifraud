@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário cadastra uma promoção' do
   it 'a partir da tela inicial' do
-    #login_as
+    # login_as
     # visit root_path
     visit promos_path
     click_on 'Cadastrar promoção'

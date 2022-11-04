@@ -1,5 +1,5 @@
 class PromosController < ApplicationController
-  before_action :set_promo, only: [:edit, :update, :show]
+  before_action :set_promo, only: %i[edit update show]
 
   def index
     @promos = Promo.all
@@ -13,6 +13,8 @@ class PromosController < ApplicationController
     @promo = Promo.new
   end
 
+  def edit; end
+
   def create
     @promo = Promo.new(promo_params)
     if @promo.save
@@ -23,13 +25,12 @@ class PromosController < ApplicationController
     end
   end
 
-  def edit; end
-
   private
+
   def set_promo
     @promo = Promo.find(params[:id])
   end
-  
+
   def promo_params
     params.require(:promo).permit(:name, :starting_date, :discount_max, :usages_max, :product_list, :ending_date,
                                   :discount_percentage)
