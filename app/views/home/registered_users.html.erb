@@ -1,0 +1,27 @@
+<article>
+  <main>
+  <table class="table table-striped">
+    <h3>Usuários Pendentes</h3>
+    <thead>
+      <tr>
+        <th scope="col"><%= User.human_attribute_name 'name' %></th>
+        <th scope="col"><%= User.human_attribute_name 'email' %></th>
+        <th scope="col"><%= User.human_attribute_name 'registration_number' %></th>
+        <th scope="col"><%= User.human_attribute_name 'status' %> do cadastro</th>
+      </tr>
+    </thead>
+    <% if @pending_users.any? %>
+      <% @pending_users.each do |user| %>
+        <tbody>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.registration_number %></td>
+            <td>Cadastro <%= t user.status  %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  </table>
+  </main>
+</article>

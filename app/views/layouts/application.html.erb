@@ -24,6 +24,7 @@
     <section>
       <% if admin_signed_in? %>
         <%= user_greetings(current_admin) %>
+        <%= link_to 'Usuários', registered_users_home_index_path %>
         <%= button_to 'Logout', destroy_admin_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
       <% end %>
     </section>

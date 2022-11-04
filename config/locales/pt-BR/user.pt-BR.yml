@@ -1,10 +1,4 @@
 pt-BR:
-  activerecord:
-    errors:
-      models:     
-        user:
-          attributes:
-            email:
-              blank: 'E-mail não pode ficar em branco.'
-            senha:
-              blank: 'Senha não pode ficar em branco.'
+  pending: 'pendente'
+  approved: 'aprovado'
+            
