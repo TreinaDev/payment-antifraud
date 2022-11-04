@@ -19,16 +19,16 @@ describe 'Funcionário faz cadastro no sistema' do
 
   	visit root_path
   	within('nav') do
-  		click_on 'Fazer Login'
+  	  click_on 'Fazer Login'
   	end
   	click_on 'Criar Conta'
   	within('div#signup-fields') do
-  		fill_in 'E-mail', with: 'petra@seguradoradapaola'
-  		fill_in 'Senha', with: 'password'
-  		fill_in 'Confirme sua senha', with: 'password'
-  		fill_in 'Nome', with: 'Petra'
-  		fill_in 'CPF', with: '39410293049'
-  		click_on 'Registrar'
+  	  fill_in 'E-mail', with: 'petra@seguradoradapaola'
+  	  fill_in 'Senha', with: 'password'
+  	  fill_in 'Confirme sua senha', with: 'password'
+  	  fill_in 'Nome', with: 'Petra'
+  	  fill_in 'CPF', with: '39410293049'
+  	  click_on 'Registrar'
   	end  
 	
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'

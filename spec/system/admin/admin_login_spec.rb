@@ -12,7 +12,8 @@ describe 'Admin tenta fazer login no sistema' do
 
   it 'e faz login com sucesso' do
 	
-    FactoryBot.create(:admin, name: 'Petra Paola', 
+    FactoryBot.create(
+                      :admin, name: 'Petra Paola', 
                       email: 'petrapaola@email.com', password: '12345678'
                      )
     
