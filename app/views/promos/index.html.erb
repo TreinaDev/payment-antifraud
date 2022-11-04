@@ -1,13 +1,15 @@
 <h1>Promoções</h1>
-<%= link_to 'Cadastrar promoção', new_promo_path %>
+<hr>
+<%= link_to 'Cadastrar promoção', new_promo_path, class: 'btn btn-primary' %>
+<hr>
 
 <% if @promos.any? %>
   <% @promos.each do |p| %>
     <div>
-      <h3>Promoção <%= p.name %></h3>
+      <h3><%= Promo.human_attribute_name(:promo) %>: <%=  link_to p.name, promo_path(p.id) %></h3>
+ 
       <dl>
-        <dt><strong>Cupom:</strong> <%= p.voucher %> </dt>
-      </dl>
+        <dt><strong> <%= Promo.human_attribute_name(:voucher)%>: </strong> <%= p.voucher %> </dt>
     </div>
   <% end %>
 <% else %> 
