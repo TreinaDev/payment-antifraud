@@ -1,0 +1,40 @@
+<h2>Fazer Cadastro</h2>
+<div id="signup-fields">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true%>
+    </div>
+
+    <div class="field">
+      <%= f.label :registration_number %><br />
+      <%= f.number_field :registration_number%>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(no mínimo <%= @minimum_password_length %> caracteres)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Registrar" %>
+    </div>
+
+  <% end %>
+</div>
+<%= render "users/shared/links" %>
