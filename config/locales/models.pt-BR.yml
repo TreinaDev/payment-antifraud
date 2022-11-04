@@ -6,6 +6,7 @@ pt-BR:
         other: Promoções
     attributes:
       promo:
+        promo: Promoção
         starting_date: Data de início
         discount_max: Valor máximo de desconto
         voucher: Cupom

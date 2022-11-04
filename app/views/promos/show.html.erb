@@ -1,10 +1,11 @@
-<h2>Promoção: <%= @promo.name %></h2>
+<h2> <%= Promo.human_attribute_name(:promo) %>: <%= @promo.name %> </h2>
+<hr>
 <dl>
-  <dt><strong>Data de início: </strong><%= @promo.starting_date%></dt>
-  <dt><strong>Data de fim: </strong><%= @promo.ending_date %></dt>
-  <dt><strong>Quantidade de usos: </strong><%= @promo.usages_max %></dt>
-  <dt><strong>Cupom: </strong><%= @promo.voucher %></dt>
-  <dt><strong>Porcentagem de desconto: </strong><%= @promo.discount_percentage %></dt>
-  <dt><strong>Valor máximo de desconto: </strong>R$ <%= @promo.discount_max/100 %></dt>
-  <dt><strong>Lista de produtos: </strong> <%= @promo.product_list %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:starting_date) %>: </strong><%= I18n.localize(@promo.starting_date) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:ending_date) %>: </strong><%= I18n.localize(@promo.ending_date) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:usages_max) %>: </strong><%= @promo.usages_max %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:voucher) %>: </strong><%= @promo.voucher %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:discount_percentage) %>: </strong><%= @promo.discount_percentage %> %</dt>
+  <dt><strong><%= Promo.human_attribute_name(:discount_max) %>: </strong> <%= number_to_currency(@promo.discount_max/100) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:product_list) %>: </strong> <%= @promo.product_list %></dt>
 </dl>
