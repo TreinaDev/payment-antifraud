@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 >>>>>>> Configura o I18n no model promo
 
   root to: "home#index"
-  resources :promos, only: [:index, :new, :create, :show]
+  resources :promos, only: [:index, :new, :create, :show, :edit, :update]
 end

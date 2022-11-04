@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário cadastra uma promoção' do
   it 'a partir da tela inicial' do
+    #login_as
     # visit root_path
     visit promos_path
     click_on 'Cadastrar promoção'
@@ -18,6 +19,7 @@ describe 'Funcionário cadastra uma promoção' do
 
   it 'com sucesso' do
     # login_as
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ASDCF123')
 
     visit promos_path
     click_on 'Cadastrar promoção'
@@ -32,6 +34,7 @@ describe 'Funcionário cadastra uma promoção' do
 
     expect(page).to have_content 'Promoção cadastrada com sucesso!'
     expect(page).to have_content 'Promoção: Black Friday'
+    expect(page).to have_content 'Cupom: ASDCF123'
     expect(page).to have_content 'Notebook dell i7'
   end
 
