@@ -1,5 +1,10 @@
 class PaymentMethodsController < ApplicationController
+  before_action :authenticate!
   before_action :set_payment_method, only: [:show]
+
+  def index
+    @payment_methods = PaymentMethod.all
+  end
 
   def show; end
 
@@ -27,5 +32,15 @@ class PaymentMethodsController < ApplicationController
 
   def set_payment_method
     @payment_method = PaymentMethod.find(params[:id])
+  end
+
+  def authenticate!
+    if !current_admin.nil?
+      :authenticate_admin!
+    elsif !current_user.nil?
+      :authenticate_user!
+    else
+      redirect_to root_path, alert: 'Faça login para entrar'
+    end
   end
 end

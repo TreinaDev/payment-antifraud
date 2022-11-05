@@ -1,0 +1,24 @@
+<h1> Meios de Pagamento </h1>
+
+<% if @payment_methods.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th> <%=PaymentMethod.human_attribute_name(:name)%> </th>
+        <th> <%=PaymentMethod.human_attribute_name(:payment_type)%> </th>
+        <th> <%=PaymentMethod.human_attribute_name(:status)%> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payment_methods.each do |pm|%>
+      <tr>
+        <td> <%= link_to pm.name, pm  %> </td>
+        <td> <%= pm.payment_type %> </td>
+        <td> <%= I18n.translate(pm.status)%> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem meios de pagamento cadastrados.</p>
+<% end %>
