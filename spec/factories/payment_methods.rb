@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :payment_method do
-    name { 'MyString' }
-    tax_percentage { 1 }
-    tax_maximum { 1 }
-    type { '' }
-    status { 1 }
+    name { 'Laranja' }
+    tax_percentage { 5 }
+    tax_maximum { 100 }
+    payment_type { 'Cartão de Crédito' }
+    status { :active }
   end
 end
