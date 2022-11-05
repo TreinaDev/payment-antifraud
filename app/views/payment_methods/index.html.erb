@@ -1,4 +1,7 @@
 <h1> Meios de Pagamento </h1>
+<% if current_admin %>
+  <%= link_to 'Cadastrar Novo Meio de Pagamento', new_payment_method_url %>
+<% end %>
 
 <% if @payment_methods.any? %>
   <table>

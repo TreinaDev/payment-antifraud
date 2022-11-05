@@ -6,6 +6,7 @@ describe 'Administrador cadastra novo meio de pagamento' do
 
     login_as(admin, scope: :admin)
     visit root_path
+    click_on 'Meios de Pagamento'
 
     expect(page).to have_link 'Cadastrar Novo Meio de Pagamento'
   end
@@ -15,8 +16,9 @@ describe 'Administrador cadastra novo meio de pagamento' do
 
     login_as(user, scope: :user)
     visit root_path
+    click_on 'Meios de Pagamento'
 
-    expect(current_path).to eq root_path
+    expect(current_url).to eq payment_methods_url
     expect(page).not_to have_link 'Cadastrar Novo Meio de Pagamento'
   end
 
@@ -25,6 +27,7 @@ describe 'Administrador cadastra novo meio de pagamento' do
 
     login_as(admin, scope: :admin)
     visit root_path
+    click_on 'Meios de Pagamento'
     click_on 'Cadastrar Novo Meio de Pagamento'
 
     expect(current_url).to eq new_payment_method_url
@@ -37,7 +40,12 @@ describe 'Administrador cadastra novo meio de pagamento' do
   end
 
   it 'com sucesso' do
-    visit new_payment_method_url
+    admin = FactoryBot.create(:admin)
+
+    login_as(admin, scope: :admin)
+    visit root_path
+    click_on 'Meios de Pagamento'
+    click_on 'Cadastrar Novo Meio de Pagamento'
     fill_in 'Nome', with: 'Cartão Roxinho'
     fill_in 'Taxa por Cobrança', with: 5
     fill_in 'Taxa Máxima', with: 2
@@ -48,13 +56,19 @@ describe 'Administrador cadastra novo meio de pagamento' do
     expect(page).to have_content 'Meio de Pagamento registrado com sucesso.'
     expect(page).to have_content 'Detalhes do Meio de Pagamento'
     expect(page).to have_content 'Nome: Cartão Roxinho'
-    expect(page).to have_content 'Taxa por Cobrança: 5'
-    expect(page).to have_content 'Taxa Máxima: 2'
+    expect(page).to have_content 'Taxa por Cobrança: 5%'
+    expect(page).to have_content 'Taxa Máxima: R$ 2,00'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
+    expect(page).to have_content 'Status: Ativo'
   end
 
   it 'com informações faltando' do
-    visit new_payment_method_url
+    admin = FactoryBot.create(:admin)
+
+    login_as(admin, scope: :admin)
+    visit root_path
+    click_on 'Meios de Pagamento'
+    click_on 'Cadastrar Novo Meio de Pagamento'
     fill_in 'Nome', with: ''
     fill_in 'Taxa por Cobrança', with: ''
     fill_in 'Taxa Máxima', with: ''
