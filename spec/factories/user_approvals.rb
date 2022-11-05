@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user_approval do
-    refusal { "MyString" }
+    refusal { 'MyString' }
     user { nil }
   end
 end

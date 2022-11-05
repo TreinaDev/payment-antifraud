@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-describe 'Administrador vê a lista de usuários cadastrados' do 
+describe 'Administrador vê a lista de usuários cadastrados' do
   context 'a partir de uma tela separada' do
-    it 'com sucesso' do 
+    it 'com sucesso' do
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
-          :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-                      registration_number: '39401920391', status: :pending
-        )
-      
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
+      )
+
       FactoryBot.create(
-          :user, name: 'Petra', email: 'petra@paolaseguros.com.br',
-                      registration_number: '12345678911', status: :approved
-        )
+        :user, name: 'Petra', email: 'petra@paolaseguros.com.br',
+               registration_number: '12345678911', status: :approved
+      )
 
       login_as admin, scope: :admin
       visit root_path
@@ -34,14 +34,14 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
   end
 
-  context 'e vê botão de alteração de cadastro' do 
+  context 'e vê botão de alteração de cadastro' do
     it 'de um usuário pendente' do
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
-          :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-                      registration_number: '39401920391', status: :pending
-        )
-      
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
+      )
+
       login_as admin, scope: :admin
       visit registered_users_home_index_path
 
@@ -51,26 +51,26 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     it 'e não vê botão caso o usuário já esteja aprovado' do
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
-          :user, name: 'Petra APROVADA', email: 'petraaprovada@paolaseguros.com.br',
-                      registration_number: '39401920391', status: :approved
-        )
-      
+        :user, name: 'Petra APROVADA', email: 'petraaprovada@paolaseguros.com.br',
+               registration_number: '39401920391', status: :approved
+      )
+
       login_as admin, scope: :admin
       visit registered_users_home_index_path
-      
+
       expect(page).to have_content 'Petra APROVADA'
       expect(page).not_to have_link 'Avaliar Cadastro'
     end
   end
-  
+
   context 'e muda o status do cadastro' do
     it 'a partir de um formulário' do
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
-          :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-                      registration_number: '39401920391', status: :pending
-        )
-      
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
+      )
+
       login_as admin, scope: :admin
       visit registered_users_home_index_path
       click_on 'Avaliar Cadastro'
@@ -82,6 +82,4 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       expect(page).to have_button 'Enviar'
     end
   end
-
 end
-
