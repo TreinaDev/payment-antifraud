@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'registered_users', on: :collection
   end
 
-  resources :users, only: [] do 
+  resources :users, only: %i[show] do 
     resources :user_approvals, only: %i[new create]
   end  
 end

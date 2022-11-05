@@ -1,15 +1,18 @@
 <article>
+  <header>
+    <%= render partial: 'application/errors', locals: { model: @user_approval }  %>
+  </header>
   <main>
     <%= form_with model: [@user, @user_approval] do |user| %>
       <p>
         <span> <%= t 'approve_register' %> </span>
         <%= user.radio_button :status, true%>
-        <%= user.label :status, 'Sim', value: true  %>
+        <%= user.label :status, 'Sim', value: true, checked: true %>
         <%= user.radio_button :status, false  %>
         <%= user.label :status, 'Não', value: false  %>
       </p>
       <p>
-        <%= user.label :refusal %>
+        <%= user.label :refusal %> <%= t 'case_not' %>
         <%= user.text_field :refusal %>
       </p>
       <p>

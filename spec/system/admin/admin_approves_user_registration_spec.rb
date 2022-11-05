@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe 'Administrador vê a lista de usuários cadastrados' do
-  it 'se estiver autenticado' do 
+  it 'se estiver autenticado' do
     common_user = FactoryBot.create(:user)
 
-    visit root_path 
-    
+    visit root_path
+
     expect(page).not_to have_link 'Usuários'
   end
 
@@ -86,15 +86,15 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       expect(page).to have_content 'Aprovar Cadastro?'
       expect(page).to have_content 'Sim'
       expect(page).to have_content 'Não'
-      expect(page).to have_field 'Motivo de reprovação (caso não)'
+      expect(page).to have_field 'Motivo de reprovação'
       expect(page).to have_button 'Enviar'
     end
 
-    it 'para aprovado' do 
+    it 'para aprovado' do
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
-                        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-                             registration_number: '39401920391', status: :pending
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
       )
 
       login_as admin, scope: :admin
@@ -108,17 +108,17 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       expect(page).to have_content 'Cadastro aprovado'
     end
 
-    it 'para recusado' do 
+    it 'para recusado' do
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
-                        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-                             registration_number: '39401920391', status: :pending
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
       )
 
       login_as admin, scope: :admin
       visit new_user_user_approval_path(common_user.id)
       choose 'user_approval_status_false', allow_label_click: true
-      fill_in 'Motivo de reprovação (caso não)', with: 'Hacker invadindo o sistemaa!'
+      fill_in 'Motivo de reprovação', with: 'Hacker invadindo o sistemaa!'
       click_on 'Enviar'
 
       expect(page).to have_content 'Usuário reprovado com sucesso.'
@@ -126,6 +126,21 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       expect(page).to have_content 'paola@petraseguros.com.br'
       expect(page).to have_content 'Cadastro recusado'
     end
-  end
 
+    it 'e não preenche a reprovação com uma justificativa' do
+      admin = FactoryBot.create(:admin)
+      common_user = FactoryBot.create(
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
+      )
+
+      login_as admin, scope: :admin
+      visit new_user_user_approval_path(common_user.id)
+      choose 'user_approval_status_false', allow_label_click: true
+      fill_in 'Motivo de reprovação', with: ''
+      click_on 'Enviar'
+
+      expect(page).to have_content 'Motivo de reprovação deve ser preenchido para recusar o cadastro.'
+    end
+  end
 end
