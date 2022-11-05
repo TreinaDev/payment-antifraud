@@ -12,3 +12,7 @@
   <dt><%= PaymentMethod.human_attribute_name(:status)%>:</dt>
   <dd><%= I18n.t(@payment_method.status) %></dd>
 </dl>
+
+<% if current_admin %>
+  <%= link_to 'Editar', edit_payment_method_url %>
+<% end %>

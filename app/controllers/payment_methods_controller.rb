@@ -1,6 +1,6 @@
 class PaymentMethodsController < ApplicationController
   before_action :authenticate!
-  before_action :set_payment_method, only: [:show]
+  before_action :set_payment_method, only: [:show, :edit, :update]
 
   def index
     @payment_methods = PaymentMethod.all
@@ -13,6 +13,10 @@ class PaymentMethodsController < ApplicationController
     @payment_types = ['Pix', 'Boleto', 'Cartão de Crédito']
   end
 
+  def edit
+    @payment_types = ['Pix', 'Boleto', 'Cartão de Crédito']
+  end
+
   def create
     @payment_method = PaymentMethod.new(payment_method_params)
     if @payment_method.save
@@ -21,6 +25,18 @@ class PaymentMethodsController < ApplicationController
       flash.now[:alert] = 'Não foi possível registrar o meio de pagamento.'
       @payment_types = ['Pix', 'Boleto', 'Cartão de Crédito']
       render 'new'
+    end
+  end
+
+  def update
+
+    if @payment_method.update(payment_method_params)
+      flash[:notice] = 'Meio de Pagamento atualizado com sucesso.'
+      redirect_to @payment_method
+    else
+      flash.now[:alert] = 'Não foi possível atualizar o meio de pagamento.'
+      @payment_types = ['Pix', 'Boleto', 'Cartão de Crédito']
+      render 'edit'
     end
   end
 
