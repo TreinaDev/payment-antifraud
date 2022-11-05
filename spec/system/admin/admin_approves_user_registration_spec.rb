@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe 'Administrador vê a lista de usuários cadastrados' do
+  it 'se estiver autenticado' do 
+    common_user = FactoryBot.create(:user)
+
+    visit root_path 
+    
+    expect(page).not_to have_link 'Usuários'
+  end
+
   context 'a partir de uma tela separada' do
     it 'com sucesso' do
       admin = FactoryBot.create(:admin)
@@ -81,5 +89,43 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       expect(page).to have_field 'Motivo de reprovação (caso não)'
       expect(page).to have_button 'Enviar'
     end
+
+    it 'para aprovado' do 
+      admin = FactoryBot.create(:admin)
+      common_user = FactoryBot.create(
+                        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+                             registration_number: '39401920391', status: :pending
+      )
+
+      login_as admin, scope: :admin
+      visit new_user_user_approval_path(common_user.id)
+      choose 'user_approval_status_true', allow_label_click: true
+      click_on 'Enviar'
+
+      expect(page).to have_content 'Usuário aprovado com sucesso.'
+      expect(page).to have_content 'Paola'
+      expect(page).to have_content 'paola@petraseguros.com.br'
+      expect(page).to have_content 'Cadastro aprovado'
+    end
+
+    it 'para recusado' do 
+      admin = FactoryBot.create(:admin)
+      common_user = FactoryBot.create(
+                        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+                             registration_number: '39401920391', status: :pending
+      )
+
+      login_as admin, scope: :admin
+      visit new_user_user_approval_path(common_user.id)
+      choose 'user_approval_status_false', allow_label_click: true
+      fill_in 'Motivo de reprovação (caso não)', with: 'Hacker invadindo o sistemaa!'
+      click_on 'Enviar'
+
+      expect(page).to have_content 'Usuário reprovado com sucesso.'
+      expect(page).to have_content 'Paola'
+      expect(page).to have_content 'paola@petraseguros.com.br'
+      expect(page).to have_content 'Cadastro recusado'
+    end
   end
+
 end

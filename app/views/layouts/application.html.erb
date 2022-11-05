@@ -16,7 +16,7 @@
         <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "btn btn-secondary btn-m" %>
         <% if current_user.pending? %>
           <span> Aguardando aprovação do administrador do sistema. </span>
-        <%end %>
+        <% end %>
       <% else %>
         <%= link_to 'Fazer Login', new_user_session_path %>
       <% end %>

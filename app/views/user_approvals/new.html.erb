@@ -2,9 +2,11 @@
   <main>
     <%= form_with model: [@user, @user_approval] do |user| %>
       <p>
-        <%= user.label :status %>
-        <%= user.radio_button :status, true %> Sim
-        <%= user.radio_button :status, false %> Não
+        <span> <%= t 'approve_register' %> </span>
+        <%= user.radio_button :status, true%>
+        <%= user.label :status, 'Sim', value: true  %>
+        <%= user.radio_button :status, false  %>
+        <%= user.label :status, 'Não', value: false  %>
       </p>
       <p>
         <%= user.label :refusal %>
