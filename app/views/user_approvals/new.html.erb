@@ -1,0 +1,18 @@
+<article>
+  <main>
+    <%= form_with model: [@user, @user_approval] do |user| %>
+      <p>
+        <%= user.label :status %>
+        <%= user.radio_button :status, true %> Sim
+        <%= user.radio_button :status, false %> Não
+      </p>
+      <p>
+        <%= user.label :refusal %>
+        <%= user.text_field :refusal %>
+      </p>
+      <p>
+        <%= user.submit t('buttons.send') %>
+      </p>
+    <% end %>
+  </main>
+</article>

@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      user_approval: 'Aprovação de Usuário'
+    attributes:
+      user_approval:
+        status: 'Aprovar Cadastro?'
+        refusal: 'Motivo de reprovação (caso não)'
+      
