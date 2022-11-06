@@ -1,6 +1,6 @@
 class PaymentMethodsController < ApplicationController
   before_action :authenticate!
-  before_action :set_payment_method, only: [:show, :edit, :update]
+  before_action :set_payment_method, only: %i[show edit update]
 
   def index
     @payment_methods = PaymentMethod.all
@@ -29,7 +29,6 @@ class PaymentMethodsController < ApplicationController
   end
 
   def update
-
     if @payment_method.update(payment_method_params)
       flash[:notice] = 'Meio de Pagamento atualizado com sucesso.'
       redirect_to @payment_method

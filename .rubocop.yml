@@ -18,6 +18,7 @@ AllCops:
     - 'db/schema.rb'
     - 'script/**/*'
     - 'spec/rails_helper.rb'
+    - 'db/migrate/*.rb'
 
 # Trabalhamos bastante com testes como a documentação viva do projeto então
 # desabilitamos a Cop de documentação com comentário
