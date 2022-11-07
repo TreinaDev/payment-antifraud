@@ -25,5 +25,6 @@ describe 'Admin tenta fazer login no sistema' do
     expect(page).to have_content 'Login efetuado com sucesso.'
     expect(page).to have_content 'Olá Petra Paola - petrapaola@email.com'
     expect(page).to have_button 'Logout'
+    expect(page).not_to have_button 'Fazer Login'
   end
 end

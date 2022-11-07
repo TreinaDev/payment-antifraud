@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :promos, only: [:index, :new, :create, :show, :edit, :update]
+
+  resources :users, only: %i[index] do 
+    resources :user_approvals, only: %i[new create]
+  end
 end

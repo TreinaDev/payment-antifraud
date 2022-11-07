@@ -1,0 +1,14 @@
+pt-BR:
+  pending: 'pendente'
+  approved: 'aprovado'
+  refused: 'recusado'
+  activerecord:
+    user:
+      one: 'Usuário'
+      two: 'Usuários'
+    attributes:
+      name: 'Nome'
+      email: 'E-mail'
+      registration_number: 'CPF'
+      
+            
