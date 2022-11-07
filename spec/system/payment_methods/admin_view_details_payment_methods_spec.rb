@@ -12,7 +12,9 @@ describe 'Usuário vê detalhes de um meio de pagamento' do
 
   it 'a partir da tela inicial' do
     admin = FactoryBot.create(:admin)
-    FactoryBot.create(:payment_method)
+    FactoryBot.create(:payment_method, name: 'Laranja',
+                                       tax_percentage: 5, tax_maximum: 100,
+                                       payment_type: 'Cartão de Crédito', status: :active)
     FactoryBot.create(:payment_method, name: 'Roxo',
                                        tax_percentage: 3, tax_maximum: 50,
                                        payment_type: 'Boleto', status: :inactive)
