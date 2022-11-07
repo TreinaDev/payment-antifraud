@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   private
-  
+
   def authenticate!
     if !current_admin.nil?
       :authenticate_admin!
