@@ -1,0 +1,6 @@
+pt-BR:
+  controllers:
+    promos:
+      create:
+        success: Promoção cadastrada com sucesso!
+        fail: Não foi possível cadastrar a promoção

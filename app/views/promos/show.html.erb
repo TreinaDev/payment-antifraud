@@ -1,0 +1,13 @@
+<h2> <%= Promo.human_attribute_name(:promo) %>: <%= @promo.name %> </h2>
+<hr>
+<%= link_to 'Editar', edit_promo_path(@promo.id) %>
+<hr>
+<dl>
+  <dt><strong><%= Promo.human_attribute_name(:starting_date) %>: </strong><%= I18n.localize(@promo.starting_date) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:ending_date) %>: </strong><%= I18n.localize(@promo.ending_date) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:usages_max) %>: </strong><%= @promo.usages_max %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:voucher) %>: </strong><%= @promo.voucher %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:discount_percentage) %>: </strong><%= @promo.discount_percentage %> %</dt>
+  <dt><strong><%= Promo.human_attribute_name(:discount_max) %>: </strong> <%= number_to_currency(@promo.discount_max/100) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:product_list) %>: </strong> <%= @promo.product_list %></dt>
+</dl>
