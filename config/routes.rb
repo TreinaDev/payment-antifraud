@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :payment_methods, only: [:index, :new, :create, :show, :edit, :update] 
   root 'home#index'
 
-  resources :promos, only: [:index, :new, :create, :show, :edit, :update]
+  resources :promos, except: [:destroy]
 
   resources :users, only: %i[index] do 
     resources :user_approvals, only: %i[new create]

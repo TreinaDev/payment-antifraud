@@ -4,3 +4,6 @@ pt-BR:
       create:
         success: Promoção cadastrada com sucesso!
         fail: Não foi possível cadastrar a promoção
+      update:
+        success: Promoção atualizada com sucesso!
+        fail: Não foi possível atualizar a promoção

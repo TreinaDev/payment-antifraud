@@ -4,7 +4,9 @@ describe 'Funcionário visita a pagina de promoção' do
   it 'e vê promoções cadastradas' do
     promo_a = create(:promo)
     promo_b = create(:promo)
-
+    admin = FactoryBot.create(:admin)
+    
+    login_as admin, scope: :admin
     visit promos_path
 
     expect(current_path).to eq promos_path
@@ -15,6 +17,9 @@ describe 'Funcionário visita a pagina de promoção' do
   end
 
   it 'e não há promoções cadastradas' do
+    admin = FactoryBot.create(:admin)
+    
+    login_as admin, scope: :admin
     visit promos_path
 
     expect(current_path).to eq promos_path
