@@ -1,0 +1,30 @@
+<article>
+  <main>
+  <h3> <%= t 'users_list' %> </h3>
+  <% if @users.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><%= User.human_attribute_name 'name' %></th>
+          <th scope="col"><%= User.human_attribute_name 'email' %></th>
+          <th scope="col"><%= User.human_attribute_name 'registration_number' %></th>
+          <th scope="col"><%= t 'registration_status' %></th>
+        </tr>
+      </thead>
+      <% @users.each do |user| %>
+        <tbody>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.registration_number %></td>
+            <td><%= "#{ t 'registration'}  #{ t user.status }"  %></td>
+            <% if user.pending? %>
+              <td><%= link_to t('evaluate_registration'), new_user_user_approval_path(user.id) %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  <% end %>
+
+  </main>
+</article>

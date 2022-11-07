@@ -12,6 +12,9 @@ AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
+    - '/spec/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
     - 'bin/**/*'
     - 'vendor/**/*'
     - 'config/**/*'
@@ -19,7 +22,6 @@ AllCops:
     - 'script/**/*'
     - 'spec/rails_helper.rb'
     - 'db/migrate/*.rb'
-    - 'spec/support/devise_methods.rb'
 
 # Trabalhamos bastante com testes como a documentação viva do projeto então
 # desabilitamos a Cop de documentação com comentário
