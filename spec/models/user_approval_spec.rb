@@ -7,8 +7,7 @@ RSpec.describe UserApproval, type: :model do
         user = FactoryBot.create(:user, status: :pending)
 
         user_approval = UserApproval.new(
-          refusal: nil, status: false,
-          user:
+          refusal: nil, status: false, user:
         )
 
         user_approval.save
