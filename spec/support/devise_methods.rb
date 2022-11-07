@@ -1,1 +1,3 @@
-include Warden::Test::Helpers
+module DeviseMethods
+  include Warden::Test::Helpers
+end
