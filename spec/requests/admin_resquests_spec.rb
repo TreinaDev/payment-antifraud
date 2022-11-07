@@ -1,8 +1,11 @@
 require 'rails_helper'
+require 'support/api_shared_context_methods'
 
 describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' do
   context 'Lista de usuários' do
+    include_context 'api_shared_context_methods'
     it 'e não consegue acessar a página' do
+      user_registration_api_mock
       common_user = FactoryBot.create(:user, status: :approved)
 
       login_as common_user, scope: :user
@@ -12,6 +15,7 @@ describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' d
     end
 
     it 'e não consegue acessar a página que aprova/recusa um cadastro' do
+      user_registration_api_mock
       common_user = FactoryBot.create(:user, status: :approved)
       other_user = FactoryBot.create(:user, status: :pending)
 

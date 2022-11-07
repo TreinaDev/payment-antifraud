@@ -1,7 +1,11 @@
 require 'rails_helper'
+require 'support/api_shared_context_methods'
 
 describe 'Funcionário edita uma promoção' do
+  include_context 'api_shared_context_methods'
+
   it 'a partir da tela de show' do
+    user_registration_api_mock
     promo = create(:promo)
 
     visit promos_path

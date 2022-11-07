@@ -3,18 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'bootsnap', require: false
+gem 'cssbundling-rails'
 gem 'devise'
 gem 'faraday'
-gem 'rename'
+gem 'jbuilder'
+gem 'jsbundling-rails'
+gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'
+gem 'rename'
 gem 'sprockets-rails'
 gem 'sqlite3', '~> 1.4'
-gem 'puma', '~> 5.0'
-gem 'jsbundling-rails'
-gem 'cssbundling-rails'
-gem 'jbuilder'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'capybara'

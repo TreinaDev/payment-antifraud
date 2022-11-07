@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'support/api_shared_context_methods'
 
 describe 'Administrador edita um meio de pagamento' do
+  include_context 'api_shared_context_methods'
+
   it 'e está autenticado como administrador' do
     admin = FactoryBot.create(:admin)
     FactoryBot.create(:payment_method)
@@ -14,6 +17,7 @@ describe 'Administrador edita um meio de pagamento' do
   end
 
   it 'e não está autenticado como administrador' do
+    user_registration_api_mock
     user = FactoryBot.create(:user, status: :approved)
     FactoryBot.create(:payment_method)
 

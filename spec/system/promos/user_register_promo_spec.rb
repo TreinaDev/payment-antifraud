@@ -1,7 +1,12 @@
 require 'rails_helper'
+require 'support/api_shared_context_methods'
 
 describe 'Funcionário cadastra uma promoção' do
+  include_context 'api_shared_context_methods'
+
   it 'a partir da tela inicial' do
+    user_registration_api_mock
+
     visit promos_path
     click_on 'Cadastrar promoção'
 
@@ -16,6 +21,7 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com sucesso' do
+    user_registration_api_mock
     allow(SecureRandom).to receive(:alphanumeric).and_return('ASDCF123')
 
     visit promos_path
@@ -36,6 +42,8 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com dados incompletos' do
+    user_registration_api_mock
+
     visit promos_path
     click_on 'Cadastrar promoção'
     fill_in 'Nome', with: ''

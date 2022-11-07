@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 describe 'Funcionário faz cadastro no sistema' do
+  include_context 'api_shared_context_methods'
   it 'a partir de um formulário' do
+    user_registration_api_mock
+
     visit root_path
     click_on 'Fazer Login'
     click_on 'Criar Conta'
@@ -16,7 +19,7 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'com sucesso' do
     json_data = File.read Rails.root.join('spec/support/json/insurance_companies.json')
-    fake_response = double("Faraday::Response", status: 200, body: json_data)
+    fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
 
     visit root_path
@@ -35,6 +38,4 @@ describe 'Funcionário faz cadastro no sistema' do
 
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
   end
-
-
 end

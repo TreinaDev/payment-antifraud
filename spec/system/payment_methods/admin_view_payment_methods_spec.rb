@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'support/api_shared_context_methods'
 
 describe 'Usuário vê meios de pagamento' do
+  include_context 'api_shared_context_methods'
+
   it 'se estiver autenticado' do
     visit root_path
     within('nav') do
@@ -12,6 +15,7 @@ describe 'Usuário vê meios de pagamento' do
   end
 
   it 'e está autenticado como funcionário da seguradora' do
+    user_registration_api_mock
     user = FactoryBot.create(:user, status: :approved)
     FactoryBot.create(:payment_method, name: 'Laranja',
                                        tax_percentage: 5, tax_maximum: 100,
