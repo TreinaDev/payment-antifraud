@@ -1,4 +1,5 @@
 class PaymentMethod < ApplicationRecord
+  has_one_attached :image
   enum status: { active: 0, inactive: 10 }
 
   validates :name, :tax_percentage, :tax_maximum, :payment_type, presence: true
