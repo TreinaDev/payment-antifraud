@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
       flash[:alert] = t(:sign_in_to_enter)
       redirect_to root_path
     end
+  end
 
   def require_admin
     return redirect_to root_path, notice: t('no_access_granted') unless current_admin
