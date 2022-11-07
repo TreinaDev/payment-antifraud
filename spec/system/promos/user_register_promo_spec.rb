@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Funcionário cadastra uma promoção' do
   it 'a partir da tela inicial' do
-    # login_as
-    # visit root_path
     visit promos_path
     click_on 'Cadastrar promoção'
 
@@ -18,7 +16,6 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com sucesso' do
-    # login_as
     allow(SecureRandom).to receive(:alphanumeric).and_return('ASDCF123')
 
     visit promos_path
@@ -39,8 +36,6 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com dados incompletos' do
-    # login_as
-
     visit promos_path
     click_on 'Cadastrar promoção'
     fill_in 'Nome', with: ''

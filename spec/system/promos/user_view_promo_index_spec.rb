@@ -5,8 +5,6 @@ describe 'Funcionário visita a pagina de promoção' do
     promo_a = create(:promo)
     promo_b = create(:promo)
 
-    # login_as funcionário
-    # visit root_path
     visit promos_path
 
     expect(current_path).to eq promos_path

@@ -2,10 +2,8 @@ require 'rails_helper'
 
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
-    # login_as
     promo = create(:promo)
 
-    # visit root_path
     visit promos_path
     click_on promo.name
     click_on 'Editar'
