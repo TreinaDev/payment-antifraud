@@ -1,12 +1,11 @@
 FactoryBot.define do
   factory :promo do
-    starting_date { '2022-11-01' }
-    ending_date { '2022-11-01' }
-    name { 'MyString' }
-    discount_percentage { 1 }
-    discount_max { 1 }
-    product_list { 'MyString' }
-    usages_max { 1 }
-    voucher { 'MyString' }
+    starting_date { Faker::Date.in_date_period }
+    ending_date { Faker::Date.in_date_period }
+    name { Faker::Name.name }
+    discount_percentage { Faker::Number.number(digits: 2) }
+    discount_max { Faker::Commerce.price }
+    product_list { 'dell, lenovo' }
+    usages_max { Faker::Number.number(digits: 2) }
   end
 end
