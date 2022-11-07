@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :user do
-    email { 'admin@antifraudsystem.com.br' }
+    email { "#{SecureRandom.alphanumeric(8)}@antifraudsystem.com.br" }
     password { 'password' }
     name { 'Luis Inacio Lula da Silva' }
+    registration_number { '39439419203' }
   end
 end
