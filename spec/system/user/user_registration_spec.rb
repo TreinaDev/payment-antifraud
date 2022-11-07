@@ -15,13 +15,17 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'com sucesso' do
+    json_data = File.read Rails.root.join('spec/support/json/insurance_companies.json')
+    fake_response = double("Faraday::Response", status: 200, body: json_data)
+    allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+
     visit root_path
     within('nav') do
       click_on 'Fazer Login'
     end
     click_on 'Criar Conta'
     within('div#signup-fields') do
-      fill_in 'E-mail', with: 'petra@seguradoradapaola'
+      fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
       fill_in 'Senha', with: 'password'
       fill_in 'Confirme sua senha', with: 'password'
       fill_in 'Nome', with: 'Petra'
@@ -31,4 +35,6 @@ describe 'Funcionário faz cadastro no sistema' do
 
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
   end
+
+
 end

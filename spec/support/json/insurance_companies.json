@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Paola Seguros",
+    "email_domain": "paolaseguros.com.br",
+    "company_status": 0,
+    "company_token": "ABCDEFGHIJKLMNOPQRSTWXYZ",
+    "token_status": 0,
+  },
+  {
+    "id": 2,
+    "name": "Petra Seguros",
+    "email_domain": "petraseguros.com.br",
+    "company_status": 0,
+    "company_token": "XYZABEEBBEBEBEBEBEBEE",
+    "token_status": 0,
+  }
+]
