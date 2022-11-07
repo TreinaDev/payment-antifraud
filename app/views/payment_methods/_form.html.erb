@@ -1,0 +1,21 @@
+<%= form_with model: @payment_method do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :tax_percentage %>
+    <%= f.text_field :tax_percentage %>
+  </div>
+  <div>
+    <%= f.label :tax_maximum %>
+    <%= f.text_field :tax_maximum %>
+  </div>
+  <div>
+    <%= f.label :payment_type %>
+    <%= f.select :payment_type, @payment_types %>
+  </div>
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>
