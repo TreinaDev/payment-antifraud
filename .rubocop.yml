@@ -12,6 +12,8 @@ AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
+    - '/spec/*'
+    - 'db/migrate/*'
     - 'db/schema.rb'
     - 'bin/**/*'
     - 'vendor/**/*'

@@ -4,6 +4,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
   it 'se estiver autenticado' do
     common_user = FactoryBot.create(:user)
 
+    login_as common_user, scope: :user
     visit root_path
 
     expect(page).not_to have_link 'Usuários'
@@ -51,7 +52,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       )
 
       login_as admin, scope: :admin
-      visit registered_users_home_index_path
+      visit users_path
 
       expect(page).to have_link 'Avaliar Cadastro'
     end
@@ -64,7 +65,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       )
 
       login_as admin, scope: :admin
-      visit registered_users_home_index_path
+      visit users_path
 
       expect(page).to have_content 'Petra APROVADA'
       expect(page).not_to have_link 'Avaliar Cadastro'
@@ -80,7 +81,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       )
 
       login_as admin, scope: :admin
-      visit registered_users_home_index_path
+      visit users_path
       click_on 'Avaliar Cadastro'
 
       expect(page).to have_content 'Aprovar Cadastro?'

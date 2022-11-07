@@ -6,8 +6,8 @@ class UserApproval < ApplicationRecord
   private
 
   def ensure_refusal_when_registration_is_refused
-    if (!status && refusal.nil?) || (!status && refusal.empty?)
-      errors.add(:refusal, 'deve ser preenchido para recusar o cadastro.')
-    end
+    return unless (!status && refusal.nil?) || (!status && refusal.empty?)
+    
+    errors.add(:refusal, 'deve ser preenchido para recusar o cadastro.')
   end
 end

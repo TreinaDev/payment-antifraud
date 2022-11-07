@@ -6,7 +6,7 @@ describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' d
       common_user = FactoryBot.create(:user, status: :approved)
 
       login_as common_user, scope: :user
-      get registered_users_home_index_path
+      get users_path
 
       expect(response).to redirect_to root_path
     end

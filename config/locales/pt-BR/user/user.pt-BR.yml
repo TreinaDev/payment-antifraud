@@ -7,7 +7,6 @@ pt-BR:
       one: 'Usuário'
       two: 'Usuários'
     attributes:
-      status: 'Status de aprovação'
       name: 'Nome'
       email: 'E-mail'
       registration_number: 'CPF'

@@ -13,7 +13,7 @@ class UserApprovalsController < ApplicationController
     if @user_approval.save
       @user_approval.status ? @user.approved! : @user.refused!
       message = @user.approved? ? 'Usuário aprovado com sucesso.' : 'Usuário reprovado com sucesso.'
-      return redirect_to registered_users_home_index_url, notice: message
+      return redirect_to users_url, notice: message
     end
     render :new
   end

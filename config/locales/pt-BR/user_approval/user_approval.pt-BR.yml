@@ -1,4 +1,5 @@
 pt-BR:
+  
   approve_register: 'Aprovar Cadastro?'
   activerecord:
     models:
