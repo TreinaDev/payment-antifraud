@@ -1,5 +1,5 @@
 class PromosController < ApplicationController
-  before_action :set_promo, only: %i[edit update show]
+  before_action :set_promo, only: %i[edit show]
 
   def index
     @promos = Promo.all
@@ -18,9 +18,9 @@ class PromosController < ApplicationController
   def create
     @promo = Promo.new(promo_params)
     if @promo.save
-      redirect_to promo_path(@promo.id), notice: 'Promoção cadastrada com sucesso!'
+      redirect_to promo_path(@promo.id), notice: I18n.t('controllers.promos.create.success')
     else
-      flash.now[:notice] = 'Não foi possível cadastrar a promoção'
+      flash.now[:notice] = I18n.t('controllers.promos.create.fail')
       render 'new'
     end
   end
