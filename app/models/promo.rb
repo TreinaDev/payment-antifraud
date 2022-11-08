@@ -7,7 +7,7 @@ class Promo < ApplicationRecord
   private
 
   def ending_date_greater_than_starting_date
-    if self.starting_date > self.ending_date
+    if !self.starting_date.nil? && !self.ending_date.nil? && self.starting_date > self.ending_date
       errors.add(:ending_date, I18n.t('activerecord.errors.models.promo.attributes.ending_date.date_error'))
     end
   end

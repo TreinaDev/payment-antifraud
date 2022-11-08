@@ -8,6 +8,20 @@ RSpec.describe Promo, type: :model do
 
       expect(result).to be true
     end
+
+    it 'a data final deve ser maior que a inicial' do
+      promo = build(:promo, starting_date: '2022-12-03', ending_date: '2022-12-11')
+      result = promo.valid?
+
+      expect(result).to be true
+    end
+
+    it 'a data final não pode ser vazia' do
+      promo = build(:promo, starting_date: '2022-12-03', ending_date: '')
+      result = promo.valid?
+
+      expect(result).to be false
+    end
   end
 
   describe 'Gera um código aleatório' do
