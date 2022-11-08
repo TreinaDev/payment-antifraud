@@ -60,7 +60,7 @@ RSpec.describe PaymentMethod, type: :model do
       it 'é jpeg ou png' do
         payment_method = FactoryBot.create(:payment_method)
         payment_method.image.purge
-        payment_method.image.attach(io: File.open(Rails.root.join("spec/support/projeto.pdf")), filename: 'projeto.pdf')
+        payment_method.image.attach(io: File.open(Rails.root.join('spec/support/projeto.pdf')), filename: 'projeto.pdf')
 
         payment_method.valid?
 
