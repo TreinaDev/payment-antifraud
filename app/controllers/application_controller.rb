@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::QueryCanceled, with: :return_500
+  rescue_from ActiveRecord::QueryCanceled, with: :return500
 
   private
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     return redirect_to root_path, notice: t('no_access_granted') unless current_admin
   end
 
-  def return_500
+  def return500
     redirect_to root_path, notice: t('controllers.application.internal_error')
   end
 end

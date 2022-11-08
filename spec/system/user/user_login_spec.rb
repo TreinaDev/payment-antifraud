@@ -1,11 +1,8 @@
 require 'rails_helper'
-require 'support/api_shared_context_methods'
 
 describe 'Funcionário faz login no sistema' do
-  include_context 'api_shared_context_methods'
-
   it 'com sucesso' do
-    user_registration_api_mock
+    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
     FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
@@ -31,7 +28,7 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e não preenche todos os campos' do
-    user_registration_api_mock
+    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
     FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',

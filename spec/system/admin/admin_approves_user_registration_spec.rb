@@ -1,11 +1,8 @@
 require 'rails_helper'
-require 'support/api_shared_context_methods'
 
 describe 'Administrador vê a lista de usuários cadastrados' do
-  include_context 'api_shared_context_methods'
-
   it 'se estiver autenticado' do
-    user_registration_api_mock
+    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
     common_user = FactoryBot.create(:user)
 
     login_as common_user, scope: :user
@@ -16,7 +13,8 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'a partir de uma tela separada' do
     it 'com sucesso' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
@@ -50,7 +48,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'e vê botão de alteração de cadastro' do
     it 'de um usuário pendente' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
@@ -64,7 +62,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não vê botão caso o usuário já esteja aprovado' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
         :user, name: 'Petra APROVADA', email: 'petraaprovada@paolaseguros.com.br',
@@ -81,7 +79,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'e muda o status do cadastro' do
     it 'a partir de um formulário' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
@@ -100,7 +98,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'para aprovado' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
@@ -119,7 +117,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'para recusado' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
@@ -139,7 +137,7 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não preenche a reprovação com uma justificativa' do
-      user_registration_api_mock
+      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',

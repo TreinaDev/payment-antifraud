@@ -12,7 +12,7 @@
     "name": "Petra Seguros",
     "email_domain": "petraseguros.com.br",
     "company_status": 0,
-    "compantoken": "XYZABEEBBEBEBEBEBEBEE",
+    "company_token": "XYZABEEBBEBEBEBEBEBEE",
     "token_status": 0
   }
 ]

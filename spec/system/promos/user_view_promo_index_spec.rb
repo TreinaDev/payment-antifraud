@@ -1,11 +1,8 @@
 require 'rails_helper'
-require 'support/api_shared_context_methods'
 
 describe 'Funcionário visita a pagina de promoção' do
-  include_context 'api_shared_context_methods'
-
   it 'e vê promoções cadastradas' do
-    user_registration_api_mock
+    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
 
     promo_a = create(:promo)
     promo_b = create(:promo)
@@ -20,7 +17,7 @@ describe 'Funcionário visita a pagina de promoção' do
   end
 
   it 'e não há promoções cadastradas' do
-    user_registration_api_mock
+    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
 
     visit promos_path
 
