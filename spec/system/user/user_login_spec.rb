@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Funcionário faz login no sistema' do
   it 'com sucesso' do
     FactoryBot.create(:user,
-                      email: 'petra@seguradoradapaola',
+                      email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
                       registration_number: '39401929301',
@@ -14,13 +14,13 @@ describe 'Funcionário faz login no sistema' do
       click_on 'Fazer Login'
     end
     within('div#login-fields') do
-      fill_in 'E-mail', with: 'petra@seguradoradapaola'
+      fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
       fill_in 'Senha', with: 'password'
       click_on 'Login'
     end
 
     expect(page).to have_content 'Login efetuado com sucesso.'
-    expect(page).to have_content 'Olá Petra - petra@seguradoradapaola'
+    expect(page).to have_content 'Olá Petra - petra@paolaseguros.com.br'
     expect(page).to have_button 'Logout'
     expect(page).not_to have_link 'Fazer Login'
     expect(page).to have_content 'Aguardando aprovação do administrador do sistema.'
@@ -28,7 +28,7 @@ describe 'Funcionário faz login no sistema' do
 
   it 'e não preenche todos os campos' do
     FactoryBot.create(:user,
-                      email: 'petra@seguradoradapaola',
+                      email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
                       registration_number: '39401929301',

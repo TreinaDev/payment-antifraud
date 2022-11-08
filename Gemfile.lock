@@ -111,6 +111,10 @@ GEM
     faker (3.0.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    faraday (2.6.0)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -238,6 +242,7 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    ruby2_keywords (0.0.5)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -281,6 +286,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   image_processing (~> 1.2)
+  faraday
   jbuilder
   jsbundling-rails
   puma (~> 5.0)
