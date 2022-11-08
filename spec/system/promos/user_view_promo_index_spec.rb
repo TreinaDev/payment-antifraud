@@ -7,7 +7,10 @@ describe 'Funcionário visita a pagina de promoção' do
     admin = FactoryBot.create(:admin)
 
     login_as admin, scope: :admin
-    visit promos_path
+    visit root_path
+    within('nav') do
+      click_on 'Promoções'
+    end
 
     expect(current_path).to eq promos_path
     expect(page).to have_content 'Promoções'
@@ -20,7 +23,10 @@ describe 'Funcionário visita a pagina de promoção' do
     admin = FactoryBot.create(:admin)
 
     login_as admin, scope: :admin
-    visit promos_path
+    visit root_path
+    within('nav') do
+      click_on 'Promoções'
+    end
 
     expect(current_path).to eq promos_path
     expect(page).to have_content 'Promoções'

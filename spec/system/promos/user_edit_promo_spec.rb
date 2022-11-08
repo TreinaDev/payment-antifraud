@@ -6,7 +6,10 @@ describe 'Funcionário edita uma promoção' do
     admin = FactoryBot.create(:admin)
 
     login_as admin, scope: :admin
-    visit promos_path
+    visit root_path
+    within('nav') do
+      click_on 'Promoções'
+    end
     click_on promo.name
     click_on 'Editar'
 
@@ -26,7 +29,10 @@ describe 'Funcionário edita uma promoção' do
     admin = FactoryBot.create(:admin)
 
     login_as admin, scope: :admin
-    visit promos_path
+    visit root_path
+    within('nav') do
+      click_on 'Promoções'
+    end
     click_on promo.name
     click_on 'Editar'
     fill_in 'Nome', with: 'Promoção Natal'
