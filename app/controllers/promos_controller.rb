@@ -1,6 +1,6 @@
 class PromosController < ApplicationController
   before_action :authenticate!
-  before_action :set_promo, only: [:edit, :update, :show]
+  before_action :set_promo, only: %i[edit update show]
 
   def index
     @promos = Promo.all

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
-    promo = create(:promo, name:'Promoção Páscoa', usages_max: 50)
+    promo = create(:promo, name: 'Promoção Páscoa', usages_max: 50)
     admin = FactoryBot.create(:admin)
-    
+
     login_as admin, scope: :admin
     visit promos_path
     click_on promo.name
@@ -22,9 +22,9 @@ describe 'Funcionário edita uma promoção' do
   end
 
   it 'com sucesso' do
-    promo = create(:promo, name:'Promoção de Páscoa', usages_max: 10)
+    promo = create(:promo, name: 'Promoção de Páscoa', usages_max: 10)
     admin = FactoryBot.create(:admin)
-    
+
     login_as admin, scope: :admin
     visit promos_path
     click_on promo.name

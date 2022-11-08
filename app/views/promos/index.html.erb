@@ -1,17 +1,16 @@
-<h1> Promoções </h1>
+<h2> Promoções </h2>
 <hr>
-<%= link_to 'Cadastrar promoção', new_promo_path, class: 'btn btn-primary' %>
-<hr>
-
+<% if admin_signed_in? %>
+  <%= link_to 'Cadastrar promoção', new_promo_path, class: 'btn btn-primary' %>
+  <hr>
+<% end %>
 <% if @promos.any? %>
   <% @promos.each do |p| %>
-    <div>
-      <h3> <%= Promo.human_attribute_name(:promo) %>: <%=  link_to p.name, promo_path(p.id) %> </h3>
- 
-      <dl>
-        <dt><strong> <%= Promo.human_attribute_name(:voucher)%>: </strong> <%= p.voucher %> </dt>
-      </dl>
-    </div>
+    <ul>
+      <li><h4> <%= Promo.human_attribute_name(:promo) %>: <%=  link_to p.name, promo_path(p.id) %> </h4></li>
+      <strong> <%= Promo.human_attribute_name(:voucher)%>: </strong> <%= p.voucher %> 
+      
+    </ul>
   <% end %>
 <% else %> 
   <p>Nenhuma promoção cadastrada.</p>

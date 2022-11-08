@@ -5,7 +5,7 @@ describe 'Funcionário visita a pagina de promoção' do
     promo_a = create(:promo)
     promo_b = create(:promo)
     admin = FactoryBot.create(:admin)
-    
+
     login_as admin, scope: :admin
     visit promos_path
 
@@ -18,7 +18,7 @@ describe 'Funcionário visita a pagina de promoção' do
 
   it 'e não há promoções cadastradas' do
     admin = FactoryBot.create(:admin)
-    
+
     login_as admin, scope: :admin
     visit promos_path
 

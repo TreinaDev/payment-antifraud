@@ -6,11 +6,11 @@ RSpec.describe Promo, type: :model do
       promo = build(:promo)
       result = promo.valid?
 
-      expect(result).to be true
+      expect(result).to be(true)
     end
 
     it 'a data final deve ser maior que a inicial' do
-      promo = build(:promo, starting_date: '2022-12-03', ending_date: '2022-12-11')
+      promo = build(:promo, starting_date: Time.zone.today, ending_date: (Time.zone.today + 7.days))
       result = promo.valid?
 
       expect(result).to be true
