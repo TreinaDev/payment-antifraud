@@ -15,7 +15,7 @@ RSpec.describe Promo, type: :model do
 
       expect(result).to be true
     end
-    
+
     it 'a data inicial não deve ser maior que a final' do
       promo = build(:promo, starting_date: Time.zone.today, ending_date: (Time.zone.today - 7.days))
       result = promo.valid?
@@ -28,7 +28,6 @@ RSpec.describe Promo, type: :model do
 
       expect(result).to be false
     end
-    
   end
 
   describe 'Gera um código aleatório' do
