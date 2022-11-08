@@ -8,6 +8,7 @@ class UserApprovalsController < ApplicationController
 
   def create
     @user_approval = UserApproval.new(new_approval_params)
+
     @user_approval.user = @user
 
     if @user_approval.save

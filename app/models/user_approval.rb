@@ -1,13 +1,14 @@
 class UserApproval < ApplicationRecord
   belongs_to :user
-
-  before_validation :ensure_refusal_when_registration_is_refused
+  before_validation :validates_refusal_when_registration_is_approved_or_denied
 
   private
 
-  def ensure_refusal_when_registration_is_refused
-    return unless (!status && refusal.nil?) || (!status && refusal.empty?)
-
-    errors.add(:refusal, 'deve ser preenchido para recusar o cadastro.')
+  def validates_refusal_when_registration_is_approved_or_denied
+    if status && refusal.present?
+      errors.add(:refusal, 'não pode ser preenchido para aprovar o cadastro.')
+    elsif !status && refusal.blank?
+      errors.add(:refusal, 'deve ser preenchido para recusar o cadastro.')
+    end
   end
 end
