@@ -11,49 +11,49 @@
 
   <body id = 'nav'>
     <header class="p-3 mb-3 border-bottom" id="header">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <nav>
-            <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
-              <span class="fs-4"> Pagamento e Antifraude  </span>
-            <% end %>
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li>
-                <%= link_to "Meios de Pagamento", payment_methods_url , class:"nav-link px-2 link-#{controller_name == 'payment_methods' ? 'secondary' : 'dark'}" %>
-              </li>
-              <li>
-                <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'secondary' : 'dark'}" %>
-              </li>
-
-              <% if admin_signed_in? %>
-                <li>
-                  <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'admins' ? 'secondary' : 'dark'}" %>
-                </li>          
-                <div class="dropdown text-end">
-                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://img.freepik.com/premium-vector/person-avatar-design_24877-38130.jpg?w=2000" alt="mdo" width="32" height="32" class="rounded-circle">
-                  </a>
-                  <ul class="dropdown-menu text-small">
-                    <li><%=  button_to 'Logout', destroy_admin_session_path, method: :delete, class: "dropdown-item"%></li>
-                  </ul>
-                </div>
+      <nav>
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+              <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
+                <span class="fs-4"> Pagamento e Antifraude  </span>
               <% end %>
-            </ul> 
-            <div class="dropdown text-end">
-              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
-              </a>
-                <ul class="dropdown-menu text-small">
-                  <% if user_signed_in? %>
-                    <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "dropdown-item"%>
-                  <% else %>
-                    <%= link_to 'Fazer Login', new_user_session_path, class: "dropdown-item" %>
-                  <% end %>    
-                </ul>
-            </div>
-          </nav>
+              <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                  <%= link_to "Meios de Pagamento", payment_methods_url , class:"nav-link px-2 link-#{controller_name == 'payment_methods' ? 'secondary' : 'dark'}" %>
+                </li>
+                <li>
+                  <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'secondary' : 'dark'}" %>
+                </li>
+
+                <% if admin_signed_in? %>
+                  <li>
+                    <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'admins' ? 'secondary' : 'dark'}" %>
+                  </li>          
+                  <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="https://img.freepik.com/premium-vector/person-avatar-design_24877-38130.jpg?w=2000" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                      <li><%=  button_to 'Logout', destroy_admin_session_path, method: :delete, class: "dropdown-item"%></li>
+                    </ul>
+                  </div>
+                <% end %>
+              </ul> 
+              <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                  <ul class="dropdown-menu text-small">
+                    <% if user_signed_in? %>
+                      <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "dropdown-item"%>
+                    <% else %>
+                      <%= link_to 'Fazer Login', new_user_session_path, class: "dropdown-item" %>
+                    <% end %>    
+                  </ul>
+              </div>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
     <main>
       <div>
