@@ -4,7 +4,7 @@ RSpec.describe UserApproval, type: :model do
   describe '#valid?' do
     context '#ensure_refusal_when_registration_is_refused' do
       it 'falso quando o cadastro é recusado mas não tem motivo preenchido' do
-        user = FactoryBot.create(:user, :skip_email_validate, status: :pending)
+        user = FactoryBot.create(:user, status: :pending)
 
         user_approval = UserApproval.new(
           refusal: nil, status: false, user:

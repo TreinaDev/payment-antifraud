@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário faz login no sistema' do
   it 'com sucesso' do
-    FactoryBot.create(:user, :skip_email_validate,
+    FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
@@ -27,7 +27,7 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e não preenche todos os campos' do
-    FactoryBot.create(:user, :skip_email_validate,
+    FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',

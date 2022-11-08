@@ -14,7 +14,7 @@ describe 'Administrador edita um meio de pagamento' do
   end
 
   it 'e não está autenticado como administrador' do
-    user = FactoryBot.create(:user, :skip_email_validate)
+    user = FactoryBot.create(:user)
     FactoryBot.create(:payment_method)
 
     login_as(user, scope: :user)
