@@ -79,5 +79,53 @@ describe InsuranceCompany do
 
       expect(result).to be_falsy
     end
+
+    it 'Método retorna false se o email pertence uma seguradora mas ela não está ativa' do
+      companies = []
+      companies << InsuranceCompany.new(
+        id: 1,
+        email_domain: 'paolaseguros.com.br',
+        company_status: 1,
+        company_token: 'ABLUBLUBLUEBLUBLUELU',
+        token_status: 0
+      )
+      companies << InsuranceCompany.new(
+        id: 2,
+        email_domain: 'petraseguros.com.br',
+        company_status: 1,
+        company_token: 'PETRALEGALPETRALEGAL',
+        token_status: 0
+      )
+      allow(InsuranceCompany).to receive(:all).and_return(companies)
+
+      user = FactoryBot.build(:user, email: 'petra@paolaseguros.com.br')
+      result = InsuranceCompany.user_email_match_any_company?(user.email)
+
+      expect(result).to be_falsy
+    end
+
+    it 'Método retorna false se o email pertence uma seguradora mas o token dela está expirado' do
+      companies = []
+      companies << InsuranceCompany.new(
+        id: 1,
+        email_domain: 'paolaseguros.com.br',
+        company_status: 0,
+        company_token: 'ABLUBLUBLUEBLUBLUELU',
+        token_status: 1
+      )
+      companies << InsuranceCompany.new(
+        id: 2,
+        email_domain: 'petraseguros.com.br',
+        company_status: 0,
+        company_token: 'PETRALEGALPETRALEGAL',
+        token_status: 1
+      )
+      allow(InsuranceCompany).to receive(:all).and_return(companies)
+
+      user = FactoryBot.build(:user, email: 'petra@paolaseguros.com.br')
+      result = InsuranceCompany.user_email_match_any_company?(user.email)
+
+      expect(result).to be_falsy
+    end
   end
 end
