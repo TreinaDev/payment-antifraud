@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     return redirect_to root_path, notice: t('no_access_granted') unless current_admin
   end
 
+  def require_user
+    return redirect_to root_path, notice: t('no_access_granted') unless current_user && current_user.approved?
+  end
+
   def return500
     redirect_to root_path, notice: t('controllers.application.internal_error')
   end

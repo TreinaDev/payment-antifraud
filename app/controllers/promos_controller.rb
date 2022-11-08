@@ -1,5 +1,5 @@
 class PromosController < ApplicationController
-  before_action :authenticate!
+  before_action :require_user
   before_action :set_promo, only: %i[edit update show]
 
   def index

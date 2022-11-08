@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Funcionário cadastra uma promoção' do
   it 'a partir da tela inicial' do
-    admin = FactoryBot.create(:admin)
+    user = FactoryBot.create(:user)
 
-    login_as admin, scope: :admin
+    login_as user, scope: :user
     visit root_path
     within('nav') do
       click_on 'Promoções'
@@ -23,9 +23,9 @@ describe 'Funcionário cadastra uma promoção' do
 
   it 'com sucesso' do
     allow(SecureRandom).to receive(:alphanumeric).and_return('ASDCF123')
-    admin = FactoryBot.create(:admin)
+    user = FactoryBot.create(:user)
 
-    login_as admin, scope: :admin
+    login_as user, scope: :user
     visit root_path
     within('nav') do
       click_on 'Promoções'
@@ -47,9 +47,9 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com dados incompletos' do
-    admin = FactoryBot.create(:admin)
+    user = FactoryBot.create(:user)
 
-    login_as admin, scope: :admin
+    login_as user, scope: :user
     visit root_path
     within('nav') do
       click_on 'Promoções'

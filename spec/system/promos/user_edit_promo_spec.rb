@@ -3,14 +3,14 @@ require 'rails_helper'
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
     promo = create(:promo, name: 'Promoção Páscoa', usages_max: 50)
-    admin = FactoryBot.create(:admin)
+    user = FactoryBot.create(:user)
 
-    login_as admin, scope: :admin
+    login_as user, scope: :user
     visit root_path
     within('nav') do
       click_on 'Promoções'
     end
-    click_on promo.name
+    click_on promo.voucher
     click_on 'Editar'
 
     expect(page).to have_content 'Editar Promoção'
@@ -26,14 +26,14 @@ describe 'Funcionário edita uma promoção' do
 
   it 'com sucesso' do
     promo = create(:promo, name: 'Promoção de Páscoa', usages_max: 10)
-    admin = FactoryBot.create(:admin)
+    user = FactoryBot.create(:user)
 
-    login_as admin, scope: :admin
+    login_as user, scope: :user
     visit root_path
     within('nav') do
       click_on 'Promoções'
     end
-    click_on promo.name
+    click_on promo.voucher
     click_on 'Editar'
     fill_in 'Nome', with: 'Promoção Natal'
     fill_in 'Quantidade de usos', with: 3

@@ -1,6 +1,6 @@
 <h2> Promoções </h2>
 <hr>
-<% if admin_signed_in? %>
+<% if user_signed_in? %>
   <%= link_to 'Cadastrar promoção', new_promo_path, class: 'btn btn-primary' %>
   <hr>
 <% end %>

@@ -1,5 +1,5 @@
 <h2> <%= Promo.human_attribute_name(:promo) %>: <%= @promo.name %> </h2>
-<% if admin_signed_in? %>
+<% if user_signed_in? %>
   <hr>
   <%= link_to 'Editar', edit_promo_path(@promo.id), class: 'btn btn-primary' %>
   <hr>
