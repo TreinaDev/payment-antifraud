@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::QueryCanceled, with: :return_500
+
   private
 
   def authenticate!
@@ -14,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     return redirect_to root_path, notice: t('no_access_granted') unless current_admin
+  end
+
+  def return_500
+    redirect_to root_path, notice: t('controllers.application.internal_error')
   end
 end
