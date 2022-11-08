@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def devise_parameter_sanitizer
-    if resource_class == User 
+    if resource_class == User
       ParameterSanitizer.new(User, :user, params)
-    else  
-      super 
+    else
+      super
     end
   end
 

@@ -1,6 +1,6 @@
-class ParameterSanitizer < Devise::ParameterSanitizer 
+class ParameterSanitizer < Devise::ParameterSanitizer
   def initialize(*)
-    super 
-    permit(:sign_up, keys: [:name, :registration_number])
+    super
+    permit(:sign_up, keys: %i[name registration_number])
   end
 end

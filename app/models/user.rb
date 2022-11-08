@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_one :user_approval, dependent: :destroy
   before_save :consult_insurance_company_api_for_email_validation
   validates :registration_number, presence: true
-  validates :registration_number, length: { is:11 }
+  validates :registration_number, length: { is: 11 }
 
   private
 
