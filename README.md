@@ -11,8 +11,8 @@
 
 <h4>Confira abaixo as outras aplicações que conversam com o nosso sistema para criar um ecossistema de seguros:</h4>
 <p>
-  <a href="https://github.com/TreinaDev/insurance-app">Sitema de Seguradoras</a>
-  <a href="https://github.com/TreinaDev/insurance-comparator-app">Sistema Comparador de Seguros</a>
+  <p> <a href="https://github.com/TreinaDev/insurance-app">Sitema de Seguradoras</a> </p>
+  <p> <a href="https://github.com/TreinaDev/insurance-comparator-app">Sistema Comparador de Seguros</a> </p>
 </p>
 
 <h2> Setup da aplicação </h2>
