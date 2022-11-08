@@ -15,3 +15,10 @@ pt-BR:
         ending_date: Data de fim
         discount_percentage: Porcentagem de desconto
         name: Nome
+    errors: 
+      models:
+        promo:
+          attributes:
+            ending_date:
+              date_error: Data inicial precisa ser maior que a final
+    
