@@ -3,21 +3,18 @@ require 'rails_helper'
 describe InsuranceCompany do
   context '.all' do
     it 'Método devolve todas as companhias de seguro cadastradas' do
-      json_data = File.read Rails.root.join('spec/support/json/insurance_companies.json')
+      json_data = File.read 'spec/support/json/insurance_companies.json'
       fake_response = double('Faraday::Response', status: 200, body: json_data)
       allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
-
       companies = InsuranceCompany.all
 
       expect(companies.length).to eq 2
       expect(companies.first.id).to eq 1
-      expect(companies.first.name).to eq 'Paola Seguros'
       expect(companies.first.email_domain).to eq 'paolaseguros.com.br'
       expect(companies.first.company_status).to eq 0
       expect(companies.first.company_token).to eq 'ABCDEFGHIJKLMNOPQRSTWXYZ'
       expect(companies.first.token_status).to eq 0
       expect(companies[1].id).to eq 2
-      expect(companies[1].name).to eq 'Petra Seguros'
       expect(companies[1].email_domain).to eq 'petraseguros.com.br'
       expect(companies[1].company_status).to eq 0
       expect(companies[1].company_token).to eq 'XYZABEEBBEBEBEBEBEBEE'
@@ -39,7 +36,6 @@ describe InsuranceCompany do
       companies = []
       companies << InsuranceCompany.new(
         id: 1,
-        name: 'Paola Seguros',
         email_domain: 'paolaseguros.com.br',
         company_status: 0,
         company_token: 'ABLUBLUBLUEBLUBLUELU',
@@ -47,7 +43,6 @@ describe InsuranceCompany do
       )
       companies << InsuranceCompany.new(
         id: 2,
-        name: 'SEGURADORA INATIVA',
         email_domain: 'SEGURADORANAOVALIDA.com.br',
         company_status: 1,
         company_token: 'TOKENEXPIRADODESDE1999',
@@ -65,7 +60,6 @@ describe InsuranceCompany do
       companies = []
       companies << InsuranceCompany.new(
         id: 1,
-        name: 'Paola Seguros',
         email_domain: 'paolaseguros.com.br',
         company_status: 0,
         company_token: 'ABLUBLUBLUEBLUBLUELU',
@@ -73,7 +67,6 @@ describe InsuranceCompany do
       )
       companies << InsuranceCompany.new(
         id: 2,
-        name: 'Petra Seguros',
         email_domain: 'petraseguros.com.br',
         company_status: 0,
         company_token: 'PETRALEGALPETRALEGAL',

@@ -1,9 +1,8 @@
 class InsuranceCompany
-  attr_accessor :id, :name, :email_domain, :company_status, :company_token, :token_status
+  attr_accessor :id, :email_domain, :company_status, :company_token, :token_status
 
-  def initialize(id:, name:, email_domain:, company_status:, company_token:, token_status:)
+  def initialize(id:, email_domain:, company_status:, company_token:, token_status:)
     @id = id
-    @name = name
     @email_domain = email_domain
     @company_status = company_status
     @company_token = company_token
@@ -13,7 +12,6 @@ class InsuranceCompany
   def self.new_insurance_company(params)
     InsuranceCompany.new(
       id: params['id'],
-      name: params['name'],
       email_domain: params['email_domain'],
       company_status: params['company_status'],
       company_token: params['company_token'],
@@ -39,5 +37,4 @@ class InsuranceCompany
     end
     false
   end
-  
 end
