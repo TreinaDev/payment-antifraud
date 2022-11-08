@@ -21,7 +21,7 @@ describe InsuranceCompany do
       expect(companies[1].token_status).to eq 0
     end
 
-    it 'Método devolve array vazio quando não recebe um status 204(No Content) da API' do
+    it 'Método devolve array vazio quando recebe um status 204(No Content) da API' do
       fake_response = double('Faraday::Response', status: 204, body: {})
       allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
 
@@ -80,7 +80,7 @@ describe InsuranceCompany do
       expect(result).to be_falsy
     end
 
-    it 'Método retorna false se o email pertence uma seguradora mas ela não está ativa' do
+    it 'Método retorna false se o email pertence a uma seguradora mas ela não está ativa' do
       companies = []
       companies << InsuranceCompany.new(
         id: 1,
