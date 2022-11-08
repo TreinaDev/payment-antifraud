@@ -2,12 +2,12 @@ User.destroy_all
 Admin.destroy_all
 Promo.destroy_all
 
-FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name:'Teste', status: 'approved')
+FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste', status: 'approved')
 5.times do
   FactoryBot.create(:user)
 end
 
-FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name:'Teste')
+FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')
 
 Promo.create!(name: 'Black Friday', starting_date: Time.zone.today, ending_date: Time.zone.today + 30.days,
               discount_max: 10_000, discount_percentage: 20, product_list: 'notebooks, smartphones', usages_max: 10)
