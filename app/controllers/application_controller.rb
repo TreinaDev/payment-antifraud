@@ -4,17 +4,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate!
-    if !current_admin.nil?
-      :authenticate_admin!
-    elsif !current_user.nil?
-      :authenticate_user!
-    else
-      flash[:alert] = t(:sign_in_to_enter)
-      redirect_to root_path
-    end
-  end
-
   def devise_parameter_sanitizer
     if resource_class == User
       ParameterSanitizer.new(User, :user, params)
@@ -28,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    return redirect_to root_path, notice: t('no_access_granted') unless current_user && current_user.approved?
+    return redirect_to root_path, notice: t('no_access_granted') unless current_user&.approved?
   end
 
   def return500
