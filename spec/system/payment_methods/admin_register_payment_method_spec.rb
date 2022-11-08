@@ -82,5 +82,6 @@ describe 'Administrador cadastra novo meio de pagamento' do
     expect(page).to have_content 'Nome não pode ficar em branco'
     expect(page).to have_content 'Taxa por Cobrança não pode ficar em branco'
     expect(page).to have_content 'Taxa Máxima não pode ficar em branco'
+    expect(page).to have_content 'Ícone não pode ficar em branco'
   end
 end
