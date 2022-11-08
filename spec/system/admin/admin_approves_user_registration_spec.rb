@@ -62,11 +62,10 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não vê botão caso o usuário já esteja aprovado' do
-      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
-        :user, name: 'Petra APROVADA', email: 'petraaprovada@paolaseguros.com.br',
-               registration_number: '39401920391', status: :approved
+        :user, :skip_email_validate, name: 'Petra APROVADA', email: 'petraaprovada@paolaseguros.com.br',
+                                     registration_number: '39401920391', status: :approved
       )
 
       login_as admin, scope: :admin
@@ -79,11 +78,10 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'e muda o status do cadastro' do
     it 'a partir de um formulário' do
-      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       FactoryBot.create(
-        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-               registration_number: '39401920391', status: :pending
+        :user, :skip_email_validate, name: 'Paola', email: 'paola@petraseguros.com.br',
+                                     registration_number: '39401920391', status: :pending
       )
 
       login_as admin, scope: :admin
@@ -98,11 +96,10 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'para aprovado' do
-      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
-        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-               registration_number: '39401920391', status: :pending
+        :user, :skip_email_validate, name: 'Paola', email: 'paola@petraseguros.com.br',
+                                     registration_number: '39401920391', status: :pending
       )
 
       login_as admin, scope: :admin
@@ -117,11 +114,10 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'para recusado' do
-      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
-        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-               registration_number: '39401920391', status: :pending
+        :user, :skip_email_validate, name: 'Paola', email: 'paola@petraseguros.com.br',
+                                     registration_number: '39401920391', status: :pending
       )
 
       login_as admin, scope: :admin
@@ -137,11 +133,10 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não preenche a reprovação com uma justificativa' do
-      allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
       admin = FactoryBot.create(:admin)
       common_user = FactoryBot.create(
-        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
-               registration_number: '39401920391', status: :pending
+        :user, :skip_email_validate, name: 'Paola', email: 'paola@petraseguros.com.br',
+                                     registration_number: '39401920391', status: :pending
       )
 
       login_as admin, scope: :admin

@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário faz login no sistema' do
   it 'com sucesso' do
-    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
-    FactoryBot.create(:user,
+    FactoryBot.create(:user, :skip_email_validate,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
@@ -28,8 +27,7 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e não preenche todos os campos' do
-    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
-    FactoryBot.create(:user,
+    FactoryBot.create(:user, :skip_email_validate,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',

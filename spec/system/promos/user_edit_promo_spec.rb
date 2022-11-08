@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
-    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
     promo = create(:promo)
 
     visit promos_path
