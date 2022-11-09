@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_143400) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_162822) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,13 +55,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_143400) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_approvals", force: :cascade do |t|
+  create_table "user_reviews", force: :cascade do |t|
     t.string "refusal"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
-    t.index ["user_id"], name: "index_user_approvals_on_user_id"
+    t.integer "status"
+    t.index ["user_id"], name: "index_user_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,5 +79,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_143400) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "user_approvals", "users"
+  add_foreign_key "user_reviews", "users"
 end

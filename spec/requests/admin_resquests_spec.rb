@@ -16,7 +16,7 @@ describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' d
       other_user = FactoryBot.create(:user, status: :pending)
 
       login_as target_user, scope: :user
-      get new_user_user_approval_path(other_user.id)
+      get new_user_user_review_path(other_user.id)
 
       expect(response).to redirect_to root_path
     end
