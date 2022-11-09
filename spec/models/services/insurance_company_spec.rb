@@ -5,7 +5,7 @@ describe InsuranceCompany do
     it 'Método devolve todas as companhias de seguro cadastradas' do
       json_data = File.read 'spec/support/json/insurance_companies.json'
       fake_response = double('Faraday::Response', status: 200, body: json_data)
-      allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+      allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
       companies = InsuranceCompany.all
 
       expect(companies.length).to eq 2
@@ -23,7 +23,7 @@ describe InsuranceCompany do
 
     it 'Método devolve array vazio quando recebe um status 204(No Content) da API' do
       fake_response = double('Faraday::Response', status: 204, body: {})
-      allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+      allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
       companies = InsuranceCompany.all
 
