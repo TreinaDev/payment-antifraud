@@ -51,6 +51,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Capybara::DSL
   config.include Warden::Test::Helpers
+  config.include ActionDispatch::TestProcess
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
