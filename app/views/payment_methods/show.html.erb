@@ -1,21 +1,25 @@
 <h2>Detalhes do Meio de Pagamento</h2>
 
-<dl>
-  <dt><%= PaymentMethod.human_attribute_name(:name)%>:</dt>
-  <dd><%= @payment_method.name %></dd>
-  <dt><%= PaymentMethod.human_attribute_name(:tax_percentage)%>:</dt>
-  <dd><%= @payment_method.tax_percentage %>%</dd>
-  <dt><%= PaymentMethod.human_attribute_name(:tax_maximum)%>:</dt>
-  <dd><%= number_to_currency(@payment_method.tax_maximum, :unit => "R$ ", :separator => ",", :delimiter => ".") %></dd>
-  <dt><%= PaymentMethod.human_attribute_name(:payment_type)%>:</dt>
-  <dd><%= @payment_method.payment_type%></dd>
-  <dt><%= PaymentMethod.human_attribute_name(:status)%>:</dt>
-  <dd><%= I18n.t(@payment_method.status) %></dd>
-</dl>
+<div class="card" style="width: 18rem;">
+  <% if @payment_method.image.attached? %>
+    <p> <%= image_tag @payment_method.image, style: "width: 100px; display: block" %> </p>
+  <% end %>
+  <div class="card-body">
+    <dl>
+      <dt><%= PaymentMethod.human_attribute_name(:name)%>:</dt>
+      <dd><%= @payment_method.name %></dd>
+      <dt><%= PaymentMethod.human_attribute_name(:tax_percentage)%>:</dt>
+      <dd><%= @payment_method.tax_percentage %>%</dd>
+      <dt><%= PaymentMethod.human_attribute_name(:tax_maximum)%>:</dt>
+      <dd><%= number_to_currency(@payment_method.tax_maximum, :unit => "R$ ", :separator => ",", :delimiter => ".") %></dd>
+      <dt><%= PaymentMethod.human_attribute_name(:payment_type)%>:</dt>
+      <dd><%= @payment_method.payment_type%></dd>
+      <dt><%= PaymentMethod.human_attribute_name(:status)%>:</dt>
+      <dd><%= I18n.t(@payment_method.status) %></dd>
+    </dl>
+  </div>
+</div>
 
-<% if @payment_method.image.attached? %>
-  <p> <%= image_tag @payment_method.image, style: "width: 100px; display: block" %> </p>
-<% end %>
 
 <% if current_admin %>
   <%= link_to 'Editar', edit_payment_method_url %>

@@ -13,7 +13,7 @@ class UserReviewsController < ApplicationController
 
     if @user_review.save
       @user_review.approved? ? @user.approved! : @user.refused!
-      message = @user.approved? ? 'Usuário aprovado com sucesso.' : 'Usuário reprovado com sucesso.'
+      message = @user.approved? ? t('user_approved'): t('user_reproved')
       return redirect_to users_url, notice: message
     end
     render :new

@@ -4,6 +4,7 @@ describe 'Admin tenta fazer login no sistema' do
   it 'e acessa a pagina de login diretamente pelo link' do
     visit new_admin_session_path
 
+    expect(page).to have_content 'Login do Administrador'
     expect(page).to have_field 'E-mail'
     expect(page).to have_field 'Senha'
     expect(page).to have_button 'Login'
