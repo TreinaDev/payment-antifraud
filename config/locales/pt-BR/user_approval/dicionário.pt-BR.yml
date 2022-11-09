@@ -1,2 +1,3 @@
 pt-BR:
   case_not: '(caso não)'
+  no_access_granted: 'Acesso negado.'
