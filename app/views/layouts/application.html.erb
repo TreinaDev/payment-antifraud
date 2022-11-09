@@ -40,9 +40,10 @@
                 <% end %>
               </ul> 
               <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
+                <% if !admin_signed_in? %>
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                  </a>
                   <ul class="dropdown-menu text-small">
                     <% if user_signed_in? %>
                       <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "dropdown-item"%>
@@ -50,6 +51,7 @@
                       <%= link_to 'Fazer Login', new_user_session_path, class: "dropdown-item" %>
                     <% end %>    
                   </ul>
+                <%end%>
               </div>
           </div>
         </div>
