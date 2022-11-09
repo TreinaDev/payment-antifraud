@@ -16,6 +16,10 @@
     <%= f.select :payment_type, @payment_types %>
   </div>
   <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
     <%= f.submit 'Salvar' %>
   </div>
 <% end %>

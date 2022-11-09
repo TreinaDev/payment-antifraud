@@ -13,6 +13,10 @@
   <dd><%= I18n.t(@payment_method.status) %></dd>
 </dl>
 
+<% if @payment_method.image.attached? %>
+  <p> <%= image_tag @payment_method.image, style: "width: 100px; display: block" %> </p>
+<% end %>
+
 <% if current_admin %>
   <%= link_to 'Editar', edit_payment_method_url %>
 <% end %>
