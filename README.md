@@ -1,53 +1,40 @@
-<h2> Configurações </h2>
+Configurações
 
-<ul>
-  <li> Versão do Ruby Utilizada: Ruby 3.1.2 </li>
-  <li> Versão do framework Rails: 7.0.4 </li>
-  <li> Versão do Node: 18.12.0 </li>
-  <li> Ferramenta para testes: Rspec </li>
-  <li> HTTP Web Server: Puma </li>
-  <li> Test driver: Capybara </li>
-</ul>
+Versão do Ruby Utilizada: Ruby 3.1.2 
+Versão do framework Rails: 7.0.4 
+Versão do Node: 18.12.0 
+Ferramenta para testes: Rspec
+HTTP Web Server: Puma 
+Test driver: Capybara 
 
-<h4>Confira abaixo as outras aplicações que conversam com o nosso sistema para criar um ecossistema de seguros:</h4>
-<p>
-  <p> <a href="https://github.com/TreinaDev/insurance-app">Sitema de Seguradoras</a> </p>
-  <p> <a href="https://github.com/TreinaDev/insurance-comparator-app">Sistema Comparador de Seguros</a> </p>
-</p>
+Confira abaixo as outras aplicações que conversam com o nosso sistema para criar um ecossistema de seguros:
 
-<h2> Setup da aplicação </h2>
-<p></p>
+  Sitema de Seguradoras
+  https://github.com/TreinaDev/insurance-app
+
+  Sistema Comparador de Seguros
+  https://github.com/TreinaDev/insurance-comparator-app
+
+Setup da aplicação
+
   Antes de inicializar a aplicação, rode o comando <code>bin/setup</code> para instalar todas as gems e dependências necessárias para o funcionamento adequado da aplicação.
-</p>
-<p>
-  Em seguida, você pode subir a aplicação utilizando o comando <code>bin/dev -p 5000</code> no seu terminal, que permitirá o acesso no endereço <code>https://localhost:5000/</code>
-</p>
-<p>
-  Caso queira rodar todos os testes automatizados, utilize o comando <code>rspec</code>
-</p>
-<p>
-  É recomendado rodar o comando <code>rails db:seed</code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code>Fazer Login</code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
-</p>
 
-<p>
-  <h3> Usuário comum </h3>
-    <ul>
-      <li> Email: users@antifraudsystem.com.br  </li>
-      <li> Senha: password </li>
-    </ul>
-</p>
+  Em seguida, você pode subir a aplicação utilizando o comando bin/dev -p 5000 no seu terminal, que permitirá o acesso no endereço https://localhost:5000/
 
-<p>
-  <h3> Usuário administrador </h3>
-    <ul>
-      <li> Email: admins@antifraudsystem.com.br </li>
-      <li> Senha: password </li>
-    </ul>
-</p>
+  Caso queira rodar todos os testes automatizados, utilize o comando rspec
 
-<p>
-<h2> Specs do sistema </h2>
-  <h4> Gems utilizadas: </h4>
+  É recomendado rodar o comando rails db:seed no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão Fazer Login localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
+
+ Usuário comum
+  Email: users@antifraudsystem.com.br
+  Senha: password
+
+ Usuário administrador
+  Email: admins@antifraudsystem.com.br
+  Senha: password
+
+ Specs do sistema
+   Gems utilizadas: 
   
     * FactoryBot: 
        Gem utilizada para automatizar o processo de população do banco de dados, simplificando as etapas de alguns testes e os deixando mais limpos.
@@ -71,4 +58,3 @@
     * Simplecov:
        Gem utilizada para garantir uma boa cobertura de testes automatizados durante o desenvolvimento
        da aplicação. 
-</p>
