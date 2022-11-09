@@ -1,7 +1,9 @@
 <h2> <%= Promo.human_attribute_name(:promo) %>: <%= @promo.name %> </h2>
-<hr>
-<%= link_to 'Editar', edit_promo_path(@promo.id) %>
-<hr>
+<% if user_signed_in? %>
+  <hr>
+  <%= link_to 'Editar', edit_promo_path(@promo.id), class: 'btn btn-primary' %>
+  <hr>
+<% end %>
 <dl>
   <dt><strong><%= Promo.human_attribute_name(:starting_date) %>: </strong><%= I18n.localize(@promo.starting_date) %></dt>
   <dt><strong><%= Promo.human_attribute_name(:ending_date) %>: </strong><%= I18n.localize(@promo.ending_date) %></dt>
