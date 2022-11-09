@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 describe 'Funcionário faz login no sistema' do
-  it 'a partir de um formulário' do 
-
-    visit root_path 
-    within 'nav' do 
+  it 'a partir de um formulário' do
+    visit root_path
+    within 'nav' do
       click_on 'Fazer Login'
     end
 
@@ -21,7 +20,6 @@ describe 'Funcionário faz login no sistema' do
                       name: 'Petra',
                       registration_number: '39401929301',
                       status: :pending)
-
 
     visit new_user_session_path
     within('div#login-fields') do

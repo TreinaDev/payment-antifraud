@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PaymentAntifraudApp</title>
+    <title><%= t 'app_name' %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,25 +10,36 @@
   </head>
 
   <body id = 'nav'>
-    <header class="p-3 mb-3 border-bottom" id="header">
+    <header class="p-3 mb-3 border-bottom bg-secondary" id="header">
       <nav>
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-              <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
-                <span class="fs-4"> Pagamento e Antifraude  </span>
+              <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-#{controller_name == 'home' ? 'primary' : 'dark'}" do %>
+                <span class="fs-4"> <%= t 'app_name' %>  </span>
               <% end %>
               <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                  <%= link_to "Meios de Pagamento", payment_methods_url , class:"nav-link px-2 link-#{controller_name == 'payment_methods' ? 'secondary' : 'dark'}" %>
+                  <%= link_to "Meios de Pagamento", payment_methods_url , class:"nav-link px-2 link-#{controller_name == 'payment_methods' ? 'primary' : 'dark'}" %>
                 </li>
                 <li>
-                  <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'secondary' : 'dark'}" %>
+                  <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'primary' : 'dark'}" %>
                 </li>
-
+                
                 <% if admin_signed_in? %>
                   <li>
-                    <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'admins' ? 'secondary' : 'dark'}" %>
-                  </li>          
+                    <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'users' ? 'primary' : 'dark'}" %>
+                  </li> 
+                  <li class="nav-link text-dark px-2">
+                    <% if user_signed_in? %>
+                      <% if current_user.pending? %>
+                        <%= t 'waiting_for_approval' %>
+                      <%= user_greetings(current_user) %>
+                      <% end %>
+                    <% end %>
+                    <% if admin_signed_in? %>
+                      <%= user_greetings(current_admin) %>
+                    <% end %>
+                  </li>     
                   <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                       <img src="https://img.freepik.com/premium-vector/person-avatar-design_24877-38130.jpg?w=2000" alt="mdo" width="32" height="32" class="rounded-circle">

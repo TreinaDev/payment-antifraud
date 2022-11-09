@@ -1,17 +1,17 @@
 a {
-  color: rgb(118, 148, 255) !important;
+  color: rgb(78, 65, 253) !important;
 } 
 $white: #ffffff;
 
 $theme-colors: (
-"light": #a6dbe3,
-"dark": #02665a,
-"primary": #f184c7,
-"secondary": #f8c1d3,
-"info": #e1c6f7,
-"success": #2acc8f,
-"warning": #e0596f,
-"danger": #f24511,
-); 
+    "light":      #380735,
+    "dark":       #000302,
+    "primary":    #f54445,
+    "secondary":  #5a2882,
+    "info":       #b2aa6e,
+    "success":    #1fa96a,
+    "warning":    #e0ce1e,
+    "danger":     #ed2d0e,
+);
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';

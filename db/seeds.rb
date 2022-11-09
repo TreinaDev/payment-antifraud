@@ -21,10 +21,8 @@ Promo.create!(name: 'Promo Relâmpago', starting_date: Time.zone.today, ending_d
               discount_max: 5000, discount_percentage: 10, product_list: 'notebooks', usages_max: 150)
 
 FactoryBot.create(:payment_method, name: 'Laranja',
-              tax_percentage: 5, tax_maximum: 100,
-              payment_type: 'Cartão de Crédito', status: :active)
+                                   tax_percentage: 5, tax_maximum: 100,
+                                   payment_type: 'Cartão de Crédito', status: :active)
 FactoryBot.create(:payment_method, name: 'Roxo',
-              tax_percentage: 3, tax_maximum: 50,
-              payment_type: 'Boleto', status: :active)
-
-
+                                   tax_percentage: 3, tax_maximum: 50,
+                                   payment_type: 'Boleto', status: :active)
