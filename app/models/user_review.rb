@@ -6,9 +6,9 @@ class UserReview < ApplicationRecord
   private
 
   def validates_refusal_when_registration_is_approved_or_refused
-    if self.approved? && refusal.present?
+    if approved? && refusal.present?
       errors.add(:refusal, 'não pode ser preenchido para aprovar o cadastro.')
-    elsif self.refused? && refusal.blank?
+    elsif refused? && refusal.blank?
       errors.add(:refusal, 'deve ser preenchido para recusar o cadastro.')
     end
   end

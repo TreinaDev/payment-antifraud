@@ -8,7 +8,7 @@ class UserReviewsController < ApplicationController
 
   def create
     @user_review = UserReview.new(new_review_params)
-    
+
     @user_review.user = @user
 
     if @user_review.save

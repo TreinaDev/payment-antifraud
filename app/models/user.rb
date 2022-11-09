@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :registration_number, length: { is: 11 }
 
   private
-  
+
   def consult_insurance_company_api_for_email_validation
     raise_company_error unless InsuranceCompany.user_email_match_any_company?(email)
   end
