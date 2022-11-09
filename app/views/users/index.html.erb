@@ -18,7 +18,7 @@
             <td><%= user.registration_number %></td>
             <td><%= "#{ t 'registration'}  #{ t user.status }"  %></td>
             <% if user.pending? %>
-              <td><%= link_to t('evaluate_registration'), new_user_user_approval_path(user.id) %></td>
+              <td><%= link_to t('evaluate_registration'), new_user_user_review_path(user.id) %></td>
             <% end %>
           </tr>
         </tbody>

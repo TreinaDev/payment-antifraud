@@ -1,11 +1,10 @@
 pt-BR:
-  
   approve_register: 'Aprovar Cadastro?'
   activerecord:
     models:
-      user_approval: 'Aprovação de Usuário'
+      user_review: 'Aprovação de Usuário'
     attributes:
-      user_approval:
+      user_review:
         status: 'Status de aprovação'
         refusal: 'Motivo de reprovação'
       

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum status: { pending: 0, approved: 1, refused: 2 }
-  has_one :user_approval, dependent: :destroy
+  has_one :user_review, dependent: :destroy
   before_create :consult_insurance_company_api_for_email_validation
   validates :registration_number, presence: true
   validates :registration_number, length: { is: 11 }

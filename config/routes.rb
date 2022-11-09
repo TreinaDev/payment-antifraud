@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :payment_methods, only: [:index, :new, :create, :show, :edit, :update]
 
   resources :users, only: %i[index] do 
-    resources :user_approvals, only: %i[new create]
+    resources :user_reviews, only: %i[new create]
   end
 end

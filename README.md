@@ -1,24 +1,60 @@
-# README
+Configurações
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Versão do Ruby Utilizada: Ruby 3.1.2 
+Versão do framework Rails: 7.0.4 
+Versão do Node: 18.12.0 
+Ferramenta para testes: Rspec
+HTTP Web Server: Puma 
+Test driver: Capybara 
 
-Things you may want to cover:
+Confira abaixo as outras aplicações que conversam com o nosso sistema para criar um ecossistema de seguros:
 
-* Ruby version
+  Sitema de Seguradoras
+  https://github.com/TreinaDev/insurance-app
 
-* System dependencies
+  Sistema Comparador de Seguros
+  https://github.com/TreinaDev/insurance-comparator-app
 
-* Configuration
+Setup da aplicação
 
-* Database creation
+  Antes de inicializar a aplicação, rode o comando <code>bin/setup</code> para instalar todas as gems e dependências necessárias para o funcionamento adequado da aplicação.
 
-* Database initialization
+  Em seguida, você pode subir a aplicação utilizando o comando bin/dev -p 5000 no seu terminal, que permitirá o acesso no endereço https://localhost:5000/
 
-* How to run the test suite
+  Caso queira rodar todos os testes automatizados, utilize o comando rspec
 
-* Services (job queues, cache servers, search engines, etc.)
+  É recomendado rodar o comando rails db:seed no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão Fazer Login localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
 
-* Deployment instructions
+ Usuário comum
+  Email: users@antifraudsystem.com.br
+  Senha: password
 
-* ...
+ Usuário administrador
+  Email: admins@antifraudsystem.com.br
+  Senha: password
+
+ Specs do sistema
+   Gems utilizadas: 
+  
+    * FactoryBot: 
+       Gem utilizada para automatizar o processo de população do banco de dados, simplificando as etapas de alguns testes e os deixando mais limpos.
+  
+    * Faker:
+       Gem utilizada para criar dados 'falsos', associada com a FactoryBot é utilizada para gerar strings e números aleatórios que servem como valores dos atributos nas instâncias dos models.
+  
+    * Devise:
+       Gem utilizada para gerenciar a autenticação dos usuários comuns e admins.
+       
+    * Faraday:
+       Gem utilizada para disparar requisições HTTP, foi utilizada neste projeto com o propósito de se comunicar
+       com a APi de outros sistemas.
+    
+    * Bootstrap:
+       Gem utilizada para fazer o front-end e a estilização da aplicação.
+
+    * Rubocop:
+       Linter utilizado para garantir que o código se enquadra em padrões de boas práticas.
+
+    * Simplecov:
+       Gem utilizada para garantir uma boa cobertura de testes automatizados durante o desenvolvimento
+       da aplicação. 

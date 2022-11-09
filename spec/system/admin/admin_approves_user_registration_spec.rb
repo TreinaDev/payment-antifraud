@@ -99,8 +99,8 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       )
 
       login_as admin, scope: :admin
-      visit new_user_user_approval_path(common_user.id)
-      choose 'user_approval_status_true', allow_label_click: true
+      visit new_user_user_review_path(common_user.id)
+      choose 'user_review_status_approved', allow_label_click: true
       click_on 'Enviar'
 
       expect(page).to have_content 'Usuário aprovado com sucesso.'
@@ -117,8 +117,8 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       )
 
       login_as admin, scope: :admin
-      visit new_user_user_approval_path(common_user.id)
-      choose 'user_approval_status_false', allow_label_click: true
+      visit new_user_user_review_path(common_user.id)
+      choose 'user_review_status_refused', allow_label_click: true
       fill_in 'Motivo de reprovação', with: 'Hacker invadindo o sistemaa!'
       click_on 'Enviar'
 
@@ -136,12 +136,28 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       )
 
       login_as admin, scope: :admin
-      visit new_user_user_approval_path(common_user.id)
-      choose 'user_approval_status_false', allow_label_click: true
+      visit new_user_user_review_path(common_user.id)
+      choose 'user_review_status_refused', allow_label_click: true
       fill_in 'Motivo de reprovação', with: ''
       click_on 'Enviar'
 
       expect(page).to have_content 'Motivo de reprovação deve ser preenchido para recusar o cadastro.'
+    end
+
+    it 'e não pode preencher um motivo de reprovação se for aprovar o cadastro' do
+      admin = FactoryBot.create(:admin)
+      common_user = FactoryBot.create(
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending
+      )
+
+      login_as admin, scope: :admin
+      visit new_user_user_review_path(common_user.id)
+      choose 'user_review_status_approved', allow_label_click: true
+      fill_in 'Motivo de reprovação', with: 'Não gostei de você você é feio!!!'
+      click_on 'Enviar'
+
+      expect(page).to have_content 'Motivo de reprovação não pode ser preenchido para aprovar o cadastro.'
     end
   end
 end
