@@ -36,6 +36,7 @@ describe 'Administrador cadastra novo meio de pagamento' do
     expect(page).to have_field 'Taxa por Cobrança'
     expect(page).to have_field 'Taxa Máxima'
     expect(page).to have_field 'Tipo de Pagamento'
+    expect(page).to have_field 'Ícone'
     expect(page).to have_button 'Salvar'
   end
 
@@ -50,6 +51,7 @@ describe 'Administrador cadastra novo meio de pagamento' do
     fill_in 'Taxa por Cobrança', with: 5
     fill_in 'Taxa Máxima', with: 2
     select 'Cartão de Crédito', from: 'Tipo de Pagamento'
+    attach_file 'Ícone', Rails.root.join('spec/support/icone_cartao_credito_azul.jpg')
     click_on 'Salvar'
 
     expect(current_url).to eq payment_method_url(1)
@@ -59,6 +61,7 @@ describe 'Administrador cadastra novo meio de pagamento' do
     expect(page).to have_content 'Taxa por Cobrança: 5%'
     expect(page).to have_content 'Taxa Máxima: R$ 2,00'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
+    expect(page).to have_css 'img[src*="icone_cartao_credito_azul.jpg"]'
     expect(page).to have_content 'Status: Ativo'
   end
 
@@ -79,5 +82,6 @@ describe 'Administrador cadastra novo meio de pagamento' do
     expect(page).to have_content 'Nome não pode ficar em branco'
     expect(page).to have_content 'Taxa por Cobrança não pode ficar em branco'
     expect(page).to have_content 'Taxa Máxima não pode ficar em branco'
+    expect(page).to have_content 'Ícone não pode ficar em branco'
   end
 end
