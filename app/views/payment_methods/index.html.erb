@@ -1,27 +1,34 @@
-<h1> Meios de Pagamento </h1>
+<h2> Meios de Pagamento </h2>
+<hr>
 <% if current_admin %>
-  <%= link_to 'Cadastrar Novo Meio de Pagamento', new_payment_method_url %>
+  <%= link_to 'Cadastrar Novo Meio de Pagamento', new_payment_method_url, class: "btn btn-primary  btn-m" %>
 <% end %>
+<hr>
+<article>
+  <main style="width:80%">
+    <h3> <%= t 'users_list' %> </h3>
 
-<% if @payment_methods.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th> <%=PaymentMethod.human_attribute_name(:name)%> </th>
-        <th> <%=PaymentMethod.human_attribute_name(:payment_type)%> </th>
-        <th> <%=PaymentMethod.human_attribute_name(:status)%> </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @payment_methods.each do |pm|%>
-      <tr>
-        <td> <%= link_to pm.name, pm  %> </td>
-        <td> <%= pm.payment_type %> </td>
-        <td> <%= I18n.translate(pm.status)%> </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <table class="table table-striped table-bordered bg-gray">
+      <thead>
+        <tr>
+          <th scope="col"><%= PaymentMethod.human_attribute_name(:name) %></th>
+          <th scope="col"><%= PaymentMethod.human_attribute_name(:payment_type) %></th>
+          <th scope="col"><%= PaymentMethod.human_attribute_name(:status) %></th>
+  
+        </tr>
+      </thead>
+      <% if @payment_methods.present? %>
+        <% @payment_methods.each do |pm| %>
+          <tbody>
+              <td><%= link_to pm.name, pm %></td>
+              <td><%= pm.payment_type %></td>
+              <td><%= I18n.translate(pm.status) %></td>
+            </tr>
+          </tbody>
+        <% end %>
+    </table>
 <% else %>
-  <p>Não existem meios de pagamento cadastrados.</p>
+  <h3>Não existem meios de pagamento cadastrados.</h3>
+  </main>
 <% end %>
+</article>

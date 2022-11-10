@@ -1,7 +1,7 @@
 <h2> <%= Promo.human_attribute_name(:promo) %>: <%= @promo.name %> </h2>
 <% if user_signed_in? %>
   <hr>
-  <%= link_to 'Editar', edit_promo_path(@promo.id), class: 'btn btn-primary' %>
+  <%= link_to 'Editar', edit_promo_path(@promo.id), class: "btn btn-primary  btn-m" %>
   <hr>
 <% end %>
 <dl>
@@ -10,6 +10,6 @@
   <dt><strong><%= Promo.human_attribute_name(:usages_max) %>: </strong><%= @promo.usages_max %></dt>
   <dt><strong><%= Promo.human_attribute_name(:voucher) %>: </strong><%= @promo.voucher %></dt>
   <dt><strong><%= Promo.human_attribute_name(:discount_percentage) %>: </strong><%= @promo.discount_percentage %> %</dt>
-  <dt><strong><%= Promo.human_attribute_name(:discount_max) %>: </strong> <%= number_to_currency(@promo.discount_max/100) %></dt>
+  <dt><strong><%= Promo.human_attribute_name(:discount_max) %>: </strong> <%= number_to_currency(@promo.currency, unit: "R$", separator: ",", delimiter: "") %></dt>
   <dt><strong><%= Promo.human_attribute_name(:product_list) %>: </strong> <%= @promo.product_list %></dt>
 </dl>

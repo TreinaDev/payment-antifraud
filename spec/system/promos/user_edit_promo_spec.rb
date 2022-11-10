@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
-    promo = create(:promo, name: 'Promoção Páscoa', usages_max: 50)
+    promo = create(:promo, name: 'Promoção Páscoa', usages_max: 50, discount_max: 1000)
     user = FactoryBot.create(:user)
 
     login_as user, scope: :user
@@ -20,7 +20,7 @@ describe 'Funcionário edita uma promoção' do
     expect(page).to have_field 'Lista de produtos', with: promo.product_list
     expect(page).to have_field 'Data de fim', with: promo.ending_date
     expect(page).to have_field 'Porcentagem de desconto', with: promo.discount_percentage
-    expect(page).to have_field 'Valor máximo de desconto', with: promo.discount_max
+    expect(page).to have_field 'Valor máximo de desconto', with: 10
     expect(page).to have_field 'Quantidade de usos', with: 50
   end
 
