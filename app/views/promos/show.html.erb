@@ -1,7 +1,7 @@
 <h2> <%= Promo.human_attribute_name(:promo) %>: <%= @promo.name %> </h2>
 <% if user_signed_in? %>
   <hr>
-  <%= link_to 'Editar', edit_promo_path(@promo.id), class: 'btn btn-primary' %>
+  <%= link_to 'Editar', edit_promo_path(@promo.id), class: "btn btn-primary  btn-m" %>
   <hr>
 <% end %>
 <dl>

@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col-3"></div>
 <div class="card bg-gray" style="padding: 3%; width: 25%;">
 <div id="login-fields">
   <h1 class="h3 mb-3 fw-normal"><%= t 'admin_login' %></h1>
@@ -5,23 +7,23 @@
     
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style:"width: 70%" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style:"width: 50%; margin-bottom: 3%;" %>
     </div>
 
     <div class="field">
       <%= f.label :password %><br />
-      <%= f.password_field :password, class: "form-control", style:"width: 70%" %>
+      <%= f.password_field :password, class: "form-control", style:"width: 50%; margin-bottom: 3%;" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field">
+      <div class="field card-text" style="margin-bottom: 3%;" >
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
       </div>
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Login", class: "btn btn-primary  btn-m" %>
+      <%= f.submit "Login", class: "btn btn-primary  btn-m", style:"width: 50%; margin-bottom: 3%;" %>
     </div>
   <% end %>
 </div>
