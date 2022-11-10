@@ -1,9 +1,15 @@
 pt-BR:
+  pending: pendente
+  payd: Paga
+  failed: Encerrada com falha
   activerecord:
     models:
       promo: 
         one: Promoção
         other: Promoções
+      invoice:
+        one: Cobrança
+        other: Cobranças
     attributes:
       promo:
         promo: Promoção
@@ -15,6 +21,12 @@ pt-BR:
         ending_date: Data de fim
         discount_percentage: Porcentagem de desconto
         name: Nome
+      invoice:
+        status: Status
+        token: Token
+        package_id: ID Pacote de Seguros
+        registration_number: CPF
+        insurance_company_id: ID Seguradora
     errors: 
       models:
         promo:

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :users, only: %i[index] do 
     resources :user_reviews, only: %i[new create]
   end
+
+  resources :invoices, only: %i[index]
 end

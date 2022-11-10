@@ -3,4 +3,4 @@ pt-BR:
   registration_status: "Status do cadastro"
   registration: 'Cadastro'
   evaluate_registration: 'Avaliar Cadastro'
-  
+  no_access_granted: Acesso negado
