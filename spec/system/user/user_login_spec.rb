@@ -2,12 +2,14 @@ require 'rails_helper'
 
 describe 'Funcionário faz login no sistema' do
   it 'com sucesso' do
+    company = FactoryBot.create(:insurance_company)
     FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
                       registration_number: '39401929301',
-                      status: :pending)
+                      status: :pending,
+                      insurance_company_id: company.id)
 
     visit root_path
     within('nav') do
@@ -27,12 +29,14 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e não preenche todos os campos' do
+    company = FactoryBot.create(:insurance_company)
     FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
                       registration_number: '39401929301',
-                      status: :pending)
+                      status: :pending,
+                      insurance_company_id: company.id)
 
     visit root_path
 

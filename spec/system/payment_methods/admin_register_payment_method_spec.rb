@@ -12,7 +12,8 @@ describe 'Administrador cadastra novo meio de pagamento' do
   end
 
   it 'e não está autenticado como administrador' do
-    user = FactoryBot.create(:user, status: :approved)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
 
     login_as(user, scope: :user)
     visit root_path

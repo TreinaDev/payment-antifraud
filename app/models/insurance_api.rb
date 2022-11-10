@@ -32,11 +32,10 @@ class InsuranceApi
     company.company_status.zero? && company.token_status.zero?
   end
 
-  def self.user_email_match_any_company?(user_email)
+  def self.check_if_user_email_match_any_company(user_email)
     companies = all
     companies.each do |company|
-      return true if company.email_domain == user_email.split('@').last && active_company?(company)
+      return company if company.email_domain == user_email.split('@').last && active_company?(company)
     end
-    false
   end
 end

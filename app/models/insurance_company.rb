@@ -1,0 +1,2 @@
+class InsuranceCompany < ApplicationRecord
+end

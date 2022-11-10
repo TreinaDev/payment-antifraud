@@ -12,7 +12,8 @@ describe 'Usuário vê meios de pagamento' do
   end
 
   it 'e está autenticado como funcionário da seguradora' do
-    user = FactoryBot.create(:user, status: :approved)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
     FactoryBot.create(:payment_method, name: 'Laranja',
                                        tax_percentage: 5, tax_maximum: 100,
                                        payment_type: 'Cartão de Crédito', status: :active)
