@@ -20,7 +20,7 @@ class InsuranceCompany
   end
 
   def self.all
-    response = Faraday.get('http://localhost:3000/insurance_companies/')
+    response = Faraday.get('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies')
     return [] if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500
 
@@ -28,12 +28,14 @@ class InsuranceCompany
     data.map { |d| new_insurance_company(d) }
   end
 
-  def self.user_email_match_any_company?(email)
+  def self.active_company?(company)
+    company.company_status.zero? && company.token_status.zero?
+  end
+
+  def self.user_email_match_any_company?(user_email)
     companies = all
     companies.each do |company|
-      if company.email_domain == email.split('@').last && (company.company_status.zero? && company.token_status.zero?)
-        return true
-      end
+      return true if company.email_domain == user_email.split('@').last && active_company?(company)
     end
     false
   end
