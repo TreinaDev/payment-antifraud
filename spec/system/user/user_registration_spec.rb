@@ -32,11 +32,12 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
+    expect(User.count).to eq 1
   end
 
   it 'e não há seguradoras cadastradas' do
     fake_response = double('Faraday::Response', status: 204, body: {}.to_json)
-    allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+    allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
     visit root_path
     within('nav') do
@@ -53,11 +54,12 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'E-mail deve pertencer a uma seguradora ativa.'
+    expect(User.count).to eq 0
   end
 
   it 'e o sistema de seguradoras está fora do ar' do
     fake_response = double('Faraday::Response', status: 500, body: {}.to_json)
-    allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+    allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
     visit root_path
     within('nav') do
@@ -74,6 +76,7 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'Erro de servidor. Por favor tente novamente mais tarde.'
+    expect(User.count).to eq 0
   end
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
@@ -94,6 +97,7 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'E-mail deve pertencer a uma seguradora ativa.'
+    expect(User.count).to eq 0
   end
 
   it 'e as seguradoras existem mas não estão ativas' do
@@ -114,5 +118,6 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'E-mail deve pertencer a uma seguradora ativa.'
+    expect(User.count).to eq 0
   end
 end
