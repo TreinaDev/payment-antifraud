@@ -2,6 +2,7 @@ pt-BR:
   controllers:
     application:
       internal_error: 'Erro de servidor. Por favor tente novamente mais tarde.'
+      not_found: 'Não conseguimos localizar esta página.'
     promos:
       create:
         success: Promoção cadastrada com sucesso!

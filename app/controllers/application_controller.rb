@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :devise_parameter_sanitizer, if: :devise_controller?
   rescue_from ActiveRecord::QueryCanceled, with: :return500
+  rescue_from ActiveRecord::RecordNotFound, with: :return404
 
   private
 
@@ -33,5 +34,9 @@ class ApplicationController < ActionController::Base
 
   def return500
     redirect_to root_path, notice: t('controllers.application.internal_error')
+  end
+
+  def return404 
+    redirect_to root_path, notice: t('controllers.application.not_found')
   end
 end

@@ -20,10 +20,14 @@ class InsuranceCompany
   end
 
   def self.find(id)
-    response = Faraday.get("https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies#{id}")
+    response = Faraday.get("https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies/#{id}")
     raise ActiveRecord::RecordNotFound if response.status == 404 
     raise ActiveRecord::QueryCanceled if response.status == 500
     new_insurance_company(JSON.parse(response.body))
+  end
+
+  def payment_options
+    CompanyPaymentOption.where("company_domain = ?", @email_domain)
   end
 
   def self.all

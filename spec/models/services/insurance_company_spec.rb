@@ -33,13 +33,55 @@ describe InsuranceCompany do
 
   context '.find' do 
     it 'Devolve uma seguradora se o ID for de uma seguradora ativa' do 
+      json_data = File.read 'spec/support/json/insurance_company.json'
+      fake_response = double('Faraday::Response', status: 200, body: json_data)
+      allow(Faraday).to receive(:get).with("https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies/1").and_return(fake_response)
+
       company = InsuranceCompany.find(1)
 
       expect(company.id).to eq 1
       expect(company.email_domain).to eq 'paolaseguros.com.br'
-      expect(company.company.status).to eq 0
+      expect(company.company_status).to eq 0
       expect(company.company_token).to eq 'ABCDEFGHIJKLMNOPQRSTWXYZ'
       expect(company.token_status).to eq 0
+    end
+  end
+
+  context '#company_payment_options' do 
+    it 'Método devolve os meios de pagamento de uma seguradora, se houver algum' do 
+      user = FactoryBot.create(:user, name: 'Paolitas')
+      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank')
+      company = InsuranceCompany.new(
+                  id: 1,
+                  email_domain: 'paolaseguros.com.br',
+                  company_status: 0,
+                  company_token: 'ABLUBLUBLUEBLUBLUELU',
+                  token_status: 0
+      )
+      payment_option = CompanyPaymentOption.create!(
+                         user: user, 
+                         payment_method: payment_method,
+                         company_domain: user.email.split('@').last,
+                         max_parcels: 6,
+      )
+
+      result = company.payment_options 
+
+      expect(result).to eq [payment_option]
+    end
+
+    it 'Método devolve array vazio se não há meios de pagamentos cadastrados para uma seguradora' do 
+      company = InsuranceCompany.new(
+                  id: 1,
+                  email_domain: 'paolaseguros.com.br',
+                  company_status: 0,
+                  company_token: 'ABLUBLUBLUEBLUBLUELU',
+                  token_status: 0
+      )
+
+      result = company.payment_options 
+
+      expect(result).to eq []
     end
   end
 
