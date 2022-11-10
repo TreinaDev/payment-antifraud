@@ -6,9 +6,7 @@ class PromosController < ApplicationController
     @promos = Promo.all
   end
 
-  def show
-    @promo = Promo.find(params[:id])
-  end
+  def show; end
 
   def new
     @promo = Promo.new
@@ -36,10 +34,11 @@ class PromosController < ApplicationController
   end
 
   private
+
   def sanitize_discount_max
     params[:promo][:discount_max] = params[:promo][:discount_max].to_f * 100
   end
-  
+
   def set_promo
     @promo = Promo.find(params[:id])
   end
