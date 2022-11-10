@@ -42,6 +42,8 @@ describe 'Administrador edita um meio de pagamento' do
     expect(page).to have_field 'Taxa por Cobrança', with: '5'
     expect(page).to have_field 'Taxa Máxima', with: '100'
     expect(page).to have_field 'Tipo de Pagamento'
+    expect(page).to have_css 'img[src*="icone_cartao_credito_azul.jpg"]'
+    expect(page).to have_content('Ícone Atual')
     expect(page).to have_button 'Salvar'
   end
 

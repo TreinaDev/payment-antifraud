@@ -16,6 +16,11 @@
     <%= f.select :payment_type, @payment_types, {}, class: "form-select" , style: "max-width: 30rem"  %>
   </div>
   <div>
+
+    <br><%= t('actual_icon') %>
+    <% if @payment_method.image.attached? %>
+      <p> <%= image_tag @payment_method.image, style: "width: 200px; display: block" %> </p>
+    <% end %>
     <%= f.label :image %>
     <%= f.file_field :image, class: "form-control", style: "max-width: 30rem"  %>
   </div>
