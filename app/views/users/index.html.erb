@@ -2,7 +2,7 @@
   <main>
   <h3> <%= t 'users_list' %> </h3>
   <% if @users.any? %>
-    <table class="table table-striped table-bordered bg-primary">
+    <table class="table table-striped table-bordered bg-gray">
       <thead>
         <tr>
           <th scope="col"><%= User.human_attribute_name 'name' %></th>

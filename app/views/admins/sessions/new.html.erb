@@ -1,16 +1,16 @@
-<div class="card bg-secondary" style="padding: 3%; width: 50%;">
+<div class="card bg-gray" style="padding: 3%; width: 25%;">
 <div id="login-fields">
   <h1 class="h3 mb-3 fw-normal"><%= t 'admin_login' %></h1>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style:"width: 70%" %>
     </div>
 
     <div class="field">
       <%= f.label :password %><br />
-      <%= f.password_field :password %>
+      <%= f.password_field :password, class: "form-control", style:"width: 70%" %>
     </div>
 
     <% if devise_mapping.rememberable? %>

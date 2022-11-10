@@ -14,22 +14,22 @@
       <nav>
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-              <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-#{controller_name == 'home' ? 'primary' : 'dark'}" do %>
+              <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-#{controller_name == 'home' ? 'primary' : 'gray'}" do %>
                 <span class="fs-4"> <%= t 'app_name' %>  </span>
               <% end %>
               <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                  <%= link_to "Meios de Pagamento", payment_methods_url , class:"nav-link px-2 link-#{controller_name == 'payment_methods' ? 'primary' : 'dark'}" %>
+                  <%= link_to "Meios de Pagamento", payment_methods_url , class:"nav-link px-2 link-#{controller_name == 'payment_methods' ? 'primary' : 'gray'}" %>
                 </li>
                 <li>
-                  <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'primary' : 'dark'}" %>
+                  <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'primary' : 'gray'}" %>
                 </li>
                 
                 <% if admin_signed_in? %>
                   <li>
-                    <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'users' ? 'primary' : 'dark'}" %>
+                    <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'users' ? 'primary' : 'gray'}" %>
                   </li> 
-                  <li class="nav-link text-dark px-2">
+                  <li class="nav-link text-secondary-light px-2">
                     <% if user_signed_in? %>
                       <% if current_user.pending? %>
                         <%= t 'waiting_for_approval' %>
