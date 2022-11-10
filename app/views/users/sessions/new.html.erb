@@ -1,4 +1,4 @@
-<div class="card bg-secondary" style="padding: 3%; width: 50%;">
+<div class="card bg-gray" style="padding: 3%; width: 30%;">
   <div id="login-fields" >
     <h1 class="h3 mb-3 fw-normal"><%= t 'user_login' %></h1>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -6,12 +6,12 @@
       <div class="field card-text" >
         <%= f.label :email %>
         <br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style:"width: 25%" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style:"width: 50%" %>
       </div>
      
       <div>
         <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Senha", style:"width: 25%"  %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Senha", style:"width: 50%"  %>
       </div>
 
       <% if devise_mapping.rememberable? %>
