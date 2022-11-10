@@ -21,7 +21,7 @@ describe 'Funcionário edita uma promoção' do
     expect(page).to have_field 'Lista de produtos', with: promo.product_list
     expect(page).to have_field 'Data de fim', with: promo.ending_date
     expect(page).to have_field 'Porcentagem de desconto', with: promo.discount_percentage
-    expect(page).to have_field 'Valor máximo de desconto', with: promo.discount_max
+    expect(page).to have_field 'Valor máximo de desconto', with: 10
     expect(page).to have_field 'Quantidade de usos', with: 50
   end
 

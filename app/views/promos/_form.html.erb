@@ -1,31 +1,32 @@
-<div>
+<div class="form-group">
   <%= f.label :name %>
   <%= f.text_field :name, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= f.label :starting_date %>
-  <%= f.text_field :starting_date, class: "form-control" %>
+  <%= f.date_field :starting_date, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= f.label :ending_date %>
-  <%= f.text_field :ending_date, class: "form-control" %>
+  <%= f.date_field :ending_date, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= f.label :discount_percentage %>
   <%= f.number_field :discount_percentage, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= f.label :discount_max %>
-  <%= f.number_field :discount_max, class: "form-control" %>
+  <%= f.number_field :discount_max, step: :any, value: @promo.currency, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= f.label :product_list %>
   <%= f.text_field :product_list, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= f.label :usages_max %>
   <%= f.number_field :usages_max, class: "form-control" %>
 </div>
+<br/>
 <div>
-  <%= f.submit 'Salvar' %>
+  <%= f.submit 'Salvar', class: "btn btn-primary  btn-m" %>
 </div>

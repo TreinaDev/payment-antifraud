@@ -37,7 +37,7 @@ describe 'Funcionário cadastra uma promoção' do
     fill_in 'Data de início', with: '2022-10-22'
     fill_in 'Data de fim', with: '2022-10-29'
     fill_in 'Porcentagem de desconto', with: 50
-    fill_in 'Valor máximo de desconto', with: 100
+    fill_in 'Valor máximo de desconto', with: 1000
     fill_in 'Quantidade de usos', with: 100
     fill_in 'Lista de produtos', with: 'Notebook dell i7'
     click_on 'Salvar'
@@ -62,7 +62,7 @@ describe 'Funcionário cadastra uma promoção' do
     fill_in 'Data de início', with: ''
     fill_in 'Data de fim', with: ''
     fill_in 'Porcentagem de desconto', with: ''
-    fill_in 'Valor máximo de desconto', with: ''
+    fill_in 'Valor máximo de desconto', with: nil
     fill_in 'Quantidade de usos', with: 100
     fill_in 'Lista de produtos', with: 'Notebook dell i7'
     click_on 'Salvar'

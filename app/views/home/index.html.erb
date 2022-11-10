@@ -1,12 +1,5 @@
-<div>
-  <% if user_signed_in? %>
-    <% if current_user.pending? %>
-      <p> Aguardando aprovação do administrador do sistema. </p>
-      <%= user_greetings(current_user) %>
-    <% end %>
-  <% end %>
-  <% if admin_signed_in? %>
-    <%= user_greetings(current_admin) %>
-  <% end %>
-  
-<div>
+<h3>Boas vindas ao sistema de pagamento e antifraude!</h3>
+<h4><%= t 'waiting_for_approval' if current_user&.pending? %></h4>                  
+
+
+

@@ -3,4 +3,9 @@ pt-BR:
   registration_status: "Status do cadastro"
   registration: 'Cadastro'
   evaluate_registration: 'Avaliar Cadastro'
+  no_access_granted: 'Acesso negado.'
+  user_login: 'Login do funcionário da seguradora'
+  app_name: 'Pagamento e Antifraude'
+  waiting_for_approval: 'Aguardando aprovação do administrador do sistema.'
+  
   

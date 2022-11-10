@@ -1,6 +1,21 @@
-
 a {
-  color: rgb(239, 239, 239) !important;
+  color: #5900ff !important;
+  text-decoration: none !important;
 } 
+$white: #ffffff;
+
+$theme-colors: (
+    "light":      #ffffff,
+    "dark":       #000302,
+    "gray":       #f4f2f4,
+    "primary":    #F4D03F,
+    "secondary":  #4e3085,
+    "info":       #b2aa6e,
+    "success":    #1fa96a,
+    "warning":    #e0ce1e,
+    "danger":     #ed2d0e,
+    "primary-light":    #f1dd8f,
+    "secondary-light":  #dccbff,
+);
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
