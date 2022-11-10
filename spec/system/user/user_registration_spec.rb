@@ -32,6 +32,7 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
+    expect(User.count).to eq 1
   end
 
   it 'e não há seguradoras cadastradas' do
@@ -53,6 +54,7 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'E-mail deve pertencer a uma seguradora ativa.'
+    expect(User.count).to eq 0
   end
 
   it 'e o sistema de seguradoras está fora do ar' do
@@ -74,6 +76,7 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'Erro de servidor. Por favor tente novamente mais tarde.'
+    expect(User.count).to eq 0
   end
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
@@ -94,6 +97,7 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'E-mail deve pertencer a uma seguradora ativa.'
+    expect(User.count).to eq 0
   end
 
   it 'e as seguradoras existem mas não estão ativas' do
@@ -114,5 +118,6 @@ describe 'Funcionário faz cadastro no sistema' do
     end
 
     expect(page).to have_content 'E-mail deve pertencer a uma seguradora ativa.'
+    expect(User.count).to eq 0
   end
 end
