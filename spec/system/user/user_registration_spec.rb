@@ -36,7 +36,7 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'e não há seguradoras cadastradas' do
     fake_response = double('Faraday::Response', status: 204, body: {}.to_json)
-    allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+    allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
     visit root_path
     within('nav') do
@@ -57,7 +57,7 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'e o sistema de seguradoras está fora do ar' do
     fake_response = double('Faraday::Response', status: 500, body: {}.to_json)
-    allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+    allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
     visit root_path
     within('nav') do

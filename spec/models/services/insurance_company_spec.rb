@@ -5,7 +5,7 @@ describe InsuranceCompany do
     it 'Método devolve todas as companhias de seguro cadastradas' do
       json_data = File.read 'spec/support/json/insurance_companies.json'
       fake_response = double('Faraday::Response', status: 200, body: json_data)
-      allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+      allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
       companies = InsuranceCompany.all
 
       expect(companies.length).to eq 2
@@ -23,11 +23,23 @@ describe InsuranceCompany do
 
     it 'Método devolve array vazio quando recebe um status 204(No Content) da API' do
       fake_response = double('Faraday::Response', status: 204, body: {})
-      allow(Faraday).to receive(:get).with('http://localhost:3000/insurance_companies/').and_return(fake_response)
+      allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
       companies = InsuranceCompany.all
 
       expect(companies).to eq []
+    end
+  end
+
+  context '.find' do 
+    it 'Devolve uma seguradora se o ID for de uma seguradora ativa' do 
+      company = InsuranceCompany.find(1)
+
+      expect(company.id).to eq 1
+      expect(company.email_domain).to eq 'paolaseguros.com.br'
+      expect(company.company.status).to eq 0
+      expect(company.company_token).to eq 'ABCDEFGHIJKLMNOPQRSTWXYZ'
+      expect(company.token_status).to eq 0
     end
   end
 
@@ -128,4 +140,7 @@ describe InsuranceCompany do
       expect(result).to be_falsy
     end
   end
+
+
 end
+

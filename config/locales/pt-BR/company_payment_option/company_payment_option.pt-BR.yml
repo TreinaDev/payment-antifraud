@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      company_payment_option: 'Opção de pagamento'
+    attributes:
+      company_payment_option:
+        payment_method_id: 'Meio de Pagamento'
+        max_parcels: 'Quantidade Máxima de Parcelas'
+        single_parcel_discount: 'Desconto à vista'
