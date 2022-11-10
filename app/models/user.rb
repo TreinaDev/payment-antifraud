@@ -17,4 +17,8 @@ class User < ApplicationRecord
     errors.add(:email, 'deve pertencer a uma seguradora ativa.')
     raise ActiveRecord::Rollback
   end
+
+  def domain
+    email.split('@').last
+  end
 end

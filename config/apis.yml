@@ -1,0 +1,11 @@
+development:
+  insurance_api: http://localhost:3000/api/v1 
+  insurance_api_products_endpoint: http://localhost:3000/api/v1/products 
+
+test:
+  insurance_api: http://seguradoras.com/api/v1
+
+production:
+  insurance_api: http://seguradoras.com/api/v1
+
+#Rails.configuration["external_apis"].insurance_api
