@@ -1,12 +1,15 @@
 class Promo < ApplicationRecord
   validates :name, :starting_date, :discount_max, :usages_max, :product_list, :ending_date, :discount_percentage,
             presence: true
-  validates :discount_max, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :usages_max, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :discount_percentage, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   validate :ending_date_greater_than_starting_date
   before_validation :generate_voucher, on: :create
+
+  def currency
+    self.discount_max.nil? ? 0 : self.discount_max / 100
+  end
 
   private
 
