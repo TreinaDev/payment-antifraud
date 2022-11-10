@@ -15,5 +15,6 @@ class User < ApplicationRecord
 
   def raise_company_error
     errors.add(:email, 'deve pertencer a uma seguradora ativa.')
+    raise ActiveRecord::Rollback
   end
 end
