@@ -1,4 +1,4 @@
-class InsuranceCompany
+class InsuranceApi
   attr_accessor :id, :email_domain, :company_status, :company_token, :token_status
 
   def initialize(id:, email_domain:, company_status:, company_token:, token_status:)
@@ -10,7 +10,7 @@ class InsuranceCompany
   end
 
   def self.new_insurance_company(params)
-    InsuranceCompany.new(
+    InsuranceApi.new(
       id: params['id'],
       email_domain: params['email_domain'],
       company_status: params['company_status'],

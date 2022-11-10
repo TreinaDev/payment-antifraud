@@ -15,7 +15,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'com sucesso' do
-    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(true)
+    allow(InsuranceApi).to receive(:user_email_match_any_company?).and_return(true)
 
     visit root_path
     within('nav') do
@@ -80,7 +80,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
-    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(false)
+    allow(InsuranceApi).to receive(:user_email_match_any_company?).and_return(false)
 
     visit root_path
     within('nav') do
@@ -101,7 +101,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e as seguradoras existem mas não estão ativas' do
-    allow(InsuranceCompany).to receive(:user_email_match_any_company?).and_return(false)
+    allow(InsuranceApi).to receive(:user_email_match_any_company?).and_return(false)
 
     visit root_path
     within('nav') do

@@ -10,7 +10,7 @@ class User < ApplicationRecord
   private
 
   def consult_insurance_company_api_for_email_validation
-    raise_company_error unless InsuranceCompany.user_email_match_any_company?(email)
+    raise_company_error unless InsuranceApi.user_email_match_any_company?(email)
   end
 
   def raise_company_error
