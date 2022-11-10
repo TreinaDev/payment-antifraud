@@ -5,8 +5,9 @@
 <% end %>
 <hr>
 <article>
+<% if @payment_methods.present? %>
   <main style="width:80%">
-  <h3> <%= t 'users_list' %> </h3>
+    <h3> <%= t 'users_list' %> </h3>
 
     <table class="table table-striped table-bordered bg-primary">
       <thead>
@@ -26,7 +27,8 @@
         </tbody>
       <% end %>
     </table>
-
-
+<% else %>
+    <h3>Não existem meios de pagamento cadastrados.</h3>
   </main>
+<% end %>
 </article>

@@ -1,0 +1,3 @@
+<% if current_user&.pending? %>
+  <h3><%= t 'waiting_for_approval' %></h3>                  
+<% end %>
