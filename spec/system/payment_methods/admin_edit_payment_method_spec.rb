@@ -63,7 +63,7 @@ describe 'Administrador edita um meio de pagamento' do
     expect(current_url).to eq payment_method_url(1)
     expect(page).to have_content 'Meio de Pagamento atualizado com sucesso.'
     expect(page).to have_content 'Detalhes do Meio de Pagamento'
-    expect(page).to have_content 'Nome: Cartão Roxinho'
+    expect(page).to have_content 'Cartão Roxinho'
     expect(page).to have_content 'Taxa por Cobrança: 5%'
     expect(page).to have_content 'Taxa Máxima: R$ 2,00'
     expect(page).to have_content 'Tipo de Pagamento: Boleto'

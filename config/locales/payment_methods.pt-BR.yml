@@ -1,6 +1,7 @@
 pt-BR:
   active: 'Ativo'
   inactive: 'Inativo'
+  payment_method_details: 'Detalhes do Meio de Pagamento'
   activerecord:
     models:
       payment_method:

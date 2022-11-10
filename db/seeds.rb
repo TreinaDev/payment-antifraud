@@ -1,6 +1,7 @@
 User.destroy_all
 Admin.destroy_all
 Promo.destroy_all
+PaymentMethod.destroy_all
 
 FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste', status: 'approved')
 5.times do
@@ -18,3 +19,7 @@ Promo.create!(name: 'Promo de Fim de Ano', starting_date: Time.zone.today,
               product_list: 'notebooks', usages_max: 100)
 Promo.create!(name: 'Promo Relâmpago', starting_date: Time.zone.today, ending_date: Time.zone.today + 7.days,
               discount_max: 5000, discount_percentage: 10, product_list: 'notebooks', usages_max: 150)
+
+FactoryBot.create(:payment_method, name: 'Laranja', tax_percentage: 5, tax_maximum: 80,
+                                   payment_type: 'Cartão de Crédito', status: :active,
+                                   image: Rack::Test::UploadedFile.new(Rails.root.join('spec/support/icone_cartao_credito_azul.jpg')))
