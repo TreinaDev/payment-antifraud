@@ -1,23 +1,28 @@
 <%= form_with model: @payment_method do |f| %>
   <div>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control", style: "max-width: 30rem" %>
   </div>
   <div>
     <%= f.label :tax_percentage %>
-    <%= f.text_field :tax_percentage %>
+    <%= f.text_field :tax_percentage, placeholder: 'Taxa em Porcentagem', class: "form-control", style: "max-width: 30rem" %>
   </div>
   <div>
     <%= f.label :tax_maximum %>
-    <%= f.text_field :tax_maximum %>
+    <%= f.text_field :tax_maximum, class: "form-control", style: "max-width: 30rem" %>
   </div>
   <div>
     <%= f.label :payment_type %>
-    <%= f.select :payment_type, @payment_types %>
+    <%= f.select :payment_type, @payment_types, {}, class: "form-select" , style: "max-width: 30rem"  %>
   </div>
   <div>
+
+    <br><%= t('actual_icon') %>
+    <% if @payment_method.image.attached? %>
+      <p> <%= image_tag @payment_method.image, style: "width: 200px; display: block" %> </p>
+    <% end %>
     <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: "form-control", style: "max-width: 30rem"  %>
   </div>
   <div>
     <%= f.submit 'Salvar', class: "btn btn-primary  btn-m" %>

@@ -25,7 +25,7 @@ describe 'Usuário vê detalhes de um meio de pagamento' do
     click_on 'Roxo'
 
     expect(page).to have_content 'Detalhes do Meio de Pagamento'
-    expect(page).to have_content 'Nome: Roxo'
+    expect(page).to have_content 'Roxo'
     expect(page).to have_content 'Taxa por Cobrança: 3%'
     expect(page).to have_content 'Taxa Máxima: R$ 50,00'
     expect(page).to have_content 'Tipo de Pagamento: Boleto'

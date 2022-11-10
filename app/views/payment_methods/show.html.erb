@@ -1,26 +1,45 @@
-<h2>Detalhes do Meio de Pagamento</h2>
 
-<div class="card" style="width: 18rem;">
-  <% if @payment_method.image.attached? %>
-    <p> <%= image_tag @payment_method.image, style: "width: 100px; display: block" %> </p>
-  <% end %>
-  <div class="card-body">
-    <dl>
-      <dt><%= PaymentMethod.human_attribute_name(:name)%>:</dt>
-      <dd><%= @payment_method.name %></dd>
-      <dt><%= PaymentMethod.human_attribute_name(:tax_percentage)%>:</dt>
-      <dd><%= @payment_method.tax_percentage %>%</dd>
-      <dt><%= PaymentMethod.human_attribute_name(:tax_maximum)%>:</dt>
-      <dd><%= number_to_currency(@payment_method.tax_maximum, :unit => "R$ ", :separator => ",", :delimiter => ".") %></dd>
-      <dt><%= PaymentMethod.human_attribute_name(:payment_type)%>:</dt>
-      <dd><%= @payment_method.payment_type%></dd>
-      <dt><%= PaymentMethod.human_attribute_name(:status)%>:</dt>
-      <dd><%= I18n.t(@payment_method.status) %></dd>
-    </dl>
+
+<div class="card border-light" style="max-width: 54rem;">
+  <div class = "card border-dark mb-3" style="max-width: 54rem;">
+    <div class="card-header bg-transparent border-dark"><h6><%= t('payment_method_details') %></h6></div>
+    <div class="row g-0">
+      <div class="col-md-4">
+      <% if @payment_method.image.attached? %>
+        <p> <%= image_tag @payment_method.image, class:"card-img-top"%> </p>
+      <% end %>
+      </div>
+      <div class="col-md-8">
+
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h5 class="card-title"><%= @payment_method.name %></h5>
+          </li>
+          <li class="list-group-item">
+            <strong><%= PaymentMethod.human_attribute_name(:tax_percentage)%>:</strong>
+            <%= @payment_method.tax_percentage %>%
+          </li>
+          <li class="list-group-item">
+            <strong><%= PaymentMethod.human_attribute_name(:tax_maximum)%>:</strong>
+            <%= number_to_currency(@payment_method.tax_maximum, :unit => "R$ ", :separator => ",", :delimiter => ".") %>
+          </li>
+          <li class="list-group-item">
+            <strong><%= PaymentMethod.human_attribute_name(:payment_type)%>:</strong>
+            <%= @payment_method.payment_type %>
+          </li>
+          <li class="list-group-item">
+            <strong><%= PaymentMethod.human_attribute_name(:status)%>:</strong>
+            <%= I18n.t(@payment_method.status) %>
+          </li>
+        </ul>
+          <a href="#" class="card-link">
+            <% if current_admin %>
+              <%= link_to 'Editar', edit_payment_method_url %>
+            <% end %>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
-<% if current_admin %>
-  <%= link_to 'Editar', edit_payment_method_url, class: "btn btn-primary btn-m" %>
-<% end %>
