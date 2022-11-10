@@ -8,7 +8,7 @@ class Promo < ApplicationRecord
   before_validation :generate_voucher, on: :create
 
   def currency
-    self.discount_max.nil? ? 0 : self.discount_max / 100
+    discount_max.nil? ? 0 : discount_max / 100
   end
 
   private
