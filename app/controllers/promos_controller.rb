@@ -36,12 +36,16 @@ class PromosController < ApplicationController
   end
 
   private
-
+  def sanitize_discount_max
+    params[:promo][:discount_max] = params[:promo][:discount_max].to_f * 100
+  end
+  
   def set_promo
     @promo = Promo.find(params[:id])
   end
 
   def promo_params
+    sanitize_discount_max
     params.require(:promo).permit(:name, :starting_date, :discount_max, :usages_max, :product_list, :ending_date,
                                   :discount_percentage)
   end

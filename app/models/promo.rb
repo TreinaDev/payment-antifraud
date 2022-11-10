@@ -8,6 +8,10 @@ class Promo < ApplicationRecord
   validate :ending_date_greater_than_starting_date
   before_validation :generate_voucher, on: :create
 
+
+  def currency
+    self.discount_max / 100.0
+  end
   private
 
   def ending_date_greater_than_starting_date
