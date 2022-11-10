@@ -17,13 +17,17 @@
   
         </tr>
       </thead>
-      <% @payment_methods.each do |pm| %>
-        <tbody>
-            <td><%= link_to pm.name, pm %></td>
-            <td><%= pm.payment_type %></td>
-            <td><%= I18n.translate(pm.status) %></td>
-          </tr>
-        </tbody>
+      <% if @payment_methods.present? %>
+        <% @payment_methods.each do |pm| %>
+          <tbody>
+              <td><%= link_to pm.name, pm %></td>
+              <td><%= pm.payment_type %></td>
+              <td><%= I18n.translate(pm.status) %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% else %>
+        <h3>Não existem meios de pagamento cadastrados.</h3>
       <% end %>
     </table>
 
