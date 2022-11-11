@@ -31,4 +31,84 @@ describe InsuranceApi do
       expect(companies).to eq []
     end
   end
+
+  context '.active_company?' do 
+    it 'Retorna true se o status da companhia e o status do token estiverem ativos' do 
+      company = InsuranceApi.new(
+                  id: 1,
+                  email_domain: 'paolaseguros.com.br',
+                  company_status: 0,
+                  company_token: 'ABCDEFGHIJASPOASPO',
+                  token_status: 0
+      )
+
+      result = InsuranceApi.active_company?(company)
+      expect(result).to be_truthy
+    end
+
+    it 'Retorna false se o status da companhia e o status do token estiverem inativos' do 
+      company = InsuranceApi.new(
+                  id: 1,
+                  email_domain: 'paolaseguros.com.br',
+                  company_status: 1,
+                  company_token: 'ABCDEFGHIJASPOASPO',
+                  token_status: 1
+      )
+
+      result = InsuranceApi.active_company?(company)
+      expect(result).to be_falsy
+    end
+  end
+
+  context '.check_if_user_email_match_any_company' do 
+    it 'Retorna a companhia que for compatível com o e-mail que o usuário inseriu, se existir' do 
+      companies = []
+      target_company = InsuranceApi.new(
+                    id: 1,
+                    email_domain: 'paolaseguros.com.br',
+                    company_status: 0,
+                    company_token: 'ABCDEFGHIJASPOASPO',
+                    token_status: 0
+                   )
+      companies << target_company
+      companies << InsuranceApi.new(
+                    id: 2,
+                    email_domain: 'petraseguros.com.br',
+                    company_status: 0,
+                    company_token: 'ABCDEFGHIJASPOASPO',
+                    token_status: 0
+                   )   
+      allow(InsuranceApi).to receive(:all).and_return(companies)
+
+      result = InsuranceApi.check_if_user_email_match_any_company('bruna@paolaseguros.com.br')
+
+      expect(result).to eq target_company
+      expect(result.email_domain).to eq 'paolaseguros.com.br'
+    end
+
+    it 'Retorna um array vazio se não houverem companhias compatíveis' do 
+      companies = []
+      target_company = InsuranceApi.new(
+                    id: 1,
+                    email_domain: 'paolaseguros.com.br',
+                    company_status: 0,
+                    company_token: 'ABCDEFGHIJASPOASPO',
+                    token_status: 0
+                   )
+      companies << target_company
+      companies << InsuranceApi.new(
+                    id: 2,
+                    email_domain: 'petraseguros.com.br',
+                    company_status: 0,
+                    company_token: 'ABCDEFGHIJASPOASPO',
+                    token_status: 0
+                   )   
+      allow(InsuranceApi).to receive(:all).and_return(companies)
+
+      result = InsuranceApi.check_if_user_email_match_any_company('bruna@EMAILQUENAOEXISTEBLUBLBULBUBLUB.com.frances')
+
+      expect(result).to eq []
+    end
+  end
+
 end

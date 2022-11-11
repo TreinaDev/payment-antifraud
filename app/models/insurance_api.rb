@@ -34,7 +34,7 @@ class InsuranceApi
 
   def self.check_if_user_email_match_any_company(user_email)
     companies = all
-    companies.each do |company|
+    companies.select do |company|
       return company if company.email_domain == user_email.split('@').last && active_company?(company)
     end
   end
