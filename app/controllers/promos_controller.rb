@@ -6,7 +6,9 @@ class PromosController < ApplicationController
     @promos = Promo.all
   end
 
-  def show; end
+  def show
+    @promo_product = PromoProduct.new
+  end
 
   def new
     @promo = Promo.new
@@ -45,7 +47,7 @@ class PromosController < ApplicationController
 
   def promo_params
     sanitize_discount_max
-    params.require(:promo).permit(:name, :starting_date, :discount_max, :usages_max, :product_list, :ending_date,
+    params.require(:promo).permit(:name, :starting_date, :discount_max, :usages_max, :ending_date,
                                   :discount_percentage)
   end
 end

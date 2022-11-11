@@ -37,13 +37,12 @@ describe 'Funcionário cadastra uma promoção' do
     fill_in 'Porcentagem de desconto', with: 50
     fill_in 'Valor máximo de desconto', with: 1000
     fill_in 'Quantidade de usos', with: 100
-    fill_in 'Lista de produtos', with: 'Notebook dell i7'
     click_on 'Salvar'
 
     expect(page).to have_content 'Promoção cadastrada com sucesso!'
     expect(page).to have_content 'Promoção: Black Friday'
     expect(page).to have_content 'Cupom: ASDCF123'
-    expect(page).to have_content 'Notebook dell i7'
+
 
   end
 
@@ -62,7 +61,6 @@ describe 'Funcionário cadastra uma promoção' do
     fill_in 'Porcentagem de desconto', with: ''
     fill_in 'Valor máximo de desconto', with: nil
     fill_in 'Quantidade de usos', with: 100
-    select('Notebook dell i7'), from: 'Lista de Produtos'
     click_on 'Salvar'
 
     expect(page).to have_content 'Não foi possível cadastrar a promoção'

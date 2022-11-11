@@ -23,8 +23,10 @@ class ProductsApi
     raise ActiveRecord::QueryCanceled if response.status == 500
 
     data = JSON.parse(response.body)
-    data.map { |d| new_insurance_company(d) }
+    data.map { |d| new_product(d) }
   end
 
-
+  def self.products_array
+    all.map { |product| [product[:name], product[:id]]}
+  end
 end

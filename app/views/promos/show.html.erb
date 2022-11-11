@@ -13,3 +13,40 @@
   <dt><strong><%= Promo.human_attribute_name(:discount_max) %>: </strong> <%= number_to_currency(@promo.currency, unit: "R$", separator: ",", delimiter: "") %></dt>
   <dt><strong><%= Promo.human_attribute_name(:product_list) %>: </strong> <%= @promo.product_list %></dt>
 </dl>
+
+<table>
+  <% json_data = [
+    {
+      "id":1,
+      "product_model":"TV 32",
+      "launch_year":"2022",
+      "brand":"LG",
+      "price":"5000.0",
+      "status":"active",
+      "product_category_id":1,
+      "created_at":"2022-11-08T19:42:47.921Z",
+      "updated_at":"2022-11-08T19:42:47.921Z"
+    },
+    {
+      "id":2,
+      "product_model":"TV 50",
+      "launch_year":"2021",
+      "brand":"SAMSUNG",
+      "price":"8000.0",
+      "status":"active",
+      "product_category_id":1,
+      "created_at":"2022-11-08T19:43:08.381Z",
+      "updated_at":"2022-11-08T19:43:08.381Z"
+    }
+  ]%>
+
+
+  <%= form_with model: [@promo, @promo_product] do |product| %>
+    <%= product.label :product_id %>
+    <%= product.select :product_id, json_data.map { |p| [p[:product_model], p[:id]]}  %>
+
+    <%= product.submit %>
+  <% end %>
+</table>
+
+<%= @promo.promo_products %>
