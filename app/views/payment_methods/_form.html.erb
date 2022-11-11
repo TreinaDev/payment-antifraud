@@ -22,9 +22,9 @@
       <p> <%= image_tag @payment_method.image, style: "width: 200px; display: block" %> </p>
     <% end %>
     <%= f.label :image %>
-    <%= f.file_field :image, class: "form-control", style: "max-width: 30rem"  %>
+    <%= f.file_field :image, class: "form-control", style: "max-width: 30rem; margin-bottom: 1%;"  %>
   </div>
   <div>
-    <%= f.submit 'Salvar' %>
+    <%= f.submit 'Salvar', class: "btn btn-primary  btn-m" %>
   </div>
 <% end %>

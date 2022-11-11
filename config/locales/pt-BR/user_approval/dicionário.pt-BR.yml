@@ -1,2 +1,5 @@
 pt-BR:
   case_not: '(caso não)'
+  user_approved: 'Usuário aprovado com sucesso.' 
+  user_reproved: 'Usuário reprovado com sucesso.'
+  no_access_granted: 'Acesso negado.'

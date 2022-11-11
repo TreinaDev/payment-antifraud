@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 describe 'Funcionário faz login no sistema' do
+  it 'a partir de um formulário' do
+    visit root_path
+    within 'nav' do
+      click_on 'Fazer Login'
+    end
+
+    expect(page).to have_content 'Login do funcionário da seguradora'
+    expect(page).to have_field 'E-mail'
+    expect(page).to have_field 'Senha'
+    expect(page).to have_button 'Login'
+  end
+
   it 'com sucesso' do
     FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
@@ -9,10 +21,7 @@ describe 'Funcionário faz login no sistema' do
                       registration_number: '39401929301',
                       status: :pending)
 
-    visit root_path
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    visit new_user_session_path
     within('div#login-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
       fill_in 'Senha', with: 'password'
