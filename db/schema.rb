@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_222350) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_11_215147) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,12 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_222350) do
 
   create_table "invoices", force: :cascade do |t|
     t.string "token"
-    t.string "insurance_company_id"
-    t.string "package_id"
+    t.integer "insurance_company_id"
+    t.integer "package_id"
     t.string "registration_number"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -85,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_222350) do
     t.date "ending_date"
     t.string "name"
     t.integer "discount_percentage"
-    t.integer "discount_max"
+    t.integer "discount_max", null: false
     t.string "product_list"
     t.integer "usages_max"
     t.string "voucher"

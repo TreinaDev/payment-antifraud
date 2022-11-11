@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :invoices, only: %i[index]
+  namespace :api do 
+    namespace :v1 do 
+      resources :invoices, only: [:show, :index, :create]
+    end
+  end
 end
