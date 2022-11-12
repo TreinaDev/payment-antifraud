@@ -1,14 +1,21 @@
 ---
 pt-BR:
-  dont_have: 'Não Possui'
-  no_payment_options: 'Ainda não há opções de pagamento configuradas para esta seguradora'
+  messages: 
+    dont_have: 'Não Possui'
+    no_payment_options: 'Ainda não há opções de pagamento configuradas para esta seguradora'
+    payment_option_details: 'Detalhes da opção de pagamento'
   activerecord:
     models:
-      company_payment_option: 'Opções de Pagamento'
+      company_payment_option: 
+        one: 'Opção de Pagamento'
+        other: 'Opções de Pagamento'
     attributes:
       company_payment_option:
-        user_id: 'Usuário'
+        user_id: 'Usuário responsável'
         payment_method_id: 'Meio de Pagamento'
         insurance_company_id: 'Companhia de Seguros'
-        max_parcels: 'Qtd. Máx. Parcelas'
+        max_parcels:
+          formats: 
+            long: 'Quantidade máxima de parcelas'
+            abbr: 'Qtd. Máx. Parcelas'
         single_parcel_discount: 'Desconto à vista'

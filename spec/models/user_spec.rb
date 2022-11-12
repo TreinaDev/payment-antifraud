@@ -41,8 +41,7 @@ RSpec.describe User, type: :model do
                          password: 'password',
                          name: 'Petra',
                          registration_number: '39401929301',
-                         status: :pending,
-                         )
+                         status: :pending)
 
       expect(user.insurance_company_id).to eq company.id
       expect(InsuranceCompany.count).to eq 1

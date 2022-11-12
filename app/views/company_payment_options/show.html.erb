@@ -1,0 +1,43 @@
+<article>
+  <header>
+    <h2> <%= t 'messages.payment_option_details' %> </h2>
+    <hr>
+  </header>
+  <main>
+    <div class="card border-light" style="max-width: 54rem;">
+      <div class = "card border-dark mb-3" style="max-width: 54rem;">
+        <div class="card-header bg-transparent border-dark"> <h4> <%= payment_option_with_name(@payment_option.payment_method.name) %> </h4></div>
+          <div class="row g-0">
+            <div class="col-md-4">
+              <% if @payment_option.payment_method.image.attached? %>
+                <p> <%= image_tag @payment_option.payment_method.image, class:"card-img-top"%> </p>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"> 
+                    <%= PaymentMethod.human_attribute_name(:payment_type) %>: 
+                    <%= @payment_option.payment_method.payment_type %>
+                  </li>
+                  <li class="list-group-item"> 
+                    <%= CompanyPaymentOption.human_attribute_name(:max_parcels)[:formats][:long] %>: 
+                    <%= @payment_option.max_parcels %>x 
+                  </li>
+                  <li class="list-group-item"> 
+                    <%= CompanyPaymentOption.human_attribute_name(:single_parcel_discount) %>:
+                    <%= show_discount_if_present(@payment_option.single_parcel_discount) %> 
+                  </li>
+                  <li class="list-group-item"> 
+                    <%= CompanyPaymentOption.human_attribute_name(:user_id) %>:
+                    <%= @payment_option.user.name %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</article>

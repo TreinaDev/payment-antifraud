@@ -1,6 +1,6 @@
 <article>
   <header>
-    <h2> <%= CompanyPaymentOption.model_name.human %> </h2>
+    <h2> <%= CompanyPaymentOption.model_name.human(count: 2) %> </h2>
     <hr>
     <br>
     <hr>
@@ -11,22 +11,22 @@
         <thead>
           <tr>
             <th scope="col"> <%= PaymentMethod.human_attribute_name(:name) %> </th>
-            <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:max_parcels) %></th>
+            <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:max_parcels)[:formats][:abbr] %></th>
             <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:single_parcel_discount) %></th>
           </tr>
         </thead>
         <% @payment_options.each do |po| %>
           <tbody>
             <tr>
-              <td> <%= po.payment_method.name %> </td>
+              <td> <%= link_to po.payment_method.name, company_payment_option_path(po.id) %> </td>
               <td> <%= po.max_parcels %>x </td>
-              <td> <%= po.single_parcel_discount == 0 ? t('dont_have') : "#{po.single_parcel_discount}%" %> </td>
+              <td> <%= show_discount_if_present(po.single_parcel_discount) %> </td>
             </tr>
           </tbody>
         <% end %>
       </table>
     <% else %>
-      <%= t 'no_payment_options'  %>
+      <%= t 'messages.no_payment_options'  %>
     <% end %>
   </main>
 </article>

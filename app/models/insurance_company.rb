@@ -1,4 +1,4 @@
 class InsuranceCompany < ApplicationRecord
-  has_many :payment_options, class_name: 'CompanyPaymentOption'
-  has_many :users
+  has_many :payment_options, class_name: 'CompanyPaymentOption', dependent: :destroy
+  has_many :users, dependent: :destroy
 end
