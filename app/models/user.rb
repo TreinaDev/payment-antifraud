@@ -20,7 +20,7 @@ class User < ApplicationRecord
     if found.nil?
       new_company = InsuranceCompany.create!(external_insurance_company: company.id)
       self.insurance_company_id = new_company.id
-    else  
+    else
       self.insurance_company_id = found.id
     end
   end

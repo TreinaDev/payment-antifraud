@@ -16,11 +16,11 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'com sucesso' do
     company = InsuranceApi.new(
-                id: 1,
-                email_domain: 'petra@paolaseguros.com.br',
-                company_status: 0,
-                company_token: 'TOKENEXPIRADODESDE1999',
-                token_status: 0
+      id: 1,
+      email_domain: 'petra@paolaseguros.com.br',
+      company_status: 0,
+      company_token: 'TOKENEXPIRADODESDE1999',
+      token_status: 0
     )
     allow(InsuranceApi).to receive(:check_if_user_email_match_any_company).and_return(company)
 
@@ -108,7 +108,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e as seguradoras existem mas não estão ativas' do
-    company = InsuranceApi.new(
+    InsuranceApi.new(
       id: 1,
       email_domain: 'petra@paolaseguros.com.br',
       company_status: 1,
