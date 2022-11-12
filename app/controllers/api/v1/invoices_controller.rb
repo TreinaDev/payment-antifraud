@@ -1,20 +1,20 @@
 class Api::V1::InvoicesController < Api::V1::ApiController
-  def show
-    invoice = Invoice.find(params[:id])
-    render status: 200, json: invoice.as_json(except: [:created_at, :updated_at])
+  def index
+    invoices = Invoice.all.order(order_id: :desc)
+    render status: :ok, json: invoices.as_json
   end
 
-  def index
-    invoices = Invoice.all.order(:name)
-    render json: invoices.as_json, status: 200
+  def show
+    invoice = Invoice.find(params[:id])
+    render status: :ok, json: invoice.as_json(except: %i[created_at updated_at])
   end
 
   def create
     invoice = Invoice.new(invoice_params)
     if invoice.save
-      render status: 201, json: invoice.as_json
+      render status: :created, json: invoice.as_json
     else
-      render status: 412, json: { errors: invoice.errors.full_messages }
+      render status: :precondition_failed, json: { errors: invoice.errors.full_messages }
     end
   end
 
