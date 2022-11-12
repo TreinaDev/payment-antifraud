@@ -2,6 +2,8 @@ User.destroy_all
 Admin.destroy_all
 Promo.destroy_all
 PaymentMethod.destroy_all
+InsuranceCompany.destroy_all 
+CompanyPaymentOption.destroy_all
 
 company = FactoryBot.create(:insurance_company)
 FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
