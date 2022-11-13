@@ -1,18 +1,19 @@
 class CompanyPaymentOptionsController < ApplicationController
   before_action :require_user
-  before_action :fetch_payment_methods, only: %i[new create]
+  before_action :fetch_payment_methods, only: %i[new create edit update]
+  before_action :fetch_payment_option, only: %i[show edit update]
 
   def index
     @payment_options = current_user.insurance_company.payment_options
   end
 
-  def show
-    @payment_option = CompanyPaymentOption.find params[:id]
-  end
+  def show; end
 
   def new
     @payment_option = CompanyPaymentOption.new
   end
+
+  def edit; end
 
   def create
     @payment_option = CompanyPaymentOption.new new_payment_option_params
@@ -27,7 +28,20 @@ class CompanyPaymentOptionsController < ApplicationController
     render :new
   end
 
+  def update
+    if @payment_option.update new_payment_option_params
+      return redirect_to @payment_option, notice: t('messages.payment_option_edited_with_success')
+    end
+
+    flash.now.alert = t('messages.not_edited')
+    render :edit
+  end
+
   private
+
+  def fetch_payment_option
+    @payment_option = CompanyPaymentOption.find params[:id]
+  end
 
   def fetch_payment_methods
     @payment_methods = PaymentMethod.all

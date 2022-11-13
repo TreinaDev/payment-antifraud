@@ -1,9 +1,7 @@
 <article>
   <header>
-    <h2> <%= t('messages.new_payment_option') %> </h2>
-    <hr>
+    <h2>  <%= t 'messages.edit_payment_option'%> </h2>
     <%= render 'application/errors', model: @payment_option %>
-    <br>
   </header>
   <main>
     <%= render partial: 'form', locals: {

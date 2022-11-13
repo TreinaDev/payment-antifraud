@@ -7,6 +7,9 @@ pt-BR:
     new_payment_option: 'Nova opção de pagamento'
     payment_option_created_with_success: 'Opção de pagamento criada com sucesso'
     not_created: 'Opção de pagamento não foi criada'
+    edit_payment_option: 'Editar opção de pagamento'
+    payment_option_edited_with_success: 'Opção de pagamento editada com sucesso'
+    not_edited: 'Opção de pagamento não foi editada'
   activerecord:
     models:
       company_payment_option: 

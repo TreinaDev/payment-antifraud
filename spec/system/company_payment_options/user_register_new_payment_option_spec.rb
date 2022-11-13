@@ -53,6 +53,7 @@ describe 'Usuário cria uma nova opção de pagamento para sua seguradora' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Opção de pagamento não foi criada'
+    expect(page).to have_content 'Verifique os erros abaixo:'
     expect(page).to have_content 'Tipo de Pagamento é obrigatório(a)'
     expect(page).to have_content 'Quantidade máxima de parcelas não pode ficar em branco'
     expect(page).to have_content 'Desconto à vista não pode ficar em branco'
@@ -72,6 +73,7 @@ describe 'Usuário cria uma nova opção de pagamento para sua seguradora' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Opção de pagamento não foi criada'
+    expect(page).to have_content 'Verifique os erros abaixo:'
     expect(page).to have_content 'Tipo de Pagamento não pode ser parcelado'
   end
 
@@ -89,6 +91,7 @@ describe 'Usuário cria uma nova opção de pagamento para sua seguradora' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Opção de pagamento não foi criada'
+    expect(page).to have_content 'Verifique os erros abaixo:'
     expect(page).to have_content 'Quantidade máxima de parcelas deve ser maior ou igual a 1'
   end
 end

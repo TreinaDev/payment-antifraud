@@ -40,6 +40,11 @@
                   <%= "#{@payment_option.user.name} | #{@payment_option.user.email}" %>
                 </li>
               </p>
+              <p>
+                <li class="list-group-item"> 
+                  <%= link_to t('buttons.edit'), edit_company_payment_option_path(@payment_option), class: "card-link" %>
+                </li>
+              </p>
             </ul>
           </div>
         </div>
