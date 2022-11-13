@@ -29,6 +29,7 @@ class CompanyPaymentOptionsController < ApplicationController
   end
 
   def update
+    @payment_option.user = current_user
     if @payment_option.update new_payment_option_params
       return redirect_to @payment_option, notice: t('messages.payment_option_edited_with_success')
     end
