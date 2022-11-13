@@ -1,8 +1,8 @@
 class PromoProductsController < ApplicationController
   before_action :set_promo_product, only: %i[destroy]
+  before_action :set_promo, only: %i[create destroy]
 
   def create
-    @promo = Promo.find(params[:promo_id])
     @promo_product = PromoProduct.new(promo_product_params)
     @promo_product.promo = @promo
 
@@ -10,13 +10,17 @@ class PromoProductsController < ApplicationController
   end
 
   def destroy
-    @promo_product.destroy
+    redirect_to @promo, notice: t('promo_product_destroy') if @promo_product.destroy
   end
 
   private
 
   def set_promo_product
     @promo_product = PromoProduct.find(params[:id])
+  end
+
+  def set_promo
+    @promo = Promo.find(params[:promo_id])
   end
 
   def promo_product_params

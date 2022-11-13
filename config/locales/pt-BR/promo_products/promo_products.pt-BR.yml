@@ -1,10 +1,10 @@
 pt-BR:
   activerecord:
     models:
-      promo_product: 
+      promo_product: 'Produto'
     attributes:
       promo_product:
-        product_id: "Lista de Produtos"
+        product_id: "Adicionar produto na promoção:"
 
 
      

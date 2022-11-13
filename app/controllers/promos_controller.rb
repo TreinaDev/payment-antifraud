@@ -7,6 +7,11 @@ class PromosController < ApplicationController
   end
 
   def show
+    registered_products = @promo.promo_products.map { |prod| prod.product_id }
+    @available_products = ProductsApi.products_array.map do |obj|
+      obj unless registered_products.include?(obj[1])
+    end.reject(&:blank?)
+    @product_list = ProductsApi.products_array
     @promo_product = PromoProduct.new
   end
 

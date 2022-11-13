@@ -1,3 +1,4 @@
 pt-BR:
   promo_product_create: 'Produto adicionado com sucesso.'
-  promo_product_remove: 'Produto removido com sucesso.'
+  promo_product_destroy: 'Produto removido com sucesso.'
+  activerecord_errors_models_product_unique_within_promo: 'já foi adicionado a esta promoção.'

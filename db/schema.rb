@@ -77,7 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_133253) do
   end
 
   create_table "promo_products", force: :cascade do |t|
-    t.string "product_model"
     t.integer "product_id"
     t.integer "promo_id", null: false
     t.datetime "created_at", null: false
