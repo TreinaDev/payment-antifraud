@@ -17,7 +17,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
-    promo = FactoryBot.create(:promo)
+    promo = FactoryBot.create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -48,7 +48,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
-    promo = FactoryBot.create(:promo)
+    promo = FactoryBot.create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -80,7 +80,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
-    promo = FactoryBot.create(:promo)
+    promo = FactoryBot.create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path

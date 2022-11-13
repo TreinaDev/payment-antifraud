@@ -3,7 +3,7 @@ class PromosController < ApplicationController
   before_action :set_promo, only: %i[edit update show]
 
   def index
-    @promos = Promo.all
+    @promos = Promo.where(insurance_company_id: current_user.insurance_company_id)
   end
 
   def show
@@ -22,6 +22,7 @@ class PromosController < ApplicationController
 
   def create
     @promo = Promo.new(promo_params)
+    @promo.insurance_company_id = current_user.insurance_company_id
     if @promo.save
       redirect_to promo_path(@promo.id), notice: I18n.t('controllers.promos.create.success')
     else
