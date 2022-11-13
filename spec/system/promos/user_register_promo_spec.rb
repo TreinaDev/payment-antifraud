@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Funcionário cadastra uma promoção' do
   it 'a partir da tela inicial' do
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -22,7 +23,8 @@ describe 'Funcionário cadastra uma promoção' do
 
   it 'com sucesso' do
     allow(SecureRandom).to receive(:alphanumeric).and_return('ASDCF123')
-    user = FactoryBot.create(:user, email: 'petra@paolaseguros.com')
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -44,7 +46,8 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com dados incompletos' do
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path

@@ -6,7 +6,8 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     json_data = Rails.root.join('spec/support/json/products.json').read
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
     promo = FactoryBot.create(:promo)
 
     login_as user, scope: :user
