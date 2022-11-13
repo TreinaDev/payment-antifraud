@@ -1,4 +1,5 @@
 class PromoProductsController < ApplicationController
+  before_action :require_user
   before_action :set_promo_product, only: %i[destroy]
   before_action :set_promo, only: %i[create destroy]
 

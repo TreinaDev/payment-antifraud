@@ -11,7 +11,6 @@ class PromosController < ApplicationController
     @available_products = ProductsApi.products_array.map do |obj|
       obj unless registered_products.include?(obj[1])
     end.compact_blank
-    @product_list = ProductsApi.products_array
     @promo_product = PromoProduct.new
   end
 
