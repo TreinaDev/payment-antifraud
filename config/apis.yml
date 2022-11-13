@@ -1,11 +1,12 @@
 development:
   insurance_api: http://localhost:3000/api/v1 
-  insurance_api_products_endpoint: http://localhost:3000/api/v1/products 
+  insurance_api_products_endpoint: https://mocki.io/v1/a20c5378-9c7d-4906-b501-dae7afe09f35
 
 test:
   insurance_api: http://seguradoras.com/api/v1
+  insurance_api_products_endpoint: https://mocki.io/v1/a20c5378-9c7d-4906-b501-dae7afe09f35
 
 production:
   insurance_api: http://seguradoras.com/api/v1
-
-#Rails.configuration["external_apis"].insurance_api
+  insurance_api_products_endpoint: https://mocki.io/v1/a20c5378-9c7d-4906-b501-dae7afe09f35
+  

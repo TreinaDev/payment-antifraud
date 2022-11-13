@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      promo_product: 
+    attributes:
+      promo_product:
+        product_id: "Lista de Produtos"
+
+
+     
+      

@@ -6,7 +6,7 @@ class Promo < ApplicationRecord
 
   validate :ending_date_greater_than_starting_date
   before_validation :generate_voucher, on: :create
-  has_and_belongs_to_many :promo_products
+  has_many :promo_products, dependent: :destroy
 
   def currency
     discount_max.nil? ? 0 : discount_max / 100

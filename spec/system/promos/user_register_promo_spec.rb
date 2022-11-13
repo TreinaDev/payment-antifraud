@@ -18,7 +18,6 @@ describe 'Funcionário cadastra uma promoção' do
     expect(page).to have_field 'Porcentagem de desconto'
     expect(page).to have_field 'Valor máximo de desconto'
     expect(page).to have_field 'Quantidade de usos'
-    expect(page).to have_field 'Lista de produtos'
   end
 
   it 'com sucesso' do
@@ -42,8 +41,6 @@ describe 'Funcionário cadastra uma promoção' do
     expect(page).to have_content 'Promoção cadastrada com sucesso!'
     expect(page).to have_content 'Promoção: Black Friday'
     expect(page).to have_content 'Cupom: ASDCF123'
-
-
   end
 
   it 'com dados incompletos' do
