@@ -92,7 +92,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     click_on 'Selecionar Produto'
     select 'TV 50', from: 'Adicionar produto na promoção:'
     click_on 'Selecionar Produto'
-    
+
     expect(page).not_to have_content 'Adicionar produto na promoção:'
   end
 end
