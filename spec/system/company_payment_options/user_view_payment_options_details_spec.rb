@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' do
   it 'a partir da tela de opções de pagamento' do
     company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id, name: 'Bruna de Paula')
+    user = FactoryBot.create(:user, insurance_company_id: company.id,
+                               name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
     payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
     FactoryBot.create(
       :company_payment_option,
@@ -23,13 +24,15 @@ describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' d
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
     expect(page).to have_content 'Quantidade máxima de parcelas: 12x'
     expect(page).to have_content 'Desconto à vista: Não Possui'
-    expect(page).to have_content 'Usuário responsável: Bruna de Paula'
+    expect(page).to have_content 'Usuário responsável: Bruna de Paula | bruna@paolaseguros.com.br'
   end
 
   it 'e vê detalhes de uma opção que outro usuário cadastrou' do
     company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id, name: 'Bruna de Paula')
-    other_user = FactoryBot.create(:user, insurance_company_id: company.id, name: 'Paolitas Paolinha')
+    user = FactoryBot.create(:user, insurance_company_id: company.id,
+                               name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+    other_user = FactoryBot.create(:user, insurance_company_id: company.id,
+                                     name: 'Paolitas Paolinha', email: 'paola@paolaseguros.com.br')
     payment_method = FactoryBot.create(:payment_method, name: 'Boleto', payment_type: 'Boleto')
     payment_option = FactoryBot.create(
       :company_payment_option,
@@ -47,6 +50,6 @@ describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' d
     expect(page).to have_content 'Tipo de Pagamento: Boleto'
     expect(page).to have_content 'Quantidade máxima de parcelas: 5x'
     expect(page).to have_content 'Desconto à vista: 1%'
-    expect(page).to have_content 'Usuário responsável: Paolitas Paolinha'
+    expect(page).to have_content 'Usuário responsável: Paolitas Paolinha | paola@paolaseguros.com.br'
   end
 end
