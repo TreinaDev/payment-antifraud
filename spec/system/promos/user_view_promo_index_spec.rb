@@ -4,7 +4,8 @@ describe 'Funcionário visita a pagina de promoção' do
   it 'e vê promoções cadastradas' do
     promo_a = create(:promo)
     promo_b = create(:promo)
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -20,7 +21,8 @@ describe 'Funcionário visita a pagina de promoção' do
   end
 
   it 'e não há promoções cadastradas' do
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path

@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' do
   context 'Lista de usuários' do
     it 'e não consegue acessar a página' do
-      common_user = FactoryBot.create(:user, status: :approved)
+      company = FactoryBot.create(:insurance_company)
+      common_user = FactoryBot.create(:user, insurance_company_id: company.id, status: :approved)
 
       login_as common_user, scope: :user
       get users_path
@@ -12,8 +13,9 @@ describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' d
     end
 
     it 'e não consegue acessar a página que aprova/recusa um cadastro' do
-      target_user = FactoryBot.create(:user, status: :approved)
-      other_user = FactoryBot.create(:user, status: :pending)
+      company = FactoryBot.create(:insurance_company)
+      target_user = FactoryBot.create(:user, insurance_company_id: company.id, status: :approved)
+      other_user = FactoryBot.create(:user, insurance_company_id: company.id, status: :pending)
 
       login_as target_user, scope: :user
       get new_user_user_review_path(other_user.id)

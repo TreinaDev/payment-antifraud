@@ -3,9 +3,11 @@ Admin.destroy_all
 Promo.destroy_all
 PaymentMethod.destroy_all
 
-FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste', status: 'approved')
+company = FactoryBot.create(:insurance_company)
+FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
+                         status: 'approved', insurance_company_id: company.id)
 5.times do
-  FactoryBot.create(:user, status: 'pending')
+  FactoryBot.create(:user, status: 'pending', insurance_company_id: company.id)
 end
 
 FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')

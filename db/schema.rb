@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_09_162822) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_221559) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,6 +60,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_162822) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "insurance_companies", force: :cascade do |t|
+    t.integer "external_insurance_company"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "name"
     t.integer "tax_percentage"
@@ -75,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_162822) do
     t.date "ending_date"
     t.string "name"
     t.integer "discount_percentage"
-    t.integer "discount_max"
+    t.integer "discount_max", null: false
     t.string "product_list"
     t.integer "usages_max"
     t.string "voucher"
@@ -103,11 +109,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_162822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.integer "insurance_company_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["insurance_company_id"], name: "index_users_on_insurance_company_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "user_reviews", "users"
+  add_foreign_key "users", "insurance_companies"
 end

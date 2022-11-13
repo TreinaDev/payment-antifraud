@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
     promo = create(:promo, name: 'Promoção Páscoa', usages_max: 50, discount_max: 1000)
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -26,7 +27,8 @@ describe 'Funcionário edita uma promoção' do
 
   it 'com sucesso' do
     promo = create(:promo, name: 'Promoção de Páscoa', usages_max: 10)
-    user = FactoryBot.create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
