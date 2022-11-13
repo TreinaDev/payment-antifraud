@@ -31,7 +31,7 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
     expect(page).to have_content 'Nome'
     expect(page).to have_content 'Cartão Nubank'
     expect(page).to have_content 'Boleto'
-    expect(page).to have_content 'Qtd. Máx. Parcelas'
+    expect(page).to have_content 'Quantidade máxima de parcelas'
     expect(page).to have_content '12x'
     expect(page).to have_content '1x'
     expect(page).to have_content 'Desconto à vista'
@@ -48,7 +48,7 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
 
     expect(page).to have_content 'Ainda não há opções de pagamento configuradas para esta seguradora'
     expect(page).not_to have_content 'Nome'
-    expect(page).not_to have_content 'Qtd. Máx. Parcelas'
+    expect(page).not_to have_content 'Quantidade máxima de parcelas'
     expect(page).not_to have_content 'Desconto à vista'
   end
 
@@ -82,7 +82,7 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
     expect(page).to have_content 'Nome'
     expect(page).to have_content 'Cartão C6 Bank'
     expect(page).to have_content 'Vale Alimentação'
-    expect(page).to have_content 'Qtd. Máx. Parcelas'
+    expect(page).to have_content 'Quantidade máxima de parcelas'
     expect(page).to have_content '5x'
     expect(page).to have_content '1x'
     expect(page).to have_content 'Desconto à vista'

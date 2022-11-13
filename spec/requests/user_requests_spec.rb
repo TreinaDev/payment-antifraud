@@ -7,5 +7,11 @@ describe 'Usuário tenta acessar funcionalidades' do
 
       expect(response).to redirect_to root_path
     end
+
+    it 'e vai para a página de configurar nova opção de pagamento da seguradora' do
+      get new_company_payment_option_path
+
+      expect(response).to redirect_to root_path
+    end
   end
 end

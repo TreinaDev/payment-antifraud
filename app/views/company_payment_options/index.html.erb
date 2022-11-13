@@ -2,7 +2,7 @@
   <header>
     <h2> <%= CompanyPaymentOption.model_name.human(count: 2) %> </h2>
     <hr>
-    <br>
+    <%= link_to t('messages.new_payment_option'), new_company_payment_option_path, class: "btn btn-primary  btn-m" %>
     <hr>
   </header>
   <main>
@@ -11,7 +11,7 @@
         <thead>
           <tr>
             <th scope="col"> <%= PaymentMethod.human_attribute_name(:name) %> </th>
-            <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:max_parcels)[:formats][:abbr] %></th>
+            <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:max_parcels) %></th>
             <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:single_parcel_discount) %></th>
           </tr>
         </thead>
