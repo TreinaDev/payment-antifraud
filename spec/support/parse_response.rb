@@ -1,6 +1,6 @@
 module ParseResponse
   def response_parsed
-    JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(response.body)
   end
 end
 
