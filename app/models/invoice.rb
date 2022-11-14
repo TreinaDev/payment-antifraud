@@ -3,6 +3,8 @@ class Invoice < ApplicationRecord
 
   before_validation :generate_token, on: :create
 
+  validates :insurance_company_id, presence: true
+
   private
 
   def generate_token
