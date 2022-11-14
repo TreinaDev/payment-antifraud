@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário vê cobranças' do
   it 'e não está autenticado' do
-    create(:user)
+    company = FactoryBot.create(:insurance_company)
+    FactoryBot.create(:user, insurance_company_id: company.id)
 
     visit root_path
     click_on 'Cobranças'
@@ -13,7 +14,8 @@ describe 'Usuário vê cobranças' do
 
   it 'com sucesso' do
     allow(SecureRandom).to receive(:alphanumeric).and_return('AGBS65OFN493OE93MVNA')
-    user = create(:user)
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
     create(:invoice, insurance_company_id: 5, package_id: 10,
                      registration_number: '12345678', status: :pending)
 
