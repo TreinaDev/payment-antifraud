@@ -3,7 +3,10 @@ module Api
     class InsuranceCompaniesController < Api::V1::ApiController
       def payment_options
         company = InsuranceCompany.find_by(external_insurance_company: params[:id])
-        return render status: :ok, json: create_json_response(company) if company.present?
+        if company.present?
+          return render status: :ok, json: create_json_response(company),
+                        except: %i[created_at updated_at]
+        end
 
         raise ActiveRecord::RecordNotFound
       end

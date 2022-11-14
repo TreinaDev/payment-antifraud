@@ -49,6 +49,10 @@ describe 'CompanyPaymentOptionAPI' do
       expect(json_data[1]['tax_maximum']).to eq 5
       expect(json_data[1]['max_parcels']).to eq 1
       expect(json_data[1]['single_parcel_discount']).to eq 1
+      expect(json_data.first.keys).not_to include 'created_at'
+      expect(json_data.first.keys).not_to include 'updated_at'
+      expect(json_data[1].keys).not_to include 'created_at'
+      expect(json_data[1].keys).not_to include 'updated_at'
     end
 
     it 'e passa um ID inválido como parâmetro' do
