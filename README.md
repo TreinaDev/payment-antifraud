@@ -19,11 +19,13 @@ Antes de inicializar a aplicação, rode o comando  `bin/setup`  para instalar t
 Em seguida, você pode subir a aplicação utilizando o comando  `bin/dev -p 5000`  no seu terminal, que permitirá o acesso no endereço `https://localhost:5000/`
 Caso queira rodar todos os testes automatizados, utilize o comando  `rspec`
 
-É recomendado rodar o comando  `rails db:seed`  no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão Fazer Login localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
+É recomendado rodar o comando  `rails db:seed`  no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão Fazer Login localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar como Usuário comum:
 
  ##### Usuário comum
   - Email: users@antifraudsystem.com.br
   - Senha: password
+
+Para se autenticar como Usuário administrador, clique no botão Fazer Login na barra de navegação e troque /users/ por /admins/ na url do navegador, e utílize as seguintes credenciais para se autenticar: 
 
  ##### Usuário administrador
   - Email: admins@antifraudsystem.com.br
@@ -54,3 +56,12 @@ Caso queira rodar todos os testes automatizados, utilize o comando  `rspec`
     * Simplecov:
        Gem utilizada para garantir uma boa cobertura de testes automatizados durante o desenvolvimento
        da aplicação. 
+
+    * Active Storage:
+       Gem utilizada para gerenciar o upload de arquivos.
+    
+    * Active Storage Validations:
+       Gem utilizada para adicionar validações personalizadas ao active_storage.
+
+    *ImagemProcessing/MiniMagick/LibVips:
+       Gems utilizadas para processar imagem.
