@@ -105,7 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_12_175527) do
     t.date "ending_date"
     t.string "name"
     t.integer "discount_percentage"
-    t.integer "discount_max"
+    t.integer "discount_max", null: false
     t.string "product_list"
     t.integer "usages_max"
     t.string "voucher"

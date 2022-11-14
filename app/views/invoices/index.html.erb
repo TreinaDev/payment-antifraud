@@ -1,8 +1,6 @@
-<h2> Cobranças </h2>
-
 <article>
   <main>
-  <h3> <%= t 'invoice_list' %> </h3>
+  <h3> <%= Invoice.human_attribute_name(:invoice) %> </h3>
   <% if @invoices.any? %>
     <table class="table table-striped", style="width: 100%">
       <thead>

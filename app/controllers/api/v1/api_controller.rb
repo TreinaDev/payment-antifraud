@@ -11,7 +11,9 @@ module Api
       end
 
       def not_found_status
-        render status: :not_found, json: { error: "#{self.class.to_s.split(':').last.gsub('Controller', '')[0...-1]} not found" }
+        render status: :not_found,
+               json: { error: "#{self.class.to_s.split(':').last.gsub('Controller',
+                                                                      '')[0...-1]} not found" }
       end
     end
   end

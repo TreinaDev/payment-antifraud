@@ -22,6 +22,7 @@ pt-BR:
         discount_percentage: Porcentagem de desconto
         name: Nome
       invoice:
+        invoice: Cobranças
         status: Status
         token: Token
         package_id: ID Pacote de Seguros
