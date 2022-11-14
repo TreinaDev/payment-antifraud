@@ -1,0 +1,14 @@
+<article>
+  <header>
+    <h2> <%= t('messages.new_payment_option') %> </h2>
+    <hr>
+    <%= render 'application/errors', model: @payment_option %>
+    <br>
+  </header>
+  <main>
+    <%= render partial: 'form', locals: {
+                                  payment_option: @payment_option,
+                                  payment_methods: @payment_methods
+                                } %>
+  </main>
+</article>

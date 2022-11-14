@@ -24,17 +24,20 @@
                 <li>
                   <%= link_to "Promoções", promos_url , class:"nav-link px-2 link-#{controller_name == 'promos' ? 'primary' : 'gray'}" %>
                 </li>
-                  <li>
-                    <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'users' ? 'primary' : 'gray'}" if admin_signed_in? %>
-                  </li> 
-                  <li class="nav-link text-secondary-light px-2">
-                    <% if user_signed_in? %>
-                      <%= user_greetings(current_user) %>
-                    <% end %>
-                    <% if admin_signed_in? %>
-                      <%= user_greetings(current_admin) %>
-                    <% end %>
-                  </li> 
+                <li>
+                  <%= link_to "Minha Seguradora", company_payment_options_url, class:"nav-link px-2 link-#{controller_name == 'company_payment_options' ? 'primary' : 'gray'}" %>
+                </li> 
+                <li>
+                  <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'users' ? 'primary' : 'gray'}" if admin_signed_in? %>
+                </li> 
+                <li class="nav-link text-secondary-light px-2">
+                  <% if user_signed_in? %>
+                    <%= user_greetings(current_user) %>
+                  <% end %>
+                  <% if admin_signed_in? %>
+                    <%= user_greetings(current_admin) %>
+                  <% end %>
+                </li> 
                 <% if admin_signed_in? %>    
                   <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

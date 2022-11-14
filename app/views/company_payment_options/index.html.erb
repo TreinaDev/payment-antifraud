@@ -1,0 +1,32 @@
+<article>
+  <header>
+    <h2> <%= CompanyPaymentOption.model_name.human(count: 2) %> </h2>
+    <hr>
+    <%= link_to t('messages.new_payment_option'), new_company_payment_option_path, class: "btn btn-primary  btn-m" %>
+    <hr>
+  </header>
+  <main>
+    <% if @payment_options.any? %>
+      <table class="table table-striped table-bordered bg-gray">
+        <thead>
+          <tr>
+            <th scope="col"> <%= PaymentMethod.human_attribute_name(:name) %> </th>
+            <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:max_parcels) %></th>
+            <th scope="col"><%= CompanyPaymentOption.human_attribute_name(:single_parcel_discount) %></th>
+          </tr>
+        </thead>
+        <% @payment_options.each do |po| %>
+          <tbody>
+            <tr>
+              <td> <%= link_to po.payment_method.name, company_payment_option_path(po.id) %> </td>
+              <td> <%= po.max_parcels %>x </td>
+              <td> <%= show_discount_if_present(po.single_parcel_discount) %> </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    <% else %>
+      <%= t 'messages.no_payment_options'  %>
+    <% end %>
+  </main>
+</article>

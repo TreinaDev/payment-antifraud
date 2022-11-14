@@ -1,0 +1,54 @@
+<article>
+  <header>
+    <h2> <%= t 'messages.payment_option_details' %> </h2>
+    <hr>
+  </header>
+  <main>
+    <div class="card-header bg-transparent border-dark"> 
+      <h4> <%= payment_option_with_name(@payment_option.payment_method.name) %> </h4>
+    </div>
+      <div class="row g-0">
+        <div class="col-md-4">
+          <% if @payment_option.payment_method.image.attached? %>
+            <p> <%= image_tag @payment_option.payment_method.image, class:"card-img-top"%> </p>
+          <% end %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <p>
+                <li class="list-group-item"> 
+                  <%= PaymentMethod.human_attribute_name(:payment_type) %>: 
+                  <%= @payment_option.payment_method.payment_type %>
+                </li>
+              </p>
+              <p>
+                <li class="list-group-item"> 
+                  <%= CompanyPaymentOption.human_attribute_name(:max_parcels) %>: 
+                  <%= @payment_option.max_parcels %>x 
+                </li>
+              </p>
+              <p>
+                <li class="list-group-item"> 
+                  <%= CompanyPaymentOption.human_attribute_name(:single_parcel_discount) %>:
+                  <%= show_discount_if_present(@payment_option.single_parcel_discount) %> 
+                </li>
+              </p>
+              <p>
+                <li class="list-group-item"> 
+                  <%= CompanyPaymentOption.human_attribute_name(:user_id) %>:
+                  <%= "#{@payment_option.user.name} | #{@payment_option.user.email}" %>
+                </li>
+              </p>
+              <p>
+                <li class="list-group-item"> 
+                  <%= link_to t('buttons.edit'), edit_company_payment_option_path(@payment_option), class: "card-link" %>
+                </li>
+              </p>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</article>

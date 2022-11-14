@@ -1,0 +1,16 @@
+<%= form_with model: payment_option do |f| %>
+  <p class="form-group">
+    <%= f.label :payment_method_id %> &nbsp;
+    <%= f.collection_select :payment_method_id, payment_methods, :id, :payment_name_and_type, class: "form-control", prompt: true %>
+  </p>
+  <br>
+  <p class="form-group" style="width: 30%">
+    <%= f.label :max_parcels, CompanyPaymentOption.human_attribute_name(:max_parcels) %>
+    <%= f.number_field :max_parcels, class: "form-control" %>
+  </p>
+  <p class="form-group" style="width: 30%">
+    <%= f.label :single_parcel_discount %>
+    <%= f.number_field :single_parcel_discount, class: "form-control" %>
+  </p>
+  <%= f.submit t('buttons.send') %>
+<% end %>
