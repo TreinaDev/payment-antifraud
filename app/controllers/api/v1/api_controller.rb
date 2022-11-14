@@ -7,7 +7,8 @@ module Api
       private
 
       def internal_server_error_status
-        render status: :internal_server_error
+        render status: :internal_server_error,
+               json: { error: "Internal server error" }
       end
 
       def not_found_status

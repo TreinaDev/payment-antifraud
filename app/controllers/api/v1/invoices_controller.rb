@@ -23,7 +23,7 @@ module Api
       private
 
       def invoice_params
-        params.require(:invoice).permit(:order_id, :insurance_company_id, :package_id, :registration_number)
+        params.require(:invoice).permit(:order_id, :insurance_company_id, :package_id, :registration_number, :payment_method_id)
       end
     end
   end
