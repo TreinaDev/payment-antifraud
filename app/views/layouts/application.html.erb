@@ -30,6 +30,8 @@
                 <li>
                   <%= link_to "Cobranças", invoices_url , class:"nav-link px-2 link-#{controller_name == 'invoice' ? 'secondary' : 'dark'}" %>
                 </li>
+                  <%= link_to "Minha Seguradora", company_payment_options_url, class:"nav-link px-2 link-#{controller_name == 'company_payment_options' ? 'primary' : 'gray'}" %>
+                </li>
                 <li class="nav-link text-secondary-light px-2">
                   <% if user_signed_in? %>
                     <%= user_greetings(current_user) %>

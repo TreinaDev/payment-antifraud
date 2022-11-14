@@ -3,7 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum status: { pending: 0, approved: 1, refused: 2 }
   has_one :user_review, dependent: :destroy
-  before_create :consult_insurance_company_api_for_email_validation
+  belongs_to :insurance_company, dependent: :destroy
+  before_validation :consult_insurance_company_api_for_email_validation, on: :create
   validates :registration_number, presence: true
   validates :registration_number, length: { is: 11 }
 
