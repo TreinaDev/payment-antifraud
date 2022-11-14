@@ -16,7 +16,8 @@ describe 'Usuário vê cobranças' do
     allow(SecureRandom).to receive(:alphanumeric).and_return('AGBS65OFN493OE93MVNA')
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
-    create(:invoice, insurance_company_id: 5, package_id: 10,
+    payment_method = create(:payment_method)
+    create(:invoice, payment_method: payment_method ,insurance_company_id: 5, package_id: 10,
                      registration_number: '12345678', status: :pending)
 
     login_as(user, scope: :user)
@@ -27,9 +28,7 @@ describe 'Usuário vê cobranças' do
     expect(page).to have_content 'Token'
     expect(page).to have_content 'Status'
     expect(page).to have_content 'AGBS65OFN493OE93MVNA'
-    expect(page).to have_content 'ID Seguradora'
     expect(page).to have_content 'ID Pacote de Seguros'
-    expect(page).to have_content '5'
     expect(page).to have_content '10'
     expect(page).to have_content 'pendente'
   end
