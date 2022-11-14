@@ -3,7 +3,7 @@ class PromosController < ApplicationController
   before_action :set_promo, only: %i[edit update show]
 
   def index
-    @promos = Promo.where(insurance_company_id: current_user.insurance_company_id)
+    @promos = current_user.insurance_company.promos
   end
 
   def show

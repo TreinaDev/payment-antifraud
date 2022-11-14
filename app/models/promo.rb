@@ -3,10 +3,10 @@ class Promo < ApplicationRecord
             presence: true
   validates :usages_max, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :discount_percentage, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
-
   validate :ending_date_greater_than_starting_date
   before_validation :generate_voucher, on: :create
   has_many :promo_products, dependent: :destroy
+  belongs_to :insurance_company, dependent: :destroy
 
   def currency
     discount_max.nil? ? 0 : discount_max / 100
