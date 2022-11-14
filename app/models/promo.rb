@@ -12,6 +12,10 @@ class Promo < ApplicationRecord
     discount_max.nil? ? 0 : discount_max / 100
   end
 
+  def same_company(user)
+    user.insurance_company_id == insurance_company_id
+  end
+
   private
 
   def ending_date_greater_than_starting_date

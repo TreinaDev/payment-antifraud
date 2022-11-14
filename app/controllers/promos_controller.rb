@@ -7,10 +7,7 @@ class PromosController < ApplicationController
   end
 
   def show
-    unless current_user.insurance_company_id == @promo.insurance_company_id
-      return redirect_to root_path,
-                         alert: t('no_access_granted')
-    end
+    return redirect_to root_path, alert: t('no_access_granted') unless @promo.same_company(current_user)
 
     registered_products = @promo.promo_products.map { |prod| prod&.product_id }
     @available_products = ProductsApi.products_array.map do |obj|

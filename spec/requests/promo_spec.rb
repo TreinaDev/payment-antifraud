@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe 'Funcionário tenta acessar promoções' do
+  it 'e não está autenticado' do
+    company = FactoryBot.create(:insurance_company)
+    promo = create(:promo, insurance_company_id: company.id)
+
+    get promo_path(promo)
+
+    expect(response).to redirect_to root_path
+  end
   it 'e não consegue acessar promoção cadastrada por outra seguradora' do
     company_a = FactoryBot.create(:insurance_company)
     company_b = FactoryBot.create(:insurance_company)
