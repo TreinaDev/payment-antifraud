@@ -1,11 +1,4 @@
-<% if(@promo.errors.any?) %>
-<p>Verifique os erros abaixo:</p>
-<ul>
-  <% @promo.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
+<%= render 'application/errors', model: @promo %>
 
 <h1> Cadastrar promoção </h1>
 <%= form_with(model: @promo)  do |f| %>

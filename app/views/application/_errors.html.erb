@@ -1,12 +1,8 @@
-<% if model.errors.any? %>
-  <div class="bg-warning" id="error_explanation">
-    <div>
-      <% model.errors.each do |error| %>
-        <% flash.now[:alert] = error.full_message %>
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, class: name %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+<% if(model.errors.any?) %>
+<p> <%= t 'verify_errors_below' %> </p>
+<ul>
+  <% model.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
 <% end %>

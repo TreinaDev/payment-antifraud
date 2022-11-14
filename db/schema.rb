@@ -52,6 +52,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_214754) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "company_payment_options", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "insurance_company_id", null: false
+    t.integer "payment_method_id", null: false
+    t.integer "max_parcels"
+    t.integer "single_parcel_discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insurance_company_id"], name: "index_company_payment_options_on_insurance_company_id"
+    t.index ["payment_method_id"], name: "index_company_payment_options_on_payment_method_id"
+    t.index ["user_id"], name: "index_company_payment_options_on_user_id"
+  end
+
   create_table "fraud_reports", force: :cascade do |t|
     t.string "registration_number"
     t.string "description"
@@ -127,6 +140,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_214754) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_payment_options", "insurance_companies"
+  add_foreign_key "company_payment_options", "payment_methods"
+  add_foreign_key "company_payment_options", "users"
   add_foreign_key "promo_products", "promos"
   add_foreign_key "promos", "insurance_companies"
   add_foreign_key "user_reviews", "users"
