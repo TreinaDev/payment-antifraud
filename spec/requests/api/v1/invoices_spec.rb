@@ -6,13 +6,12 @@ describe Api::V1::InvoicesController, type: :request do
       it 'return 201 and invoice attributes as JSON' do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
         payment_method = create(:payment_method)
-        insurance_company = create(:insurance_company)
-
+        
         params = {
           invoice: {
             payment_method_id: payment_method.id,
             order_id: 1, registration_number: '12345678', status: 0,
-            package_id: 1, insurance_company_id: insurance_company.id
+            package_id: 1, insurance_company_id: 10
           }
         }
 
@@ -26,18 +25,17 @@ describe Api::V1::InvoicesController, type: :request do
           registration_number: '12345678',
           status: 'pending',
           package_id: 1,
-          insurance_company_id: insurance_company.id
+          insurance_company_id: 10
         }.with_indifferent_access)
       end
 
       it 'creates a new invoice' do
         payment_method = create(:payment_method)
-        insurance_company = create(:insurance_company)
 
         params = {
           invoice: {payment_method_id: payment_method.id,
-                    order_id: 1, registration_number: '12345678', status: 0,
-                    package_id: 1, insurance_company_id: insurance_company.id
+            order_id: 1, registration_number: '12345678', status: 0,
+            package_id: 1, insurance_company_id: 10
           }
         }
 
@@ -64,20 +62,18 @@ describe Api::V1::InvoicesController, type: :request do
       end
     end
   end
-
   describe 'GET#index api/v1/invoices' do
     context 'when is successful' do
       it 'list all invoices ' do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
         payment_method = create(:payment_method)
-        insurance_company = create(:insurance_company)
-        invoice = Invoice.create!(payment_method:,
+        invoice = Invoice.create!( payment_method: payment_method,
           order_id: 1, registration_number: '12345678', status: 0,
-          package_id: 1, insurance_company_id: insurance_company.id
+          package_id: 1, insurance_company_id: 10
         )
-        second_invoice = Invoice.create!(payment_method:,
+        second_invoice = Invoice.create!( payment_method: payment_method,
           order_id: 2, registration_number: '87654321', status: 0,
-          package_id: 2, insurance_company_id: insurance_company.id
+          package_id: 2, insurance_company_id: 20
         )
 
         get '/api/v1/invoices'
@@ -99,10 +95,9 @@ describe Api::V1::InvoicesController, type: :request do
       it 'success' do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
         payment_method = create(:payment_method)
-        insurance_company = create(:insurance_company)
         invoice = Invoice.create!( payment_method: payment_method,
           order_id: 1, registration_number: '12345678', status: 0,
-          package_id: 1, insurance_company_id: insurance_company.id
+          package_id: 1, insurance_company_id: 10
         )
 
         get "/api/v1/invoices/#{invoice.id}"
