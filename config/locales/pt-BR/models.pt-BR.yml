@@ -1,7 +1,7 @@
 pt-BR:
   pending: pendente
   payd: Paga
-  failed: Encerrada com falha
+  failed: Encerrada com Falha
   activerecord:
     models:
       promo: 
