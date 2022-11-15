@@ -15,7 +15,7 @@ class PromosController < ApplicationController
     end.compact_blank
     @promo_product = PromoProduct.new
   end
-
+  
   def new
     @promo = Promo.new
   end
