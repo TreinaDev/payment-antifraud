@@ -4,7 +4,7 @@ class Api::V1::PromosController < ActionController::API
 
   def show
     promo = Promo.find(params[:id])
-    render status: 200, json: promo.as_json(except: [:created_at, :updated_at])
+    render status: 200, json: promo
   end
 
   def index
@@ -15,10 +15,10 @@ class Api::V1::PromosController < ActionController::API
   private
 
   def return_500
-    render status: 500
+    render status: 500, json: {}
   end
 
   def return_404
-    render status: 404
+    render status: 404, json: {}
   end
 end

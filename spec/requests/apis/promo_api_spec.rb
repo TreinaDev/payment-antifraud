@@ -23,8 +23,6 @@ describe 'Promo API' do
       expect(json_response["usages_max"]).to eq 10
       expect(json_response["insurance_company_id"]).to eq company.id
       expect(json_response["voucher"]).to eq '3MVGTOVW'
-      expect(json_response.keys).not_to include("created_at")
-      expect(json_response.keys).not_to include("updated_at")
     end
 
     it 'e falha se a promoção não for encontrada' do
@@ -42,11 +40,12 @@ describe 'Promo API' do
                                 ending_date: Time.zone.today + 30.days,
                                 discount_max: 100, discount_percentage: 20, usages_max: 10, 
                                 insurance_company_id: company.id)
-      allow(SecureRandom).to receive(:alphanumeric).and_return('TOVW3MVG')
+
       promo_b = FactoryBot.create(:promo, name: 'Promo Natal', starting_date: Time.zone.today, 
                                 ending_date: Time.zone.today + 20.days,
                                 discount_max: 500, discount_percentage: 10, usages_max: 15, 
                                 insurance_company_id: company.id)
+      promo_b.update(voucher: '3MVGTOVW')
 
       get "/api/v1/promos/"
 
@@ -70,9 +69,6 @@ describe 'Promo API' do
       expect(json_response[1]["usages_max"]).to eq 15
       expect(json_response[1]["insurance_company_id"]).to eq company.id
       expect(json_response[1]["voucher"]).to eq '3MVGTOVW'
-      # expect(json_response.keys).not_to include("created_at")
-      # expect(json_response.keys).not_to include("updated_at")
-      # como colocar voucher com outro numero
     end 
 
     it 'e retorna vazio se não houver promoções cadastradas' do
