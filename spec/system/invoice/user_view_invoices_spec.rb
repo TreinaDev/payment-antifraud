@@ -38,7 +38,7 @@ describe 'Usuário vê cobranças' do
 
   it 'somente de sua seguradora' do
     company1 = FactoryBot.create(:insurance_company, external_insurance_company: 1)
-    user1 = FactoryBot.create(:user, insurance_company_id: company1.id)
+    FactoryBot.create(:user, insurance_company_id: company1.id)
     payment_method = FactoryBot.create(:payment_method)
     allow(SecureRandom).to receive(:alphanumeric).and_return('AAAS65OFN493OE93MVNA')
     FactoryBot.create(:invoice, payment_method:, insurance_company_id: company1.id, package_id: 10,

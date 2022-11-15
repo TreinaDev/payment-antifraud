@@ -4,10 +4,16 @@ describe Api::V1::InvoicesController, type: :request do
   describe 'POST#create api/v1/invoices' do
     context 'when is successful' do
       it 'return 201 and invoice attributes as JSON' do
+        insurance_company = create(:insurance_company)
+        user = create(:user, insurance_company:)
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
         payment_method = create(:payment_method)
-        insurance_company = create(:insurance_company)
-
+        create(:company_payment_option,
+               user:,
+               insurance_company:,
+               payment_method:,
+               max_parcels: 10,
+               single_parcel_discount: 5)
         params = {
           invoice: {
             payment_method_id: payment_method.id,
@@ -20,7 +26,7 @@ describe Api::V1::InvoicesController, type: :request do
 
         expect(response).to have_http_status :created
         expect(response_parsed).to include({
-          payment_method_id: 1,
+          payment_method_id: payment_method.id,
           token: 'A1S2D3F4G5H6J7K8L9ZA',
           order_id: 1,
           registration_number: '12345678',
@@ -31,25 +37,31 @@ describe Api::V1::InvoicesController, type: :request do
       end
 
       it 'creates a new invoice' do
-        payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
+        user = create(:user, insurance_company:)
+        payment_method = create(:payment_method)
+        create(:company_payment_option,
+               user:,
+               insurance_company:,
+               payment_method:,
+               max_parcels: 10,
+               single_parcel_discount: 5)
 
         params = {
-          invoice: {payment_method_id: payment_method.id,
-                    order_id: 1, registration_number: '12345678', status: 0,
-                    package_id: 1, insurance_company_id: insurance_company.id
-          }
+          invoice: { payment_method_id: payment_method.id,
+                     order_id: 1, registration_number: '12345678', status: 0,
+                     package_id: 1, insurance_company_id: insurance_company.id }
         }
 
-        expect { post '/api/v1/invoices', params: params}.to change { Invoice.count }.from(0).to(1)
+        expect { post '/api/v1/invoices', params: }.to change { Invoice.count }.from(0).to(1)
       end
     end
 
     context 'when fails' do
       it 'return 412 and invoice errors as JSON' do
-        payment_method = create(:payment_method)
+        create(:payment_method)
 
-        params = { invoice: { insurance_company_id: nil, payment_method_id: payment_method.id } }
+        params = { invoice: { insurance_company_id: nil, payment_method_id: nil } }
 
         post '/api/v1/invoices', params: params
 
@@ -72,13 +84,11 @@ describe Api::V1::InvoicesController, type: :request do
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
         invoice = Invoice.create!(payment_method:,
-          order_id: 1, registration_number: '12345678', status: 0,
-          package_id: 1, insurance_company_id: insurance_company.id
-        )
+                                  order_id: 1, registration_number: '12345678', status: 0,
+                                  package_id: 1, insurance_company_id: insurance_company.id)
         second_invoice = Invoice.create!(payment_method:,
-          order_id: 2, registration_number: '87654321', status: 0,
-          package_id: 2, insurance_company_id: insurance_company.id
-        )
+                                         order_id: 2, registration_number: '87654321', status: 0,
+                                         package_id: 2, insurance_company_id: insurance_company.id)
 
         get '/api/v1/invoices'
 
@@ -100,10 +110,9 @@ describe Api::V1::InvoicesController, type: :request do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
-        invoice = Invoice.create!( payment_method: payment_method,
-          order_id: 1, registration_number: '12345678', status: 0,
-          package_id: 1, insurance_company_id: insurance_company.id
-        )
+        invoice = Invoice.create!(payment_method:,
+                                  order_id: 1, registration_number: '12345678', status: 0,
+                                  package_id: 1, insurance_company_id: insurance_company.id)
 
         get "/api/v1/invoices/#{invoice.id}"
 
