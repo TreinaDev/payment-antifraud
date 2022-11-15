@@ -1,24 +1,15 @@
-class Api::V1::PromosController < ActionController::API
-  rescue_from ActiveRecord::ActiveRecordError, with: :return_500
-  rescue_from ActiveRecord::RecordNotFound, with: :return_404
+module Api
+  module V1
+    class PromosController < Api::V1::ApiController
+      def index
+        promos = Promo.all
+        render status: :ok, json: promos
+      end
 
-  def show
-    promo = Promo.find(params[:id])
-    render status: 200, json: promo
-  end
-
-  def index
-    promos = Promo.all
-    render status: 200, json: promos
-  end
-
-  private
-
-  def return_500
-    render status: 500, json: {}
-  end
-
-  def return_404
-    render status: 404, json: {}
+      def show
+        promo = Promo.find(params[:id])
+        render status: :ok, json: promo
+      end
+    end
   end
 end
