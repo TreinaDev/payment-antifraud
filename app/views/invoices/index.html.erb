@@ -8,7 +8,6 @@
             <tr>
               <th scope="col"><%= Invoice.human_attribute_name :token %></th>
               <th scope="col"><%= Invoice.human_attribute_name :status %></th>
-              <th scope="col">Seguradora</th>
               <th scope="col"><%= Invoice.human_attribute_name :package_id %></th>
             </tr>
           </thead>
@@ -17,7 +16,6 @@
               <tr>
                 <td><%= invoice.token %></td>
                 <td><%= t(invoice.status) %></td>
-                <td><%= invoice.insurance_company.external_insurance_company %></td>
                 <td><%= invoice.package_id %></td>
                 <td><%= link_to 'Ver mais', invoice_path(invoice.id), class: 'btn btn-light' %></td>
               </tr>
