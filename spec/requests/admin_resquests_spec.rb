@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' do
+describe 'Usuário comum tenta acessar as funcionalidades de um administrador' do
   context 'Lista de usuários' do
     it 'e não consegue acessar a página' do
       company = FactoryBot.create(:insurance_company)
