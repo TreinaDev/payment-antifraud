@@ -11,5 +11,42 @@
   <dt><strong><%= Promo.human_attribute_name(:voucher) %>: </strong><%= @promo.voucher %></dt>
   <dt><strong><%= Promo.human_attribute_name(:discount_percentage) %>: </strong><%= @promo.discount_percentage %> %</dt>
   <dt><strong><%= Promo.human_attribute_name(:discount_max) %>: </strong> <%= number_to_currency(@promo.currency, unit: "R$", separator: ",", delimiter: "") %></dt>
-  <dt><strong><%= Promo.human_attribute_name(:product_list) %>: </strong> <%= @promo.product_list %></dt>
 </dl>
+
+
+
+<table >
+<% begin %>
+  <%= form_with model: [@promo, @promo_product] do |product| %>
+  <% unless @available_products.empty? %>
+  <div id="product_select">
+    <dl>
+      <dt><%= product.label :product_id %>
+      <%= product.select :product_id, @available_products, { class:"form-select" }, prompt: true %>
+      <%= product.submit 'Selecionar Produto', class: "btn btn-primary  btn-m"%></dt>
+    </dl>
+  </div>
+  <% end %>
+  <% end %>
+<table class="table table-striped table-bordered bg-gray" style="width: 50%;">
+  <thead>
+    <tr>
+      <th scope="col">Produtos inclusos nesta promoção</th>  
+    </tr>
+  </thead>
+  <% if @promo.promo_products.present? %>
+    <% @promo.promo_products.each do |product| %>
+      <tbody>
+          <div id="<%= product.id %>">
+          <td><%= ProductsApi.all.find {|obj| obj.id == product.product_id}.product_model %></td>  
+          <td><%= button_to "Remover", promo_promo_product_path(@promo, product.id), method: :delete, class: "btn btn-primary  btn-m"%></td>     
+          </div>
+        </tr>
+      </tbody>
+    <% end %>
+  <% end %>
+</table>
+<% rescue %>
+<% end %>
+
+

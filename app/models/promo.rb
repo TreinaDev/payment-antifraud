@@ -1,14 +1,19 @@
 class Promo < ApplicationRecord
-  validates :name, :starting_date, :discount_max, :usages_max, :product_list, :ending_date, :discount_percentage,
+  validates :name, :starting_date, :discount_max, :usages_max, :ending_date, :discount_percentage,
             presence: true
   validates :usages_max, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :discount_percentage, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
-
   validate :ending_date_greater_than_starting_date
   before_validation :generate_voucher, on: :create
+  has_many :promo_products, dependent: :destroy
+  belongs_to :insurance_company, dependent: :destroy
 
   def currency
     discount_max.nil? ? 0 : discount_max / 100
+  end
+
+  def same_company(user)
+    user.insurance_company_id == insurance_company_id
   end
 
   private
