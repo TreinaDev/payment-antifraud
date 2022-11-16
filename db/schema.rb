@@ -103,17 +103,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "promo_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "promo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["promo_id", "product_id"], name: "index_promo_products_on_promo_id_and_product_id", unique: true
+    t.index ["promo_id"], name: "index_promo_products_on_promo_id"
+  end
+
   create_table "promos", force: :cascade do |t|
     t.date "starting_date"
     t.date "ending_date"
     t.string "name"
     t.integer "discount_percentage"
     t.integer "discount_max"
-    t.string "product_list"
     t.integer "usages_max"
     t.string "voucher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "insurance_company_id"
+    t.index ["insurance_company_id"], name: "index_promos_on_insurance_company_id"
   end
 
   create_table "user_reviews", force: :cascade do |t|
@@ -149,6 +159,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
   add_foreign_key "company_payment_options", "users"
   add_foreign_key "invoices", "insurance_companies"
   add_foreign_key "invoices", "payment_methods"
+  add_foreign_key "promo_products", "promos"
+  add_foreign_key "promos", "insurance_companies"
   add_foreign_key "user_reviews", "users"
   add_foreign_key "users", "insurance_companies"
 end

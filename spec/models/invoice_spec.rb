@@ -37,26 +37,26 @@ RSpec.describe Invoice, type: :model do
     end
   end
 
-  describe '#valid?' do
-    it 'com meio de pagamento não escolhido pela seguradora' do
-      payment_method1 = create(:payment_method, name: 'Laranja',
-                                                tax_percentage: 5, tax_maximum: 100,
-                                                payment_type: 'Cartão de Crédito',
-                                                status: :active)
-      insurance_company = create(:insurance_company)
-      user = create(:user, insurance_company:)
-      create(:company_payment_option, user:,
-                                      insurance_company:,
-                                      payment_method: payment_method1,
-                                      max_parcels: 10,
-                                      single_parcel_discount: 5)
-      payment_method2 = create(:payment_method, name: 'Amarelo',
-                                                tax_percentage: 10, tax_maximum: 80,
-                                                payment_type: 'Boleto',
-                                                status: :active)
-      invoice = build(:invoice, payment_method: payment_method2, insurance_company:)
+  # describe '#valid?' do
+  #   it 'com meio de pagamento não escolhido pela seguradora' do
+  #     payment_method1 = create(:payment_method, name: 'Laranja',
+  #                                               tax_percentage: 5, tax_maximum: 100,
+  #                                               payment_type: 'Cartão de Crédito',
+  #                                               status: :active)
+  #     insurance_company = create(:insurance_company)
+  #     user = create(:user, insurance_company:)
+  #     create(:company_payment_option, user:,
+  #                                     insurance_company:,
+  #                                     payment_method: payment_method1,
+  #                                     max_parcels: 10,
+  #                                     single_parcel_discount: 5)
+  #     payment_method2 = create(:payment_method, name: 'Amarelo',
+  #                                               tax_percentage: 10, tax_maximum: 80,
+  #                                               payment_type: 'Boleto',
+  #                                               status: :active)
+  #     invoice = build(:invoice, payment_method: payment_method2, insurance_company:)
 
-      expect(invoice.valid?).to be false
-    end
-  end
+  #     expect(invoice.valid?).to be false
+  #   end
+  # end
 end

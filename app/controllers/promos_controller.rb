@@ -3,10 +3,18 @@ class PromosController < ApplicationController
   before_action :set_promo, only: %i[edit update show]
 
   def index
-    @promos = Promo.all
+    @promos = current_user.insurance_company.promos
   end
 
-  def show; end
+  def show
+    return redirect_to root_path, alert: t('no_access_granted') unless @promo.same_company(current_user)
+
+    registered_products = @promo.promo_products.map { |prod| prod&.product_id }
+    @available_products = ProductsApi.products_array.map do |obj|
+      obj unless registered_products.include?(obj[1])
+    end.compact_blank
+    @promo_product = PromoProduct.new
+  end
 
   def new
     @promo = Promo.new
@@ -16,6 +24,7 @@ class PromosController < ApplicationController
 
   def create
     @promo = Promo.new(promo_params)
+    @promo.insurance_company_id = current_user.insurance_company_id
     if @promo.save
       redirect_to promo_path(@promo.id), notice: I18n.t('controllers.promos.create.success')
     else
@@ -45,7 +54,7 @@ class PromosController < ApplicationController
 
   def promo_params
     sanitize_discount_max
-    params.require(:promo).permit(:name, :starting_date, :discount_max, :usages_max, :product_list, :ending_date,
+    params.require(:promo).permit(:name, :starting_date, :discount_max, :usages_max, :ending_date,
                                   :discount_percentage)
   end
 end
