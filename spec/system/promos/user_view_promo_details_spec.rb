@@ -7,7 +7,7 @@ describe 'Usuário vê mais detalhes de uma promoção' do
     user = FactoryBot.create(:user, insurance_company_id: company.id)
     FactoryBot.create(:promo, name: 'Black Friday', starting_date: Time.zone.today,
                               ending_date: Time.zone.today + 30.days,
-                              discount_max: 10000, discount_percentage: 20, usages_max: 10,
+                              discount_max: 10_000, discount_percentage: 20, usages_max: 10,
                               insurance_company_id: company.id)
 
     login_as user, scope: :user
