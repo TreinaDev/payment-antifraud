@@ -7,8 +7,8 @@ describe 'Usuário vê meios de pagamento' do
       click_on 'Meios de Pagamento'
     end
 
-    expect(current_url).to eq root_url
-    expect(page).to have_content 'Faça login para entrar'
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Acesso negado.'
   end
 
   it 'e está autenticado como funcionário da seguradora' do
@@ -25,16 +25,8 @@ describe 'Usuário vê meios de pagamento' do
     visit root_path
     click_on 'Meios de Pagamento'
 
-    expect(current_url).to eq payment_methods_url
-    expect(page).to have_content 'Nome'
-    expect(page).to have_content 'Tipo de Pagamento'
-    expect(page).to have_content 'Status'
-    expect(page).to have_content 'Nome'
-    expect(page).to have_content 'Laranja'
-    expect(page).to have_content 'Cartão de Crédito'
-    expect(page).to have_content 'Ativo'
-    expect(page).to have_content 'Roxo'
-    expect(page).to have_content 'Boleto'
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Acesso negado.'
   end
 
   it 'e está autenticado como administrador' do
