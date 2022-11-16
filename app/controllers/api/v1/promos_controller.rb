@@ -1,29 +1,30 @@
 module Api
   module V1
     class PromosController < Api::V1::ApiController
-      def index
-        promos = Promo.all.select { |promo| promo.promo_products.present? }
-        render status: :ok, json: json_format(promos)
+      def show
+        promo = Promo.find_by(voucher: params[:id])
+        return render status: :ok, json: promo_json_format(promo) if promo.present?
+
+        raise ActiveRecord::RecordNotFound
       end
 
       private
 
       # rubocop:disable Metrics/MethodLength
-      def json_format(promo)
-        promo.map do |p|
-          {
-            id: p.id,
-            name: p.name,
-            starting_date: p.starting_date,
-            ending_date: p.ending_date,
-            usages_max: p.usages_max,
-            discount_percentage: p.discount_percentage,
-            discount_max: p.discount_max,
-            voucher: p.voucher,
-            insurance_company_id: p.insurance_company_id,
-            products: p.promo_products.map(&:product_id)
-          }
-        end
+      def promo_json_format(promo)
+        {
+          id: promo.id,
+          voucher: promo.voucher,
+          name: promo.name,
+          starting_date: promo.starting_date,
+          ending_date: promo.ending_date,
+          usages_max: promo.usages_max,
+          discount_percentage: promo.discount_percentage,
+          discount_max: promo.discount_max,
+          insurance_company_id: promo.insurance_company_id,
+          products: promo.promo_products.map(&:product_id)
+        }
+
         # rubocop:enable Metrics/MethodLength
       end
     end
