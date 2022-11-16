@@ -1,17 +1,17 @@
 module Api
   module V1
     class ApiController < ActionController::API
-      rescue_from ActiveRecord::ActiveRecordError, with: :return_internal_server_error
-      rescue_from ActiveRecord::RecordNotFound, with: :return_not_found
+      rescue_from ActiveRecord::ActiveRecordError, with: :return500
+      rescue_from ActiveRecord::RecordNotFound, with: :return404
 
       private
 
-      def return_internal_server_error
-        render status: :internal_server_error, json: {}
+      def return404
+        render status: :not_found, body: {}
       end
 
-      def return_not_found
-        render status: :not_found, json: {}
+      def return500
+        render status: :internal_server_error, body: {}
       end
     end
   end
