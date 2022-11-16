@@ -3,7 +3,7 @@ class Invoice < ApplicationRecord
   before_validation :generate_token, on: :create
   belongs_to :payment_method
   belongs_to :insurance_company
-  validate :check_payment_method_options
+  # validate :check_payment_method_options
 
   private
 

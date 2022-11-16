@@ -13,6 +13,14 @@ Confira abaixo as outras aplicações que conversam com o nosso sistema para cri
 
 ##### [Sistema Comparador de Seguros](https://github.com/TreinaDev/insurance-comparator-app)
 
+### Documentação de API's e extras
+
+Confira aqui links de páginas da nossa wiki com a documentação das API's disponíveis da aplicação. 
+
+##### [API De Meios de Pagamento das Seguradoras](https://github.com/TreinaDev/payment-antifraud/wiki/API-Para-Obter-Meios-de-Pagamento-de-uma-Seguradora)
+
+##### [API De Promoções das Seguradoras](https://github.com/TreinaDev/payment-antifraud/wiki/API-Para-Obter-Meios-de-Pagamento-de-uma-Seguradora)
+
 ### Setup da aplicação
 
 Antes de inicializar a aplicação, rode o comando  `bin/setup`  para instalar todas as gems e dependências necessárias para o funcionamento adequado da aplicação.
