@@ -27,6 +27,11 @@ module Api
 
         # rubocop:enable Metrics/MethodLength
       end
+
+      def expired_date?(promo)
+        (promo.starting_date..promo.ending_date).includes? Date.today         
+      end
+      end
     end
   end
 end
