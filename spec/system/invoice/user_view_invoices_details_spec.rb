@@ -6,6 +6,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
+    company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company.id, payment_method_id: payment_method.id, user: user)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending)
 

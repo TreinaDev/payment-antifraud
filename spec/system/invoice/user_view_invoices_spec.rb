@@ -4,6 +4,9 @@ describe 'Usuário vê cobranças' do
   it 'e não está autenticado' do
     company = FactoryBot.create(:insurance_company)
     payment_method = create(:payment_method)
+    user = create(:user, insurance_company: company)
+    company_payment_option = FactoryBot.create(:company_payment_option, insurance_company: company, payment_method_id: payment_method.id, user: user)
+
     create(:invoice, payment_method:, insurance_company_id: company.id)
     FactoryBot.create(:user, insurance_company_id: company.id)
 
@@ -18,8 +21,9 @@ describe 'Usuário vê cobranças' do
     allow(SecureRandom).to receive(:alphanumeric).and_return('AGBS65OFN493OE93MVNA')
     company = FactoryBot.create(:insurance_company)
     payment_method = create(:payment_method)
-    create(:invoice, payment_method:, insurance_company_id: company.id)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company.id, payment_method_id: payment_method.id, user: user)
+    create(:invoice, payment_method:, insurance_company_id: company.id)
     create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                      registration_number: '12345678', status: :pending)
 
@@ -38,13 +42,18 @@ describe 'Usuário vê cobranças' do
 
   it 'somente de sua seguradora' do
     company1 = FactoryBot.create(:insurance_company, external_insurance_company: 1)
-    FactoryBot.create(:user, insurance_company_id: company1.id)
+    user1 = FactoryBot.create(:user, insurance_company_id: company1.id)
+    
     payment_method = FactoryBot.create(:payment_method)
+    company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company1.id, payment_method_id: payment_method.id, user: user1)
+    
     allow(SecureRandom).to receive(:alphanumeric).and_return('AAAS65OFN493OE93MVNA')
-    FactoryBot.create(:invoice, payment_method:, insurance_company_id: company1.id, package_id: 10,
+    FactoryBot.create(:invoice, payment_method: payment_method, insurance_company_id: company1.id, package_id: 10,
                                 registration_number: '12345678', status: :pending, order_id: 1)
     company2 = FactoryBot.create(:insurance_company, external_insurance_company: 1)
     user2 = FactoryBot.create(:user, insurance_company_id: company2.id)
+    company_payment_option2 = FactoryBot.create(:company_payment_option, insurance_company_id: company2.id, payment_method_id: payment_method.id, user: user2)
+
     allow(SecureRandom).to receive(:alphanumeric).and_return('BBBS65OFN493OE93MVNA')
     create(:invoice, payment_method:, insurance_company_id: company2.id, package_id: 5,
                      registration_number: '12345678', status: :payd, order_id: 2)

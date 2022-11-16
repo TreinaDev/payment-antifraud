@@ -59,9 +59,12 @@ describe Api::V1::InvoicesController, type: :request do
 
     context 'when fails' do
       it 'return 412 and invoice errors as JSON' do
-        create(:payment_method)
+        payment_method = create(:payment_method)
+        company = create(:insurance_company)
+        user = create(:user, insurance_company: company)
+        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company.id, payment_method_id: payment_method.id, user: user)
 
-        params = { invoice: { insurance_company_id: nil, payment_method_id: nil } }
+        params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
         post '/api/v1/invoices', params: params
 
@@ -70,7 +73,12 @@ describe Api::V1::InvoicesController, type: :request do
       end
 
       it 'does not creates a new invoice' do
-        params = { invoice: { insurance_company_id: nil } }
+        payment_method = create(:payment_method)
+        company = create(:insurance_company)
+        user = create(:user, insurance_company: company)
+        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company.id, payment_method_id: payment_method.id, user: user)
+
+        params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
         expect { post '/api/v1/invoices', params: }.not_to(change { Invoice.count })
       end
@@ -81,8 +89,12 @@ describe Api::V1::InvoicesController, type: :request do
     context 'when is successful' do
       it 'list all invoices ' do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
+        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('S2D3F4G5')
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
+        user = create(:user, insurance_company: insurance_company)
+        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id, payment_method_id: payment_method.id, user: user)
+
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678', status: 0,
                                   package_id: 1, insurance_company_id: insurance_company.id)
@@ -104,12 +116,16 @@ describe Api::V1::InvoicesController, type: :request do
       end
     end
   end
+
   describe 'GET#show api/v1/invoices/' do
     context 'when is successful' do
       it 'success' do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
+        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('S2D3F4G5')
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
+        user = create(:user, insurance_company: insurance_company)
+        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id, payment_method_id: payment_method.id, user: user)
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678', status: 0,
                                   package_id: 1, insurance_company_id: insurance_company.id)
