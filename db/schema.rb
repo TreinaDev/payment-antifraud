@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_12_175527) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_214754) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -89,17 +89,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_12_175527) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "promo_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "promo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["promo_id", "product_id"], name: "index_promo_products_on_promo_id_and_product_id", unique: true
+    t.index ["promo_id"], name: "index_promo_products_on_promo_id"
+  end
+
   create_table "promos", force: :cascade do |t|
     t.date "starting_date"
     t.date "ending_date"
     t.string "name"
     t.integer "discount_percentage"
     t.integer "discount_max", null: false
-    t.string "product_list"
     t.integer "usages_max"
     t.string "voucher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "insurance_company_id", null: false
+    t.index ["insurance_company_id"], name: "index_promos_on_insurance_company_id"
   end
 
   create_table "user_reviews", force: :cascade do |t|
@@ -133,6 +143,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_12_175527) do
   add_foreign_key "company_payment_options", "insurance_companies"
   add_foreign_key "company_payment_options", "payment_methods"
   add_foreign_key "company_payment_options", "users"
+  add_foreign_key "promo_products", "promos"
+  add_foreign_key "promos", "insurance_companies"
   add_foreign_key "user_reviews", "users"
   add_foreign_key "users", "insurance_companies"
 end
