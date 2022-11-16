@@ -1,16 +1,17 @@
 class CompanyPaymentOptionsController < ApplicationController
   before_action :require_user
-  before_action :fetch_payment_methods, only: %i[new create edit update]
   before_action :fetch_payment_option, only: %i[show edit update]
 
   def index
     @payment_options = current_user.insurance_company.payment_options
+    @payment_methods = PaymentMethod.active.where.not(id: CompanyPaymentOption.all.pluck(:payment_method_id))
   end
 
   def show; end
 
   def new
     @payment_option = CompanyPaymentOption.new
+    @payment_option.payment_method_id = params[:payment_method_id]
   end
 
   def edit; end
@@ -42,10 +43,6 @@ class CompanyPaymentOptionsController < ApplicationController
 
   def fetch_payment_option
     @payment_option = CompanyPaymentOption.find params[:id]
-  end
-
-  def fetch_payment_methods
-    @payment_methods = PaymentMethod.all
   end
 
   def new_payment_option_params
