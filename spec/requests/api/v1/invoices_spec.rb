@@ -62,7 +62,8 @@ describe Api::V1::InvoicesController, type: :request do
         payment_method = create(:payment_method)
         company = create(:insurance_company)
         user = create(:user, insurance_company: company)
-        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company.id, payment_method_id: payment_method.id, user: user)
+        FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+                                                   payment_method_id: payment_method.id, user:)
 
         params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
@@ -76,7 +77,8 @@ describe Api::V1::InvoicesController, type: :request do
         payment_method = create(:payment_method)
         company = create(:insurance_company)
         user = create(:user, insurance_company: company)
-        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: company.id, payment_method_id: payment_method.id, user: user)
+        FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+                                                   payment_method_id: payment_method.id, user:)
 
         params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
@@ -92,8 +94,9 @@ describe Api::V1::InvoicesController, type: :request do
         allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('S2D3F4G5')
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
-        user = create(:user, insurance_company: insurance_company)
-        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id, payment_method_id: payment_method.id, user: user)
+        user = create(:user, insurance_company:)
+        FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id,
+                                                   payment_method_id: payment_method.id, user:)
 
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678', status: 0,
@@ -124,8 +127,9 @@ describe Api::V1::InvoicesController, type: :request do
         allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('S2D3F4G5')
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
-        user = create(:user, insurance_company: insurance_company)
-        company_payment_option = FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id, payment_method_id: payment_method.id, user: user)
+        user = create(:user, insurance_company:)
+        FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id,
+                                                   payment_method_id: payment_method.id, user:)
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678', status: 0,
                                   package_id: 1, insurance_company_id: insurance_company.id)

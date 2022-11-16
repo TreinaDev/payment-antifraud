@@ -12,8 +12,8 @@ class Invoice < ApplicationRecord
   end
 
   def check_payment_method_options
-    unless insurance_company.payment_options.map(&:payment_method).include?(payment_method)
-      errors.add(:payment_method, 'deve ter meio de pagamento escolhido por seguradora')
-    end
+    return if insurance_company.payment_options.map(&:payment_method).include?(payment_method)
+
+    errors.add(:payment_method, 'deve ter meio de pagamento escolhido por seguradora')
   end
 end
