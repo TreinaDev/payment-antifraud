@@ -8,12 +8,6 @@ Rails.application.routes.draw do
     resources :promo_products, only: %i[create destroy]
   end
 
-  namespace :api do
-    namespace :v1 do
-      resources :promos, only: [:show, :index]
-    end
-  end
-
   resources :payment_methods, only: [:index, :new, :create, :show, :edit, :update]
   resources :company_payment_options, only: [:index, :show, :new, :create, :edit, :update]
   resources :users, only: %i[index] do 
@@ -27,6 +21,7 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
       resources :invoices, only: [:show, :index, :create]
+      resources :promos, only: [:show]
       resources :insurance_companies, only: %i[] do 
         get 'payment_options', on: :member
       end
