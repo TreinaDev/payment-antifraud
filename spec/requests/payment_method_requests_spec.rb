@@ -13,7 +13,7 @@ describe 'Usuaŕio funcionário da seguradora tenta acessar as funcionalidades d
   end
 end
 
-describe 'Usuaŕio comum tenta acessar as funcionalidades de um administrador' do
+describe 'Usuário comum tenta acessar as funcionalidades de um administrador' do
   context 'Meios de Pagamentos' do
     it 'e não consegue acessar a página' do
       get payment_methods_path

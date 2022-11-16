@@ -13,19 +13,6 @@ describe 'Usuário edita um meio de pagamento' do
     expect(page).to have_link 'Editar'
   end
 
-  it 'e não está autenticado como administrador' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method)
-
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Meios de Pagamento'
-
-    expect(current_path).to eq root_path
-    expect(page).to have_content 'Acesso negado.'
-  end
-
   it 'a partir do menu' do
     admin = FactoryBot.create(:admin)
     FactoryBot.create(:payment_method)

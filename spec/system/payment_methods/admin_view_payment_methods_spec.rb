@@ -1,34 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário vê meios de pagamento' do
-  it 'se estiver autenticado' do
-    visit root_path
-    within('nav') do
-      click_on 'Meios de Pagamento'
-    end
-
-    expect(current_path).to eq root_path
-    expect(page).to have_content 'Acesso negado.'
-  end
-
-  it 'e está autenticado como funcionário da seguradora' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Laranja',
-                                       tax_percentage: 5, tax_maximum: 100,
-                                       payment_type: 'Cartão de Crédito', status: :active)
-    FactoryBot.create(:payment_method, name: 'Roxo',
-                                       tax_percentage: 3, tax_maximum: 50,
-                                       payment_type: 'Boleto', status: :active)
-
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Meios de Pagamento'
-
-    expect(current_path).to eq root_path
-    expect(page).to have_content 'Acesso negado.'
-  end
-
   it 'e está autenticado como administrador' do
     admin = FactoryBot.create(:admin)
     FactoryBot.create(:payment_method, name: 'Laranja',

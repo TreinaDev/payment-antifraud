@@ -11,18 +11,6 @@ describe 'Usuário cadastra novo meio de pagamento' do
     expect(page).to have_link 'Cadastrar Novo Meio de Pagamento'
   end
 
-  it 'e não está autenticado como administrador' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
-
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Meios de Pagamento'
-
-    expect(current_path).to eq root_path
-    expect(page).to have_content 'Acesso negado.'
-  end
-
   it 'a partir do menu' do
     admin = FactoryBot.create(:admin)
 
