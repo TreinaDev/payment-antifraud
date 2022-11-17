@@ -9,7 +9,7 @@ class ExternalInsuranceCompany
     @token_status = token_status
   end
 
-  def self.new_with_json(json)
+  def self.parse_from(json)
     ExternalInsuranceCompany.new(
       id: json['id'],
       email_domain: json['email_domain'],
