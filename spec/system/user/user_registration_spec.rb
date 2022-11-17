@@ -38,7 +38,8 @@ describe 'Funcionário faz cadastro no sistema' do
       click_on 'Registrar'
     end
 
-    expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
+    expect(page).to have_content 'Você se inscreveu com sucesso. ' \
+                                 'Por favor aguarde um administrador aprovar seu cadastro antes de fazer login.'
     expect(User.count).to eq 1
   end
 

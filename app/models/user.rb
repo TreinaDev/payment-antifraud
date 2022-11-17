@@ -8,6 +8,14 @@ class User < ApplicationRecord
   validates :registration_number, presence: true
   validates :registration_number, length: { is: 11 }
 
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    approved? ? super : :not_approved
+  end
+
   private
 
   def consult_insurance_company_api_for_email_validation
