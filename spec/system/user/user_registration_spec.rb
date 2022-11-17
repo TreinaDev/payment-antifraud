@@ -15,14 +15,14 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'com sucesso' do
-    company = InsuranceApi.new(
+    company = ExternalInsuranceCompany.new(
       id: 1,
       email_domain: 'petra@paolaseguros.com.br',
       company_status: 0,
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 0
     )
-    allow(InsuranceApi).to receive(:check_if_user_email_match_any_company).and_return(company)
+    allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return(company)
 
     visit root_path
     within('nav') do
@@ -87,7 +87,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
-    allow(InsuranceApi).to receive(:check_if_user_email_match_any_company).and_return([])
+    allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return([])
 
     visit root_path
     within('nav') do
@@ -108,14 +108,14 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e as seguradoras existem mas não estão ativas' do
-    InsuranceApi.new(
+    ExternalInsuranceCompany.new(
       id: 1,
       email_domain: 'petra@paolaseguros.com.br',
       company_status: 1,
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 1
     )
-    allow(InsuranceApi).to receive(:check_if_user_email_match_any_company).and_return([])
+    allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return([])
 
     visit root_path
     within('nav') do
