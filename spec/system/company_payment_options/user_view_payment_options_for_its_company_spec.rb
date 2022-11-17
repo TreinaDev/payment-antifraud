@@ -89,4 +89,22 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
     expect(page).to have_content 'Não Possui'
     expect(page).to have_content '5%'
   end
+
+  it 'e não vê meios de pagamento inativados pelo administrador' do 
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    first_payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', tax_percentage: 5, tax_maximum: 4, status: :inactive)
+    second_payment_method = FactoryBot.create(:payment_method, name: 'Boleto', tax_percentage:3, tax_maximum: 10)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Minha Seguradora'
+
+    expect(page).to have_content 'Boleto'
+    expect(page).to have_content '3%'
+    expect(page).to have_content 'R$ 10,00'
+    expect(page).not_to have_content 'Cartão Nubank'
+    expect(page).not_to have_content '5%'
+    expect(page).not_to have_content 'R$ 4,00'
+  end
 end
