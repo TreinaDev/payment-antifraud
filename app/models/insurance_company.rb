@@ -10,7 +10,7 @@ class InsuranceCompany < ApplicationRecord
     raise ActiveRecord::QueryCanceled if response.status == 500
 
     data = JSON.parse(response.body)
-    data.map { |d| ExternalInsuranceCompany.new_with_json(d) }
+    data.map { |d| ExternalInsuranceCompany.parse_from(d) }
   end
 
   def self.active_external_company?(company)
