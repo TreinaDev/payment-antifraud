@@ -27,7 +27,10 @@ describe 'Lista de Blocqueios' do
     it 'busca por um cpf não cadastrado no sistema' do
       get '/api/v1/fraud_reports/192521393'
 
-      expect(response.status).to eq 404
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['blocked']).to eq(false)
     end
 
     it 'e acontece um erro interno' do
