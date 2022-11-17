@@ -1,0 +1,16 @@
+pt-BR:
+  messages:
+    no_fraud_reports: 'Não há denúncias de fraude registradas.'
+  activerecord:
+    models:
+      fraud_report:
+        one: 'Denúncia de fraude'
+        other: 'Denúncias de fraude'
+    attributes:
+      fraud_report/status:
+        pending: 'Pendente'
+        denied: 'Fraude não comprovada'
+        confirmed_fraud: 'Fraude comprovada'
+      fraud_report: 
+        registration_number: 'CPF'
+        description: 'Descrição'

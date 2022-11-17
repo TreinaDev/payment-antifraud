@@ -3,6 +3,7 @@ class InsuranceCompany < ApplicationRecord
   has_many :users, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :promos, dependent: :destroy
+  has_many :fraud_reports, dependent: :destroy
 
   def self.all_external
     response = Faraday.get('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies')

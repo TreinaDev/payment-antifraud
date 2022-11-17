@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :fraud_report do
-    registration_number { 'MyString' }
-    description { 'MyString' }
-    status { 1 }
+    registration_number { '12345678911' }
+    description { 'CALOTEIRO' }
+    status { :pending }
   end
 end
