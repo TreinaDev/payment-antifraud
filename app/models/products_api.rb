@@ -31,7 +31,7 @@ class ProductsApi
     return [] if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500
 
-    data = JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 
   def self.products_array
