@@ -18,12 +18,12 @@
       <%= render '/visitors_nav' %>
     <% end %>
     <main>
-      <p class="alert alert-success">
-        <%= notice %>
-      </p>
-      <p class="alert alert-danger">
-        <%= alert %>
-      </p>
+      <% if notice %>
+        <p class="alert alert-success"> <%= notice %> </p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"> <%= alert %> </p>
+      <% end %>
       <div class="container-flex mx-auto px-3 rounded"  style="padding: 2%; width: 98%;">
         <%= yield %>
       </div>
