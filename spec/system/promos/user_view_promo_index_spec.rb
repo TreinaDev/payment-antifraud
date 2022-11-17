@@ -9,9 +9,7 @@ describe 'Funcionário visita a pagina de promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
 
     expect(current_path).to eq promos_path
     expect(page).to have_content 'Promoções'
@@ -26,9 +24,7 @@ describe 'Funcionário visita a pagina de promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
 
     expect(current_path).to eq promos_path
     expect(page).to have_content 'Promoções'
@@ -45,9 +41,7 @@ describe 'Funcionário visita a pagina de promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
 
     expect(current_path).to eq promos_path
     expect(page).to have_content 'Promoções'

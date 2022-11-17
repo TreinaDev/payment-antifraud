@@ -2,10 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário vê meios de pagamento' do
   it 'se estiver autenticado' do
-    visit root_path
-    within('nav') do
-      click_on 'Meios de Pagamento'
-    end
+    visit payment_methods_path
 
     expect(current_url).to eq root_url
     expect(page).to have_content 'Faça login para entrar'

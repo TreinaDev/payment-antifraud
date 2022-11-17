@@ -25,9 +25,7 @@ describe 'Funcionário faz cadastro no sistema' do
     allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return(company)
 
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
@@ -48,9 +46,7 @@ describe 'Funcionário faz cadastro no sistema' do
     allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
@@ -70,9 +66,7 @@ describe 'Funcionário faz cadastro no sistema' do
     allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
 
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
@@ -91,9 +85,7 @@ describe 'Funcionário faz cadastro no sistema' do
     allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return([])
 
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@SEGURADORAQUENAOEXISTEGLUGLUGLUGLU.COM.BR'
@@ -119,9 +111,7 @@ describe 'Funcionário faz cadastro no sistema' do
     allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return([])
 
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'

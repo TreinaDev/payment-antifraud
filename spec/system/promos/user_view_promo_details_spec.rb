@@ -12,9 +12,7 @@ describe 'Usuário vê mais detalhes de uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on '3MVGTOVW'
 
     expect(page).to have_content "Data de início: #{Time.zone.today.strftime('%d/%m/%Y')}"
