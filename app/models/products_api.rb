@@ -25,15 +25,6 @@ class ProductsApi
     data.map { |d| new_product(d) }
   end
 
-  def self.show(id)
-    products_url = Rails.configuration.external_apis['insurance_api_products_endpoint']
-    response = Faraday.get("#{products_url}/#{id}")
-    return [] if response.status == 204
-    raise ActiveRecord::QueryCanceled if response.status == 500
-
-    JSON.parse(response.body)
-  end
-
   def self.products_array
     all.map { |product| [product.product_model, product.id] }
   end
