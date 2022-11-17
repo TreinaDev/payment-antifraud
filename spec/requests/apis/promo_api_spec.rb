@@ -7,7 +7,7 @@ describe 'Promo API' do
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = FactoryBot.create(:promo, name: 'Black Friday', starting_date: Time.zone.today - 7.days,
                                           ending_date: Time.zone.today + 30.days,
-                                          discount_max: 100, discount_percentage: 20, usages_max: 10,
+                                          discount_max: 60, discount_percentage: 20, usages_max: 10,
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
@@ -17,6 +17,7 @@ describe 'Promo API' do
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
       expect(json_response['status']).to eq('Cupom válido.')
+      expect(json_response['discount']).to eq(60)
     end
 
     it 'e retorna não encontrado ao digitar um cupom não cadastrado' do

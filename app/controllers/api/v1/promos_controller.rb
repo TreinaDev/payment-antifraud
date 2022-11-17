@@ -14,23 +14,15 @@ module Api
         promo.promo_products.map(&:product_id).none? params[:id].split('-')[0].to_i
       end
 
-      # rubocop:disable Metrics/MethodLength
       def promo_json(promo)
         if Time.zone.today > promo.ending_date
-          {
-            status: 'Cupom expirado.'
-          }
+          { status: 'Cupom expirado.' }
         elsif Time.zone.today < promo.starting_date || product_not_in_promo?(promo)
-          {
-            status: 'Cupom inválido.'
-          }
+          { status: 'Cupom inválido.' }
         else
-          {
-            status: 'Cupom válido.'
-          }
+          { status: 'Cupom válido.', discount: promo.promo_discount(params[:id].split('-')[2].to_i) }
         end
       end
-      # rubocop:enable Metrics/MethodLength
     end
   end
 end
