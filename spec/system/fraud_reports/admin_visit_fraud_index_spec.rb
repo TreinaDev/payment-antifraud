@@ -7,12 +7,14 @@ describe 'Administrador visita página de fraudes' do
     expect(page).to have_content 'Acesso negado.'
   end
 
-  it 'e vê as fraudes cadastradas' do
+  it 'e vê as fraudes cadastradas de todas as seguradoras' do
     admin = FactoryBot.create(:admin)
+    company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
+    other_company = FactoryBot.create(:insurance_company, external_insurance_company: 3)
     FactoryBot.create(:fraud_report, registration_number: 34_568_743_291,
-                                     description: 'Cliente tentou fraudar o seguro.')
+                                     insurance_company_id: company.id)
     FactoryBot.create(:fraud_report, registration_number: 42_312_346_578,
-                                     description: 'Cliente usou cartão clonado.')
+                                     insurance_company_id: other_company.id)
 
     login_as admin, scope: :admin
     visit root_path

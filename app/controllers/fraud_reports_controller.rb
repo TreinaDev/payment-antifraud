@@ -1,7 +1,11 @@
 class FraudReportsController < ApplicationController
-  before_action :require_admin
+  before_action :authenticate!
 
   def index
-    @fraud_reports = FraudReport.all.sort_by(&:status)
+    if current_admin
+      @fraud_reports = FraudReport.all.sort_by(&:status)
+    else  
+      @fraud_reports = current_user.insurance_company.fraud_reports.sort_by(&:status)
+    end
   end
 end
