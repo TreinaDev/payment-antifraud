@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ExternalInsuranceCompany do
-  context '.new_with_json' do
+  context '.parse_from' do
     json_data = {
       id: 1,
       email_domain: 'paolaseguros.com.br',
