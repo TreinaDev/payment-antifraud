@@ -1,0 +1,24 @@
+<div class="card border-light" style="max-width: 54rem;">
+  <div class = "card border-dark mb-3" style="max-width: 54rem;">
+    <div class="card-header bg-transparent border-dark"><h5> <%= @invoice.token %></h5></div>
+    <div class="row g-0">
+      <div class="col-md-8">
+
+        <div class="card-body" id="attributes">
+          <ul class="list-group list-group-flush" >
+            <li class="list-group-item">
+              <h5 class="card-title"><%= Invoice.human_attribute_name :status  %>: <%= t( @invoice.status) %></h5>
+            </li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :insurance_company_id %>: <%= @invoice.insurance_company_id %></li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :package_id %>: <%= @invoice.package_id %></li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :registration_number %>: <%= @invoice.registration_number %></li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :order_id %>: <%= @invoice.order_id %></li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :payment_method_id %>: <%= @invoice.payment_method_id %></li>
+            <li class="list-group-item"><%= PaymentMethod.human_attribute_name :payment_type %>: <%= @invoice.payment_method.payment_type %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

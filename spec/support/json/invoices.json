@@ -1,0 +1,14 @@
+[
+  {
+    "order_id": 1, 
+    "insurance_company_id": 1,
+    "package_id": 1,
+    "registration_number": "12345678" 
+  },
+  {
+    "order_id": 2, 
+    "insurance_company_id": 2,
+    "package_id": 2,
+    "registration_number": "87654321"
+  }
+]
