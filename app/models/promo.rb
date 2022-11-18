@@ -16,6 +16,12 @@ class Promo < ApplicationRecord
     user.insurance_company_id == insurance_company_id
   end
 
+  def promo_discount(payment_value)
+    return discount_max if (discount_percentage * payment_value) / 100 >= discount_max
+
+    (discount_percentage * payment_value) / 100
+  end
+
   private
 
   def ending_date_greater_than_starting_date

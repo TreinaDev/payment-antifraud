@@ -19,7 +19,9 @@ Confira aqui links de páginas da nossa wiki com a documentação das API's disp
 
 ##### [API De Meios de Pagamento das Seguradoras](https://github.com/TreinaDev/payment-antifraud/wiki/API-Para-Obter-Meios-de-Pagamento-de-uma-Seguradora)
 
-##### [API De Promoções das Seguradoras](https://github.com/TreinaDev/payment-antifraud/wiki/API-Para-Obter-Meios-de-Pagamento-de-uma-Seguradora)
+##### [API De Promoções das Seguradoras](https://github.com/TreinaDev/payment-antifraud/wiki/API-para-obter-promo%C3%A7%C3%B5es-de-cada-seguradora)
+
+##### [API De CPFs com Denuncias Confirmadas](https://github.com/TreinaDev/payment-antifraud/wiki/API-De-CPFs-com-Denuncias-Confirmadas)
 
 ### Setup da aplicação
 
