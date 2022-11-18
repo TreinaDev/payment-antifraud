@@ -2,6 +2,10 @@
   <header>
     <h2> <%= FraudReport.model_name.human(count: 2) %> </h2>
     <hr>
+    <% if current_user %>
+      <%= link_to t('messages.new_fraud_report'), new_fraud_report_path, class: 'btn btn-primary' %>
+      <hr>
+    <% end %>
   </header>
   <main>
     <% if @fraud_reports.any? %>

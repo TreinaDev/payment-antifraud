@@ -2,6 +2,8 @@ pt-BR:
   messages:
     no_fraud_reports: 'Não há denúncias de fraude registradas.'
     registration_number_fraud_report: 'Denúncia do CPF: %{regis_num}'
+    new_report: 'Nova denúncia.'
+    new_fraud_report: 'Fazer uma denúncia'
   activerecord:
     models:
       fraud_report:
@@ -16,3 +18,4 @@ pt-BR:
         registration_number: 'CPF'
         description: 'Descrição'
         status: 'Status'
+        image: 'Adicione imagens para comprovar a fraude:'

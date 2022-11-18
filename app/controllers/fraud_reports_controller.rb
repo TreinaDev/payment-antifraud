@@ -17,4 +17,8 @@ class FraudReportsController < ApplicationController
       end
     end
   end
+
+  def new 
+    @fraud_report = FraudReport.new
+  end
 end
