@@ -122,7 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
     t.string "voucher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "insurance_company_id"
+    t.integer "insurance_company_id", null: false
     t.index ["insurance_company_id"], name: "index_promos_on_insurance_company_id"
   end
 

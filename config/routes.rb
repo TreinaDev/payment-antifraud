@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
       resources :invoices, only: [:show, :index, :create]
-      resources :promos, only: [:show] 
+      resources :promos, only: [:show]
+      resources :fraud_reports, only: [:show]
       resources :insurance_companies, only: %i[] do 
         get 'payment_options', on: :member
       end

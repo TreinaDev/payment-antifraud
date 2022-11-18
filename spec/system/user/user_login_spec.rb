@@ -13,14 +13,14 @@ describe 'Funcionário faz login no sistema' do
     expect(page).to have_button 'Login'
   end
 
-  it 'com sucesso' do
+  it 'se estiver com seu cadastro aprovado' do
     company = FactoryBot.create(:insurance_company)
     FactoryBot.create(:user,
                       email: 'petra@paolaseguros.com.br',
                       password: 'password',
                       name: 'Petra',
                       registration_number: '39401929301',
-                      status: :pending,
+                      status: :approved,
                       insurance_company_id: company.id)
 
     visit new_user_session_path
@@ -34,7 +34,27 @@ describe 'Funcionário faz login no sistema' do
     expect(page).to have_content 'Olá Petra - petra@paolaseguros.com.br'
     expect(page).to have_button 'Logout'
     expect(page).not_to have_link 'Fazer Login'
-    expect(page).to have_content 'Aguardando aprovação do administrador do sistema.'
+  end
+
+  it 'e está com o cadastro aguardando aprovação' do
+    company = FactoryBot.create(:insurance_company)
+    FactoryBot.create(:user,
+                      email: 'edicleia@paolaseguros.com.br',
+                      password: 'password',
+                      name: 'Edicleia',
+                      registration_number: '39401929301',
+                      status: :pending,
+                      insurance_company_id: company.id)
+
+    visit new_user_session_path
+    within('div#login-fields') do
+      fill_in 'E-mail', with: 'edicleia@paolaseguros.com.br'
+      fill_in 'Senha', with: 'password'
+      click_on 'Login'
+    end
+
+    expect(current_path).to eq new_user_session_path
+    expect(page).to have_content 'Sua conta ainda não foi aprovada por um administrador.'
   end
 
   it 'e não preenche todos os campos' do
@@ -44,7 +64,7 @@ describe 'Funcionário faz login no sistema' do
                       password: 'password',
                       name: 'Petra',
                       registration_number: '39401929301',
-                      status: :pending,
+                      status: :approved,
                       insurance_company_id: company.id)
 
     visit root_path
