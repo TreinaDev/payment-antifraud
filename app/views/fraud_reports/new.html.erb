@@ -1,6 +1,9 @@
 <article>
-  <main> 
-    <h2><%= t 'messages.new_report' %></h2>
+  <header>
+    <h2> <%= t 'messages.new_report' %> </h2>
+    <%= render 'application/errors', model: @fraud_report %>
+  </header>
+  <main>
     <%= form_with model: @fraud_report do |f| %>
       <p>
         <%= f.label :registration_number %>

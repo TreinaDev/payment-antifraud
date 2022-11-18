@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Funcionário registra nova denúncia de fraude' do
-  it 'com sucesso' do
+  it 'a partir de um formulário' do
     company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
 
@@ -17,6 +17,10 @@ describe 'Funcionário registra nova denúncia de fraude' do
     expect(page).to have_button 'Enviar'
   end
 
+  it 'com sucesso' do 
+    
+  end
+
   it 'com dados incompletos' do
     company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
@@ -28,9 +32,13 @@ describe 'Funcionário registra nova denúncia de fraude' do
     fill_in 'CPF', with: ''
     click_on 'Enviar'
 
+    expect(page).to have_content 'Denúncia NÃO cadastrada!'
     expect(page).to have_content 'CPF não pode ficar em branco'
     expect(page).to have_content 'Descrição não pode ficar em branco'
-    expect(page).to have_content 'Imagens são obrigatórias. Mínimo duas imagens.'
-    
+    expect(page).to have_content 'Imagens não pode ficar em branco'
+    expect(page).to have_content 'São necessárias, no mínimo, duas imagens para comprovação.'
   end
 end
+
+#attach_file 'Provas', Rails.root.join('spec/support/crime.jpeg')
+#attach_file 'Provas', Rails.root.join('spec/support/fotos_do_crime.jpeg')

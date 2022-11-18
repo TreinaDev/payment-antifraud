@@ -21,4 +21,20 @@ class FraudReportsController < ApplicationController
   def new 
     @fraud_report = FraudReport.new
   end
+
+  def create
+    @fraud_report = FraudReport.new new_fraud_report_params
+    if @fraud_report.save
+      return redirect_to fraud_reports_path, notice: t('messages.fraud_success')
+    end
+    flash.now[:alert] = t('messages.fraud_fail')      
+    render 'new'
+  end
+
+  private
+
+  def new_fraud_report_params 
+    params.require(:fraud_report).permit(:registration_number,
+                                         :description, images: [])
+  end
 end
