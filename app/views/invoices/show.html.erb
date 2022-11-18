@@ -15,6 +15,7 @@
             <li class="list-group-item"><%= Invoice.human_attribute_name :order_id %>: <%= @invoice.order_id %></li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :payment_method_id %>: <%= @invoice.payment_method_id %></li>
             <li class="list-group-item"><%= PaymentMethod.human_attribute_name :payment_type %>: <%= @invoice.payment_method.payment_type %></li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :voucher %>: <%= @invoice.voucher %> </li>
           </ul>
         </div>
       </div>
