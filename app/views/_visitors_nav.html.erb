@@ -1,17 +1,8 @@
-<header class="p-3 mb-3 border-bottom bg-secondary" id="header">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-#{controller_name == 'home' ? 'primary' : 'gray'}" do %>
-        <span class="fs-4"> <%= t 'app_name' %>  </span>
-      <% end %>
-      <div class="dropdown text-end">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li> <%= link_to 'Fazer Login', new_user_session_path, class: "dropdown-item" %> </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</header>
+<div class="dropdown text-end">
+  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
+  </a>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li> <%= link_to 'Fazer Login', new_user_session_path, class: "dropdown-item" %> </li>
+  </ul>
+</div>

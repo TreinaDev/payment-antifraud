@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'Lista de Blocqueios' do
   context 'GET /api/v1/promos/voucher' do
     it 'busca por um cpf bloqueado e encontra a mensagem de que está bloqueado' do
-      FactoryBot.create(:fraud_report, registration_number: '19203910293', status: :confirmed_fraud)
+      company = FactoryBot.create(:insurance_company)
+      FactoryBot.create(:fraud_report, registration_number: '19203910293', status: :confirmed_fraud,
+                        insurance_company_id: company.id)
 
       get '/api/v1/fraud_reports/19203910293'
 
@@ -14,7 +16,9 @@ describe 'Lista de Blocqueios' do
     end
 
     it 'busca por um cpf e encontra mensagem de que não está bloqueado' do
-      FactoryBot.create(:fraud_report, registration_number: '19203910293', status: :pending)
+      company = FactoryBot.create(:insurance_company)
+      FactoryBot.create(:fraud_report, registration_number: '19203910293', status: :pending,
+                        insurance_company_id: company.id)
 
       get '/api/v1/fraud_reports/19203910293'
 
