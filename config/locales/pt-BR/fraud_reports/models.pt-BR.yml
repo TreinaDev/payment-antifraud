@@ -4,6 +4,9 @@ pt-BR:
     registration_number_fraud_report: 'Denúncia do CPF: %{regis_num}'
     new_report: 'Nova denúncia.'
     new_fraud_report: 'Fazer uma denúncia'
+    fraud_success: 'Denúncia enviada com sucesso.'
+    fraud_fail: 'Denúncia NÃO cadastrada!'
+
   activerecord:
     models:
       fraud_report:
