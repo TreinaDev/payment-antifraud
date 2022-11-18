@@ -20,11 +20,12 @@ describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' d
     click_on 'Cartão Nubank'
 
     expect(page).to have_content 'Detalhes da opção de pagamento'
-    expect(page).to have_content 'Opção de Pagamento: Cartão Nubank'
+    expect(page).to have_content 'Meio de pagamento definido para seguradora: Cartão Nubank'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
     expect(page).to have_content 'Quantidade máxima de parcelas: 12x'
     expect(page).to have_content 'Desconto à vista: Não Possui'
     expect(page).to have_content 'Usuário responsável: Bruna de Paula | bruna@paolaseguros.com.br'
+    expect(page).to have_button 'Remover'
   end
 
   it 'e vê detalhes de uma opção que outro usuário cadastrou' do
@@ -46,10 +47,11 @@ describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' d
     login_as user, scope: :user
     visit company_payment_option_path(payment_option.id)
 
-    expect(page).to have_content 'Opção de Pagamento: Boleto'
+    expect(page).to have_content 'Meio de pagamento definido para seguradora: Boleto'
     expect(page).to have_content 'Tipo de Pagamento: Boleto'
     expect(page).to have_content 'Quantidade máxima de parcelas: 1x'
     expect(page).to have_content 'Desconto à vista: 1%'
     expect(page).to have_content 'Usuário responsável: Paolitas Paolinha | paola@paolaseguros.com.br'
+    expect(page).to have_button 'Remover'
   end
 end

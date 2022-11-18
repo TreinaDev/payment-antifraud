@@ -49,7 +49,7 @@ describe 'Usuário configura uma nova opção de pagamento para sua seguradora' 
 
     expect(page).to have_content 'Opção de pagamento criada com sucesso'
     expect(page).to have_content 'Detalhes da opção de pagamento'
-    expect(page).to have_content 'Opção de Pagamento: Banco Itaú'
+    expect(page).to have_content 'Meio de pagamento definido para seguradora: Banco Itaú'
     expect(page).to have_content 'Quantidade máxima de parcelas: 1x'
     expect(page).to have_content 'Desconto à vista: Não Possui'
   end

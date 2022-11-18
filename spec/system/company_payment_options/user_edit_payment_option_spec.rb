@@ -51,7 +51,7 @@ describe 'Usuário edita opção de pagamento para sua seguradora' do
 
     expect(current_path).to eq company_payment_option_path(payment_option.id)
     expect(page).to have_content 'Opção de pagamento editada com sucesso'
-    expect(page).to have_content 'Opção de Pagamento: Cartão Nubank'
+    expect(page).to have_content 'Meio de pagamento definido para seguradora: Cartão Nubank'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
     expect(page).to have_content 'Quantidade máxima de parcelas: 1x'
     expect(page).to have_content 'Desconto à vista: 5%'
@@ -111,7 +111,7 @@ describe 'Usuário edita opção de pagamento para sua seguradora' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Opção de pagamento editada com sucesso'
-    expect(page).to have_content 'Opção de Pagamento: Cartão Nubank'
+    expect(page).to have_content 'Meio de pagamento definido para seguradora: Cartão Nubank'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
     expect(page).to have_content 'Quantidade máxima de parcelas: 4x'
     expect(page).to have_content 'Desconto à vista: 1%'

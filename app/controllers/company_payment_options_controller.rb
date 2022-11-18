@@ -1,6 +1,6 @@
 class CompanyPaymentOptionsController < ApplicationController
   before_action :require_user
-  before_action :fetch_payment_option, only: %i[show edit update]
+  before_action :fetch_payment_option, only: %i[show edit update destroy]
 
   def index
     @payment_options = current_user.insurance_company.payment_options
@@ -37,6 +37,11 @@ class CompanyPaymentOptionsController < ApplicationController
 
     flash.now.alert = t('messages.not_edited')
     render :edit
+  end
+
+  def destroy
+    @payment_option.destroy
+    redirect_to company_payment_options_path, notice: t('messages.payment_option_successfully_removed')
   end
 
   private

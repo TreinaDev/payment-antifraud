@@ -1,7 +1,7 @@
 class CompanyPaymentOption < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  belongs_to :insurance_company, dependent: :destroy
-  belongs_to :payment_method, dependent: :destroy
+  belongs_to :user
+  belongs_to :insurance_company
+  belongs_to :payment_method
 
   before_save :check_if_payment_type_can_be_parceled
   validates :max_parcels, :single_parcel_discount, presence: true

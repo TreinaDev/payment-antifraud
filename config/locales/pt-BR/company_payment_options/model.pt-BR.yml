@@ -12,11 +12,12 @@ pt-BR:
     not_edited: 'Opção de pagamento não foi editada'
     payment_methods_available: 'Meios de pagamento disponíveis'
     no_payment_methods: 'Não há meios de pagamento disponíveis'
+    payment_option_successfully_removed: 'Opção de pagamento removida com sucesso.'
   activerecord:
     models:
       company_payment_option: 
-        one: 'Opção de Pagamento'
-        other: 'Opções de Pagamento'
+        one: 'Meio de pagamento definido para seguradora'
+        other: 'Meios de pagamento definidos para seguradora'
     attributes:
       company_payment_option:
         user_id: 'Usuário responsável'

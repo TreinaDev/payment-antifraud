@@ -45,6 +45,11 @@
                   <%= link_to t('buttons.edit'), edit_company_payment_option_path(@payment_option), class: "card-link" %>
                 </li>
               </p>
+              <p>
+              <li class="list-group-item"> 
+                  <%= button_to t('buttons.remove'), company_payment_option_url(@payment_option.id), method: :delete, class: "btn btn-primary  btn-m" %>
+              </li>
+              </p>
             </ul>
           </div>
         </div>
