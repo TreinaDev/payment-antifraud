@@ -1,5 +1,6 @@
 class FraudReportsController < ApplicationController
-  before_action :authenticate!
+  before_action :authenticate!, only: %i[index show]
+  before_action :require_user, only: %i[new create]
 
   def index
     if current_admin
@@ -24,8 +25,9 @@ class FraudReportsController < ApplicationController
 
   def create
     @fraud_report = FraudReport.new new_fraud_report_params
+    @fraud_report.insurance_company_id = current_user.insurance_company_id
     if @fraud_report.save
-      return redirect_to fraud_reports_path, notice: t('messages.fraud_success')
+      return redirect_to @fraud_report, notice: t('messages.fraud_success')
     end
     flash.now[:alert] = t('messages.fraud_fail')      
     render 'new'
@@ -34,7 +36,8 @@ class FraudReportsController < ApplicationController
   private
 
   def new_fraud_report_params 
-    params.require(:fraud_report).permit(:registration_number,
-                                         :description, images: [])
+    params.require(:fraud_report).permit(
+      :registration_number, :description, images: []
+    )
   end
 end

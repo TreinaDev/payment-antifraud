@@ -6,16 +6,24 @@
   <main>
     <%= form_with model: @fraud_report do |f| %>
       <p>
-        <%= f.label :registration_number %>
+        <%= f.label :registration_number, class: 'form-label' %>
         <%= f.number_field :registration_number, placeholder: 'CPF do cliente', class: 'form-control', style:'max-width: 30rem' %>
       </p>
       <p>
-        <%= f.label :description %>
+        <%= f.label :description, class: 'form-label' %>
         <%= f.text_area :description, placeholder: 'Causas da denúncia', class: 'form-control', style:"max-width: 30rem" %>
       </p>
       <p>
-        <%= f.label :image %>
-        <%= f.file_field :image, class: 'form-control", style:"max-width: 30rem'  %>
+        <p> <strong> <%= t 'messages.add_images' %> </strong> </p>
+        <%= f.label :images, class: 'form-label' %>
+        <%= f.file_field :images, multiple: true, class: 'form-control", style:"max-width: 30rem'  %>
+        <% if @fraud_report.images.attached? %>
+          <p class="fst-italic">
+            <% @fraud_report.images.each do |i| %>
+              <p> <%= i.filename %> </p>
+            <% end %>
+          </p>
+        <% end %>
       </p>
       <p>
         <%= f.submit t('buttons.send'), class: 'btn btn-primary' %>

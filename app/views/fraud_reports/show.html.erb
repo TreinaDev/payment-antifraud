@@ -8,6 +8,13 @@
       </h4>
     </div>
     <div class="row g-0">
+      <div class="col-md-4">
+        <% if @fraud_report.images.attached? %>
+          <% @fraud_report.images.each do |image| %>
+            <p> <%= image_tag image, class:"card-img-top"%> </p>
+          <% end %>
+        <% end %>
+      </div>
       <div class="col-md-8">
         <div class="card-body">
           <ul class="list-group list-group-flush">
