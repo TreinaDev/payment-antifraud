@@ -16,6 +16,7 @@ module Api
       def create_json_response(company)
         company.payment_options.map do |po|
           {
+            payment_method_id: po.id,
             name: po.payment_method.name, payment_type: po.payment_method.payment_type,
             image_url: url_for(po.payment_method.image), tax_percentage: po.payment_method.tax_percentage,
             tax_maximum: po.payment_method.tax_maximum, max_parcels: po.max_parcels,
