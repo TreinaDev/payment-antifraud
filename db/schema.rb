@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_191712) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_18_213308) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -90,6 +90,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_191712) do
     t.integer "payment_method_id"
     t.integer "insurance_company_id"
     t.string "voucher"
+    t.string "transaction_registration_number"
+    t.string "reason_for_failure"
     t.index ["insurance_company_id"], name: "index_invoices_on_insurance_company_id"
     t.index ["payment_method_id"], name: "index_invoices_on_payment_method_id"
   end
@@ -123,7 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_191712) do
     t.string "voucher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "insurance_company_id", null: false
+    t.integer "insurance_company_id"
     t.index ["insurance_company_id"], name: "index_promos_on_insurance_company_id"
   end
 
