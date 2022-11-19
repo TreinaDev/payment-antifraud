@@ -7,6 +7,8 @@ pt-BR:
     fraud_success: 'Denúncia enviada com sucesso.'
     fraud_fail: 'Denúncia NÃO cadastrada!'
     add_images: 'Adicione imagens para comprovar a fraude:'
+    fraud_approved: 'Denúncia aprovada com sucesso.'
+    fraud_denied: 'Denúncia reprovada com sucesso.'
   activerecord:
     models:
       fraud_report:
@@ -15,8 +17,8 @@ pt-BR:
     attributes:
       fraud_report/status:
         pending: 'Pendente'
-        denied: 'Fraude não comprovada'
-        confirmed_fraud: 'Fraude comprovada'
+        denied: 'Não comprovada'
+        confirmed_fraud: 'Aprovada'
       fraud_report: 
         registration_number: 'CPF'
         description: 'Descrição'

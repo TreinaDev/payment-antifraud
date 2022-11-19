@@ -61,45 +61,36 @@ describe 'Usuário tenta acessar funcionalidades' do
       expect(response).to redirect_to root_path
     end
 
-    it 'e tenta acessar a página de denúncias' do 
-      get fraud_reports_path 
-  
+    it 'e tenta acessar a página de denúncias' do
+      get fraud_reports_path
+
       expect(response).to redirect_to root_path
     end
-  
-    it 'e tenta acessar a página para criar uma nova denúncia' do 
-      get new_fraud_report_path 
-  
-      expect(response).to redirect_to root_path
-    end 
 
-    it 'e tenta fazer um POST para criar uma nova denúncia' do 
-      params = { fraud_report: { 
-                 registration_number: '12345678911',
-                 insurance_company_id: 1,
-                 description: 'Ladrão!'
-      }}
-
-      post fraud_reports_path, params: params 
+    it 'e tenta acessar a página para criar uma nova denúncia' do
+      get new_fraud_report_path
 
       expect(response).to redirect_to root_path
-      expect(FraudReport.count).to eq 0 
     end
 
-    it 'e tenta acessar a página de detalhes de uma denúncia' do 
+    it 'e tenta fazer um POST para criar uma nova denúncia' do
+      params = { fraud_report: {
+        registration_number: '12345678911',
+        insurance_company_id: 1,
+        description: 'Ladrão!'
+      } }
+
+      post fraud_reports_path, params: params
+
+      expect(response).to redirect_to root_path
+      expect(FraudReport.count).to eq 0
+    end
+
+    it 'e tenta acessar a página de detalhes de uma denúncia' do
       company = FactoryBot.create(:insurance_company)
       fraud = FactoryBot.create(:fraud_report, insurance_company_id: company.id)
 
       get fraud_report_path(fraud.id)
-
-      expect(response).to redirect_to root_path
-    end
-
-    it 'admin tenta acessar página de criar nova denúncia sem ter permissão' do 
-      admin = FactoryBot.create(:admin)
-
-      login_as admin, scope: :admin 
-      get new_fraud_report_path
 
       expect(response).to redirect_to root_path
     end

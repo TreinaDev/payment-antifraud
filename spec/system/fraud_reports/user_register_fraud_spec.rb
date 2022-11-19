@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Funcionário registra nova denúncia de fraude' do
-  it 'se estiver autenticado como funcionário' do 
+  it 'se estiver autenticado como funcionário' do
     admin = FactoryBot.create(:admin)
 
     login_as admin, scope: :admin
@@ -9,12 +9,12 @@ describe 'Funcionário registra nova denúncia de fraude' do
 
     expect(page).to have_content 'Acesso negado.'
   end
-  
+
   it 'a partir de um formulário' do
     company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
 
-    login_as user, scope: :user 
+    login_as user, scope: :user
     visit fraud_reports_path
     click_on 'Fazer uma denúncia'
 
@@ -27,16 +27,17 @@ describe 'Funcionário registra nova denúncia de fraude' do
     expect(page).to have_button 'Enviar'
   end
 
-  it 'com sucesso' do 
+  it 'com sucesso' do
     company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
 
-    login_as user, scope: :user 
+    login_as user, scope: :user
     visit new_fraud_report_path
 
     fill_in 'CPF', with: '12345678911'
     fill_in 'Descrição', with: 'Ela é vigarista, trapaceira, que se aproveita'
-    attach_file 'Imagens', [Rails.root.join('spec/support/crime.jpeg'), Rails.root.join('spec/support/fotos_do_crime.jpeg')]
+    attach_file 'Imagens',
+                [Rails.root.join('spec/support/crime.jpeg'), Rails.root.join('spec/support/fotos_do_crime.jpeg')]
     click_on 'Enviar'
 
     expect(page).to have_content 'Denúncia enviada com sucesso.'
@@ -50,7 +51,7 @@ describe 'Funcionário registra nova denúncia de fraude' do
     company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
 
-    login_as user, scope: :user 
+    login_as user, scope: :user
     visit fraud_reports_path
     click_on 'Fazer uma denúncia'
     fill_in 'Descrição', with: ''

@@ -67,8 +67,9 @@ FactoryBot.create(
 end
 
 FactoryBot.create(
-                  :fraud_report, 
-                  insurance_company_id: company.id,
-                  description: "Ela é daquelas mulheres que projetam fachadas para o mundo.
+  :fraud_report,
+  insurance_company_id: company.id,
+  description: "Ela é daquelas mulheres que projetam fachadas para o mundo.
                                Ela é vigarista, trapaceira, e se aproveita das pessoas mais indefesas que poderia haver
-                               tudo para conseguir o que ela quer")
+                               tudo para conseguir o que ela quer"
+)

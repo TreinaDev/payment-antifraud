@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate!
     return if admin_signed_in?
-    require_user 
+
+    require_user
   end
 
   def devise_parameter_sanitizer

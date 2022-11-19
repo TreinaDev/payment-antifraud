@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[index] do 
     resources :user_reviews, only: %i[new create]
   end
-
-  resources :fraud_reports, only: %i[index show new create]
+  resources :fraud_reports, only: %i[index show new create] do 
+    post 'approves', on: :member
+    post 'denies', on: :member
+  end
   resources :invoices, only: %i[index show] do 
     resource :invoices_status_management, only: %i[update], controller:'invoices/invoices_status_management'  
   end

@@ -8,11 +8,11 @@ class FraudReport < ApplicationRecord
   validates :images, content_type: ['image/png', 'image/jpeg']
   before_validation :ensure_images_length
 
-  private 
+  private
 
   def ensure_images_length
-    if !images.attached? || images.length < 2
-      errors.add(:base, 'São necessárias, no mínimo, duas imagens para comprovação.')
-    end
+    return unless !images.attached? || images.length < 2
+
+    errors.add(:base, 'São necessárias, no mínimo, duas imagens para comprovação.')
   end
 end

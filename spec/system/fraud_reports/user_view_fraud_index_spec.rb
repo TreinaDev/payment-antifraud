@@ -6,9 +6,9 @@ describe 'Usuário vê suas denúncias de fraude' do
     other_company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
     FactoryBot.create(:fraud_report, registration_number: 34_568_743_291,
-                              insurance_company_id: company.id)
+                                     insurance_company_id: company.id)
     FactoryBot.create(:fraud_report, registration_number: 42_312_346_578,
-                              insurance_company_id: other_company.id)
+                                     insurance_company_id: other_company.id)
 
     login_as user, scope: :user
     visit root_path

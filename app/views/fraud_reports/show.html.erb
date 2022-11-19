@@ -7,7 +7,7 @@
             %>
       </h4>
     </div>
-    <div class="row g-0">
+    <div class="row g-0" style="width: 54rem">
       <div class="col-md-4">
         <% if @fraud_report.images.attached? %>
           <% @fraud_report.images.each do |image| %>
@@ -30,6 +30,20 @@
                 <%= FraudReport.human_attribute_name("status.#{@fraud_report.status}") %>
               </li>
             </p>
+            <% if admin_signed_in? %>
+              <% if @fraud_report.pending? %>
+                <p>
+                  <li class="list-group-item"> 
+                    <%= button_to t('buttons.approve'), approves_fraud_report_path(@fraud_report), class: "card-button btn btn-success" %>
+                  </li>
+                </p>
+                <p>
+                  <li class="list-group-item"> 
+                    <%= button_to t('buttons.denies'), denies_fraud_report_path(@fraud_report), class: "card-button btn btn-danger" %>
+                  </li>
+                </p>
+              <% end %>
+            <% end %>
           </ul>
         </div>
       </div>

@@ -5,7 +5,7 @@ describe 'Lista de Blocqueios' do
     it 'busca por um cpf bloqueado e encontra a mensagem de que está bloqueado' do
       company = FactoryBot.create(:insurance_company)
       FactoryBot.create(:fraud_report, registration_number: '19203910293', status: :confirmed_fraud,
-                        insurance_company_id: company.id)
+                                       insurance_company_id: company.id)
 
       get '/api/v1/fraud_reports/19203910293'
 
@@ -18,7 +18,7 @@ describe 'Lista de Blocqueios' do
     it 'busca por um cpf e encontra mensagem de que não está bloqueado' do
       company = FactoryBot.create(:insurance_company)
       FactoryBot.create(:fraud_report, registration_number: '19203910293', status: :pending,
-                        insurance_company_id: company.id)
+                                       insurance_company_id: company.id)
 
       get '/api/v1/fraud_reports/19203910293'
 
