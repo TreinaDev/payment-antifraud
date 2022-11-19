@@ -23,10 +23,10 @@ describe 'Usuário comum tenta acessar as funcionalidades de um administrador' d
       expect(response).to redirect_to root_path
     end
 
-    it 'admin tenta acessar página de criar nova denúncia sem ter permissão' do 
+    it 'admin tenta acessar página de criar nova denúncia sem ter permissão' do
       admin = FactoryBot.create(:admin)
 
-      login_as admin, scope: :admin 
+      login_as admin, scope: :admin
       get new_fraud_report_path
 
       expect(response).to redirect_to root_path
