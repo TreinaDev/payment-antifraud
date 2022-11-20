@@ -7,7 +7,7 @@ module ViewModel
     def initialize(params = {})
       @page     = params[:page].presence || DEFAULT[:page].to_i
       @count    = params[:count]
-      @per_page = (params[:per_page].presence || DEFAULT[:per_page])
+      @per_page = (params[:per_page].presence.to_i || DEFAULT[:per_page]).to_i
     end
 
     def offset
@@ -17,27 +17,27 @@ module ViewModel
     end
 
     def next_page
-      page + 1 unless last_page?
+      page.to_i + 1 unless last_page?
     end
 
     def next_page?
-      page < total_pages
+      page.to_i < total_pages
     end
 
     def previous_page
-      page - 1 unless first_page?
+      page.to_i - 1 unless first_page?
     end
 
     def previous_page?
-      page > 1
+      page.to_i > 1
     end
 
     def last_page?
-      page == total_pages
+      page.to_i == total_pages
     end
 
     def first_page?
-      page == 1
+      page.to_i == 1
     end
 
     def total_pages
