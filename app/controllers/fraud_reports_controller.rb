@@ -33,6 +33,7 @@ class FraudReportsController < ApplicationController
 
   def approves
     @fraud_report.confirmed_fraud!
+    BlockedRegistrationNumber.create!(registration_number: @fraud_report.registration_number)
     flash.now[:notice] = t('messages.fraud_approved')
     render :show
   end
