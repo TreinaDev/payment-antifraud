@@ -1,0 +1,27 @@
+pt-BR:
+  messages:
+    no_fraud_reports: 'Não há denúncias de fraude registradas.'
+    registration_number_fraud_report: 'Denúncia do CPF: %{regis_num}'
+    new_report: 'Nova denúncia'
+    new_fraud_report: 'Fazer uma denúncia'
+    fraud_success: 'Denúncia enviada com sucesso.'
+    fraud_fail: 'Denúncia NÃO cadastrada!'
+    add_images: 'Adicione imagens para comprovar a fraude:'
+    fraud_approved: 'Denúncia aprovada com sucesso.'
+    fraud_denied: 'Denúncia reprovada com sucesso.'
+  activerecord:
+    models:
+      fraud_report:
+        one: 'Denúncia de fraude'
+        other: 'Denúncias de fraude'
+    attributes:
+      fraud_report/status:
+        pending: 'Pendente'
+        denied: 'Não comprovada'
+        confirmed_fraud: 'Aprovada'
+      fraud_report: 
+        registration_number: 'CPF'
+        description: 'Descrição'
+        status: 'Status'
+        image: 'Imagem'
+        images: 'Imagens'

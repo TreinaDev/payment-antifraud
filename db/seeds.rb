@@ -71,3 +71,11 @@ FactoryBot.create(
                               package_id: i, registration_number: "1234567#{i}",
                               payment_method_id: payment_method1.id, order_id: i)
 end
+
+FactoryBot.create(
+  :fraud_report,
+  insurance_company_id: company.id,
+  description: "Ela é daquelas mulheres que projetam fachadas para o mundo.
+                               Ela é vigarista, trapaceira, e se aproveita das pessoas mais indefesas que poderia haver
+                               tudo para conseguir o que ela quer"
+)

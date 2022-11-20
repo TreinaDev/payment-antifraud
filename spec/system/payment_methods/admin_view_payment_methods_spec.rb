@@ -8,7 +8,7 @@ describe 'Usuário vê meios de pagamento' do
     end
 
     expect(current_url).to eq root_url
-    expect(page).to have_content 'Faça login para entrar'
+    expect(page).to have_content 'Acesso negado.'
   end
 
   it 'e está autenticado como funcionário da seguradora' do
