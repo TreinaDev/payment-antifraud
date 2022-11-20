@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :user_reviews, only: %i[new create]
   end
 
-  resources :invoices, only: %i[index show]
+  resources :invoices, only: %i[index show edit update]
 
   namespace :api do 
     namespace :v1 do 
