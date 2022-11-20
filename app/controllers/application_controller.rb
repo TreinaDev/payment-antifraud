@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def page_params(posts_per_page)
+    params.permit(:page).merge(per_page: posts_per_page)
+  end
+
   def require_admin
     return redirect_to root_path, alert: t('no_access_granted') unless current_admin
   end
