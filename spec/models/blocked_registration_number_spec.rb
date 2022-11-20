@@ -5,7 +5,7 @@ RSpec.describe BlockedRegistrationNumber, type: :model do
     context 'presence' do
       it 'falso quando CPF é registrado em branco' do
         registry = FactoryBot.build(:blocked_registration_number, registration_number: '')
-        
+
         registry.save
 
         expect(registry).not_to be_valid
