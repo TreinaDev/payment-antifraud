@@ -4,8 +4,7 @@ class Invoice < ApplicationRecord
   belongs_to :payment_method
   belongs_to :insurance_company
   validate :presence_true_if_paid_or_failed, on: :update
-
-  # validate :check_payment_method_options
+  validate :check_payment_method_options
 
   private
 
