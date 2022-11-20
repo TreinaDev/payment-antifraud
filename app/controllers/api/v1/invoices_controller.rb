@@ -20,8 +20,6 @@ module Api
         end
       end
 
-      
-
       private
 
       def invoice_params
