@@ -151,4 +151,20 @@ describe Api::V1::InvoicesController, type: :request do
       end
     end
   end
+  
+  describe 'POST#create comparator/api/v1/invoices' do
+    it 'post de cobrança aprovada' do
+      invoice_url = "#{ Rails.configuration.external_apis['comparator_api_invoices_endpoint'] }1"
+      json_data = File.read(Rails.root.join('spec/support/json/approved_invoice.json'))
+      params = { status: 5, token: 'DJAMDOQNENTOAMDI1293' }
+      fake_response = double('Faraday::Response', status: 200, body: json_data)     
+
+      allow(Faraday).to receive(:patch).with(invoice_url, params).and_return(fake_response)
+      response = Faraday.patch(invoice_url, params)
+           
+      expect(response).to have_http_status(200)
+      expect(response.content_type).to include('application/json')
+      expect(response_parsed['message']).to eq('Cobrança atualizada com sucesso.')      
+    end
+  end
 end

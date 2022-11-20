@@ -1,6 +1,6 @@
 pt-BR:
   pending: pendente
-  payd: Paga
+  paid: Paga
   failed: Encerrada com Falha
   payment_method_details: 'Detalhes do Meio de Pagamento'
   actual_icon: 'Ícone Atual'

@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     resources :user_reviews, only: %i[new create]
   end
 
-  resources :invoices, only: %i[index show] do 
-    resource :invoices_status_management, only: %i[update], controller:'invoices/invoices_status_management'  
-  end
+  resources :invoices, only: %i[index show]
 
   namespace :api do 
     namespace :v1 do 
@@ -29,4 +27,3 @@ Rails.application.routes.draw do
     end
   end
 end
-
