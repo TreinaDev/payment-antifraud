@@ -45,11 +45,14 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    json_data = File.read(Rails.root.join('spec/support/json/approved_invoice.json'))
+    fake_response = double('Faraday::Response', status: 200, body: json_data) 
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
     click_on 'Sucesso no Pagamento'
     fill_in 'Número de registro da transação', with: '12345678901'
+    allow(Faraday).to receive(:patch).and_return(fake_response)
     click_on 'Enviar'
 
     expect(page).to have_content 'Cobrança atualizada com sucesso'
@@ -67,11 +70,14 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    json_data = File.read(Rails.root.join('spec/support/json/failed_invoice.json'))
+    fake_response = double('Faraday::Response', status: 200, body: json_data) 
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
     click_on 'Falha no Pagamento'
     fill_in 'Motivo da falha', with: 'Transação negada pela bandeira'
+    allow(Faraday).to receive(:patch).and_return(fake_response)
     click_on 'Enviar'
 
     expect(page).to have_content 'Cobrança atualizada com sucesso'

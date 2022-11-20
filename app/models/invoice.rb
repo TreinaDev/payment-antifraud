@@ -6,7 +6,6 @@ class Invoice < ApplicationRecord
   validate :presence_true_if_paid_or_failed, on: :update
 
   # validate :check_payment_method_options
-
   private
 
   def generate_token
