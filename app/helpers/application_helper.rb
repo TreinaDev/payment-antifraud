@@ -10,4 +10,8 @@ module ApplicationHelper
   def payment_option_with_name(name)
     "#{CompanyPaymentOption.model_name.human(count: 1)}: #{name}"
   end
+
+  def formatted_registration_number(regis_num)
+    "#{regis_num[0..2]}.#{regis_num[3..5]}.#{regis_num[6..8]}-#{regis_num[9..10]}"
+  end
 end

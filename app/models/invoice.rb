@@ -4,8 +4,8 @@ class Invoice < ApplicationRecord
   belongs_to :payment_method
   belongs_to :insurance_company
   validate :presence_true_if_paid_or_failed, on: :update
+  validate :check_payment_method_options
 
-  # validate :check_payment_method_options
   private
 
   def generate_token
@@ -19,9 +19,9 @@ class Invoice < ApplicationRecord
   end
 
   def presence_true_if_paid_or_failed
-    if status == 'paid' && transaction_registration_number.blank?
+    if paid? && transaction_registration_number.blank?
       errors.add(:transaction_registration_number, I18n.t('errors.messages.blank'))
     end
-    errors.add(:reason_for_failure, I18n.t('errors.messages.blank')) if status == 'failed' && reason_for_failure.blank?
+    errors.add(:reason_for_failure, I18n.t('errors.messages.blank')) if failed? && reason_for_failure.blank?
   end
 end
