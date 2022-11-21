@@ -26,7 +26,7 @@ describe Api::V1::InvoicesController, type: :request do
 
         expect(response).to have_http_status :created
         expect(response_parsed).to include({
-          message: 'Sucesso.' 
+          message: 'Sucesso.'
         }
         .with_indifferent_access)
       end
