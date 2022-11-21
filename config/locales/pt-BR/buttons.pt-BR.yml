@@ -6,3 +6,5 @@ pt-BR:
     forgot_my_pass: 'Esqueci minha senha'
     edit: 'Editar'
     remove: 'Remover'
+    approve: 'Aprovar'
+    denies: 'Reprovar'

@@ -1,0 +1,22 @@
+pt-BR:
+  pending: pendente
+  payd: Paga
+  failed: Encerrada com Falha
+  payment_method_details: 'Detalhes do Meio de Pagamento'
+  actual_icon: 'Ícone Atual'
+  activerecord:
+    models:
+      invoice:
+        one: Cobrança
+        other: Cobranças
+    attributes:
+      invoice:
+        invoice: Cobrança
+        status: Status
+        token: Token
+        package_id: ID Pacote de Seguros
+        registration_number: CPF
+        insurance_company_id: ID Seguradora
+        order_id: ID Pedido
+        payment_method_id: Meio de Pagamento
+        voucher: Cupom

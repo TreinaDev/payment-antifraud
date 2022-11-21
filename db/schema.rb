@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_210549) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -71,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "insurance_company_id", null: false
+    t.index ["insurance_company_id"], name: "index_fraud_reports_on_insurance_company_id"
   end
 
   create_table "insurance_companies", force: :cascade do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
     t.integer "order_id"
     t.integer "payment_method_id"
     t.integer "insurance_company_id"
+    t.string "voucher"
     t.index ["insurance_company_id"], name: "index_invoices_on_insurance_company_id"
     t.index ["payment_method_id"], name: "index_invoices_on_payment_method_id"
   end
@@ -157,6 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_182705) do
   add_foreign_key "company_payment_options", "insurance_companies"
   add_foreign_key "company_payment_options", "payment_methods"
   add_foreign_key "company_payment_options", "users"
+  add_foreign_key "fraud_reports", "insurance_companies"
   add_foreign_key "invoices", "insurance_companies"
   add_foreign_key "invoices", "payment_methods"
   add_foreign_key "promo_products", "promos"

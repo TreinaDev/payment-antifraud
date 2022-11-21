@@ -1,0 +1,33 @@
+<article>
+  <header>
+    <h2> <%= FraudReport.model_name.human(count: 2) %> </h2>
+    <hr>
+    <% if current_user %>
+      <%= link_to t('messages.new_fraud_report'), new_fraud_report_path, class: 'btn btn-primary' %>
+      <hr>
+    <% end %>
+  </header>
+  <main>
+    <% if @fraud_reports.any? %>
+      <table class="table table-striped table-bordered bg-gray">
+        <thead>
+          <tr>
+            <th scope="col"> <%= FraudReport.human_attribute_name(:registration_number) %> </th>
+            <th scope="col"><%= FraudReport.human_attribute_name(:status) %></th>
+          </tr>
+        </thead>
+        <% @fraud_reports.each do |fraud_report| %>
+          <tbody>
+            <tr>
+              <td> <%= formatted_registration_number(fraud_report.registration_number) %> </td>
+              <td> <%= FraudReport.human_attribute_name("status.#{fraud_report.status}") %> </td>
+              <td> <%= link_to 'Ver detalhes', fraud_report_path(fraud_report.id) %> </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    <% else %>
+      <%= t 'messages.no_fraud_reports'  %>
+    <% end %>
+  </main>
+</article>

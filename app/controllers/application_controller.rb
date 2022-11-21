@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+<<<<<<< HEAD
+=======
+  def authenticate!
+    return if admin_signed_in?
+
+    require_user
+  end
+
+>>>>>>> main
   def devise_parameter_sanitizer
     if resource_class == User
       ParameterSanitizer.new(User, :user, params)

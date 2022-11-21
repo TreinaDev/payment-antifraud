@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   resources :company_payment_options, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :users, only: %i[index] do 
     resources :user_reviews, only: %i[new create]
+    
   end
-
+  resources :fraud_reports, only: %i[index show new create] do 
+    post 'approves', on: :member
+    post 'denies', on: :member
+  end
   resources :invoices, only: %i[index show] do 
     resource :invoices_status_management, only: %i[update], controller:'invoices/invoices_status_management'  
   end
@@ -22,9 +26,11 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :invoices, only: [:show, :index, :create]
       resources :promos, only: [:show]
+      resources :fraud_reports, only: [:show]
       resources :insurance_companies, only: %i[] do 
         get 'payment_options', on: :member
       end
     end
   end
 end
+

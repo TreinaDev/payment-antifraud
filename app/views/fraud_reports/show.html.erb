@@ -1,0 +1,53 @@
+<article>
+  <main>
+    <div class="card-header bg-transparent border-dark"> 
+      <h4> <%= 
+              t 'messages.registration_number_fraud_report',
+              regis_num: formatted_registration_number(@fraud_report.registration_number)
+            %>
+      </h4>
+    </div>
+    <div class="row g-0" style="width: 54rem">
+      <div class="col-md-4">
+        <% if @fraud_report.images.attached? %>
+          <% @fraud_report.images.each do |image| %>
+            <p> <%= image_tag image, class:"card-img-top"%> </p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <p>
+              <li class="list-group-item"> 
+                <%= FraudReport.human_attribute_name(:description) %>: 
+                <%= @fraud_report.description %>
+              </li>
+            </p>
+            <p>
+              <li class="list-group-item"> 
+                <%= FraudReport.human_attribute_name(:status) %>: 
+                <%= FraudReport.human_attribute_name("status.#{@fraud_report.status}") %>
+              </li>
+            </p>
+            <% if admin_signed_in? %>
+              <% if @fraud_report.pending? %>
+                <p>
+                  <li class="list-group-item"> 
+                    <%= button_to t('buttons.approve'), approves_fraud_report_path(@fraud_report), class: "card-button btn btn-success" %>
+                  </li>
+                </p>
+                <p>
+                  <li class="list-group-item"> 
+                    <%= button_to t('buttons.denies'), denies_fraud_report_path(@fraud_report), class: "card-button btn btn-danger" %>
+                  </li>
+                </p>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</article>
+
