@@ -30,6 +30,13 @@ describe 'Usuário vê cobranças' do
     expect(page).to have_content 'ID Pacote de Seguros'
     expect(page).to have_content '10'
     expect(page).to have_content 'pendente'
+    within 'article footer .pagination' do
+      expect(page).to have_content 'Primeira'
+      expect(page).to have_content '< Anterior'
+      expect(page).to have_content 'Página 1 de 1'
+      expect(page).to have_content 'Próxima >'
+      expect(page).to have_content 'Última'
+    end
   end
 
   it 'somente de sua seguradora' do
@@ -50,7 +57,7 @@ describe 'Usuário vê cobranças' do
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('BBBS65OFN493OE93MVNA')
     create(:invoice, payment_method:, insurance_company_id: company2.id, package_id: 5,
-                     registration_number: '12345678', status: :payd, order_id: 2)
+                     registration_number: '12345678', status: :paid, order_id: 2)
 
     login_as(user2, scope: :user)
     visit root_path

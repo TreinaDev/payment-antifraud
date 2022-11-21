@@ -10,7 +10,13 @@ company = FactoryBot.create(:insurance_company)
 primary_user = FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
                                         status: 'approved', insurance_company_id: company.id)
 5.times do
-  FactoryBot.create(:user, status: 'pending', insurance_company_id: company.id)
+  FactoryBot.create(:user, status: :pending, insurance_company_id: company.id)
+end
+5.times do
+  FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
+end
+5.times do
+  FactoryBot.create(:user, status: :refused, insurance_company_id: company.id)
 end
 
 FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')
@@ -65,3 +71,11 @@ FactoryBot.create(
                               package_id: i, registration_number: "1234567#{i}",
                               payment_method_id: payment_method1.id, order_id: i)
 end
+
+FactoryBot.create(
+  :fraud_report,
+  insurance_company_id: company.id,
+  description: "Ela é daquelas mulheres que projetam fachadas para o mundo.
+                               Ela é vigarista, trapaceira, e se aproveita das pessoas mais indefesas que poderia haver
+                               tudo para conseguir o que ela quer"
+)

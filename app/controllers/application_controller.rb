@@ -5,14 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate!
-    if !current_admin.nil?
-      :authenticate_admin!
-    elsif !current_user.nil?
-      :authenticate_user!
-    else
-      flash[:alert] = t(:sign_in_to_enter)
-      redirect_to root_path
-    end
+    return if admin_signed_in?
+
+    require_user
   end
 
   def devise_parameter_sanitizer
@@ -21,6 +16,10 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+  end
+
+  def page_params(posts_per_page)
+    params.permit(:page).merge(per_page: posts_per_page)
   end
 
   def require_admin

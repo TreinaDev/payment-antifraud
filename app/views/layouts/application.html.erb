@@ -14,7 +14,7 @@
       <nav>
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-lg-start">
-            <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none #{bootstrap_link('home')}" do %>
+            <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none #{ nav_link_class('home')}" do %>
               <span class="fs-5"> <%= t 'app_name' %>  </span>
             <% end %>
             <% if user_signed_in? %>

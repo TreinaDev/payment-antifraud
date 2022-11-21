@@ -16,6 +16,16 @@
             <li class="list-group-item"><%= Invoice.human_attribute_name :payment_method_id %>: <%= @invoice.payment_method_id %></li>
             <li class="list-group-item"><%= PaymentMethod.human_attribute_name :payment_type %>: <%= @invoice.payment_method.payment_type %></li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :voucher %>: <%= @invoice.voucher %> </li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :transaction_registration_number %>: <%= @invoice.transaction_registration_number %> </li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :reason_for_failure %>: <%= @invoice.reason_for_failure %> </li>
+            <% if @invoice.pending? %>
+              <p>
+              <%= link_to 'Sucesso no Pagamento', edit_invoice_url(status: 'paid'), class: "btn btn-primary  btn-m"%>
+              </p>
+              <p>
+              <%= link_to 'Falha no Pagamento', edit_invoice_url(status: 'failed'), class: "btn btn-primary  btn-m"%>
+              </p>
+              <% end %> 
           </ul>
         </div>
       </div>
