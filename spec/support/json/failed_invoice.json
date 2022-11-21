@@ -1,10 +1,11 @@
-{
+{ 
+  "message": "Cobrança atualizada com sucesso.",
   "order_id": 1, 
   "insurance_company_id": 1,
   "package_id": 1,
   "registration_number": "12345678",
   "voucher": "ABCD1234",
   "total_price": 100,
-  "status": 5,
+  "status": 10,
   "token": "JAMDOQNENTOAMDI1293"
 }
