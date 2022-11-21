@@ -1,14 +1,8 @@
 class InvoicesController < ApplicationController
-  include Pagination
-
   before_action :set_invoice, only: %i[show edit update]
   before_action :require_user
-
   def index
-    @pagination, @invoices = paginate(
-      collection: current_user.insurance_company.invoices,
-      params: page_params(10)
-    )
+    @invoices = current_user.insurance_company.invoices
   end
 
   def show; end
@@ -35,7 +29,8 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:status, :token, :package_id, :registration_number,
-                                    :insurance_company_id, :order_id, :payment_method_id, :voucher,
+                                    :insurance_company_id, :order_id, :payment_method_id,
+                                    :voucher, :parcels, :total_price,
                                     :transaction_registration_number, :reason_for_failure)
   end
 end

@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        invoice = Invoice.new(invoice_params)
+        invoice = Invoice.parse_from(invoice_params)
         if invoice.save
           render status: :created, json: invoice.as_json
         else
@@ -24,7 +24,7 @@ module Api
 
       def invoice_params
         params.require(:invoice).permit(:order_id, :insurance_company_id, :package_id, :registration_number,
-                                        :payment_method_id)
+                                        :payment_method_id, :parcels, :final_price, :voucher)
       end
     end
   end

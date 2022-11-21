@@ -9,7 +9,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123', 
+                               registration_number: '12345678', status: :pending, voucher: 'Black123',
                                parcels: 10, total_price: 20.0)
 
     login_as(user, scope: :user)
