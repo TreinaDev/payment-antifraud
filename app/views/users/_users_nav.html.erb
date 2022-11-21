@@ -1,0 +1,26 @@
+<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+  <li>
+    <%= link_to "Meios de Pagamento", payment_methods_url , class: nav_link_class('payment_methods') %>
+  </li>
+  <li>
+    <%= link_to "Promoções", promos_url , class: nav_link_class('promos') %>
+  </li>
+  <li>
+    <%= link_to "Cobranças", invoices_url , class: nav_link_class('invoices') %>
+  </li>
+  <li>
+    <%= link_to "Denúncias de fraude", fraud_reports_url , class: nav_link_class('fraud_reports') %>
+  </li>
+    <%= link_to "Minha Seguradora", company_payment_options_url, class: nav_link_class('company_payment_options') %>
+  </li>
+</ul> 
+<span class="nav-link text-secondary-light px-2"> <%= user_greetings(current_user) %> </span>
+<div class="dropdown text-end">
+  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
+  </a>
+  <ul class="dropdown-menu text-small">
+    <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class: "dropdown-item"%>
+  </ul>
+</div>
+

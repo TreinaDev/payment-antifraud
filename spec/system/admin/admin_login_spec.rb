@@ -28,4 +28,20 @@ describe 'Admin tenta fazer login no sistema' do
     expect(page).to have_button 'Logout'
     expect(page).not_to have_button 'Fazer Login'
   end
+
+  it 'e não vê links para funcionalidades de usuários comuns' do
+    admin = FactoryBot.create(
+      :admin, name: 'Petra Paola',
+              email: 'petrapaola@email.com', password: '12345678'
+    )
+
+    login_as admin, scope: :admin
+    visit root_path
+
+    expect(page).not_to have_link 'Minha Seguradora'
+    expect(page).not_to have_link 'Promoções'
+    expect(page).not_to have_link 'Cobranças'
+    expect(page).to have_link 'Meios de Pagamento'
+    expect(page).to have_link 'Usuários'
+  end
 end

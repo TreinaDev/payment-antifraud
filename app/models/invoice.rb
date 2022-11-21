@@ -1,9 +1,14 @@
 class Invoice < ApplicationRecord
-  enum status: { pending: 0, payd: 1, failed: 2 }
+  enum status: { pending: 0, paid: 5, failed: 10 }
   before_validation :generate_token, on: :create
   belongs_to :payment_method
   belongs_to :insurance_company
-  # validate :check_payment_method_options
+
+  validate :check_payment_method_options
+  validates :transaction_registration_number, presence: true, on: :update, if: :paid?
+  validates :reason_for_failure, presence: true, on: :update, if: :failed?
+
+  before_validation :generate_token, on: :create
 
   private
 

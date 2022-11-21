@@ -21,5 +21,12 @@ describe 'Usuário vê suas denúncias de fraude' do
     expect(page).to have_link 'Ver detalhes'
     expect(page).to have_content 'Status'
     expect(page).to have_content 'Pendente'
+    within 'article footer #pagination' do
+      expect(page).to have_content 'Primeira'
+      expect(page).to have_content '< Anterior'
+      expect(page).to have_content 'Página 1 de 1'
+      expect(page).to have_content 'Próxima >'
+      expect(page).to have_content 'Última'
+    end
   end
 end

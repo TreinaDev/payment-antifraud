@@ -9,9 +9,7 @@ describe 'Funcionário edita uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on promo.voucher
     click_on 'Editar'
 
@@ -32,9 +30,7 @@ describe 'Funcionário edita uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on promo.voucher
     click_on 'Editar'
     fill_in 'Nome', with: 'Promoção Natal'

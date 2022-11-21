@@ -98,6 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_171619) do
     t.integer "payment_method_id"
     t.integer "insurance_company_id"
     t.string "voucher"
+    t.string "transaction_registration_number"
+    t.string "reason_for_failure"
     t.index ["insurance_company_id"], name: "index_invoices_on_insurance_company_id"
     t.index ["payment_method_id"], name: "index_invoices_on_payment_method_id"
   end

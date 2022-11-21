@@ -7,9 +7,7 @@ describe 'Funcionário cadastra uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on 'Cadastrar promoção'
 
     expect(page).to have_content 'Cadastrar promoção'
@@ -28,9 +26,7 @@ describe 'Funcionário cadastra uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on 'Cadastrar promoção'
     fill_in 'Nome', with: 'Black Friday'
     fill_in 'Data de início', with: '2022-10-22'
@@ -51,9 +47,7 @@ describe 'Funcionário cadastra uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on 'Cadastrar promoção'
     fill_in 'Nome', with: ''
     fill_in 'Data de início', with: ''

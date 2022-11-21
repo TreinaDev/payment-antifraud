@@ -1,7 +1,7 @@
 <h1> Editar Meio de Pagamento </h1>
 
 <% if @payment_method.errors.any? %>
-  <p> Verifique os erros abaixo: </p>
+  <p> Verifique os erros a baixo: </p>
   <ul>
     <% @payment_method.errors.full_messages.each do | msg |%>
       <li> <%= msg %> </li>

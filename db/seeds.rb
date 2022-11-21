@@ -54,7 +54,7 @@ FactoryBot.create(
   user: primary_user,
   payment_method: payment_method2,
   insurance_company: company,
-  max_parcels: 12,
+  max_parcels: 1,
   single_parcel_discount: 1
 )
 FactoryBot.create(
@@ -62,7 +62,7 @@ FactoryBot.create(
   user: primary_user,
   payment_method: payment_method3,
   insurance_company: company,
-  max_parcels: 12,
+  max_parcels: 1,
   single_parcel_discount: 1
 )
 

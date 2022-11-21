@@ -1,0 +1,21 @@
+<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+  <li>
+    <%= link_to "Meios de Pagamento", payment_methods_url , class:nav_link_class('payment_methods') %>
+  </li>
+  <li>
+    <%= link_to "Denúncias de fraude", fraud_reports_url, class: nav_link_class('fraud_reports') %>
+  </li>
+  <li>
+    <%= link_to "Usuários", users_path, class:  nav_link_class('users') %>
+  </li>
+</ul>
+<span class="nav-link text-secondary-light px-2 mr-N"> <%= user_greetings(current_admin) %> </span>
+<div class="dropdown text-end">
+  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="https://img.freepik.com/premium-vector/person-avatar-design_24877-38130.jpg?w=2000" alt="mdo" width="32" height="32" class="rounded-circle">
+  </a>
+  <ul class="dropdown-menu text-small">
+    <%= button_to 'Logout', destroy_admin_session_path, method: 'delete', class: "dropdown-item"%>
+  </ul>
+</div>
+

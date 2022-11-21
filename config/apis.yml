@@ -1,12 +1,15 @@
 development:
   insurance_api: http://localhost:3000/api/v1 
   insurance_api_products_endpoint: http://localhost:3000/api/v1/products 
+  comparator_api_invoices_endpoint: http://localhost:4000/api/v1/invoices/
 
 test:
   insurance_api: http://seguradoras.com/api/v1
   insurance_api_products_endpoint: https://mocki.io/v1/a20c5378-9c7d-4906-b501-dae7afe09f35
+  comparator_api_invoice_endpoint: http://localhost:4000/api/v1/invoices/
 
 production:
   insurance_api: http://seguradoras.com/api/v1
   insurance_api_products_endpoint: https://mocki.io/v1/a20c5378-9c7d-4906-b501-dae7afe09f35
+  comparator_api_invoice_endpoint: http://localhost:4000/api/v1/invoices/
   
