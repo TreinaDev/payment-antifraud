@@ -15,6 +15,13 @@ Rails.application.routes.draw do
   end
 
   resources :invoices, only: %i[index show edit update]
+  resources :fraud_reports, only: %i[index show new create] do 
+    post 'approves', on: :member
+    post 'denies', on: :member
+  end
+  resources :invoices, only: %i[index show] do 
+    resource :invoices_status_management, only: %i[update], controller:'invoices/invoices_status_management'  
+  end
 
   namespace :api do 
     namespace :v1 do 

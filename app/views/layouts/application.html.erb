@@ -28,6 +28,9 @@
                   <%= link_to "Usuários", users_path, class:"nav-link px-2 link-#{controller_name == 'users' ? 'primary' : 'gray'}" if admin_signed_in? %>
                 </li> 
                 <li>
+                  <%= link_to 'Denúncias de fraude', fraud_reports_path, class:"nav-link px-2 link-#{controller_name == 'fraud_reports' ? 'primary' : 'gray'}" %>
+                </li>
+                <li>
                   <%= link_to "Cobranças", invoices_url , class:"nav-link px-2 link-#{controller_name == 'invoices' ? 'primary' : 'gray'}" %>
                 </li>
                   <%= link_to "Minha Seguradora", company_payment_options_url, class:"nav-link px-2 link-#{controller_name == 'company_payment_options' ? 'primary' : 'gray'}" %>
