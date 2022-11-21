@@ -1,5 +1,5 @@
 class FraudReportsController < ApplicationController
-  include Pagination 
+  include Pagination
 
   before_action :authenticate!, only: %i[index show]
   before_action :require_user, only: %i[new create]
@@ -14,7 +14,7 @@ class FraudReportsController < ApplicationController
                     current_user.insurance_company.fraud_reports
                   end,
       params: page_params(10)
-  )
+    )
   end
 
   def show
