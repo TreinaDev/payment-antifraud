@@ -45,6 +45,9 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    json_data = Rails.root.join('spec/support/json/approved_invoice.json').read
+    fake_response = double('Faraday::Response', status: 200, body: json_data)
+    allow(Faraday).to receive(:patch).and_return(fake_response)
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
@@ -67,6 +70,9 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    json_data = Rails.root.join('spec/support/json/failed_invoice.json').read
+    fake_response = double('Faraday::Response', status: 200, body: json_data)
+    allow(Faraday).to receive(:patch).and_return(fake_response)
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)

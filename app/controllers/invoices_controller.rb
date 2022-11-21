@@ -18,7 +18,9 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    if @invoice.update(invoice_params)
+    @invoice.attributes = invoice_params
+    if @invoice.valid? && patch_external_invoice_sucess?
+      @invoice.update(invoice_params)
       flash[:notice] = t('messages.charge_updated_successfully')
       redirect_to @invoice
     else
@@ -37,5 +39,19 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:status, :token, :package_id, :registration_number,
                                     :insurance_company_id, :order_id, :payment_method_id, :voucher,
                                     :transaction_registration_number, :reason_for_failure)
+  end
+
+  def patch_external_invoice_sucess?
+    response = patch_external_invoice
+    return false if response.status == 204
+    raise ActiveRecord::QueryCanceled if response.status == 500
+
+    response
+  end
+
+  def patch_external_invoice
+    invoice_url = "#{Rails.configuration.external_apis['comparator_api_invoices_endpoint']}#{@invoice.order_id}"
+    params = { status: @invoice.status, token: @invoice.status }
+    Faraday.patch(invoice_url, params)
   end
 end
