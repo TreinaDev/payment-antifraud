@@ -11,7 +11,7 @@ describe 'Promo API' do
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
-      get '/api/v1/promos/3-3MVGTOVW-500'
+      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -29,7 +29,7 @@ describe 'Promo API' do
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
-      get '/api/v1/promos/3-3MVGTOVW-500'
+      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -61,7 +61,7 @@ describe 'Promo API' do
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
-      get '/api/v1/promos/3-3MVGTOVW-500'
+      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -78,7 +78,7 @@ describe 'Promo API' do
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
-      get '/api/v1/promos/3-3MVGTOVW-500'
+      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
@@ -95,7 +95,41 @@ describe 'Promo API' do
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
-      get '/api/v1/promos/5-3MVGTOVW-500'
+      get '/api/v1/promos/3MVGTOVW/?product_id=5&price=500'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['status']).to eq('Cupom inválido.')
+    end
+
+    it 'e o parâmetro "price" não é fornecido' do
+      company = FactoryBot.create(:insurance_company)
+      allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
+      promo_a = FactoryBot.create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
+                                          ending_date: Time.zone.today + 40.days,
+                                          discount_max: 100, discount_percentage: 20, usages_max: 10,
+                                          insurance_company_id: company.id)
+      FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
+
+      get '/api/v1/promos/3MVGTOVW/?product_id=3'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['status']).to eq('Cupom válido.')
+      expect(json_response['discount']).to eq 0
+    end
+
+    it 'e o parâmetro "product_id" não é fornecido' do
+      company = FactoryBot.create(:insurance_company)
+      allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
+      FactoryBot.create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
+                                ending_date: Time.zone.today + 40.days,
+                                discount_max: 100, discount_percentage: 20, usages_max: 10,
+                                insurance_company_id: company.id)
+
+      get '/api/v1/promos/3MVGTOVW/?price=500'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
