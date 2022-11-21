@@ -2,17 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário vê cobranças' do
   it 'e não está autenticado' do
-    company = create(:insurance_company)
-    payment_method = create(:payment_method)
-    user = create(:user, insurance_company: company)
-    create(:company_payment_option, insurance_company: company,
-                                    payment_method_id: payment_method.id, user:)
+    visit invoices_path
 
-    create(:invoice, payment_method:, insurance_company_id: company.id)
-    create(:user, insurance_company_id: company.id)
-
-    visit root_path
-    click_on 'Cobranças'
     expect(current_url).to eq root_url
     expect(page).to have_content 'Acesso negado'
   end
