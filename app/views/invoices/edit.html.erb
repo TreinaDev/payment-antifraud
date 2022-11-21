@@ -1,0 +1,40 @@
+<h2> Atualizar pagamento da cobrança </h2>
+
+<% if @invoice.errors.any? %>
+  <p> Verifique os erros a baixo: </p>
+  <ul>
+    <% @invoice.errors.full_messages.each do | msg |%>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @invoice.paid? %>
+  <%= form_with model: @invoice do |f| %>
+    <div>
+    <%= f.hidden_field :status %>
+    </div>
+    <div>
+      <%= f.label :transaction_registration_number %>
+      <%= f.text_field :transaction_registration_number, class: "form-control", style: "max-width: 30rem" %>
+    </div>
+    <div>
+    <%= f.submit t('buttons.send')%>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @invoice.failed? %>
+  <%= form_with model: @invoice do |f| %>
+    <div>
+      <%= f.hidden_field :status %>
+    </div>
+    <div>
+      <%= f.label :reason_for_failure %>
+      <%= f.text_area :reason_for_failure, class: "form-control", style: "max-width: 30rem" %>
+    </div>
+    <div>
+      <%= f.submit t('buttons.send')%>
+    </div>
+  <% end %>
+<% end %>

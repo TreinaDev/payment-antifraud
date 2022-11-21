@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :user_reviews, only: %i[new create]
     
   end
+
+  resources :invoices, only: %i[index show edit update]
   resources :fraud_reports, only: %i[index show new create] do 
     post 'approves', on: :member
     post 'denies', on: :member
