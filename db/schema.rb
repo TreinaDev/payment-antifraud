@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_18_213308) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_21_195609) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_213308) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -94,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_213308) do
     t.string "voucher"
     t.string "transaction_registration_number"
     t.string "reason_for_failure"
+    t.integer "parcels"
+    t.decimal "total_price"
     t.index ["insurance_company_id"], name: "index_invoices_on_insurance_company_id"
     t.index ["payment_method_id"], name: "index_invoices_on_payment_method_id"
   end
@@ -127,7 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_213308) do
     t.string "voucher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "insurance_company_id", null: false
+    t.integer "insurance_company_id"
     t.index ["insurance_company_id"], name: "index_promos_on_insurance_company_id"
   end
 
