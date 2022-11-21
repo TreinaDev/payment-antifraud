@@ -16,7 +16,7 @@ describe 'Funcionário visita a pagina de promoção' do
     expect(page).to have_content 'Cadastrar promoção'
     expect(page).to have_content promo_a.name
     expect(page).to have_content promo_b.name
-    within 'article footer .pagination' do
+    within 'article footer #pagination' do
       expect(page).to have_content 'Primeira'
       expect(page).to have_content '< Anterior'
       expect(page).to have_content 'Página 1 de 1'

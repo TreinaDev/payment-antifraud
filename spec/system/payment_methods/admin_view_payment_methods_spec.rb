@@ -32,7 +32,7 @@ describe 'Usuário vê meios de pagamento' do
     expect(page).to have_content 'Ativo'
     expect(page).to have_content 'Roxo'
     expect(page).to have_content 'Boleto'
-    within 'article footer .pagination' do
+    within 'article footer #pagination' do
       expect(page).to have_content 'Primeira'
       expect(page).to have_content '< Anterior'
       expect(page).to have_content 'Página 1 de 1'

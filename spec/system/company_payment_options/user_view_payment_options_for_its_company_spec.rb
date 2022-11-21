@@ -37,7 +37,7 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
     expect(page).to have_content 'Desconto à vista'
     expect(page).to have_content 'Não Possui'
     expect(page).to have_content '2%'
-    within 'article footer .pagination' do
+    within 'article footer #pagination' do
       expect(page).to have_content 'Primeira'
       expect(page).to have_content '< Anterior'
       expect(page).to have_content 'Página 1 de 1'
