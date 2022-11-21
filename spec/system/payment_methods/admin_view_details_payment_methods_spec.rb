@@ -12,16 +12,15 @@ describe 'Usuário vê detalhes de um meio de pagamento' do
 
   it 'a partir da tela inicial' do
     admin = FactoryBot.create(:admin)
+    image = Rack::Test::UploadedFile.new(Rails.root.join('spec/support/icone_cartao_credito_azul.jpg'))
     FactoryBot.create(:payment_method, name: 'Laranja',
                                        tax_percentage: 5, tax_maximum: 100,
                                        payment_type: 'Cartão de Crédito', status: :active,
-                                       image: Rack::Test::UploadedFile.new(Rails.root.join('spec/support/icone_cartao_credito_azul.jpg'))
-                                    )
+                                       image:)
     FactoryBot.create(:payment_method, name: 'Roxo',
                                        tax_percentage: 3, tax_maximum: 50,
                                        payment_type: 'Boleto', status: :inactive,
-                                       image: Rack::Test::UploadedFile.new(Rails.root.join('spec/support/icone_cartao_credito_azul.jpg'))
-                                      )
+                                       image:)
 
     login_as(admin, scope: :admin)
     visit root_path

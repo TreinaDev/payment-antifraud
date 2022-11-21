@@ -17,14 +17,13 @@ describe 'Usuário vê detalhes de uma denúncia de fraude' do
   it 'com sucesso' do
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
+    first_image = Rack::Test::UploadedFile.new(Rails.root.join('spec/support/crime.jpeg'))
+    second_image = Rack::Test::UploadedFile.new(Rails.root.join('spec/support/fotos_do_crime.jpeg'))
     fraud = FactoryBot.create(
       :fraud_report, insurance_company_id: company.id,
                      registration_number: '12345678911', description: 'Tentou fraudar o seguro.',
                      status: :pending,
-                     images: [
-                              Rack::Test::UploadedFile.new(Rails.root.join('spec/support/crime.jpeg')),
-                              Rack::Test::UploadedFile.new(Rails.root.join('spec/support/fotos_do_crime.jpeg'))
-                             ]
+                     images: [first_image, second_image]
     )
 
     login_as user, scope: :user
