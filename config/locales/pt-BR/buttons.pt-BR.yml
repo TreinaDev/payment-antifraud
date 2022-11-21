@@ -9,3 +9,5 @@ pt-BR:
     last: 'Última'
     first: 'Primeira'
     previous: '< Anterior'
+    approve: 'Aprovar'
+    denies: 'Reprovar'

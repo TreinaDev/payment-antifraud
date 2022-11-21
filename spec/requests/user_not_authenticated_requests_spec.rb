@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Visitante tenta acessar funcionalidades' do
+describe 'Usuário tenta acessar funcionalidades' do
   context 'sem estar autenticado' do
     it 'e vai para a página de opções de pagamento da seguradora' do
       get company_payment_options_path
@@ -57,6 +57,40 @@ describe 'Visitante tenta acessar funcionalidades' do
       params = { max_parcels: 3, single_parcel_discount: 1 }
 
       put company_payment_option_path(payment_option.id), params: params
+
+      expect(response).to redirect_to root_path
+    end
+
+    it 'e tenta acessar a página de denúncias' do
+      get fraud_reports_path
+
+      expect(response).to redirect_to root_path
+    end
+
+    it 'e tenta acessar a página para criar uma nova denúncia' do
+      get new_fraud_report_path
+
+      expect(response).to redirect_to root_path
+    end
+
+    it 'e tenta fazer um POST para criar uma nova denúncia' do
+      params = { fraud_report: {
+        registration_number: '12345678911',
+        insurance_company_id: 1,
+        description: 'Ladrão!'
+      } }
+
+      post fraud_reports_path, params: params
+
+      expect(response).to redirect_to root_path
+      expect(FraudReport.count).to eq 0
+    end
+
+    it 'e tenta acessar a página de detalhes de uma denúncia' do
+      company = FactoryBot.create(:insurance_company)
+      fraud = FactoryBot.create(:fraud_report, insurance_company_id: company.id)
+
+      get fraud_report_path(fraud.id)
 
       expect(response).to redirect_to root_path
     end
