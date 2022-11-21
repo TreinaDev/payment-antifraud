@@ -2,7 +2,6 @@ class InvoicesController < ApplicationController
   include Pagination
 
   before_action :set_invoice, only: %i[show edit update]
-  before_action :invoice_params, only: %i[update]
   before_action :require_user
 
   def index
