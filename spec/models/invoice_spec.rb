@@ -68,9 +68,7 @@ RSpec.describe Invoice, type: :model do
       invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                  registration_number: '12345678', status: :pending, voucher: 'Black123')
 
-      invoice.status = 'paid'
-      invoice.save
-      invoice.valid?
+      invoice.update(status: :paid)
 
       expect(invoice.errors.include?(:transaction_registration_number)).to eq true
       expect(invoice.errors.include?(:reason_for_failure)).to eq false
@@ -85,9 +83,7 @@ RSpec.describe Invoice, type: :model do
       invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                  registration_number: '12345678', status: :pending, voucher: 'Black123')
 
-      invoice.status = 'failed'
-      invoice.save
-      invoice.valid?
+      invoice.update(status: :failed)
 
       expect(invoice.errors.include?(:reason_for_failure)).to eq true
       expect(invoice.errors.include?(:transaction_registration_number)).to eq false
