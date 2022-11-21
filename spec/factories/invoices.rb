@@ -6,5 +6,8 @@ FactoryBot.define do
     registration_number { Faker::Number.number(digits: 8) }
     status { 0 }
     payment_method_id { 1 }
+    parcels { 10 }
+    voucher { 'CAMPUS20' }
+    total_price { Faker::Number.number(digits: 2) }
   end
 end
