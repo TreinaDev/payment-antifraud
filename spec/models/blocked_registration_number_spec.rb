@@ -32,5 +32,16 @@ RSpec.describe BlockedRegistrationNumber, type: :model do
         expect(registry.errors.include?(:registration_number)).to eq true
       end
     end
+    context 'uniqueness' do
+      it 'falso quando usuário tenta adicionar um cpf com fraude já confirmada' do
+        FactoryBot.create(:blocked_registration_number, registration_number: '18293019203')
+        registry = FactoryBot.build(:blocked_registration_number, registration_number: '18293019203')
+
+        registry.save
+
+        expect(registry).not_to be_valid
+        expect(registry.errors.include?(:registration_number)).to eq true
+      end
+    end
   end
 end
