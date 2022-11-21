@@ -103,7 +103,6 @@ describe 'Usuário altera status de uma cobrança' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Cobrança não foi atualizada'
-    expect(page).to have_content 'Verifique os erros a baixo:'
     expect(page).to have_content 'Motivo da falha não pode ficar em branco'
     expect(page).not_to have_content 'Número de registro da transação não pode ficar em branco'
   end
@@ -124,7 +123,6 @@ describe 'Usuário altera status de uma cobrança' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Cobrança não foi atualizada'
-    expect(page).to have_content 'Verifique os erros a baixo:'
     expect(page).not_to have_content 'Motivo da falha não pode ficar em branco'
     expect(page).to have_content 'Número de registro da transação não pode ficar em branco'
   end

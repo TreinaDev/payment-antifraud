@@ -1,23 +1,31 @@
-<h2> Promoções </h2>
-<hr>
-<% if user_signed_in? %>
-  <%= link_to 'Cadastrar promoção', new_promo_path, class: 'btn btn-primary' %>
-  <hr>
-<% end %>
-
-<% if @promos.present? %>
-    <% @promos.each_slice(3) do |promo| %>
-        <div class="row">
-        <% promo.each do |promo| %>
-            <div class="col-4">
-                <div class="card" style="padding: 3%; width: 26rem; margin-bottom: 5%;">
-                <h3 class="card-title"><%= promo.name %></h3>
-                <p class="card-text btn btn-gray"><%= link_to promo.voucher, promo_path(promo.id)%><p>
-                </div>
-            </div>
-        <% end %>
-        </div> 
+<article>
+  <header>
+    <h2> Promoções </h2>
+    <hr>
+    <% if user_signed_in? %>
+      <%= link_to 'Cadastrar promoção', new_promo_path, class: 'btn btn-primary' %>
+      <hr>
     <% end %>
-<% else %>
-    <h3>Nenhuma promoção cadastrada</h3>
-<% end %>
+  </header>
+  <main>
+    <% if @promos.present? %>
+        <% @promos.each_slice(3) do |promo| %>
+            <div class="row">
+            <% promo.each do |promo| %>
+                <div class="col-4">
+                    <div class="card" style="padding: 3%; width: 26rem; margin-bottom: 5%;">
+                    <h3 class="card-title"><%= promo.name %></h3>
+                    <p class="card-text btn btn-gray"><%= link_to promo.voucher, promo_path(promo.id)%><p>
+                    </div>
+                </div>
+            <% end %>
+            </div> 
+        <% end %>
+    <% else %>
+        <h3>Nenhuma promoção cadastrada</h3>
+    <% end %>
+  </main>
+  <footer>
+    <%= render 'pagination', pagination: @pagination %>
+  </footer>
+</article>

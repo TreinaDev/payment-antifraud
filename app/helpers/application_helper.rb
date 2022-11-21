@@ -11,6 +11,10 @@ module ApplicationHelper
     "#{CompanyPaymentOption.model_name.human(count: 1)}: #{name}"
   end
 
+  def nav_link_class(controller)
+    "nav-link px-2 link-#{controller_name == controller ? 'primary' : 'gray'}"
+  end
+
   def formatted_registration_number(regis_num)
     "#{regis_num[0..2]}.#{regis_num[3..5]}.#{regis_num[6..8]}-#{regis_num[9..10]}"
   end

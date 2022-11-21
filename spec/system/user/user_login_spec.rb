@@ -3,9 +3,7 @@ require 'rails_helper'
 describe 'Funcionário faz login no sistema' do
   it 'a partir de um formulário' do
     visit root_path
-    within 'nav' do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
 
     expect(page).to have_content 'Login do funcionário da seguradora'
     expect(page).to have_field 'E-mail'
@@ -68,10 +66,7 @@ describe 'Funcionário faz login no sistema' do
                       insurance_company_id: company.id)
 
     visit root_path
-
-    within('nav') do
-      click_on 'Fazer Login'
-    end
+    click_on 'Fazer Login'
     within('div#login-fields') do
       fill_in 'E-mail', with: ''
       fill_in 'Senha', with: ''
@@ -79,5 +74,25 @@ describe 'Funcionário faz login no sistema' do
     end
 
     expect(page).to have_content 'E-mail ou senha inválidos.'
+  end
+
+  it 'e vê a barra de navegação com botões das funcionalidades' do
+    company = FactoryBot.create(:insurance_company)
+    user = FactoryBot.create(:user,
+                             email: 'petra@paolaseguros.com.br',
+                             password: 'password',
+                             name: 'Petra',
+                             registration_number: '39401929301',
+                             status: :approved,
+                             insurance_company_id: company.id)
+
+    login_as user, scope: :user
+    visit root_path
+
+    expect(page).to have_link 'Minha Seguradora'
+    expect(page).to have_link 'Meios de Pagamento'
+    expect(page).to have_link 'Promoções'
+    expect(page).to have_link 'Cobranças'
+    expect(page).not_to have_link 'Usuários'
   end
 end
