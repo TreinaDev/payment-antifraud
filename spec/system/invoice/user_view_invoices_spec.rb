@@ -13,7 +13,6 @@ describe 'Usuário vê cobranças' do
 
     visit root_path
     click_on 'Cobranças'
-
     expect(current_url).to eq root_url
     expect(page).to have_content 'Acesso negado'
   end
@@ -40,6 +39,13 @@ describe 'Usuário vê cobranças' do
     expect(page).to have_content 'ID Pacote de Seguros'
     expect(page).to have_content '10'
     expect(page).to have_content 'pendente'
+    within 'article footer .pagination' do
+      expect(page).to have_content 'Primeira'
+      expect(page).to have_content '< Anterior'
+      expect(page).to have_content 'Página 1 de 1'
+      expect(page).to have_content 'Próxima >'
+      expect(page).to have_content 'Última'
+    end
   end
 
   it 'somente de sua seguradora' do

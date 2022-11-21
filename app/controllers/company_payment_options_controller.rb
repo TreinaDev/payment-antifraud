@@ -1,10 +1,15 @@
 class CompanyPaymentOptionsController < ApplicationController
+  include Pagination
+
   before_action :require_user
   before_action :fetch_payment_methods, only: %i[new create edit update]
   before_action :fetch_payment_option, only: %i[show edit update]
 
   def index
-    @payment_options = current_user.insurance_company.payment_options
+    @pagination, @payment_options = paginate(
+      collection: current_user.insurance_company.payment_options,
+      params: page_params(10)
+    )
   end
 
   def show; end

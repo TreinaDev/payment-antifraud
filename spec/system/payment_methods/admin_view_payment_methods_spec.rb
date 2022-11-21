@@ -2,10 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário vê meios de pagamento' do
   it 'se estiver autenticado' do
-    visit root_path
-    within('nav') do
-      click_on 'Meios de Pagamento'
-    end
+    visit payment_methods_path
 
     expect(current_url).to eq root_url
     expect(page).to have_content 'Acesso negado.'
@@ -35,6 +32,13 @@ describe 'Usuário vê meios de pagamento' do
     expect(page).to have_content 'Ativo'
     expect(page).to have_content 'Roxo'
     expect(page).to have_content 'Boleto'
+    within 'article footer .pagination' do
+      expect(page).to have_content 'Primeira'
+      expect(page).to have_content '< Anterior'
+      expect(page).to have_content 'Página 1 de 1'
+      expect(page).to have_content 'Próxima >'
+      expect(page).to have_content 'Última'
+    end
   end
 
   it 'e está autenticado como administrador' do

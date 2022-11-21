@@ -10,7 +10,13 @@ company = FactoryBot.create(:insurance_company)
 primary_user = FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
                                         status: 'approved', insurance_company_id: company.id)
 5.times do
-  FactoryBot.create(:user, status: 'pending', insurance_company_id: company.id)
+  FactoryBot.create(:user, status: :pending, insurance_company_id: company.id)
+end
+5.times do
+  FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
+end
+5.times do
+  FactoryBot.create(:user, status: :refused, insurance_company_id: company.id)
 end
 
 FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')

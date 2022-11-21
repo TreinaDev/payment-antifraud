@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :user do
     email { "#{SecureRandom.alphanumeric(8)}@paolaseguros.com.br" }
     password { 'password' }
-    name { 'Luis Inacio Lula da Silva' }
-    registration_number { '39439419203' }
+    name { Faker::Name.name }
+    registration_number { (11.times.map { rand(1..9) }).join }
     status { :approved }
     after(:build) do |user|
       class << user
