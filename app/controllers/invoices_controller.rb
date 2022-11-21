@@ -1,6 +1,5 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[show edit update]
-  before_action :invoice_params, only: %i[update]
   before_action :require_user
   def index
     @invoices = current_user.insurance_company.invoices
