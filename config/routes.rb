@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :company_payment_options, only: [:index, :show, :new, :create, :edit, :update]
   resources :users, only: %i[index] do 
     resources :user_reviews, only: %i[new create]
+    
   end
   resources :fraud_reports, only: %i[index show new create] do 
     post 'approves', on: :member

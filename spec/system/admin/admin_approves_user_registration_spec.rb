@@ -45,6 +45,108 @@ describe 'Administrador vê a lista de usuários cadastrados' do
       expect(page).to have_content '12345678911'
       expect(page).to have_content 'Cadastro aprovado'
     end
+
+    it 'e vê somente os usuários com cadastro pendente' do
+      company = FactoryBot.create(:insurance_company)
+      admin = FactoryBot.create(:admin)
+      FactoryBot.create(
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending,
+               insurance_company_id: company.id
+      )
+      FactoryBot.create(
+        :user, name: 'Ana', email: 'anaborba@petraseguros.com.br',
+               registration_number: '12345678911', status: :approved,
+               insurance_company_id: company.id
+      )
+
+      login_as admin, scope: :admin
+      visit users_path
+      select 'Usuários pendentes', from: 'filter_option'
+      click_on 'Selecionar'
+
+      expect(current_path).to eq users_path
+      expect(page).to have_content 'Paola'
+      expect(page).to have_content 'paola@petraseguros.com.br'
+      expect(page).to have_content '39401920391'
+      expect(page).to have_content 'Cadastro pendente'
+      expect(page).to have_link 'Avaliar Cadastro'
+      expect(page).not_to have_content 'Ana'
+      expect(page).not_to have_content 'anaborba@petraseguros.com.br'
+      expect(page).not_to have_content '12345678911'
+      expect(page).not_to have_content 'Cadastro aprovado'
+    end
+
+    it 'e vê somente os usuários com cadastro aprovado' do
+      company = FactoryBot.create(:insurance_company)
+      admin = FactoryBot.create(:admin)
+      FactoryBot.create(
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending,
+               insurance_company_id: company.id
+      )
+      FactoryBot.create(
+        :user, name: 'Ana', email: 'anaborba@petraseguros.com.br',
+               registration_number: '12345678911', status: :approved,
+               insurance_company_id: company.id
+      )
+
+      login_as admin, scope: :admin
+      visit users_path
+      select 'Usuários aprovados', from: 'filter_option'
+      click_on 'Selecionar'
+
+      expect(current_path).to eq users_path
+      expect(page).to have_content 'Ana'
+      expect(page).to have_content 'anaborba@petraseguros.com.br'
+      expect(page).to have_content '12345678911'
+      expect(page).to have_content 'Cadastro aprovado'
+      expect(page).not_to have_content 'Paola'
+      expect(page).not_to have_content 'paola@petraseguros.com.br'
+      expect(page).not_to have_content '39401920391'
+      expect(page).not_to have_content 'Cadastro pendente'
+      expect(page).not_to have_link 'Avaliar Cadastro'
+    end
+
+    it 'e vê somente os usuários com cadastro reprovado' do
+      company = FactoryBot.create(:insurance_company)
+      admin = FactoryBot.create(:admin)
+      FactoryBot.create(
+        :user, name: 'Paola', email: 'paola@petraseguros.com.br',
+               registration_number: '39401920391', status: :pending,
+               insurance_company_id: company.id
+      )
+      FactoryBot.create(
+        :user, name: 'Ana', email: 'anaborba@petraseguros.com.br',
+               registration_number: '12345678911', status: :approved,
+               insurance_company_id: company.id
+      )
+      FactoryBot.create(
+        :user, name: 'Beatriz', email: 'bealindacheirosa@petraseguros.com.br',
+               registration_number: '97081507411', status: :refused,
+               insurance_company_id: company.id
+      )
+
+      login_as admin, scope: :admin
+      visit users_path
+      select 'Usuários reprovados', from: 'filter_option'
+      click_on 'Selecionar'
+
+      expect(current_path).to eq users_path
+      expect(page).to have_content 'Beatriz'
+      expect(page).to have_content 'bealindacheirosa@petraseguros.com.br'
+      expect(page).to have_content '97081507411'
+      expect(page).to have_content 'Cadastro recusado'
+      expect(page).not_to have_content 'Ana'
+      expect(page).not_to have_content 'anaborba@petraseguros.com.br'
+      expect(page).not_to have_content '12345678911'
+      expect(page).not_to have_content 'Cadastro aprovado'
+      expect(page).not_to have_content 'Paola'
+      expect(page).not_to have_content 'paola@petraseguros.com.br'
+      expect(page).not_to have_content '39401920391'
+      expect(page).not_to have_content 'Cadastro pendente'
+      expect(page).not_to have_link 'Avaliar Cadastro'
+    end
   end
 
   context 'e vê botão de alteração de cadastro' do
