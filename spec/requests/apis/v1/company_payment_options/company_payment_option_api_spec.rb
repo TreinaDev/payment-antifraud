@@ -37,6 +37,8 @@ describe 'CompanyPaymentOptionAPI' do
       expect(response).to have_http_status 200
       expect(response.content_type).to include 'application/json'
       json_data = JSON.parse(response.body)
+      expect(json_data.first.keys).to include 'payment_option_id'
+      expect(json_data[1].keys).to include 'payment_option_id'
       expect(json_data.first['name']).to eq 'Cartão Nubank'
       expect(json_data.first['payment_type']).to eq 'Cartão de Crédito'
       expect(json_data.first['tax_percentage']).to eq 2
@@ -51,9 +53,9 @@ describe 'CompanyPaymentOptionAPI' do
       expect(json_data[1]['single_parcel_discount']).to eq 1
       expect(json_data.first.keys).not_to include 'created_at'
       expect(json_data.first.keys).not_to include 'updated_at'
-      expect(json_data.first.keys).to include 'image_url'
       expect(json_data[1].keys).not_to include 'created_at'
       expect(json_data[1].keys).not_to include 'updated_at'
+      expect(json_data.first.keys).to include 'image_url'
       expect(json_data[1].keys).to include 'image_url'
     end
 
