@@ -30,7 +30,7 @@ describe 'Usuário vê cobranças' do
     expect(page).to have_content 'ID Pacote de Seguros'
     expect(page).to have_content '10'
     expect(page).to have_content 'pendente'
-    within 'article footer .pagination' do
+    within 'article footer #pagination' do
       expect(page).to have_content 'Primeira'
       expect(page).to have_content '< Anterior'
       expect(page).to have_content 'Página 1 de 1'

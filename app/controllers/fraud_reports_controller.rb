@@ -1,15 +1,20 @@
 class FraudReportsController < ApplicationController
+  include Pagination 
+
   before_action :authenticate!, only: %i[index show]
   before_action :require_user, only: %i[new create]
   before_action :require_admin, only: %i[approves denies]
   before_action :fetch_fraud_report, only: %i[show approves denies]
 
   def index
-    @fraud_reports = if current_admin
-                       FraudReport.all.sort_by(&:status)
-                     else
-                       current_user.insurance_company.fraud_reports.sort_by(&:status)
-                     end
+    @pagination, @fraud_reports = paginate(
+      collection: if current_admin
+                    FraudReport.all
+                  else
+                    current_user.insurance_company.fraud_reports
+                  end,
+      params: page_params(10)
+  )
   end
 
   def show
