@@ -59,7 +59,7 @@ describe 'Usuário vê cobranças' do
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('BBBS65OFN493OE93MVNA')
     create(:invoice, payment_method:, insurance_company_id: company2.id, package_id: 5,
-                     registration_number: '12345678', status: :paid, order_id: 2)
+                     registration_number: '12345678', status: :approved, order_id: 2)
 
     login_as(user2, scope: :user)
     visit root_path
