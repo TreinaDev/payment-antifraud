@@ -55,11 +55,10 @@ class InvoicesController < ApplicationController
     #{@invoice.order_id}/payment_approved"
     invoice_refused_url = "#{Rails.configuration.external_apis['comparator_api']}/orders/
     #{@invoice.order_id}/payment_refused"
+    params = { message: 'Success.' }
     if @invoice.approved?
-      params = { message: 'Success.' }
       Faraday.post(invoice_approved_url, params)
     elsif @invoice.refused?
-      params = { message: 'Success.' }
       Faraday.post(invoice_refused_url, params)
     end
   end

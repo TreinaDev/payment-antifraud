@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'PATCH#edit comparator/api/v1/invoices/id' do
+describe 'POST#edit comparator/api/v1/invoices/id' do
   it 'aprovação do status de uma cobrança' do
     company = FactoryBot.create(:insurance_company)
     user = FactoryBot.create(:user, insurance_company_id: company.id)
