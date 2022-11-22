@@ -10,7 +10,13 @@ company = FactoryBot.create(:insurance_company)
 primary_user = FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
                                         status: 'approved', insurance_company_id: company.id)
 5.times do
-  FactoryBot.create(:user, status: 'pending', insurance_company_id: company.id)
+  FactoryBot.create(:user, status: :pending, insurance_company_id: company.id)
+end
+5.times do
+  FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
+end
+5.times do
+  FactoryBot.create(:user, status: :refused, insurance_company_id: company.id)
 end
 
 FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')
@@ -48,7 +54,7 @@ FactoryBot.create(
   user: primary_user,
   payment_method: payment_method2,
   insurance_company: company,
-  max_parcels: 12,
+  max_parcels: 1,
   single_parcel_discount: 1
 )
 FactoryBot.create(
@@ -56,7 +62,7 @@ FactoryBot.create(
   user: primary_user,
   payment_method: payment_method3,
   insurance_company: company,
-  max_parcels: 12,
+  max_parcels: 1,
   single_parcel_discount: 1
 )
 

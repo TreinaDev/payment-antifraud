@@ -21,9 +21,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on promo.voucher
     select 'TV 32', from: 'Adicionar produto na promoção:'
     click_on 'Selecionar Produto'
@@ -52,9 +50,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on promo.voucher
     select 'TV 32', from: 'Adicionar produto na promoção:'
     click_on 'Selecionar Produto'
@@ -84,9 +80,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
 
     login_as user, scope: :user
     visit root_path
-    within('nav') do
-      click_on 'Promoções'
-    end
+    click_on 'Promoções'
     click_on promo.voucher
     select 'TV 32', from: 'Adicionar produto na promoção:'
     click_on 'Selecionar Produto'

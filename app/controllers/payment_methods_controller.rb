@@ -1,9 +1,15 @@
 class PaymentMethodsController < ApplicationController
   before_action :require_admin
+  include Pagination
+
+  before_action :authenticate!
   before_action :set_payment_method, only: %i[show edit update]
 
   def index
-    @payment_methods = PaymentMethod.all
+    @pagination, @payment_methods = paginate(
+      collection: PaymentMethod.all,
+      params: page_params(10)
+    )
   end
 
   def show; end

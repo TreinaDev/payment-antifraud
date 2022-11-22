@@ -1,9 +1,14 @@
 class PromosController < ApplicationController
+  include Pagination
+
   before_action :require_user
   before_action :set_promo, only: %i[edit update show]
 
   def index
-    @promos = current_user.insurance_company.promos
+    @pagination, @promos = paginate(
+      collection: current_user.insurance_company.promos,
+      params: page_params(10)
+    )
   end
 
   def show
