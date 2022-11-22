@@ -82,39 +82,6 @@ describe Api::V1::InvoicesController, type: :request do
     end
   end
 
-  describe 'GET#index api/v1/invoices' do
-    context 'when is successful' do
-      it 'list all invoices ' do
-        allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
-        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('S2D3F4G5')
-        payment_method = create(:payment_method)
-        insurance_company = create(:insurance_company)
-        user = create(:user, insurance_company:)
-        FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id,
-                                                   payment_method_id: payment_method.id, user:)
-
-        invoice = Invoice.create!(payment_method:,
-                                  order_id: 1, registration_number: '12345678', status: 0,
-                                  package_id: 1, insurance_company_id: insurance_company.id)
-        second_invoice = Invoice.create!(payment_method:,
-                                         order_id: 2, registration_number: '87654321', status: 0,
-                                         package_id: 2, insurance_company_id: insurance_company.id)
-
-        get '/api/v1/invoices'
-
-        expect(response).to have_http_status 200
-        expect(response_parsed).to match([second_invoice.as_json, invoice.as_json])
-      end
-
-      it 'return empty if there is no invoices' do
-        get '/api/v1/invoices'
-
-        expect(response).to have_http_status 200
-        expect(response_parsed).to eq []
-      end
-    end
-  end
-
   describe 'GET#show api/v1/invoices/' do
     context 'when is successful' do
       it 'success' do
