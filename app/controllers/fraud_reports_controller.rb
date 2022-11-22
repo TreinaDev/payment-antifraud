@@ -38,9 +38,7 @@ class FraudReportsController < ApplicationController
 
   def approves
     @fraud_report.confirmed_fraud!
-    unless BlockedRegistrationNumber.find_by(registration_number: @fraud_report.registration_number)
-      BlockedRegistrationNumber.create!(registration_number: @fraud_report.registration_number)
-    end
+    BlockedRegistrationNumber.find_or_create_by!(registration_number: @fraud_report.registration_number)  
 
     flash.now[:notice] = t('messages.fraud_approved')
     render :show

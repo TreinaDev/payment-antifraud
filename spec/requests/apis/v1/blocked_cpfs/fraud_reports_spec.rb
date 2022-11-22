@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Lista de Blocqueios' do
+describe 'Lista de Bloqueios' do
   context 'GET /api/v1/promos/voucher' do
     it 'busca por um cpf bloqueado e encontra a mensagem de que está bloqueado' do
       FactoryBot.create(:blocked_registration_number, registration_number: '19203910293')

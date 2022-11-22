@@ -15,7 +15,7 @@ describe 'Admin avalia uma denúncia de fraude' do
     click_on 'Denúncias de fraude'
     click_on 'Ver detalhes'
     click_on 'Aprovar'
-    blocked_cpf = BlockedRegistrationNumber.find(1)
+    blocked_cpf = BlockedRegistrationNumber.last
 
     expect(page).not_to have_button 'Aprovar'
     expect(page).not_to have_button 'Reprovar'
@@ -62,7 +62,7 @@ describe 'Admin avalia uma denúncia de fraude' do
     click_on 'Denúncias de fraude'
     click_on 'Ver detalhes'
     click_on 'Aprovar'
-    blocked_cpf = BlockedRegistrationNumber.find(1)
+    blocked_cpf = BlockedRegistrationNumber.last
 
     expect(page).not_to have_button 'Aprovar'
     expect(page).not_to have_button 'Reprovar'
