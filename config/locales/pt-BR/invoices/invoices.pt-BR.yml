@@ -1,7 +1,7 @@
 pt-BR:
   pending: pendente
-  paid: Sucesso no Pagamento
-  failed: Falha no Pagamento
+  approved: Sucesso no Pagamento
+  refused: Falha no Pagamento
   messages: 
     charge_updated_successfully: Cobrança atualizada com sucesso
     charge_not_updated: Cobrança não foi atualizada
