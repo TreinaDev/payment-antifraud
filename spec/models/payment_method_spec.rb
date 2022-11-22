@@ -32,8 +32,7 @@ RSpec.describe PaymentMethod, type: :model do
       end
 
       it 'Ícone é obrigatório' do
-        payment_method = FactoryBot.create(:payment_method)
-        payment_method.image.purge
+        payment_method = FactoryBot.build(:payment_method, image: nil)
         payment_method.valid?
 
         expect(payment_method.errors.include?(:image)).to eq true
@@ -58,8 +57,7 @@ RSpec.describe PaymentMethod, type: :model do
 
     context 'tipo de arquivo' do
       it 'é jpeg ou png' do
-        payment_method = FactoryBot.create(:payment_method)
-        payment_method.image.purge
+        payment_method = FactoryBot.build(:payment_method)
         payment_method.image.attach(io: Rails.root.join('spec/support/projeto.pdf').open, filename: 'projeto.pdf')
 
         payment_method.valid?

@@ -2,10 +2,11 @@ class CompanyPaymentOptionsController < ApplicationController
   include Pagination
 
   before_action :require_user
-  before_action :fetch_payment_methods, only: %i[new create edit update]
-  before_action :fetch_payment_option, only: %i[show edit update]
+  before_action :fetch_payment_option, only: %i[show edit update destroy]
 
   def index
+    @payment_options = current_user.insurance_company.payment_options
+    @payment_methods = PaymentMethod.active.where.not(id: CompanyPaymentOption.all.pluck(:payment_method_id))
     @pagination, @payment_options = paginate(
       collection: current_user.insurance_company.payment_options,
       params: page_params(10)
@@ -15,7 +16,7 @@ class CompanyPaymentOptionsController < ApplicationController
   def show; end
 
   def new
-    @payment_option = CompanyPaymentOption.new
+    @payment_option = CompanyPaymentOption.new(payment_method_id: params[:payment_method_id])
   end
 
   def edit; end
@@ -43,14 +44,15 @@ class CompanyPaymentOptionsController < ApplicationController
     render :edit
   end
 
+  def destroy
+    @payment_option.destroy
+    redirect_to company_payment_options_path, notice: t('messages.payment_option_successfully_removed')
+  end
+
   private
 
   def fetch_payment_option
     @payment_option = CompanyPaymentOption.find params[:id]
-  end
-
-  def fetch_payment_methods
-    @payment_methods = PaymentMethod.all
   end
 
   def new_payment_option_params

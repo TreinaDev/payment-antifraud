@@ -1,7 +1,7 @@
 class PaymentMethodsController < ApplicationController
   include Pagination
 
-  before_action :authenticate!
+  before_action :require_admin
   before_action :set_payment_method, only: %i[show edit update]
 
   def index
@@ -48,7 +48,7 @@ class PaymentMethodsController < ApplicationController
   private
 
   def payment_method_params
-    params.require(:payment_method).permit(:name, :tax_percentage, :tax_maximum, :payment_type, :image)
+    params.require(:payment_method).permit(:name, :tax_percentage, :tax_maximum, :payment_type, :status, :image)
   end
 
   def set_payment_method

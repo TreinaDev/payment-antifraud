@@ -22,7 +22,7 @@
           </li>
           <li class="list-group-item">
             <strong><%= PaymentMethod.human_attribute_name(:tax_maximum)%>:</strong>
-            <%= number_to_currency(@payment_method.tax_maximum, :unit => "R$ ", :separator => ",", :delimiter => ".") %>
+            <%= number_to_currency(@payment_method.tax_maximum) %>
           </li>
           <li class="list-group-item">
             <strong><%= PaymentMethod.human_attribute_name(:payment_type)%>:</strong>
