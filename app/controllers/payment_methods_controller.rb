@@ -1,5 +1,4 @@
 class PaymentMethodsController < ApplicationController
-  
   include Pagination
 
   before_action :require_admin
