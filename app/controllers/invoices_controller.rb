@@ -37,7 +37,8 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:status, :token, :package_id, :registration_number,
-                                    :insurance_company_id, :order_id, :payment_method_id, :voucher,
+                                    :insurance_company_id, :order_id, :payment_method_id,
+                                    :voucher, :parcels, :total_price,
                                     :transaction_registration_number, :reason_for_failure)
   end
 
