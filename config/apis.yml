@@ -1,5 +1,6 @@
 development:
   insurance_api: http://localhost:3000/api/v1 
+  comparator_api: http://localhost:3000/api/v1
   insurance_api_products_endpoint: http://localhost:3000/api/v1/products 
   comparator_api_invoices_endpoint: http://localhost:4000/api/v1/invoices/
 
