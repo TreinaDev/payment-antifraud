@@ -48,7 +48,7 @@
               <td> <%= pm.payment_type %> </td>
               <td> <%= pm.tax_percentage %>% </td>
               <td> <%= number_to_currency(pm.tax_maximum, :unit => "R$ ", :separator => ",", :delimiter => ".") %> </td>
-              <td> <%= link_to 'Configurar', new_company_payment_option_path(payment_method_id: pm.id), class: "btn btn-primary  btn-m" %> </td>
+              <td> <%= link_to t('buttons.set_up'), new_company_payment_option_path(payment_method_id: pm.id), class: "btn btn-primary  btn-m" %> </td>
             </tr>
           </tbody>
         <% end %>

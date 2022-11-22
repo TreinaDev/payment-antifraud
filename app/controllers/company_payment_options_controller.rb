@@ -16,8 +16,7 @@ class CompanyPaymentOptionsController < ApplicationController
   def show; end
 
   def new
-    @payment_option = CompanyPaymentOption.new
-    @payment_option.payment_method_id = params[:payment_method_id]
+    @payment_option = CompanyPaymentOption.new(payment_method_id: params[:payment_method_id])
   end
 
   def edit; end
