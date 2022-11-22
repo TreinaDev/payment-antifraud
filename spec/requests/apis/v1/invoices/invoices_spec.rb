@@ -26,14 +26,9 @@ describe Api::V1::InvoicesController, type: :request do
 
         expect(response).to have_http_status :created
         expect(response_parsed).to include({
-          payment_method_id: payment_method.id,
-          token: 'A1S2D3F4G5H6J7K8L9ZA',
-          order_id: 1,
-          registration_number: '12345678',
-          status: 'pending',
-          package_id: 1,
-          insurance_company_id: insurance_company.id
-        }.with_indifferent_access)
+          message: 'Sucesso.'
+        }
+        .with_indifferent_access)
       end
 
       it 'creates a new invoice' do

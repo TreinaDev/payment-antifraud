@@ -62,5 +62,27 @@ RSpec.describe FraudReport, type: :model do
         expect(fraud).not_to be_valid
       end
     end
+    context 'numericality' do
+      it 'falso quando é cadastrado um cpf com caracteres não numéricos' do
+        company = FactoryBot.create(:insurance_company)
+        fraud = FactoryBot.build(
+          :fraud_report,
+          registration_number: 'cpfdapaola!',
+          description: 'Ladra Bandida!',
+          insurance_company_id: company.id
+        )
+        fraud.images.attach(
+          [
+            Rack::Test::UploadedFile.new(Rails.root.join('spec/support/crime.jpeg')),
+            Rack::Test::UploadedFile.new(Rails.root.join('spec/support/fotos_do_crime.jpeg'))
+          ]
+        )
+
+        fraud.save
+
+        expect(fraud).not_to be_valid
+        expect(fraud.errors.include?(:registration_number)).to be_truthy
+      end
+    end
   end
 end
