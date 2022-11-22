@@ -14,7 +14,7 @@ module Api
       def create
         invoice = Invoice.parse_from(invoice_params)
         if invoice.save
-          render status: :created, json: invoice.as_json
+          render status: :created, json: { message: 'Sucesso.' }
         else
           render status: :precondition_failed, json: { errors: invoice.errors.full_messages }
         end
