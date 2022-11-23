@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe InsuranceCompany, type: :model do
   context '.all_external' do
     it 'Método devolve todas as companhias de seguro cadastradas' do
+      companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
       json_data = File.read 'spec/support/json/insurance_companies.json'
       fake_response = double('Faraday::Response', status: 200, body: json_data)
-      allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
+      allow(Faraday).to receive(:get).with(companies_url).and_return(fake_response)
 
       companies = InsuranceCompany.all_external
 
@@ -23,8 +24,9 @@ RSpec.describe InsuranceCompany, type: :model do
     end
 
     it 'Método devolve array vazio quando recebe um status 204(No Content) da API' do
+      companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
       fake_response = double('Faraday::Response', status: 204, body: {})
-      allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
+      allow(Faraday).to receive(:get).with(companies_url).and_return(fake_response)
 
       companies = InsuranceCompany.all_external
 

@@ -19,7 +19,7 @@ class InvoicesController < ApplicationController
 
   def update
     @invoice.attributes = invoice_params
-    if @invoice.valid? && post_external_invoice_sucess?
+    if @invoice.valid? && update_comparator_system_invoice
       @invoice.update(invoice_params)
       flash[:notice] = t('messages.charge_updated_successfully')
       redirect_to @invoice
@@ -42,15 +42,15 @@ class InvoicesController < ApplicationController
                                     :transaction_registration_number, :reason_for_failure)
   end
 
-  def post_external_invoice_sucess?
-    response = post_external_invoice
+  def update_comparator_system_invoice
+    response = update_comparator_system_invoice_response
     return false if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500
 
     response
   end
 
-  def post_external_invoice
+  def update_comparator_system_invoice_response
     invoice_approved_url = "#{Rails.configuration.external_apis['comparator_api']}/orders/
     #{@invoice.order_id}/payment_approved"
     invoice_refused_url = "#{Rails.configuration.external_apis['comparator_api']}/orders/
