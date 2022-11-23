@@ -88,5 +88,45 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.errors.include?(:reason_for_failure)).to eq true
       expect(invoice.errors.include?(:transaction_registration_number)).to eq false
     end
+
+    it 'sendo order_id obrigatórios' do
+      payment_method = create(:payment_method, name: 'Laranja',
+                                                tax_percentage: 5, tax_maximum: 100,
+                                                payment_type: 'Cartão de Crédito',
+                                                status: :active)
+      insurance_company = create(:insurance_company)
+      user = create(:user, insurance_company:)
+      
+      invoice = build(:invoice, payment_method: payment_method, insurance_company:, order_id: nil)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:order_id)).to eq true
+    end
+    it 'sendo package_id obrigatórios' do
+      payment_method = create(:payment_method, name: 'Laranja',
+                                                tax_percentage: 5, tax_maximum: 100,
+                                                payment_type: 'Cartão de Crédito',
+                                                status: :active)
+      insurance_company = create(:insurance_company)
+      user = create(:user, insurance_company:)
+      
+      invoice = build(:invoice, payment_method: payment_method, insurance_company:, package_id: nil)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:package_id)).to eq true
+    end
+    it 'sendo total_price obrigatórios' do
+      payment_method = create(:payment_method, name: 'Laranja',
+                                                tax_percentage: 5, tax_maximum: 100,
+                                                payment_type: 'Cartão de Crédito',
+                                                status: :active)
+      insurance_company = create(:insurance_company)
+      user = create(:user, insurance_company:)
+      
+      invoice = build(:invoice, payment_method: payment_method, insurance_company:, total_price: nil)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:total_price)).to eq true
+    end
   end
 end

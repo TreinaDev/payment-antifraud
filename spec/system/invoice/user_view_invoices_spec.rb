@@ -27,7 +27,7 @@ describe 'Usuário vê cobranças' do
     expect(page).to have_content 'Token'
     expect(page).to have_content 'Status'
     expect(page).to have_content 'AGBS65OFN493OE93MVNA'
-    expect(page).to have_content 'ID Pacote de Seguros'
+    expect(page).to have_content 'Pacote de Seguros'
     expect(page).to have_content '10'
     expect(page).to have_content 'pendente'
     within 'article footer #pagination' do
