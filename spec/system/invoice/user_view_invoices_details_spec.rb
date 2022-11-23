@@ -8,7 +8,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get).with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{company.id}").and_return(fake_response1)
-    
+
     package = File.read 'spec/support/json/package_id.json'
     fake_response2 = double('Faraday::Response', status: 200, body: package)
     allow(Faraday).to receive(:get).with("#{Rails.configuration.external_apis['insurance_api']}/packages/2").and_return(fake_response2)
@@ -32,7 +32,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
     expect(page).to have_content 'Status: pendente'
     expect(page).to have_content 'AGBS65OFN493OE93MVNA'
     expect(page).to have_content 'Seguradora: Liga de Seguros'
-    expect(page).to have_content "Pacote de Seguros: Super Econômico"
+    expect(page).to have_content 'Pacote de Seguros: Super Econômico'
     expect(page).to have_content 'Meio de Pagamento:'
     expect(page).to have_content 'Tipo de Pagamento:'
     expect(page).to have_content "Cupom: #{invoice.voucher}"
@@ -58,6 +58,5 @@ describe 'Usuário vê detalhes de uma cobranças' do
     expect(current_path).to eq invoice_path(invoice.id)
     expect(page).not_to have_content 'Motivo da falha'
     expect(page).to have_content 'Número de registro da transação'
-
   end
 end

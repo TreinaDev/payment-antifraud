@@ -42,7 +42,6 @@ describe 'API Cobranças' do
     post api_v1_invoices_path, params: params
 
     expect(Invoice.count).to eq 0
-    expect(response.status).to eq 412  
-    
+    expect(response.status).to eq 412
   end
 end
