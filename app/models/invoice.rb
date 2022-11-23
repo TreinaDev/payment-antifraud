@@ -4,6 +4,7 @@ class Invoice < ApplicationRecord
   belongs_to :payment_method
   belongs_to :insurance_company
   
+  validades :parcels, :total_price, :package_id, :order_id, presence: true
   validate :valid_insurance_company?
   validate :check_payment_method_options, if: :valid_insurance_company?
   validates :transaction_registration_number, presence: true, on: :update, if: :approved?
