@@ -2,7 +2,7 @@ module Api
   module V1
     class PromosController < Api::V1::ApiController
       def show
-        promo = Promo.find_by(voucher: params[:id].split('-')[1])
+        promo = Promo.find_by(voucher: params[:voucher])
         raise ActiveRecord::RecordNotFound if promo.blank?
 
         render status: :ok, json: promo_json(promo)
@@ -11,7 +11,7 @@ module Api
       private
 
       def product_not_in_promo?(promo)
-        promo.promo_products.map(&:product_id).none? params[:id].split('-')[0].to_i
+        promo.promo_products.map(&:product_id).none? params[:product_id].to_i
       end
 
       def promo_json(promo)
@@ -20,7 +20,7 @@ module Api
         elsif Time.zone.today < promo.starting_date || product_not_in_promo?(promo)
           { status: 'Cupom inválido.' }
         else
-          { status: 'Cupom válido.', discount: promo.promo_discount(params[:id].split('-')[2].to_i) }
+          { status: 'Cupom válido.', discount: promo.promo_discount(params[:price].to_f.round(1)) }
         end
       end
     end
