@@ -18,7 +18,8 @@ describe Api::V1::InvoicesController, type: :request do
           invoice: {
             payment_method_id: payment_method.id,
             order_id: 1, registration_number: '12345678', status: 0,
-            package_id: 1, insurance_company_id: insurance_company.id
+            package_id: 1, insurance_company_id: insurance_company.id,
+            total_price: 50, parcels: 2
           }
         }
 
@@ -45,7 +46,8 @@ describe Api::V1::InvoicesController, type: :request do
         params = {
           invoice: { payment_method_id: payment_method.id,
                      order_id: 1, registration_number: '12345678', status: 0,
-                     package_id: 1, insurance_company_id: insurance_company.id }
+                     package_id: 1, insurance_company_id: insurance_company.id,
+                     total_price: 50, parcels: 2 }
         }
 
         expect { post '/api/v1/invoices', params: }.to change { Invoice.count }.from(0).to(1)
@@ -94,7 +96,8 @@ describe Api::V1::InvoicesController, type: :request do
                                                    payment_method_id: payment_method.id, user:)
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678', status: 0,
-                                  package_id: 1, insurance_company_id: insurance_company.id)
+                                  package_id: 1, insurance_company_id: insurance_company.id,
+                                  total_price: 50, parcels: 2)
 
         get "/api/v1/invoices/#{invoice.id}"
 
