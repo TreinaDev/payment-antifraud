@@ -43,18 +43,23 @@ class InvoicesController < ApplicationController
   end
 
   def update_comparator_system_invoice
+    response = update_comparator_system_invoice_response
+    return false if response.status == 204
+    raise ActiveRecord::QueryCanceled if response.status == 500
+
+    response
+  end
+
+  def update_comparator_system_invoice_response
     invoice_approved_url = "#{Rails.configuration.external_apis['comparator_api']}/orders/
     #{@invoice.order_id}/payment_approved"
     invoice_refused_url = "#{Rails.configuration.external_apis['comparator_api']}/orders/
     #{@invoice.order_id}/payment_refused"
     params = { message: 'Success.', token: @invoice.token }
     if @invoice.approved?
-      response = Faraday.post(invoice_approved_url, params)
+      Faraday.post(invoice_approved_url, params)
     elsif @invoice.refused?
-      response = Faraday.post(invoice_refused_url, params)
+      Faraday.post(invoice_refused_url, params)
     end
-    return false if response.status == 204
-    raise ActiveRecord::QueryCanceled if response.status == 500
-    response
   end
 end
