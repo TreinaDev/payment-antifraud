@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'Funcionário edita uma promoção' do
   it 'a partir da tela de show' do
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
+    json_data = Rails.root.join('spec/support/json/products.json').read
+    fake_response = double('Faraday::Response', status: 200, body: json_data)
+    allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     company = FactoryBot.create(:insurance_company)
     promo = create(:promo, name: 'Promoção Páscoa', usages_max: 50, discount_max: 1000,
                            insurance_company_id: company.id)
@@ -24,6 +28,10 @@ describe 'Funcionário edita uma promoção' do
   end
 
   it 'com sucesso' do
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
+    json_data = Rails.root.join('spec/support/json/products.json').read
+    fake_response = double('Faraday::Response', status: 200, body: json_data)
+    allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     company = FactoryBot.create(:insurance_company)
     promo = create(:promo, name: 'Promoção de Páscoa', usages_max: 10, insurance_company_id: company.id)
     user = FactoryBot.create(:user, insurance_company_id: company.id)

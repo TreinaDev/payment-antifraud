@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário remove um produto a uma promoção' do
   it 'com sucesso' do
-    products_url = Rails.configuration.external_apis['insurance_api_products_endpoint']
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
     json_data = [
       {
         id: 1,
