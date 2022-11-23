@@ -128,5 +128,18 @@ RSpec.describe Invoice, type: :model do
       invoice.valid?
       expect(invoice.errors.include?(:total_price)).to eq true
     end
+    it 'sendo parcels obrigatórios' do
+      payment_method = create(:payment_method, name: 'Laranja',
+                                                tax_percentage: 5, tax_maximum: 100,
+                                                payment_type: 'Cartão de Crédito',
+                                                status: :active)
+      insurance_company = create(:insurance_company)
+      user = create(:user, insurance_company:)
+      
+      invoice = build(:invoice, payment_method: payment_method, insurance_company:, parcels: nil)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:parcels)).to eq true
+    end
   end
 end
