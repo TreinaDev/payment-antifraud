@@ -11,7 +11,7 @@ Confira abaixo as outras aplicações que conversam com o nosso sistema para cri
 
   * [Configurações](#configurações)
   * [Como rodar a aplicação](#como-rodar-a-aplicação)
-  * [Como fazer login com usuários](#com-fazer-login-com-usuários)
+  * [Como fazer login com usuários](#como-fazer-login-com-usuários)
   * [Documentação de API](#documentação-de-APIs)
 
 
@@ -49,9 +49,9 @@ Caso queira rodar todos os testes automatizados, utilize o comando  `rspec`
 
 Confira aqui links de páginas da nossa wiki com a documentação das API's disponíveis da aplicação. 
 
-* [API de Meios de Pagamento das Seguradoras](#API-Para-Obter-Meios-de-Pagamento-de-uma-Seguradora)
-* [API de Promoções das Seguradoras](#API-para-obter-promoções-de-cada-seguradora)
-* [API de CPFs com Denúncias Confirmadas](#API-De-CPFs-com-Denuncias-Confirmadas)
+* [API de Meios de Pagamento das Seguradoras](#API-de-Meios-de-Pagamento-de-uma-Seguradora)
+* [API de Promoções das Seguradoras](#API-de-promoções-de-cada-seguradora)
+* [API de CPFs com Denúncias de fraude Confirmadas](#API-de-CPFs-com-Denuncias-Confirmadas)
 * [Endpoint para POST de cobrança](#Endpoint-para-POST-de-cobrança)
 
 ### API De Meios de Pagamento das Seguradoras 
@@ -86,7 +86,7 @@ Confira aqui links de páginas da nossa wiki com a documentação das API's disp
 }
 ```
 
-### API para obter promoções de cada seguradora
+### API de Promoções das Seguradoras
 
   Para obter as os dados de uma promoção, você pode fazer uma requisição com o verbo `GET` na seguinte URL:
 
@@ -141,7 +141,7 @@ Promoção válida para todas as condições:
    }
 ```
 
-### API De CPFs com Denuncias Confirmadas
+### API de CPFs com Denúncias de fraude Confirmadas
 
   Para consultar se o cpf tem uma denúncia de fraude confirmada, você pode fazer uma requisição com o verbo `GET` na seguinte URL:
 
@@ -188,6 +188,23 @@ CPF não registrado ou sem denúncia de fraude confirmada:
   Status `412` | Falha em precondições.
 
 #### Dados
+
+  Para fazer uma requisição de POST com sucesso, é necessário enviar os dados no seguinte formato:
+
+  ```json
+  { 
+   "order_id": 1, 
+   "insurance_company_id": 1,
+   "package_id": 1,
+   "package_name": "Pacote de Seguros",
+   "registration_number": "12345678910",
+   "voucher": "ABCD1234",
+   "total_price": 100,
+   "parcels": 12,
+   "status": 5,
+   "token": "JAMDOQNENTOAMDI1293"
+  }
+```
 
   Caso a requisição seja um sucesso, com o status `200`, será exibida uma mensagem de sucesso em formato JSON:
 
