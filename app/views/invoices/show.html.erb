@@ -18,8 +18,11 @@
             <li class="list-group-item"><%= Invoice.human_attribute_name :voucher %>: <%= @invoice.voucher %> </li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :parcels %>: <%= @invoice.parcels %> </li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :total_price %>: <%= number_to_currency(@invoice.total_price) %> </li>
-            <li class="list-group-item"><%= Invoice.human_attribute_name :transaction_registration_number %>: <%= @invoice.transaction_registration_number %> </li>
-            <li class="list-group-item"><%= Invoice.human_attribute_name :reason_for_failure %>: <%= @invoice.reason_for_failure %> </li>
+            <% if @invoice.approved?%>
+              <li class="list-group-item"><%= Invoice.human_attribute_name :transaction_registration_number %>: <%= @invoice.transaction_registration_number %> </li>
+            <% elsif @invoice.refused?%>
+              <li class="list-group-item"><%= Invoice.human_attribute_name :reason_for_failure %>: <%= @invoice.reason_for_failure %> </li>
+            <% end %>
             <% if @invoice.pending? %>
               <p><%= link_to 'Sucesso no Pagamento', edit_invoice_url(status: 'approved'), class: "btn btn-primary btn-m" %></p>
               <p><%= link_to 'Falha no Pagamento', edit_invoice_url(status: 'refused'), class: "btn btn-primary btn-m" %></p>
