@@ -20,7 +20,7 @@ module Api
         elsif Time.zone.today < promo.starting_date || product_not_in_promo?(promo)
           { status: 'Cupom inválido.' }
         else
-          { status: 'Cupom válido.', discount: promo.promo_discount(params[:price].to_i) }
+          { status: 'Cupom válido.', discount: promo.promo_discount(params[:price].to_f.round(1)) }
         end
       end
     end

@@ -7,8 +7,4 @@ class PaymentMethod < ApplicationRecord
   validates :tax_percentage, :tax_maximum, numericality: { greater_than_or_equal_to: 0 }
   validates :image, attached: true
   validates :image, content_type: ['image/png', 'image/jpeg']
-
-  def payment_name_and_type
-    "#{name} - #{payment_type}"
-  end
 end

@@ -4,7 +4,7 @@ describe 'Admin avalia uma denúncia de fraude' do
   it 'a partir da tela de detalhes, e a aprova' do
     company = FactoryBot.create(:insurance_company)
     admin = FactoryBot.create(:admin)
-    FactoryBot.create(
+    fraud_report = FactoryBot.create(
       :fraud_report, registration_number: '12345678911',
                      insurance_company_id: company.id, description: 'Tentou fraudar o seguro.',
                      status: :pending
@@ -15,6 +15,7 @@ describe 'Admin avalia uma denúncia de fraude' do
     click_on 'Denúncias de fraude'
     click_on 'Ver detalhes'
     click_on 'Aprovar'
+    blocked_cpf = BlockedRegistrationNumber.last
 
     expect(page).not_to have_button 'Aprovar'
     expect(page).not_to have_button 'Reprovar'
@@ -22,6 +23,7 @@ describe 'Admin avalia uma denúncia de fraude' do
     expect(page).to have_content 'Denúncia do CPF: 123.456.789-11'
     expect(page).to have_content 'Descrição: Tentou fraudar o seguro.'
     expect(page).to have_content 'Status: Aprovada'
+    expect(blocked_cpf.registration_number).to eq fraud_report.registration_number
   end
 
   it 'a partir da tela de detalhes, e a reprova' do
@@ -43,5 +45,31 @@ describe 'Admin avalia uma denúncia de fraude' do
     expect(page).to have_content 'Denúncia do CPF: 456.879.123-99'
     expect(page).to have_content 'Descrição: Possível tentativa de fraudar o seguro.'
     expect(page).to have_content 'Status: Não comprovada'
+  end
+
+  it 'a partir da tela de detalhes, e a aprova uma denuncia contra um cpf que já está na lista de bloqueio' do
+    company = FactoryBot.create(:insurance_company)
+    admin = FactoryBot.create(:admin)
+    FactoryBot.create(:blocked_registration_number, registration_number: '12345678911')
+    fraud_report = FactoryBot.create(
+      :fraud_report, registration_number: '12345678911',
+                     insurance_company_id: company.id, description: 'Tentou fraudar o seguro.',
+                     status: :pending
+    )
+
+    login_as admin, scope: :admin
+    visit root_path
+    click_on 'Denúncias de fraude'
+    click_on 'Ver detalhes'
+    click_on 'Aprovar'
+    blocked_cpf = BlockedRegistrationNumber.last
+
+    expect(page).not_to have_button 'Aprovar'
+    expect(page).not_to have_button 'Reprovar'
+    expect(page).to have_content 'Denúncia aprovada com sucesso.'
+    expect(page).to have_content 'Denúncia do CPF: 123.456.789-11'
+    expect(page).to have_content 'Descrição: Tentou fraudar o seguro.'
+    expect(page).to have_content 'Status: Aprovada'
+    expect(blocked_cpf.registration_number).to eq fraud_report.registration_number
   end
 end

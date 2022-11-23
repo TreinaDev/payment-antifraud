@@ -47,7 +47,7 @@ describe 'Usuário altera status de uma cobrança' do
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
     json_data = Rails.root.join('spec/support/json/approved_invoice.json').read
     fake_response = double('Faraday::Response', status: 200, body: json_data)
-    allow(Faraday).to receive(:patch).and_return(fake_response)
+    allow(Faraday).to receive(:post).and_return(fake_response)
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
@@ -56,7 +56,7 @@ describe 'Usuário altera status de uma cobrança' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Cobrança atualizada com sucesso'
-    expect(page).to have_content 'Status: Sucesso no Pagamento'
+    expect(page).to have_content 'Status: aprovado'
     expect(page).to have_content 'Número de registro da transação: 12345678901'
     expect(page).not_to have_link 'Sucesso no Pagamento'
     expect(page).not_to have_link 'Falha no Pagamento'
@@ -70,9 +70,9 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
-    json_data = Rails.root.join('spec/support/json/failed_invoice.json').read
+    json_data = Rails.root.join('spec/support/json/refused_invoice.json').read
     fake_response = double('Faraday::Response', status: 200, body: json_data)
-    allow(Faraday).to receive(:patch).and_return(fake_response)
+    allow(Faraday).to receive(:post).and_return(fake_response)
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
@@ -81,7 +81,7 @@ describe 'Usuário altera status de uma cobrança' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Cobrança atualizada com sucesso'
-    expect(page).to have_content 'Status: Falha no Pagamento'
+    expect(page).to have_content 'Status: recusado'
     expect(page).to have_content 'Motivo da falha: Transação negada pela bandeira'
     expect(page).not_to have_link 'Sucesso no Pagamento'
     expect(page).not_to have_link 'Falha no Pagamento'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrador cadastra novo meio de pagamento' do
+describe 'Usuário cadastra novo meio de pagamento' do
   it 'e está autenticado como administrador' do
     admin = FactoryBot.create(:admin)
 
@@ -9,18 +9,6 @@ describe 'Administrador cadastra novo meio de pagamento' do
     click_on 'Meios de Pagamento'
 
     expect(page).to have_link 'Cadastrar Novo Meio de Pagamento'
-  end
-
-  it 'e não está autenticado como administrador' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
-
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Meios de Pagamento'
-
-    expect(current_url).to eq payment_methods_url
-    expect(page).not_to have_link 'Cadastrar Novo Meio de Pagamento'
   end
 
   it 'a partir do menu' do

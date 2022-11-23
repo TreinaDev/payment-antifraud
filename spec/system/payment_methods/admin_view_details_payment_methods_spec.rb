@@ -6,7 +6,7 @@ describe 'Usuário vê detalhes de um meio de pagamento' do
 
     visit payment_method_url(1)
 
-    expect(current_url).to eq root_url
+    expect(current_path).to eq root_path
     expect(page).to have_content 'Acesso negado.'
   end
 

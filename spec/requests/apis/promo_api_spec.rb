@@ -29,13 +29,13 @@ describe 'Promo API' do
                                           insurance_company_id: company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
 
-      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
+      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500.33'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
       expect(json_response['status']).to eq('Cupom válido.')
-      expect(json_response['discount']).to eq(100)
+      expect(json_response['discount']).to eq(100.06)
     end
 
     it 'e retorna não encontrado ao digitar um cupom não cadastrado' do
@@ -118,7 +118,7 @@ describe 'Promo API' do
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
       expect(json_response['status']).to eq('Cupom válido.')
-      expect(json_response['discount']).to eq 0
+      expect(json_response['discount']).to eq 0.0
     end
 
     it 'e o parâmetro "product_id" não é fornecido' do

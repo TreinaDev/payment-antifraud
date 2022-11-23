@@ -1,12 +1,12 @@
 pt-BR:
   pending: pendente
-  paid: Sucesso no Pagamento
-  failed: Falha no Pagamento
+  approved: Sucesso no Pagamento
+  refused: Falha no Pagamento
   messages: 
     charge_updated_successfully: Cobrança atualizada com sucesso
     charge_not_updated: Cobrança não foi atualizada
-  payment_method_details: 'Detalhes do Meio de Pagamento'
-  actual_icon: 'Ícone Atual'
+  payment_method_details: Detalhes do Meio de Pagamento
+  actual_icon: Ícone Atual
   activerecord:
     models:
       invoice:
@@ -25,3 +25,5 @@ pt-BR:
         voucher: Cupom
         transaction_registration_number: Número de registro da transação
         reason_for_failure: Motivo da falha
+        parcels: Parcelas
+        total_price: Preço Total

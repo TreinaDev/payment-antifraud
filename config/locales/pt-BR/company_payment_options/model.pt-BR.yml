@@ -4,17 +4,20 @@ pt-BR:
     dont_have: 'Não Possui'
     no_payment_options: 'Ainda não há opções de pagamento configuradas para esta seguradora'
     payment_option_details: 'Detalhes da opção de pagamento'
-    new_payment_option: 'Nova opção de pagamento'
+    new_payment_option: 'Configurar nova opção de pagamento'
     payment_option_created_with_success: 'Opção de pagamento criada com sucesso'
     not_created: 'Opção de pagamento não foi criada'
     edit_payment_option: 'Editar opção de pagamento'
     payment_option_edited_with_success: 'Opção de pagamento editada com sucesso'
     not_edited: 'Opção de pagamento não foi editada'
+    payment_methods_available: 'Meios de pagamento disponíveis'
+    no_payment_methods: 'Não há meios de pagamento disponíveis'
+    payment_option_successfully_removed: 'Opção de pagamento removida com sucesso.'
   activerecord:
     models:
       company_payment_option: 
-        one: 'Opção de Pagamento'
-        other: 'Opções de Pagamento'
+        one: 'Meio de pagamento definido para seguradora'
+        other: 'Meios de pagamento definidos para seguradora'
     attributes:
       company_payment_option:
         user_id: 'Usuário responsável'

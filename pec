@@ -1,0 +1,48 @@
+[1mdiff --cc config/routes.rb[m
+[1mindex 81c2cbd,dac1364..0000000[m
+[1m--- a/config/routes.rb[m
+[1m+++ b/config/routes.rb[m
+[36m@@@ -9,10 -9,10 +9,15 @@@[m [mRails.application.routes.draw d[m
+    end[m
+  [m
+    resources :payment_methods, only: [:index, :new, :create, :show, :edit, :update][m
+[32m++<<<<<<< HEAD[m
+[32m +  resources :company_payment_options, only: [:index, :show, :new, :create, :edit, :update][m
+[32m +  resources :users, only: %i[index] do[m
+[32m++=======[m
+[32m+   resources :company_payment_options, only: [:index, :show, :new, :create, :edit, :update, :destroy][m
+[32m+   resources :users, only: %i[index] do [m
+[32m++>>>>>>> fb725320b685a8484129b19812831119d6c4e35d[m
+      resources :user_reviews, only: %i[new create][m
+[31m -    [m
+[32m +[m
+    end[m
+  [m
+    resources :invoices, only: %i[index show edit update][m
+[36m@@@ -20,16 -20,16 +25,22 @@@[m
+      post 'approves', on: :member[m
+      post 'denies', on: :member[m
+    end[m
+[31m -  resources :invoices, only: %i[index show] do [m
+[31m -    resource :invoices_status_management, only: %i[update], controller:'invoices/invoices_status_management'  [m
+[32m +  resources :invoices, only: %i[index show] do[m
+[32m +    resource :invoices_status_management, only: %i[update], controller:'invoices/invoices_status_management'[m
+    end[m
+  [m
+[31m -  namespace :api do [m
+[31m -    namespace :v1 do [m
+[32m +  namespace :api do[m
+[32m +    namespace :v1 do[m
+        resources :invoices, only: [:show, :index, :create][m
+[32m++<<<<<<< HEAD[m
+[32m +      resources :promos, only: [:show], param: :voucher[m
+[32m +      resources :fraud_reports, only: [:show][m
+[32m +      resources :insurance_companies, only: %i[] do[m
+[32m++=======[m
+[32m+       resources :promos, only: [:show][m
+[32m+       resources :blocked_registration_numbers, only: [:show][m
+[32m+       resources :insurance_companies, only: %i[] do [m
+[32m++>>>>>>> fb725320b685a8484129b19812831119d6c4e35d[m
+          get 'payment_options', on: :member[m
+        end[m
+      end[m

@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<% if @invoice.paid? %>
+<% if @invoice.approved? %>
   <%= form_with model: @invoice do |f| %>
     <div>
       <%= f.hidden_field :status %>
@@ -24,7 +24,7 @@
   <% end %>
 <% end %>
 
-<% if @invoice.failed? %>
+<% if @invoice.refused? %>
   <%= form_with model: @invoice do |f| %>
     <div>
       <%= f.hidden_field :status %>

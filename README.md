@@ -23,6 +23,8 @@ Confira aqui links de páginas da nossa wiki com a documentação das API's disp
 
 ##### [API De CPFs com Denuncias Confirmadas](https://github.com/TreinaDev/payment-antifraud/wiki/API-De-CPFs-com-Denuncias-Confirmadas)
 
+##### [Endpoint para POST de cobrança](https://github.com/TreinaDev/payment-antifraud/wiki/Endpoint-para-POST-de-cobran%C3%A7a)
+
 ### Setup da aplicação
 
 Antes de inicializar a aplicação, rode o comando  `bin/setup`  para instalar todas as gems e dependências necessárias para o funcionamento adequado da aplicação.
