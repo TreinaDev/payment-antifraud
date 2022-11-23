@@ -103,6 +103,30 @@ describe 'Promo API' do
       expect(json_response['status']).to eq('Cupom inválido.')
     end
 
+    it 'cupom existe e está expirado por número de usos' do
+      allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
+      payment_method = create(:payment_method)
+      insurance_company = create(:insurance_company)
+      user = FactoryBot.create(:user, insurance_company_id: insurance_company.id)
+      FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id,
+                                                 payment_method_id: payment_method.id, user:)
+      promo_a = FactoryBot.create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
+                                          ending_date: Time.zone.today + 40.days,
+                                          discount_max: 100, discount_percentage: 20, usages_max: 1,
+                                          insurance_company_id: insurance_company.id)
+      FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
+      Invoice.create!(payment_method:,
+                      order_id: 1, registration_number: '12345678', status: 0,
+                      package_id: 1, insurance_company_id: insurance_company.id, voucher: '3MVGTOVW')
+
+      get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response['status']).to eq('Cupom expirado.')
+    end
+
     it 'e o parâmetro "price" não é fornecido' do
       company = FactoryBot.create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')

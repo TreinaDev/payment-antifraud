@@ -6,7 +6,8 @@ class InsuranceCompany < ApplicationRecord
   has_many :fraud_reports, dependent: :destroy
 
   def self.all_external
-    response = Faraday.get('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies')
+    companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
+    response = Faraday.get(companies_url)
     return [] if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500
 

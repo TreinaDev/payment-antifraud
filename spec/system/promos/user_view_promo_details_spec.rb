@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário vê mais detalhes de uma promoção' do
   it 'e vê informações adicionais' do
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
+    json_data = Rails.root.join('spec/support/json/products.json').read
+    fake_response = double('Faraday::Response', status: 200, body: json_data)
+    allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     company = FactoryBot.create(:insurance_company)
     allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
     user = FactoryBot.create(:user, insurance_company_id: company.id)

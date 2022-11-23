@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário adiciona um produto a uma promoção' do
   it 'com sucesso' do
-    products_url = Rails.configuration.external_apis['insurance_api_products_endpoint']
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
     json_data = [
       {
         id: 1,
@@ -31,7 +31,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     expect(page).to have_content 'TV 32'
   end
   it 'e produto some da lista de seleção se já tiver sido adicionado' do
-    products_url = Rails.configuration.external_apis['insurance_api_products_endpoint']
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
     json_data = [
       {
         id: 1,
@@ -61,7 +61,7 @@ describe 'Funcionário adiciona um produto a uma promoção' do
   end
 
   it 'e não consegue selecionar mais produtos quando todos já foram adicionados' do
-    products_url = Rails.configuration.external_apis['insurance_api_products_endpoint']
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
     json_data = [
       {
         id: 1,

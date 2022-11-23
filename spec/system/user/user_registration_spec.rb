@@ -42,8 +42,9 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e não há seguradoras cadastradas' do
+    companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
     fake_response = double('Faraday::Response', status: 204, body: {}.to_json)
-    allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
+    allow(Faraday).to receive(:get).with(companies_url).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -62,8 +63,9 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e o sistema de seguradoras está fora do ar' do
+    companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
     fake_response = double('Faraday::Response', status: 500, body: {}.to_json)
-    allow(Faraday).to receive(:get).with('https://636c2fafad62451f9fc53b2e.mockapi.io/api/v1/insurance_companies').and_return(fake_response)
+    allow(Faraday).to receive(:get).with(companies_url).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'

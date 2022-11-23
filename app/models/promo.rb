@@ -22,6 +22,10 @@ class Promo < ApplicationRecord
     (discount_percentage * payment_value) / 100
   end
 
+  def self.voucher_count(voucher)
+    Invoice.where(voucher:).where.not(status: :refused).count
+  end
+
   private
 
   def ending_date_greater_than_starting_date
