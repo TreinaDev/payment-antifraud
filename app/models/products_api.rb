@@ -16,7 +16,7 @@ class ProductsApi
   end
 
   def self.all
-    products_url = Rails.configuration.external_apis['insurance_api_products_endpoint']
+    products_url = "#{Rails.configuration.external_apis['insurance_api']}/products"
     response = Faraday.get(products_url)
     return [] if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500

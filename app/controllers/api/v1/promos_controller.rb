@@ -15,7 +15,7 @@ module Api
       end
 
       def promo_json(promo)
-        if Time.zone.today > promo.ending_date
+        if Time.zone.today > promo.ending_date || Promo.voucher_count(promo.voucher) >= promo.usages_max
           { status: 'Cupom expirado.' }
         elsif Time.zone.today < promo.starting_date || product_not_in_promo?(promo)
           { status: 'Cupom inválido.' }
