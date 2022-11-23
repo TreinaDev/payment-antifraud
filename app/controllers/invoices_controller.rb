@@ -11,7 +11,10 @@ class InvoicesController < ApplicationController
     )
   end
 
-  def show; end
+  def show 
+    @insurance_company_id = @invoice.get_insurance_company_id
+    @package_id = @invoice.get_package_id
+  end
 
   def edit
     @invoice.status = params[:status]

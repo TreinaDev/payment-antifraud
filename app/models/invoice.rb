@@ -10,6 +10,18 @@ class Invoice < ApplicationRecord
 
   before_validation :generate_token, on: :create
 
+  def get_insurance_company_id
+    response = Faraday.get("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{self.insurance_company_id}")
+    data = JSON.parse(response.body)
+    data['name']
+  end
+
+  def get_package_id
+    response = Faraday.get("#{Rails.configuration.external_apis['insurance_api']}/packages/#{self.package_id}")
+    data = JSON.parse(response.body)
+    data['name']
+  end
+
   private
 
   def generate_token
