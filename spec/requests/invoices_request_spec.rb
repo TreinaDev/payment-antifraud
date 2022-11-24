@@ -13,7 +13,7 @@ describe 'API Cobranças' do
       max_parcels: 12,
       single_parcel_discount: 0
     )
-    params = { invoice: { final_price: 50, package_id: 1, registration_number: '12345678',
+    params = { invoice: { total_price: 50, package_id: 1, registration_number: '12345678',
                           insurance_company_id: company.id,
                           order_id: 1, payment_method_id: payment_method.id, voucher: 'CAMPUS20', parcels: 10 } }
     post api_v1_invoices_path, params: params
@@ -36,7 +36,7 @@ describe 'API Cobranças' do
       max_parcels: 12,
       single_parcel_discount: 0
     )
-    params = { invoice: { final_price: 50, package_id: 1, registration_number: '12345678',
+    params = { invoice: { total_price: 50, package_id: 1, registration_number: '12345678',
                           insurance_company_id: 999,
                           order_id: 1, payment_method_id: payment_method.id, voucher: 'CAMPUS20', parcels: 10 } }
     post api_v1_invoices_path, params: params

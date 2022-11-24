@@ -36,7 +36,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
     expect(page).to have_content 'Pacote de Seguros: Super Econômico'
     expect(page).to have_content 'Meio de Pagamento: Laranja'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
-    expect(page).to have_content "Cupom: Black123"
+    expect(page).to have_content 'Cupom: Black123'
     expect(page).to have_content 'Parcelas: 10'
     expect(page).to have_content 'Preço Total: R$ 20,00'
   end
