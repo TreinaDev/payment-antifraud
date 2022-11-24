@@ -131,7 +131,7 @@ RSpec.describe Invoice, type: :model do
       .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
       .and_return(fake_response)
 
-    expect(invoice.name_insurance_company).to eq 'Liga de Seguros'
+    expect(invoice.insurance_company_name).to eq 'Liga de Seguros'
   end
 
   it 'Método devolve array vazio quando recebe um status 204(No Content) da API' do
@@ -148,7 +148,7 @@ RSpec.describe Invoice, type: :model do
       .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
       .and_return(fake_response)
 
-    expect(invoice.name_insurance_company).to eq []
+    expect(invoice.insurance_company_name).to eq []
   end
 
   it 'Método devolve nome do pacote de seguro' do
@@ -166,7 +166,7 @@ RSpec.describe Invoice, type: :model do
       .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
       .and_return(fake_response)
 
-    expect(invoice.name_package).to eq 'Super Econômico'
+    expect(invoice.package_name).to eq 'Super Econômico'
   end
 
   it 'Método devolve array vazio quando recebe um status 204(No Content) da API' do
@@ -183,6 +183,6 @@ RSpec.describe Invoice, type: :model do
       .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
       .and_return(fake_response)
 
-    expect(invoice.name_package).to eq []
+    expect(invoice.package_name).to eq []
   end
 end

@@ -12,7 +12,7 @@ class Invoice < ApplicationRecord
 
   before_validation :generate_token, on: :create
 
-  def name_insurance_company
+  def insurance_company_name
     response = Faraday
                .get("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{insurance_company_id}")
     return [] if response.status == 204
@@ -22,7 +22,7 @@ class Invoice < ApplicationRecord
     data['name']
   end
 
-  def name_package
+  def package_name
     response = Faraday
                .get("#{Rails.configuration.external_apis['insurance_api']}/packages/#{package_id}")
     return [] if response.status == 204
