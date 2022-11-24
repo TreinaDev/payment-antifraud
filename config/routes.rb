@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :invoices, only: [:show, :index, :create]
       resources :promos, only: [:show], param: :voucher
       resources :blocked_registration_numbers, only: [:show]
+      resources :payment_methods, only: [:show]
       resources :insurance_companies, only: %i[] do
         get 'payment_options', on: :member
       end
