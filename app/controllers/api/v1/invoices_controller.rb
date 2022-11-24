@@ -19,12 +19,12 @@ module Api
 
       def invoice_params
         params.require(:invoice).permit(:order_id, :insurance_company_id, :package_id, :registration_number,
-                                        :payment_method_id, :parcels, :total_price, :voucher)
+                                        :payment_method_id, :parcels, :final_price, :voucher)
       end
 
       def parse_invoice(params)
         Invoice.new(
-          total_price: params['total_price'],
+          total_price: params['final_price'],
           package_id: params['package_id'],
           registration_number: params['registration_number'],
           insurance_company_id: params['insurance_company_id'],

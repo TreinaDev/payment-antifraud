@@ -11,9 +11,9 @@ class InvoicesController < ApplicationController
     )
   end
 
-  def show 
-    @insurance_company_id = @invoice.get_insurance_company_id
-    @package_id = @invoice.get_package_id
+  def show
+    @insurance_company_id = @invoice.name_insurance_company
+    @package_id = @invoice.name_package
   end
 
   def edit
