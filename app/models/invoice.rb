@@ -12,22 +12,32 @@ class Invoice < ApplicationRecord
 
   before_validation :generate_token, on: :create
 
+<<<<<<< HEAD
   def name_insurance_company
     response = Faraday
                .get("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{insurance_company_id}")
     return [] if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500
 
+=======
+  def get_insurance_company_id
+    response = Faraday.get("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{insurance_company_id}")
+>>>>>>> 078492fcb6fd3d01ac07044577c0f6cec6a39989
     data = JSON.parse(response.body)
     data['name']
   end
 
+<<<<<<< HEAD
   def name_package
     response = Faraday
                .get("#{Rails.configuration.external_apis['insurance_api']}/packages/#{package_id}")
     return [] if response.status == 204
     raise ActiveRecord::QueryCanceled if response.status == 500
 
+=======
+  def get_package_id
+    response = Faraday.get("#{Rails.configuration.external_apis['insurance_api']}/packages/#{package_id}")
+>>>>>>> 078492fcb6fd3d01ac07044577c0f6cec6a39989
     data = JSON.parse(response.body)
     data['name']
   end

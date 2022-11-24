@@ -7,7 +7,7 @@ module Api
       end
 
       def create
-        invoice = parse_invoice(invoice_params)
+        invoice = Invoice.new(invoice_params)
         if invoice.save
           render status: :created, json: { message: 'Sucesso.' }
         else
