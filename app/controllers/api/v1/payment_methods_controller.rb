@@ -10,9 +10,9 @@ module Api
 
       def payment_method_json_with_image_url
         {
-          name: @payment_method.name, 
+          name: @payment_method.name,
           payment_type: @payment_method.payment_type,
-          image_url: url_for(@payment_method.image), 
+          image_url: url_for(@payment_method.image),
           tax_percentage: @payment_method.tax_percentage,
           tax_maximum: @payment_method.tax_maximum
         }.as_json
@@ -20,4 +20,3 @@ module Api
     end
   end
 end
-
