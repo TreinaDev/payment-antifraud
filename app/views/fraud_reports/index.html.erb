@@ -19,7 +19,7 @@
         <% @fraud_reports.each do |fraud_report| %>
           <tbody>
             <tr>
-              <td> <%= formatted_registration_number(fraud_report.registration_number) %> </td>
+              <td> <%= fraud_report.decorate.formatted_registration_number %> </td>
               <td> <%= FraudReport.human_attribute_name("status.#{fraud_report.status}") %> </td>
               <td> <%= link_to 'Ver detalhes', fraud_report_path(fraud_report.id) %> </td>
             </tr>
