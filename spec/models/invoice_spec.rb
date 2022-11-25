@@ -64,7 +64,7 @@ RSpec.describe Invoice, type: :model do
       FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                  payment_method_id: payment_method.id, user:)
       invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                                 registration_number: '12345678', status: :pending, voucher: 'Black123')
+                                 registration_number: '12345678998', status: :pending, voucher: 'Black123')
 
       invoice.update(status: :approved)
 
@@ -79,7 +79,7 @@ RSpec.describe Invoice, type: :model do
       FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                  payment_method_id: payment_method.id, user:)
       invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                                 registration_number: '12345678', status: :pending, voucher: 'Black123')
+                                 registration_number: '12345678998', status: :pending, voucher: 'Black123')
 
       invoice.update(status: :refused)
 
@@ -108,11 +108,47 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.errors.include?(:total_price)).to eq true
     end
 
+    it 'sendo registration_number obrigatórios' do
+      invoice = build(:invoice, registration_number: nil)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:registration_number)).to eq true
+    end
+
     it 'sendo parcels obrigatórios' do
       invoice = build(:invoice, parcels: nil)
 
       invoice.valid?
       expect(invoice.errors.include?(:parcels)).to eq true
+    end
+  end
+
+  context '#numericality' do
+    it 'falso quando parcels é zero' do
+      invoice = build(:invoice, parcels: 0)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:parcels)).to eq true
+    end
+
+    it 'falso quando total_price é zero' do
+      invoice = build(:invoice, total_price: 0)
+
+      invoice.valid?
+      expect(invoice.errors.include?(:total_price)).to eq true
+    end
+
+    it 'falso quando parcels não é integer' do
+      invoice = build(:invoice, parcels: '0')
+
+      invoice.valid?
+      expect(invoice.errors.include?(:parcels)).to eq true
+    end
+    it 'falso se registratiton_number for maior que 11' do
+      invoice = build(:invoice, registration_number: '12345678998212121')
+
+      invoice.valid?
+      expect(invoice.errors.include?(:registration_number)).to eq true
     end
   end
 
@@ -123,7 +159,7 @@ RSpec.describe Invoice, type: :model do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 2,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123',
+                               registration_number: '12345678998', status: :pending, voucher: 'Black123',
                                parcels: 10, total_price: 20.0)
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response = double('Faraday::Response', status: 200, body: insurance)
@@ -141,7 +177,7 @@ RSpec.describe Invoice, type: :model do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 2,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123',
+                               registration_number: '12345678998', status: :pending, voucher: 'Black123',
                                parcels: 10, total_price: 20.0)
     fake_response = double('Faraday::Response', status: 204, body: {})
     allow(Faraday).to receive(:get)
@@ -158,7 +194,7 @@ RSpec.describe Invoice, type: :model do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 2,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123',
+                               registration_number: '12345678998', status: :pending, voucher: 'Black123',
                                parcels: 10, total_price: 20.0)
     package = File.read 'spec/support/json/package_id.json'
     fake_response = double('Faraday::Response', status: 200, body: package)
@@ -176,7 +212,7 @@ RSpec.describe Invoice, type: :model do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 2,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123',
+                               registration_number: '12345678998', status: :pending, voucher: 'Black123',
                                parcels: 10, total_price: 20.0)
     fake_response = double('Faraday::Response', status: 204, body: {})
     allow(Faraday).to receive(:get)
