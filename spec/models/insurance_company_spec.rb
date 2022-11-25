@@ -34,82 +34,36 @@ RSpec.describe InsuranceCompany, type: :model do
     end
   end
 
-  context '.active_external_company?' do
-    it 'Retorna true se o status da companhia e o status do token estiverem ativos' do
-      company = ExternalInsuranceCompany.new(
-        id: 1,
-        email_domain: 'paolaseguros.com.br',
-        company_status: 0,
-        company_token: 'ABCDEFGHIJASPOASPO',
-        token_status: 0
-      )
+  describe '.check_if_company_exists_locally' do
+    context 'Verifica se a seguradora possui registro na aplicação' do
+      it 'e devolve a seguradora existente' do
+        external_company_data = {
+          id: 10,
+          email_domain: 'paolaseguros.com.br',
+          company_status: 0,
+          company_token: 'TOKENEXPIRADODESDE1999',
+          token_status: 0
+        }
+        local_company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
+        result = InsuranceCompany.check_if_external_company_exists_locally(external_company_data)
 
-      result = InsuranceCompany.active_external_company?(company)
-      expect(result).to be_truthy
-    end
+        expect(result).to eq local_company
+        expect(result.external_insurance_company).to eq 10
+      end
 
-    it 'Retorna false se o status da companhia e o status do token estiverem inativos' do
-      company = ExternalInsuranceCompany.new(
-        id: 1,
-        email_domain: 'paolaseguros.com.br',
-        company_status: 1,
-        company_token: 'ABCDEFGHIJASPOASPO',
-        token_status: 1
-      )
+      it 'e cria um novo registro para a seguradora' do
+        external_company_data = {
+          id: 10,
+          email_domain: 'paolaseguros.com.br',
+          company_status: 0,
+          company_token: 'TOKENEXPIRADODESDE1999',
+          token_status: 0
+        }
+        result = InsuranceCompany.check_if_external_company_exists_locally(external_company_data)
 
-      result = InsuranceCompany.active_external_company?(company)
-      expect(result).to be_falsy
-    end
-  end
-
-  context '.check_if_user_email_match_any_external_company' do
-    it 'Retorna a companhia que for compatível com o e-mail que o usuário inseriu, se existir' do
-      companies = []
-      target_company = ExternalInsuranceCompany.new(
-        id: 1,
-        email_domain: 'paolaseguros.com.br',
-        company_status: 0,
-        company_token: 'ABCDEFGHIJASPOASPO',
-        token_status: 0
-      )
-      companies << target_company
-      companies << ExternalInsuranceCompany.new(
-        id: 2,
-        email_domain: 'petraseguros.com.br',
-        company_status: 0,
-        company_token: 'ABCDEFGHIJASPOASPO',
-        token_status: 0
-      )
-      allow(InsuranceCompany).to receive(:all_external).and_return(companies)
-
-      result = InsuranceCompany.check_if_user_email_match_any_external_company('bruna@paolaseguros.com.br')
-
-      expect(result).to eq target_company
-      expect(result.email_domain).to eq 'paolaseguros.com.br'
-    end
-
-    it 'Retorna um array vazio se não houverem companhias compatíveis' do
-      companies = []
-      target_company = ExternalInsuranceCompany.new(
-        id: 1,
-        email_domain: 'paolaseguros.com.br',
-        company_status: 0,
-        company_token: 'ABCDEFGHIJASPOASPO',
-        token_status: 0
-      )
-      companies << target_company
-      companies << ExternalInsuranceCompany.new(
-        id: 2,
-        email_domain: 'petraseguros.com.br',
-        company_status: 0,
-        company_token: 'ABCDEFGHIJASPOASPO',
-        token_status: 0
-      )
-      allow(InsuranceCompany).to receive(:all_external).and_return(companies)
-
-      result = InsuranceCompany.check_if_user_email_match_any_external_company('bruna@EMAILQUENAOEXISTEBLUB.frances')
-
-      expect(result).to eq []
+        expect(result.instance_of?(InsuranceCompany)).to be_truthy
+        expect(InsuranceCompany.count).to eq 1
+      end
     end
   end
 end
