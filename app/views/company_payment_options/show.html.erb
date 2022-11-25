@@ -37,7 +37,7 @@
               <p>
                 <li class="list-group-item"> 
                   <%= CompanyPaymentOption.human_attribute_name(:user_id) %>:
-                  <%= "#{@payment_option.user.name} | #{@payment_option.user.email}" %>
+                  <%= @payment_option.decorate.user_name_and_email %>
                 </li>
               </p>
               <p>
