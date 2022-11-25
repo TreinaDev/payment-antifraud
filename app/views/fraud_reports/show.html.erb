@@ -3,7 +3,7 @@
     <div class="card-header bg-transparent border-dark"> 
       <h4> <%= 
               t 'messages.registration_number_fraud_report',
-              regis_num: formatted_registration_number(@fraud_report.registration_number)
+              regis_num: @fraud_report.decorate.formatted_registration_number
             %>
       </h4>
     </div>

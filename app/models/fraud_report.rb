@@ -1,4 +1,6 @@
 class FraudReport < ApplicationRecord
+  include Presentable 
+  
   enum status: { pending: 0, denied: 3, confirmed_fraud: 5 }
   belongs_to :insurance_company
   has_many_attached :images

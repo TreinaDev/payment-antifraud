@@ -18,7 +18,7 @@
             <tr>
               <td> <%= link_to po.payment_method.name, company_payment_option_path(po.id) %> </td>
               <td> <%= po.max_parcels %>x </td>
-              <td> <%= show_discount_if_present(po.single_parcel_discount) %> </td>
+              <td> <%= po.decorate.show_discount_if_present %> </td>
             </tr>
           </tbody>
         <% end %>
