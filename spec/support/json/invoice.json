@@ -5,6 +5,7 @@
   "registration_number": "12345678",
   "voucher": "ABCD1234",
   "total_price": 100,
+  "parcels": 12,
   "status": 5,
   "token": "JAMDOQNENTOAMDI1293"
 }
