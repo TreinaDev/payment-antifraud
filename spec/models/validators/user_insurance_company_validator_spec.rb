@@ -16,8 +16,8 @@ describe UserInsuranceCompanyValidator do
         allow(Faraday)
           .to receive(:get)
           .with(
-            "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-            { email: new_user.email }
+            "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+            { id: new_user.email }
           )
           .and_return(fake_response)
 
@@ -25,13 +25,13 @@ describe UserInsuranceCompanyValidator do
       end
 
       it 'e não há seguradoras com o e-mai que o usuário inseriu' do
-        fake_response = double('Faraday::Response', status: 200, body: [])
+        fake_response = double('Faraday::Response', status: 404)
         new_user = FactoryBot.build(:user, email: 'paola@emailquenaoexiste.br')
         allow(Faraday)
           .to receive(:get)
           .with(
-            "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-            { email: new_user.email }
+            "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+            { id: new_user.email }
           )
           .and_return(fake_response)
 

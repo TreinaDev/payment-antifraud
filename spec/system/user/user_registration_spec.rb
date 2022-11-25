@@ -26,8 +26,8 @@ describe 'Funcionário faz cadastro no sistema' do
     allow(Faraday)
       .to receive(:get)
       .with(
-        "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-        { email: 'petra@paolaseguros.com.br' }
+        "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+        { id: 'petra@paolaseguros.com.br' }
       )
       .and_return(fake_response)
 
@@ -49,7 +49,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e não há seguradoras cadastradas na aplicação de seguradoras' do
-    fake_response = double('Faraday::Response', status: 204, body: [])
+    fake_response = double('Faraday::Response', status: 404)
     allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
@@ -69,7 +69,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e o sistema de seguradoras está fora do ar' do
-    fake_response = double('Faraday::Response', status: 500, body: [])
+    fake_response = double('Faraday::Response', status: 500)
     allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
@@ -89,7 +89,7 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
-    fake_response = double('Faraday::Response', status: 200, body: [])
+    fake_response = double('Faraday::Response', status: 404)
     allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
@@ -116,12 +116,12 @@ describe 'Funcionário faz cadastro no sistema' do
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 1
     )
-    fake_response = double('Faraday::Response', status: 200, body: [])
+    fake_response = double('Faraday::Response', status: 404)
     allow(Faraday)
       .to receive(:get)
       .with(
-        "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-        { email: 'petra@paolaseguros.com.br' }
+        "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+        { id: 'petra@paolaseguros.com.br' }
       )
       .and_return(fake_response)
 

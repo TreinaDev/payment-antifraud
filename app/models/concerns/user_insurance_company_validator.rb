@@ -11,12 +11,12 @@ class UserInsuranceCompanyValidator < ActiveModel::Validator
 
   def consult_insurance_api_for_email_validation(record)
     response = Faraday.get(
-      "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-      { email: record.email }
+      "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+      { id: record.email }
     )
     raise ActiveRecord::QueryCanceled if response.status == 500
-
-    if response.body == []
+    
+    if response.status == 404
       record.errors.add(:email, 'deve pertencer a uma seguradora ativa.')
       raise ActiveRecord::Rollback
     end
