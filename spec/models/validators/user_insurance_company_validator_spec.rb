@@ -14,8 +14,11 @@ describe UserInsuranceCompanyValidator do
         fake_response = double('Faraday::Response', status: 200, body: company.to_json)
         new_user = FactoryBot.build(:user, email: 'paola@paolaseguros.com.br')
         allow(Faraday)
-          .to receive(:post)
-          .with("#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email", new_user.email)
+          .to receive(:get)
+          .with(
+            "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
+            { email: new_user.email }
+          )
           .and_return(fake_response)
 
         expect(new_user.save).to be_truthy
@@ -25,8 +28,11 @@ describe UserInsuranceCompanyValidator do
         fake_response = double('Faraday::Response', status: 200, body: [])
         new_user = FactoryBot.build(:user, email: 'paola@emailquenaoexiste.br')
         allow(Faraday)
-          .to receive(:post)
-          .with("#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email", new_user.email)
+          .to receive(:get)
+          .with(
+            "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
+            { email: new_user.email }
+          )
           .and_return(fake_response)
 
         expect(new_user.save).to be_falsy

@@ -24,10 +24,10 @@ describe 'Funcionário faz cadastro no sistema' do
     )
     fake_response = double('Faraday::Response', status: 200, body: company.to_json)
     allow(Faraday)
-      .to receive(:post)
+      .to receive(:get)
       .with(
         "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-        'petra@paolaseguros.com.br'
+        { email: 'petra@paolaseguros.com.br' }
       )
       .and_return(fake_response)
 
@@ -50,7 +50,7 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'e não há seguradoras cadastradas na aplicação de seguradoras' do
     fake_response = double('Faraday::Response', status: 204, body: [])
-    allow(Faraday).to receive(:post).and_return(fake_response)
+    allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -70,7 +70,7 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'e o sistema de seguradoras está fora do ar' do
     fake_response = double('Faraday::Response', status: 500, body: [])
-    allow(Faraday).to receive(:post).and_return(fake_response)
+    allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -90,7 +90,7 @@ describe 'Funcionário faz cadastro no sistema' do
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
     fake_response = double('Faraday::Response', status: 200, body: [])
-    allow(Faraday).to receive(:post).and_return(fake_response)
+    allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -118,10 +118,10 @@ describe 'Funcionário faz cadastro no sistema' do
     )
     fake_response = double('Faraday::Response', status: 200, body: [])
     allow(Faraday)
-      .to receive(:post)
+      .to receive(:get)
       .with(
         "#{Rails.configuration.external_apis['insurance_api']}/companies/validate_email",
-        'petra@paolaseguros.com.br'
+        { email: 'petra@paolaseguros.com.br' }
       )
       .and_return(fake_response)
 
