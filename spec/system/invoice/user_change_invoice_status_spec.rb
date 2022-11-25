@@ -8,7 +8,7 @@ describe 'Usuário altera status de uma cobrança' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+                               registration_number: '12345678987', status: :pending, voucher: 'Black123')
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get)
@@ -36,7 +36,7 @@ describe 'Usuário altera status de uma cobrança' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+                               registration_number: '12345678987', status: :pending, voucher: 'Black123')
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get)
@@ -63,7 +63,7 @@ describe 'Usuário altera status de uma cobrança' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+                               registration_number: '12345678987', status: :pending, voucher: 'Black123')
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get)
@@ -98,7 +98,7 @@ describe 'Usuário altera status de uma cobrança' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+                               registration_number: '12345678987', status: :pending, voucher: 'Black123')
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get)
@@ -133,7 +133,7 @@ describe 'Usuário altera status de uma cobrança' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+                               registration_number: '12345678987', status: :pending, voucher: 'Black123')
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get)
@@ -163,7 +163,7 @@ describe 'Usuário altera status de uma cobrança' do
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+                               registration_number: '12345678987', status: :pending, voucher: 'Black123')
     insurance = File.read 'spec/support/json/insurance.json'
     fake_response1 = double('Faraday::Response', status: 200, body: insurance)
     allow(Faraday).to receive(:get)

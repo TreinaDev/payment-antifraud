@@ -15,7 +15,7 @@ class UserInsuranceCompanyValidator < ActiveModel::Validator
       { id: record.email }
     )
     raise ActiveRecord::QueryCanceled if response.status == 500
-    
+
     if response.status == 404
       record.errors.add(:email, 'deve pertencer a uma seguradora ativa.')
       raise ActiveRecord::Rollback
