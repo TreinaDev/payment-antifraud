@@ -7,8 +7,18 @@ describe 'Usuário altera status de uma cobrança' do
     payment_method = create(:payment_method)
     FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
-    create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                     registration_number: '12345678', status: :pending, voucher: 'Black123')
+    invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
+                               registration_number: '12345678', status: :pending, voucher: 'Black123')
+    insurance = File.read 'spec/support/json/insurance.json'
+    fake_response1 = double('Faraday::Response', status: 200, body: insurance)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
+      .and_return(fake_response1)
+    package = File.read 'spec/support/json/package_id.json'
+    fake_response2 = double('Faraday::Response', status: 200, body: package)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
+      .and_return(fake_response2)
 
     login_as(user, scope: :user)
     visit root_path
@@ -27,7 +37,16 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
-
+    insurance = File.read 'spec/support/json/insurance.json'
+    fake_response1 = double('Faraday::Response', status: 200, body: insurance)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
+      .and_return(fake_response1)
+    package = File.read 'spec/support/json/package_id.json'
+    fake_response2 = double('Faraday::Response', status: 200, body: package)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
+      .and_return(fake_response2)
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
     click_on 'Sucesso no Pagamento'
@@ -45,6 +64,16 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    insurance = File.read 'spec/support/json/insurance.json'
+    fake_response1 = double('Faraday::Response', status: 200, body: insurance)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
+      .and_return(fake_response1)
+    package = File.read 'spec/support/json/package_id.json'
+    fake_response2 = double('Faraday::Response', status: 200, body: package)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
+      .and_return(fake_response2)
     json_data = Rails.root.join('spec/support/json/approved_invoice.json').read
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:post).and_return(fake_response)
@@ -70,6 +99,16 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    insurance = File.read 'spec/support/json/insurance.json'
+    fake_response1 = double('Faraday::Response', status: 200, body: insurance)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
+      .and_return(fake_response1)
+    package = File.read 'spec/support/json/package_id.json'
+    fake_response2 = double('Faraday::Response', status: 200, body: package)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
+      .and_return(fake_response2)
     json_data = Rails.root.join('spec/support/json/refused_invoice.json').read
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:post).and_return(fake_response)
@@ -95,6 +134,16 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    insurance = File.read 'spec/support/json/insurance.json'
+    fake_response1 = double('Faraday::Response', status: 200, body: insurance)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
+      .and_return(fake_response1)
+    package = File.read 'spec/support/json/package_id.json'
+    fake_response2 = double('Faraday::Response', status: 200, body: package)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
+      .and_return(fake_response2)
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)
@@ -115,6 +164,16 @@ describe 'Usuário altera status de uma cobrança' do
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678', status: :pending, voucher: 'Black123')
+    insurance = File.read 'spec/support/json/insurance.json'
+    fake_response1 = double('Faraday::Response', status: 200, body: insurance)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/#{invoice.insurance_company_id}")
+      .and_return(fake_response1)
+    package = File.read 'spec/support/json/package_id.json'
+    fake_response2 = double('Faraday::Response', status: 200, body: package)
+    allow(Faraday).to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/packages/#{invoice.package_id}")
+      .and_return(fake_response2)
 
     login_as(user, scope: :user)
     visit invoice_url(invoice.id)

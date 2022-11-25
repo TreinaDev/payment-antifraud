@@ -47,13 +47,42 @@ Caso queira rodar todos os testes automatizados, utilize o comando  `rspec`
 ## Documentação de APIs
 
 Confira aqui links de páginas com a documentação das APIs disponíveis da aplicação.
-
+* [API de Meios de Pagamento](#API-de-Meios-de-Pagamento)
 * [API de Meios de Pagamento das Seguradoras](#API-de-Meios-de-Pagamento-de-uma-Seguradora)
 * [API de Promoções das Seguradoras](#API-de-promoções-de-cada-seguradora)
 * [API de CPFs com Denúncias de fraude Confirmadas](#API-de-CPFs-com-Denuncias-Confirmadas)
 * [Endpoint para POST de cobrança](#Endpoint-para-POST-de-cobrança)
 
-### API De Meios de Pagamento das Seguradoras
+### API De Meios de Pagamento
+
+  Para obter os meios de pagamento aceitos por uma seguradora, você pode fazer uma requisição com o verbo `GET` na seguinte URL:
+
+  `https://localhost:5000/api/v1/payment_methods/id`
+
+  O `id` da URL deverá ser substituído pelo `id` do meio de pagamento.
+
+#### Status de resposta possíveis
+  Status `200` | A requisição foi bem sucedida.
+
+  Status `404` | O `id` que foi inserido na URL é inválido.
+
+  Status `500` | Erro interno do servidor.
+
+#### Dados
+
+  Caso a requisição seja um sucesso, com o status `200`, a resposta será a exibição dos dados de um meio de pagamento em formato JSON, com os atributos descritos como no exemplo abaixo:
+
+```json
+{ 
+  "name": "Será o nome do meio de pagamento (Cartão fulano, Banco Beltrano..)",
+  "payment_type": "Será o tipo de pagamento (Crédito, Pix, Boleto...)",
+  "image_url": "URL para renderizar a imagem do meio de pagamento",
+  "tax_percentage": "Taxa do tipo de pagamento (Em porcentagem)",
+  "tax_maximum": "Taxa máxima que pode ser cobrada (Em R$)",
+}
+```
+
+### API De Meios de Pagamento das Seguradoras 
 
   Para obter os meios de pagamento aceitos por uma seguradora, você pode fazer uma requisição com o verbo `GET` na seguinte URL:
 
