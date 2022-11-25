@@ -17,10 +17,10 @@ pt-BR:
         invoice: Cobrança
         status: Status
         token: Token
-        package_id: ID Pacote de Seguros
+        package_id: Pacote de Seguros
         registration_number: CPF
-        insurance_company_id: ID Seguradora
-        order_id: ID Pedido
+        insurance_company_id: Seguradora
+        order_id: Pedido
         payment_method_id: Meio de Pagamento
         voucher: Cupom
         transaction_registration_number: Número de registro da transação

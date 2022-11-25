@@ -1,0 +1,10 @@
+{
+  "id": 2,
+  "name": "Super Econômico",
+  "max_period": 18,
+  "min_period": 6,
+  "insurance_company_id": 1,
+  "price": "7.0",
+  "product_category_id": 1,
+  "status": "active"
+}
