@@ -68,7 +68,7 @@ FactoryBot.create(
 
 5.times do |i|
   FactoryBot.create(:invoice, status: 'pending', insurance_company_id: company.id,
-                              package_id: i, registration_number: '12345678998',
+                              package_id: i, registration_number: "12345678987",
                               payment_method_id: payment_method1.id, order_id: i)
 end
 
