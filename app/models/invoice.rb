@@ -4,7 +4,11 @@ class Invoice < ApplicationRecord
   belongs_to :payment_method
   belongs_to :insurance_company
 
-  validates :parcels, :total_price, :package_id, :order_id, presence: true
+  validates :parcels, :total_price, :package_id, :order_id, :registration_number,
+            presence: true
+  validates :registration_number, length: { is: 11 }
+  validates :parcels, :total_price, numericality: { greater_than_or_equal_to: 1 }
+  validates :parcels, numericality: { only_integer: true }
   validate :valid_insurance_company?
   validate :check_payment_method_options, if: :valid_insurance_company?
   validates :transaction_registration_number, presence: true, on: :update, if: :approved?
