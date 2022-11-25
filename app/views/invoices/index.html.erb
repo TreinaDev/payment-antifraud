@@ -1,9 +1,10 @@
 <article>
-  <main>
+  <main class="container">
     <div id="attributes">
-      <h3> <%= Invoice.human_attribute_name(:invoice) %> </h3>
+      <h2> <%= Invoice.human_attribute_name(:invoice) %> </h2>
+      <hr>
       <% if @invoices.any? %>
-        <table class="table table-striped", style="width: 100%">
+        <table class="table table-striped mt-5 mb-5", style="width: 100%">
           <thead>
             <tr>
               <th scope="col"><%= Invoice.human_attribute_name :token %></th>
@@ -23,7 +24,7 @@
           </tbody>
         </table>
       <% end %>
-    </div>  
+    </div>
   </main>
   <footer>
     <%= render 'pagination', pagination: @pagination %>

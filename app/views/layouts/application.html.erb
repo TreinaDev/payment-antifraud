@@ -15,7 +15,7 @@
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-lg-start">
             <%= link_to root_path, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none #{ nav_link_class('home')}" do %>
-              <span class="fs-5"> <%= t 'app_name' %>  </span>
+              <span class="fs-5"><%= image_tag "/images/logo_light.png", width: 190, height:30 %></span>
             <% end %>
             <% if user_signed_in? %>
               <%= render 'users/users_nav' %>
@@ -40,5 +40,5 @@
       </div>
     </main>
   </body>
-  
+
 </html>

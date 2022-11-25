@@ -2,17 +2,20 @@
 <div class="row">
 
 <div class="card col-6 border-0" style="padding: 3%; width: 50%;">
- <div class="position-relative overflow-hidden text-left ">
+ <div class="position-relative overflow-hidden text-left">
       <div class="text-center">
-        <%= image_tag("cobrasegurostrans.png", width: 500, height:80, class: 'mb-3') %>
-
-      <p class="lead font-weight-normal"><strong>Valores COBRA</strong></p>
-      <p><strong>Colaboração</strong> </p>
-      <p><strong>Orientação ao mercado</strong> </p>
-      <p><strong>Brilhantismo</strong></p>
-      <p><strong>Responsabilidade social</strong></p>
-      <p><strong>Autenticidade</strong> </p>
-      <p><strong>Segurança</strong> </p>
+        <%= image_tag("cobrasegurostrans.png", width: 500, height:80, class: 'mb-5') %>
+        <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in
+        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus PageMaker
+        including versions of Lorem Ipsum.</p>
+        <p class="lead">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+        in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+        Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
       </div>
 
     <div class="product-device box-shadow d-none d-md-block"></div>
@@ -22,20 +25,17 @@
 <div class="card  col-6 border-0" style="padding: 3%; width: 50%;">
   <%= image_tag "/images/home_image.png", width: 600, height:500 %>
 </div>
+<hr>
 </div>
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-      <div class="bg-secondary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-primary overflow-hidden">
-        <div class="my-3 py-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
-        </div>
-        <div class="bg-secondary-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-      </div>
 
-      <div class="bg-secondary-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-        <div class="my-3 p-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
-        </div>
-        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+<% @insurance_companies_sample.each do |company| %>
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <div class="bg-secondary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-primary overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5"><%= company[:name] %></h2>
+        <p class="lead">And an even wittier subheading.</p>
       </div>
+    <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><%= company[:logo] %></div>
+  </div>
+<% end %>
+<
