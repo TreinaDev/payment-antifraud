@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "name": "Liga de Seguros",
+  "email_domain": "ligadeseguros.com.br",
+  "company_status": "active",
+  "token_status": "token_active",
+  "registration_number": "01333288000189",
+  "token": "LZ3PLTPTOGGQRTWYT2OE",
+  "logo_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e6342b93abe5afefdc5369e4c715907c7dac161e/liga_seguros.PNG"
+}

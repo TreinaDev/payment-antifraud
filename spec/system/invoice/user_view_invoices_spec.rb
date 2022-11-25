@@ -17,7 +17,7 @@ describe 'Usuário vê cobranças' do
                                     payment_method_id: payment_method.id, user:)
     create(:invoice, payment_method:, insurance_company_id: company.id)
     create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
-                     registration_number: '12345678', status: :pending)
+                     registration_number: '12345678987', status: :pending)
 
     login_as(user, scope: :user)
     visit root_path
@@ -27,7 +27,7 @@ describe 'Usuário vê cobranças' do
     expect(page).to have_content 'Token'
     expect(page).to have_content 'Status'
     expect(page).to have_content 'AGBS65OFN493OE93MVNA'
-    expect(page).to have_content 'ID Pacote de Seguros'
+    expect(page).to have_content 'Pacote de Seguros'
     expect(page).to have_content '10'
     expect(page).to have_content 'pendente'
     within 'article footer #pagination' do
@@ -49,7 +49,7 @@ describe 'Usuário vê cobranças' do
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('AAAS65OFN493OE93MVNA')
     create(:invoice, payment_method:, insurance_company_id: company1.id, package_id: 10,
-                     registration_number: '12345678', status: :pending, order_id: 1)
+                     registration_number: '12345678987', status: :pending, order_id: 1)
 
     company2 = create(:insurance_company, external_insurance_company: 1)
     user2 = create(:user, insurance_company_id: company2.id)
@@ -59,7 +59,7 @@ describe 'Usuário vê cobranças' do
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('BBBS65OFN493OE93MVNA')
     create(:invoice, payment_method:, insurance_company_id: company2.id, package_id: 5,
-                     registration_number: '12345678', status: :approved, order_id: 2)
+                     registration_number: '12345678987', status: :approved, order_id: 2)
 
     login_as(user2, scope: :user)
     visit root_path

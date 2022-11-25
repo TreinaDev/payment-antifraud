@@ -116,8 +116,9 @@ describe 'Promo API' do
                                           insurance_company_id: insurance_company.id)
       FactoryBot.create(:promo_product, promo: promo_a, product_id: 3)
       Invoice.create!(payment_method:,
-                      order_id: 1, registration_number: '12345678', status: 0,
-                      package_id: 1, insurance_company_id: insurance_company.id, voucher: '3MVGTOVW')
+                      order_id: 1, registration_number: '12345678987', status: 0,
+                      package_id: 1, insurance_company_id: insurance_company.id, voucher: '3MVGTOVW',
+                      total_price: 10, parcels: 2)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
 

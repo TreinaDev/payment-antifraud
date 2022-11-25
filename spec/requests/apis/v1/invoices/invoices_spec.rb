@@ -17,8 +17,9 @@ describe Api::V1::InvoicesController, type: :request do
         params = {
           invoice: {
             payment_method_id: payment_method.id,
-            order_id: 1, registration_number: '12345678', status: 0,
-            package_id: 1, insurance_company_id: insurance_company.id
+            order_id: 1, registration_number: '12345678987', status: 0,
+            package_id: 1, insurance_company_id: insurance_company.id,
+            total_price: 50, parcels: 2
           }
         }
 
@@ -44,8 +45,9 @@ describe Api::V1::InvoicesController, type: :request do
 
         params = {
           invoice: { payment_method_id: payment_method.id,
-                     order_id: 1, registration_number: '12345678', status: 0,
-                     package_id: 1, insurance_company_id: insurance_company.id }
+                     order_id: 1, registration_number: '12345678987', status: 0,
+                     package_id: 1, insurance_company_id: insurance_company.id,
+                     total_price: 50, parcels: 2 }
         }
 
         expect { post '/api/v1/invoices', params: }.to change { Invoice.count }.from(0).to(1)
@@ -93,15 +95,16 @@ describe Api::V1::InvoicesController, type: :request do
         FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id,
                                                    payment_method_id: payment_method.id, user:)
         invoice = Invoice.create!(payment_method:,
-                                  order_id: 1, registration_number: '12345678', status: 0,
-                                  package_id: 1, insurance_company_id: insurance_company.id)
+                                  order_id: 1, registration_number: '12345678987', status: 0,
+                                  package_id: 1, insurance_company_id: insurance_company.id,
+                                  total_price: 50, parcels: 2)
 
         get "/api/v1/invoices/#{invoice.id}"
 
         expect(response).to have_http_status(:success)
         expect(response.content_type).to include('application/json')
         expect(response_parsed['order_id']).to eq(1)
-        expect(response_parsed['registration_number']).to eq('12345678')
+        expect(response_parsed['registration_number']).to eq('12345678987')
         expect(response_parsed['package_id']).to eq(1)
       end
     end

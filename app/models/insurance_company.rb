@@ -15,14 +15,9 @@ class InsuranceCompany < ApplicationRecord
     data.map { |d| ExternalInsuranceCompany.parse_from(d) }
   end
 
-  def self.active_external_company?(company)
-    company.company_status.zero? && company.token_status.zero?
-  end
-
-  def self.check_if_user_email_match_any_external_company(user_email)
-    companies = all_external
-    companies.select do |company|
-      return company if company.email_domain == user_email.split('@').last && active_external_company?(company)
-    end
+  def self.check_if_external_company_exists_locally(company_data)
+    local_company = InsuranceCompany.find_by external_insurance_company: company_data[:id]
+    local_company = InsuranceCompany.create!(external_insurance_company: company_data[:id]) if local_company.nil?
+    local_company
   end
 end
