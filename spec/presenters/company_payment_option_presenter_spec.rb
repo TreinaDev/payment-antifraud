@@ -3,10 +3,10 @@ require 'rails_helper'
 describe CompanyPaymentOptionPresenter do
   context '#with_payment_method_name' do
     it 'gera uma string com o nome do meio de pagamento' do
-      company = FactoryBot.create(:insurance_company)
-      user = FactoryBot.create(:user, insurance_company_id: company.id)
-      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank')
-      payment_option = FactoryBot.build(
+      company = create(:insurance_company)
+      user = create(:user, insurance_company_id: company.id)
+      payment_method = create(:payment_method, name: 'Cartão Nubank')
+      payment_option = build(
         :company_payment_option,
         insurance_company: company,
         payment_method:,
@@ -21,10 +21,10 @@ describe CompanyPaymentOptionPresenter do
 
   context '#show_discount_if_present' do
     it 'mostra desconto à vista quando existente' do
-      company = FactoryBot.create(:insurance_company)
-      user = FactoryBot.create(:user, insurance_company_id: company.id)
-      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank')
-      payment_option = FactoryBot.build(
+      company = create(:insurance_company)
+      user = create(:user, insurance_company_id: company.id)
+      payment_method = create(:payment_method, name: 'Cartão Nubank')
+      payment_option = build(
         :company_payment_option,
         insurance_company: company,
         payment_method:,
@@ -38,10 +38,10 @@ describe CompanyPaymentOptionPresenter do
     end
 
     it 'e não há desconto' do
-      company = FactoryBot.create(:insurance_company)
-      user = FactoryBot.create(:user, insurance_company_id: company.id)
-      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank')
-      payment_option = FactoryBot.build(
+      company = create(:insurance_company)
+      user = create(:user, insurance_company_id: company.id)
+      payment_method = create(:payment_method, name: 'Cartão Nubank')
+      payment_option = build(
         :company_payment_option,
         insurance_company: company,
         payment_method:,
@@ -57,13 +57,13 @@ describe CompanyPaymentOptionPresenter do
 
   context '#user_name_and_email' do
     it 'mostra o nome e o email do usuário separados por um pipe' do
-      company = FactoryBot.create(:insurance_company)
-      user = FactoryBot.create(
+      company = create(:insurance_company)
+      user = create(
         :user, insurance_company_id: company.id,
                name: 'Paola', email: 'paola@paolaseguros.com.br'
       )
-      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank')
-      payment_option = FactoryBot.build(
+      payment_method = create(:payment_method, name: 'Cartão Nubank')
+      payment_option = build(
         :company_payment_option,
         insurance_company: company,
         payment_method:,

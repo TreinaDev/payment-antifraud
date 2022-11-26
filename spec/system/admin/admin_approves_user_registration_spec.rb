@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Administrador vê a lista de usuários cadastrados' do
   it 'se estiver autenticado' do
-    company = FactoryBot.create(:insurance_company)
-    common_user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    common_user = create(:user, insurance_company_id: company.id)
 
     login_as common_user, scope: :user
     visit root_path
@@ -13,15 +13,15 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'a partir de uma tela separada' do
     it 'com sucesso' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
       )
 
-      FactoryBot.create(
+      create(
         :user, name: 'Petra', email: 'petra@paolaseguros.com.br',
                registration_number: '12345678911', status: :approved,
                insurance_company_id: company.id
@@ -47,14 +47,14 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e vê somente os usuários com cadastro pendente' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
       )
-      FactoryBot.create(
+      create(
         :user, name: 'Ana', email: 'anaborba@petraseguros.com.br',
                registration_number: '12345678911', status: :approved,
                insurance_company_id: company.id
@@ -78,14 +78,14 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e vê somente os usuários com cadastro aprovado' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
       )
-      FactoryBot.create(
+      create(
         :user, name: 'Ana', email: 'anaborba@petraseguros.com.br',
                registration_number: '12345678911', status: :approved,
                insurance_company_id: company.id
@@ -109,19 +109,19 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e vê somente os usuários com cadastro reprovado' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
       )
-      FactoryBot.create(
+      create(
         :user, name: 'Ana', email: 'anaborba@petraseguros.com.br',
                registration_number: '12345678911', status: :approved,
                insurance_company_id: company.id
       )
-      FactoryBot.create(
+      create(
         :user, name: 'Beatriz', email: 'bealindacheirosa@petraseguros.com.br',
                registration_number: '97081507411', status: :refused,
                insurance_company_id: company.id
@@ -151,9 +151,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'e vê botão de alteração de cadastro' do
     it 'de um usuário pendente' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
@@ -166,9 +166,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não vê botão caso o usuário já esteja aprovado' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Petra APROVADA', email: 'petraaprovada@paolaseguros.com.br',
                registration_number: '39401920391', status: :approved,
                insurance_company_id: company.id
@@ -184,9 +184,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
 
   context 'e muda o status do cadastro' do
     it 'a partir de um formulário' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
@@ -204,9 +204,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'para aprovado' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      common_user = FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      common_user = create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
@@ -224,9 +224,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'para recusado' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      common_user = FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      common_user = create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
@@ -245,9 +245,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não preenche a reprovação com uma justificativa' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      common_user = FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      common_user = create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id
@@ -263,9 +263,9 @@ describe 'Administrador vê a lista de usuários cadastrados' do
     end
 
     it 'e não pode preencher um motivo de reprovação se for aprovar o cadastro' do
-      company = FactoryBot.create(:insurance_company)
-      admin = FactoryBot.create(:admin)
-      common_user = FactoryBot.create(
+      company = create(:insurance_company)
+      admin = create(:admin)
+      common_user = create(
         :user, name: 'Paola', email: 'paola@petraseguros.com.br',
                registration_number: '39401920391', status: :pending,
                insurance_company_id: company.id

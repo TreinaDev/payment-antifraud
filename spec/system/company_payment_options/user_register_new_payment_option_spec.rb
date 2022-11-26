@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Usuário configura uma nova opção de pagamento para sua seguradora' do
   it 'a partir de um meio de pagamento' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Nubank Crédito', payment_type: 'Cartão de Crédito')
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    create(:payment_method, name: 'Nubank Crédito', payment_type: 'Cartão de Crédito')
 
     login_as user, scope: :user
     visit root_path
@@ -19,8 +19,8 @@ describe 'Usuário configura uma nova opção de pagamento para sua seguradora' 
   end
 
   it 'e não existem meios de pagamento disponíveis para configurar' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -36,9 +36,9 @@ describe 'Usuário configura uma nova opção de pagamento para sua seguradora' 
   end
 
   it 'com sucesso' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Banco Itaú', payment_type: 'Boleto')
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    create(:payment_method, name: 'Banco Itaú', payment_type: 'Boleto')
 
     login_as user, scope: :user
     visit company_payment_options_path
@@ -55,9 +55,9 @@ describe 'Usuário configura uma nova opção de pagamento para sua seguradora' 
   end
 
   it 'e não preenche todos os campos' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Nubank Crédito', payment_type: 'Cartão de Crédito')
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    create(:payment_method, name: 'Nubank Crédito', payment_type: 'Cartão de Crédito')
 
     login_as user, scope: :user
     visit company_payment_options_path
@@ -73,9 +73,9 @@ describe 'Usuário configura uma nova opção de pagamento para sua seguradora' 
   end
 
   it 'e tenta colocar parcelas em um meio de pagamento que não pode ser parcelado' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Banco Itaú', payment_type: 'Boleto')
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    create(:payment_method, name: 'Banco Itaú', payment_type: 'Boleto')
 
     login_as user, scope: :user
     visit company_payment_options_path
@@ -90,9 +90,9 @@ describe 'Usuário configura uma nova opção de pagamento para sua seguradora' 
   end
 
   it 'e preenche parcelas com 0' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Banco Itaú', payment_type: 'Boleto')
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    create(:payment_method, name: 'Banco Itaú', payment_type: 'Boleto')
 
     login_as user, scope: :user
     visit company_payment_options_path

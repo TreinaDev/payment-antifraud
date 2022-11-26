@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Administrador vê detalhes de uma denúncia de fraude' do
   it 'com sucesso' do
-    company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
-    admin = FactoryBot.create(:admin)
-    fraud = FactoryBot.create(
+    company = create(:insurance_company, external_insurance_company: 10)
+    admin = create(:admin)
+    fraud = create(
       :fraud_report, insurance_company_id: company.id,
                      registration_number: '12345678911', description: 'É CALOTEIRO',
                      status: :pending

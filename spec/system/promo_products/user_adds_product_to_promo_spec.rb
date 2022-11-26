@@ -15,9 +15,9 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     ].to_json
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    promo = FactoryBot.create(:promo, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    promo = create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit promos_path
@@ -43,9 +43,9 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     ].to_json
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    promo = FactoryBot.create(:promo, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    promo = create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit promos_path
@@ -72,9 +72,9 @@ describe 'Funcionário adiciona um produto a uma promoção' do
     ].to_json
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    promo = FactoryBot.create(:promo, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    promo = create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit promos_path

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário edita opção de pagamento para sua seguradora' do
   it 'a partir de um formulário' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-    FactoryBot.create(
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -27,13 +27,13 @@ describe 'Usuário edita opção de pagamento para sua seguradora' do
   end
 
   it 'com sucesso' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(
+    company = create(:insurance_company)
+    user = create(
       :user, insurance_company_id: company.id,
              name: 'Paola', email: 'paola@sistemadefraude.com.br'
     )
-    first_pay_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-    payment_option = FactoryBot.create(
+    first_pay_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+    payment_option = create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -59,10 +59,10 @@ describe 'Usuário edita opção de pagamento para sua seguradora' do
   end
 
   it 'e não preenche os dados corretamente' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    first_pay_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-    payment_option = FactoryBot.create(
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    first_pay_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+    payment_option = create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -85,17 +85,17 @@ describe 'Usuário edita opção de pagamento para sua seguradora' do
   end
 
   it 'e edita uma opção que outro usuário criou' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(
+    company = create(:insurance_company)
+    user = create(
       :user, insurance_company_id: company.id,
              name: 'Bruna', email: 'bruna@sistemadefraude.com.br'
     )
-    other_user = FactoryBot.create(
+    other_user = create(
       :user, insurance_company_id: company.id,
              name: 'Paola Trambiqueira', email: 'paola@paola.com.br'
     )
-    first_pay_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-    payment_option = FactoryBot.create(
+    first_pay_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+    payment_option = create(
       :company_payment_option,
       user:,
       insurance_company: company,

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'CompanyPaymentOptionAPI' do
   context 'GET/api/v1/payment_methods/id' do
     it 'Usuário obtem dados de um metodo de pagamento' do
-      payment_method = FactoryBot.create(
+      payment_method = create(
         :payment_method, name: 'Cartão Nubank',
                          payment_type: 'Cartão de Crédito',
                          tax_percentage: 2, tax_maximum: 10

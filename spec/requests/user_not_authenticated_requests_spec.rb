@@ -23,11 +23,11 @@ describe 'Usuário tenta acessar funcionalidades' do
     end
 
     it 'e vai para a página de edição de uma opção de pagamento' do
-      company = FactoryBot.create(:insurance_company)
-      user = FactoryBot.create(:user, insurance_company_id: company.id,
-                                      name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
-      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-      payment_option = FactoryBot.create(
+      company = create(:insurance_company)
+      user = create(:user, insurance_company_id: company.id,
+                           name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+      payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+      payment_option = create(
         :company_payment_option,
         user:,
         insurance_company: company,
@@ -42,11 +42,11 @@ describe 'Usuário tenta acessar funcionalidades' do
     end
 
     it 'e faz um UPDATE para a página de edição de uma opção de pagamento' do
-      company = FactoryBot.create(:insurance_company)
-      user = FactoryBot.create(:user, insurance_company_id: company.id,
-                                      name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
-      payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-      payment_option = FactoryBot.create(
+      company = create(:insurance_company)
+      user = create(:user, insurance_company_id: company.id,
+                           name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+      payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+      payment_option = create(
         :company_payment_option,
         user:,
         insurance_company: company,
@@ -87,8 +87,8 @@ describe 'Usuário tenta acessar funcionalidades' do
     end
 
     it 'e tenta acessar a página de detalhes de uma denúncia' do
-      company = FactoryBot.create(:insurance_company)
-      fraud = FactoryBot.create(:fraud_report, insurance_company_id: company.id)
+      company = create(:insurance_company)
+      fraud = create(:fraud_report, insurance_company_id: company.id)
 
       get fraud_report_path(fraud.id)
 

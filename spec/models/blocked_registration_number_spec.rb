@@ -4,7 +4,7 @@ RSpec.describe BlockedRegistrationNumber, type: :model do
   describe '#valid' do
     context 'presence' do
       it 'falso quando CPF é registrado em branco' do
-        registry = FactoryBot.build(:blocked_registration_number, registration_number: '')
+        registry = build(:blocked_registration_number, registration_number: '')
 
         registry.save
 
@@ -14,7 +14,7 @@ RSpec.describe BlockedRegistrationNumber, type: :model do
     end
     context 'length' do
       it 'falso quando é cadastrado um cpf com tamanho incorreto' do
-        registry = FactoryBot.build(:blocked_registration_number, registration_number: '182939')
+        registry = build(:blocked_registration_number, registration_number: '182939')
 
         registry.save
 
@@ -24,7 +24,7 @@ RSpec.describe BlockedRegistrationNumber, type: :model do
     end
     context 'numericality' do
       it 'falso quando é cadastrado um cpf com caracteres não numéricos' do
-        registry = FactoryBot.build(:blocked_registration_number, registration_number: 'ajskendome1')
+        registry = build(:blocked_registration_number, registration_number: 'ajskendome1')
 
         registry.save
 
@@ -34,8 +34,8 @@ RSpec.describe BlockedRegistrationNumber, type: :model do
     end
     context 'uniqueness' do
       it 'falso quando usuário tenta adicionar um cpf com fraude já confirmada' do
-        FactoryBot.create(:blocked_registration_number, registration_number: '18293019203')
-        registry = FactoryBot.build(:blocked_registration_number, registration_number: '18293019203')
+        create(:blocked_registration_number, registration_number: '18293019203')
+        registry = build(:blocked_registration_number, registration_number: '18293019203')
 
         registry.save
 
