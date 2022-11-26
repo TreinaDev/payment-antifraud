@@ -30,7 +30,6 @@ describe 'Funcionário faz cadastro no sistema' do
         { id: 'petra@paolaseguros.com.br' }
       )
       .and_return(fake_response)
-    
 
     visit new_user_session_path
     click_on 'Criar Conta'
@@ -41,7 +40,6 @@ describe 'Funcionário faz cadastro no sistema' do
       fill_in 'Nome', with: 'Petra'
       fill_in 'CPF', with: '39410293049'
       click_on 'Registrar'
-      redirect_to new_user_session_path
     end
 
     expect(page).to have_content 'Você se inscreveu com sucesso. ' \
