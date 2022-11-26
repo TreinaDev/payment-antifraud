@@ -6,7 +6,7 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
     user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
     create(:company_payment_option, insurance_company_id: company.id,
-                                               payment_method_id: payment_method.id, user:)
+                                    payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
     json_data = Rails.root.join('spec/support/json/refused_invoice.json').read
@@ -25,7 +25,7 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
     user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
     create(:company_payment_option, insurance_company_id: company.id,
-                                               payment_method_id: payment_method.id, user:)
+                                    payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
     json_data = Rails.root.join('spec/support/json/refused_invoice.json').read
@@ -43,7 +43,7 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
     user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
     create(:company_payment_option, insurance_company_id: company.id,
-                                               payment_method_id: payment_method.id, user:)
+                                    payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
     allow(Faraday).to receive(:post).and_raise(ActiveRecord::QueryCanceled)
@@ -60,7 +60,7 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
     user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
     create(:company_payment_option, insurance_company_id: company.id,
-                                               payment_method_id: payment_method.id, user:)
+                                    payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
     fake_response = double('Faraday::Response', status: 204, body: [])

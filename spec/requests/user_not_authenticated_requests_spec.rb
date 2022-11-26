@@ -25,7 +25,7 @@ describe 'Usuário tenta acessar funcionalidades' do
     it 'e vai para a página de edição de uma opção de pagamento' do
       company = create(:insurance_company)
       user = create(:user, insurance_company_id: company.id,
-                                      name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+                           name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
       payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
       payment_option = create(
         :company_payment_option,
@@ -44,7 +44,7 @@ describe 'Usuário tenta acessar funcionalidades' do
     it 'e faz um UPDATE para a página de edição de uma opção de pagamento' do
       company = create(:insurance_company)
       user = create(:user, insurance_company_id: company.id,
-                                      name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+                           name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
       payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
       payment_option = create(
         :company_payment_option,

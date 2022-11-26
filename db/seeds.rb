@@ -8,7 +8,7 @@ Admin.destroy_all
 
 company = create(:insurance_company)
 primary_user = create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
-                                        status: 'approved', insurance_company_id: company.id)
+                             status: 'approved', insurance_company_id: company.id)
 5.times do
   create(:user, status: :pending, insurance_company_id: company.id)
 end
@@ -32,14 +32,14 @@ Promo.create!(name: 'Promo Relâmpago', starting_date: Time.zone.today, ending_d
               discount_max: 5000, discount_percentage: 10, usages_max: 150, insurance_company_id: company.id)
 
 payment_method1 = create(:payment_method, name: 'Laranja',
-                                                     tax_percentage: 5, tax_maximum: 100,
-                                                     payment_type: 'Cartão de Crédito', status: :active)
+                                          tax_percentage: 5, tax_maximum: 100,
+                                          payment_type: 'Cartão de Crédito', status: :active)
 payment_method2 = create(:payment_method, name: 'Roxo',
-                                                     tax_percentage: 3, tax_maximum: 50,
-                                                     payment_type: 'Boleto', status: :active)
+                                          tax_percentage: 3, tax_maximum: 50,
+                                          payment_type: 'Boleto', status: :active)
 payment_method3 = create(:payment_method, name: 'Amarelo',
-                                                     tax_percentage: 0, tax_maximum: 20,
-                                                     payment_type: 'Pix', status: :active)
+                                          tax_percentage: 0, tax_maximum: 20,
+                                          payment_type: 'Pix', status: :active)
 
 create(
   :company_payment_option,
@@ -69,8 +69,8 @@ create(
 5.times do |i|
   i += 1
   create(:invoice, status: 'pending', insurance_company_id: company.id,
-                              package_id: i, registration_number: '12345678987',
-                              payment_method_id: payment_method1.id, order_id: i)
+                   package_id: i, registration_number: '12345678987',
+                   payment_method_id: payment_method1.id, order_id: i)
 end
 
 create(

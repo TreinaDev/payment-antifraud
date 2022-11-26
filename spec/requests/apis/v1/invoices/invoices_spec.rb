@@ -60,7 +60,7 @@ describe Api::V1::InvoicesController, type: :request do
         company = create(:insurance_company)
         user = create(:user, insurance_company: company)
         create(:company_payment_option, insurance_company_id: company.id,
-                                                   payment_method_id: payment_method.id, user:)
+                                        payment_method_id: payment_method.id, user:)
 
         params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
@@ -75,7 +75,7 @@ describe Api::V1::InvoicesController, type: :request do
         company = create(:insurance_company)
         user = create(:user, insurance_company: company)
         create(:company_payment_option, insurance_company_id: company.id,
-                                                   payment_method_id: payment_method.id, user:)
+                                        payment_method_id: payment_method.id, user:)
 
         params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
@@ -93,7 +93,7 @@ describe Api::V1::InvoicesController, type: :request do
         insurance_company = create(:insurance_company)
         user = create(:user, insurance_company:)
         create(:company_payment_option, insurance_company_id: insurance_company.id,
-                                                   payment_method_id: payment_method.id, user:)
+                                        payment_method_id: payment_method.id, user:)
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678987', status: 0,
                                   package_id: 1, insurance_company_id: insurance_company.id,

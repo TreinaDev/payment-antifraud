@@ -16,7 +16,7 @@ describe 'Lista de Bloqueios' do
     it 'busca por um cpf e encontra mensagem de que não está bloqueado' do
       company = create(:insurance_company)
       create(:fraud_report, registration_number: '19203910293', status: :pending,
-                                       insurance_company_id: company.id)
+                            insurance_company_id: company.id)
 
       get '/api/v1/blocked_registration_numbers/19203910293'
 

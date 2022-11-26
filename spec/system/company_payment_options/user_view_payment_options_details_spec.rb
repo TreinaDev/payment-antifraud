@@ -4,7 +4,7 @@ describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' d
   it 'a partir da tela de opções de pagamento' do
     company = create(:insurance_company)
     user = create(:user, insurance_company_id: company.id,
-                                    name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+                         name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
     payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
     create(
       :company_payment_option,
@@ -31,9 +31,9 @@ describe 'Usuário vê detalhes de uma opção de pagamento da sua seguradora' d
   it 'e vê detalhes de uma opção que outro usuário cadastrou' do
     company = create(:insurance_company)
     user = create(:user, insurance_company_id: company.id,
-                                    name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+                         name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
     other_user = create(:user, insurance_company_id: company.id,
-                                          name: 'Paolitas Paolinha', email: 'paola@paolaseguros.com.br')
+                               name: 'Paolitas Paolinha', email: 'paola@paolaseguros.com.br')
     payment_method = create(:payment_method, name: 'Boleto', payment_type: 'Boleto')
     payment_option = create(
       :company_payment_option,

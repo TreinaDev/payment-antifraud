@@ -10,9 +10,9 @@ describe 'Usuário vê mais detalhes de uma promoção' do
     allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
     user = create(:user, insurance_company_id: company.id)
     create(:promo, name: 'Black Friday', starting_date: Time.zone.today,
-                              ending_date: Time.zone.today + 30.days,
-                              discount_max: 10_000, discount_percentage: 20, usages_max: 10,
-                              insurance_company_id: company.id)
+                   ending_date: Time.zone.today + 30.days,
+                   discount_max: 10_000, discount_percentage: 20, usages_max: 10,
+                   insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path

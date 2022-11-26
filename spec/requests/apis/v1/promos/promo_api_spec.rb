@@ -6,9 +6,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = create(:promo, name: 'Black Friday', starting_date: Time.zone.today - 7.days,
-                                          ending_date: Time.zone.today + 30.days,
-                                          discount_max: 60, discount_percentage: 20, usages_max: 10,
-                                          insurance_company_id: company.id)
+                               ending_date: Time.zone.today + 30.days,
+                               discount_max: 60, discount_percentage: 20, usages_max: 10,
+                               insurance_company_id: company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
@@ -24,9 +24,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = create(:promo, name: 'Black Friday', starting_date: Time.zone.today - 7.days,
-                                          ending_date: Time.zone.today + 30.days,
-                                          discount_max: 200, discount_percentage: 20, usages_max: 10,
-                                          insurance_company_id: company.id)
+                               ending_date: Time.zone.today + 30.days,
+                               discount_max: 200, discount_percentage: 20, usages_max: 10,
+                               insurance_company_id: company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500.33'
@@ -56,9 +56,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = create(:promo, name: 'Black Friday', starting_date: Time.zone.today - 30.days,
-                                          ending_date: Time.zone.today - 7.days,
-                                          discount_max: 100, discount_percentage: 20, usages_max: 10,
-                                          insurance_company_id: company.id)
+                               ending_date: Time.zone.today - 7.days,
+                               discount_max: 100, discount_percentage: 20, usages_max: 10,
+                               insurance_company_id: company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
@@ -73,9 +73,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = create(:promo, name: 'Promo Petra', starting_date: Time.zone.today + 30.days,
-                                          ending_date: Time.zone.today + 40.days,
-                                          discount_max: 100, discount_percentage: 20, usages_max: 10,
-                                          insurance_company_id: company.id)
+                               ending_date: Time.zone.today + 40.days,
+                               discount_max: 100, discount_percentage: 20, usages_max: 10,
+                               insurance_company_id: company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=3&price=500'
@@ -90,9 +90,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
-                                          ending_date: Time.zone.today + 40.days,
-                                          discount_max: 100, discount_percentage: 20, usages_max: 10,
-                                          insurance_company_id: company.id)
+                               ending_date: Time.zone.today + 40.days,
+                               discount_max: 100, discount_percentage: 20, usages_max: 10,
+                               insurance_company_id: company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=5&price=500'
@@ -109,11 +109,11 @@ describe 'Promo API' do
       insurance_company = create(:insurance_company)
       user = create(:user, insurance_company_id: insurance_company.id)
       create(:company_payment_option, insurance_company_id: insurance_company.id,
-                                                 payment_method_id: payment_method.id, user:)
+                                      payment_method_id: payment_method.id, user:)
       promo_a = create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
-                                          ending_date: Time.zone.today + 40.days,
-                                          discount_max: 100, discount_percentage: 20, usages_max: 1,
-                                          insurance_company_id: insurance_company.id)
+                               ending_date: Time.zone.today + 40.days,
+                               discount_max: 100, discount_percentage: 20, usages_max: 1,
+                               insurance_company_id: insurance_company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
       Invoice.create!(payment_method:,
                       order_id: 1, registration_number: '12345678987', status: 0,
@@ -132,9 +132,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       promo_a = create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
-                                          ending_date: Time.zone.today + 40.days,
-                                          discount_max: 100, discount_percentage: 20, usages_max: 10,
-                                          insurance_company_id: company.id)
+                               ending_date: Time.zone.today + 40.days,
+                               discount_max: 100, discount_percentage: 20, usages_max: 10,
+                               insurance_company_id: company.id)
       create(:promo_product, promo: promo_a, product_id: 3)
 
       get '/api/v1/promos/3MVGTOVW/?product_id=3'
@@ -150,9 +150,9 @@ describe 'Promo API' do
       company = create(:insurance_company)
       allow(SecureRandom).to receive(:alphanumeric).and_return('3MVGTOVW')
       create(:promo, name: 'Promo Petra', starting_date: Time.zone.today - 30.days,
-                                ending_date: Time.zone.today + 40.days,
-                                discount_max: 100, discount_percentage: 20, usages_max: 10,
-                                insurance_company_id: company.id)
+                     ending_date: Time.zone.today + 40.days,
+                     discount_max: 100, discount_percentage: 20, usages_max: 10,
+                     insurance_company_id: company.id)
 
       get '/api/v1/promos/3MVGTOVW/?price=500'
 

@@ -4,7 +4,7 @@ describe 'Usuário remove opção de pagamento configurada' do
   it 'com sucesso' do
     company = create(:insurance_company)
     user = create(:user, insurance_company_id: company.id,
-                                    name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
+                         name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
     payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
     create(
       :company_payment_option,
