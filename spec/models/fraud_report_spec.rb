@@ -4,8 +4,8 @@ RSpec.describe FraudReport, type: :model do
   describe '#valid' do
     context 'presence' do
       it 'falso quando CPF do cliente está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        fraud = FactoryBot.build(
+        company = create(:insurance_company)
+        fraud = build(
           :fraud_report,
           registration_number: nil,
           description: 'Ladra Bandida!',
@@ -25,8 +25,8 @@ RSpec.describe FraudReport, type: :model do
       end
 
       it 'falso quando Descrição está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        fraud = FactoryBot.build(
+        company = create(:insurance_company)
+        fraud = build(
           :fraud_report,
           registration_number: '12345678911',
           description: nil,
@@ -46,7 +46,7 @@ RSpec.describe FraudReport, type: :model do
       end
 
       it 'falso quando Companhia de Seguros está em branco' do
-        fraud = FactoryBot.build(
+        fraud = build(
           :fraud_report,
           registration_number: '12345678911',
           description: 'Ladra Bandida!',
@@ -64,8 +64,8 @@ RSpec.describe FraudReport, type: :model do
     end
     context 'numericality' do
       it 'falso quando é cadastrado um cpf com caracteres não numéricos' do
-        company = FactoryBot.create(:insurance_company)
-        fraud = FactoryBot.build(
+        company = create(:insurance_company)
+        fraud = build(
           :fraud_report,
           registration_number: 'cpfdapaola!',
           description: 'Ladra Bandida!',

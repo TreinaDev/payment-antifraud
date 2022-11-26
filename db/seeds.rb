@@ -6,20 +6,20 @@ PaymentMethod.destroy_all
 User.destroy_all
 Admin.destroy_all
 
-company = FactoryBot.create(:insurance_company)
-primary_user = FactoryBot.create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
-                                        status: 'approved', insurance_company_id: company.id)
+company = create(:insurance_company)
+primary_user = create(:user, email: 'users@antifraudsystem.com.br', password: 'password', name: 'Teste',
+                             status: 'approved', insurance_company_id: company.id)
 5.times do
-  FactoryBot.create(:user, status: :pending, insurance_company_id: company.id)
+  create(:user, status: :pending, insurance_company_id: company.id)
 end
 5.times do
-  FactoryBot.create(:user, status: :approved, insurance_company_id: company.id)
+  create(:user, status: :approved, insurance_company_id: company.id)
 end
 5.times do
-  FactoryBot.create(:user, status: :refused, insurance_company_id: company.id)
+  create(:user, status: :refused, insurance_company_id: company.id)
 end
 
-FactoryBot.create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')
+create(:admin, email: 'admins@antifraudsystem.com.br', password: 'password', name: 'Teste')
 
 Promo.create!(name: 'Black Friday', starting_date: Time.zone.today, ending_date: Time.zone.today + 30.days,
               discount_max: 10_000, discount_percentage: 20, usages_max: 10, insurance_company_id: company.id)
@@ -31,17 +31,17 @@ Promo.create!(name: 'Promo de Fim de Ano', starting_date: Time.zone.today,
 Promo.create!(name: 'Promo Relâmpago', starting_date: Time.zone.today, ending_date: Time.zone.today + 7.days,
               discount_max: 5000, discount_percentage: 10, usages_max: 150, insurance_company_id: company.id)
 
-payment_method1 = FactoryBot.create(:payment_method, name: 'Laranja',
-                                                     tax_percentage: 5, tax_maximum: 100,
-                                                     payment_type: 'Cartão de Crédito', status: :active)
-payment_method2 = FactoryBot.create(:payment_method, name: 'Roxo',
-                                                     tax_percentage: 3, tax_maximum: 50,
-                                                     payment_type: 'Boleto', status: :active)
-payment_method3 = FactoryBot.create(:payment_method, name: 'Amarelo',
-                                                     tax_percentage: 0, tax_maximum: 20,
-                                                     payment_type: 'Pix', status: :active)
+payment_method1 = create(:payment_method, name: 'Laranja',
+                                          tax_percentage: 5, tax_maximum: 100,
+                                          payment_type: 'Cartão de Crédito', status: :active)
+payment_method2 = create(:payment_method, name: 'Roxo',
+                                          tax_percentage: 3, tax_maximum: 50,
+                                          payment_type: 'Boleto', status: :active)
+payment_method3 = create(:payment_method, name: 'Amarelo',
+                                          tax_percentage: 0, tax_maximum: 20,
+                                          payment_type: 'Pix', status: :active)
 
-FactoryBot.create(
+create(
   :company_payment_option,
   user: primary_user,
   payment_method: payment_method1,
@@ -49,7 +49,7 @@ FactoryBot.create(
   max_parcels: 12,
   single_parcel_discount: 1
 )
-FactoryBot.create(
+create(
   :company_payment_option,
   user: primary_user,
   payment_method: payment_method2,
@@ -57,7 +57,7 @@ FactoryBot.create(
   max_parcels: 1,
   single_parcel_discount: 1
 )
-FactoryBot.create(
+create(
   :company_payment_option,
   user: primary_user,
   payment_method: payment_method3,
@@ -68,12 +68,12 @@ FactoryBot.create(
 
 5.times do |i|
   i += 1
-  FactoryBot.create(:invoice, status: 'pending', insurance_company_id: company.id,
-                              package_id: i, registration_number: '12345678987',
-                              payment_method_id: payment_method1.id, order_id: i)
+  create(:invoice, status: 'pending', insurance_company_id: company.id,
+                   package_id: i, registration_number: '12345678987',
+                   payment_method_id: payment_method1.id, order_id: i)
 end
 
-FactoryBot.create(
+create(
   :fraud_report,
   insurance_company_id: company.id,
   description: "Ela é daquelas mulheres que projetam fachadas para o mundo.

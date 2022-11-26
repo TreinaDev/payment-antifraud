@@ -4,7 +4,7 @@ RSpec.describe Admin, type: :model do
   context 'presence' do
     describe 'Usuário tenta fazer cadastro com parametro em branco' do
       it 'Nome' do
-        admin = FactoryBot.build(:admin, name: nil)
+        admin = build(:admin, name: nil)
 
         admin.save
 

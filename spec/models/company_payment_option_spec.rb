@@ -4,9 +4,9 @@ RSpec.describe CompanyPaymentOption, type: :model do
   describe '#valid?' do
     context 'presence' do
       it 'Falso quando payment_method está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_option = build(
           :company_payment_option,
           payment_method: nil,
           user:,
@@ -22,10 +22,10 @@ RSpec.describe CompanyPaymentOption, type: :model do
       end
 
       it 'Falso quando max_parcels está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_method = FactoryBot.create(:payment_method)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_method = create(:payment_method)
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user:,
@@ -41,10 +41,10 @@ RSpec.describe CompanyPaymentOption, type: :model do
       end
 
       it 'Falso quando single_parcel_discount está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_method = FactoryBot.create(:payment_method)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_method = create(:payment_method)
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user:,
@@ -60,9 +60,9 @@ RSpec.describe CompanyPaymentOption, type: :model do
       end
 
       it 'Falso quando user está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        payment_method = FactoryBot.create(:payment_method)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        payment_method = create(:payment_method)
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user: nil,
@@ -78,10 +78,10 @@ RSpec.describe CompanyPaymentOption, type: :model do
       end
 
       it 'Falso quando company está em branco' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_method = FactoryBot.create(:payment_method)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_method = create(:payment_method)
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user:,
@@ -99,10 +99,10 @@ RSpec.describe CompanyPaymentOption, type: :model do
 
     context 'numericality' do
       it 'Falso quando max_parcels é preenchido com 0' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_method = FactoryBot.create(:payment_method)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_method = create(:payment_method)
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user:,
@@ -118,10 +118,10 @@ RSpec.describe CompanyPaymentOption, type: :model do
       end
 
       it 'Falso quando max_parcels é preenchido com um número negativo' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_method = FactoryBot.create(:payment_method)
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_method = create(:payment_method)
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user:,
@@ -139,10 +139,10 @@ RSpec.describe CompanyPaymentOption, type: :model do
 
     context '.check_if_payment_type_can_be_parceled' do
       it 'Impede a criação do objeto se pagamento que não pode ser parcelado estiver com mais de 1 parcela' do
-        company = FactoryBot.create(:insurance_company)
-        user = FactoryBot.create(:user, insurance_company_id: company.id)
-        payment_method = FactoryBot.create(:payment_method, payment_type: 'Pix')
-        payment_option = FactoryBot.build(
+        company = create(:insurance_company)
+        user = create(:user, insurance_company_id: company.id)
+        payment_method = create(:payment_method, payment_type: 'Pix')
+        payment_option = build(
           :company_payment_option,
           payment_method:,
           user:,

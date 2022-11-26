@@ -48,9 +48,9 @@ Caso queira rodar todos os testes automatizados, utilize o comando  `rspec`
 
 Confira aqui links de páginas com a documentação das APIs disponíveis da aplicação.
 * [API de Meios de Pagamento](#API-de-Meios-de-Pagamento)
-* [API de Meios de Pagamento das Seguradoras](#API-de-Meios-de-Pagamento-de-uma-Seguradora)
-* [API de Promoções das Seguradoras](#API-de-promoções-de-cada-seguradora)
-* [API de CPFs com Denúncias de fraude Confirmadas](#API-de-CPFs-com-Denuncias-Confirmadas)
+* [API de Meios de Pagamento das Seguradoras](#API-de-Meios-de-Pagamento-das-Seguradoras)
+* [API de Promoções das Seguradoras](#API-de-Promoções-das-Seguradoras)
+* [API de CPFs com Denúncias de fraude Confirmadas](#API-de-CPFs-com-Denúncias-de-fraude-Confirmadas)
 * [Endpoint para POST de cobrança](#Endpoint-para-POST-de-cobrança)
 
 ### API De Meios de Pagamento
@@ -220,16 +220,18 @@ CPF não registrado ou sem denúncia de fraude confirmada:
 
   ```json
   {
-   "order_id": 1,
-   "insurance_company_id": 1,
-   "package_id": 1,
-   "package_name": "Pacote de Seguros",
-   "registration_number": "12345678910",
-   "voucher": "ABCD1234",
-   "total_price": 100,
-   "parcels": 12,
-   "status": 5,
-   "token": "JAMDOQNENTOAMDI1293"
+    "invoice": {
+      "order_id": 1,
+      "insurance_company_id": 1,
+      "package_id": 1,
+      "package_name": "Pacote de Seguros",
+      "registration_number": "12345678910",
+      "voucher": "ABCD1234",
+      "total_price": 100,
+      "parcels": 12,
+      "status": 5,
+      "token": "JAMDOQNENTOAMDI1293"
+    }
   }
 ```
 

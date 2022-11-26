@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário vê detalhes de uma denúncia de fraude' do
   it 'caso seja da sua seguradora' do
-    user_company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
-    other_company = FactoryBot.create(:insurance_company, external_insurance_company: 99)
-    user = FactoryBot.create(:user, insurance_company_id: user_company.id)
-    other_company_fraud = FactoryBot.create(:fraud_report, insurance_company_id: other_company.id)
+    user_company = create(:insurance_company, external_insurance_company: 10)
+    other_company = create(:insurance_company, external_insurance_company: 99)
+    user = create(:user, insurance_company_id: user_company.id)
+    other_company_fraud = create(:fraud_report, insurance_company_id: other_company.id)
 
     login_as user, scope: :user
     visit fraud_report_path(other_company_fraud)
@@ -15,11 +15,11 @@ describe 'Usuário vê detalhes de uma denúncia de fraude' do
   end
 
   it 'com sucesso' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     first_image = Rack::Test::UploadedFile.new(Rails.root.join('spec/support/crime.jpeg'))
     second_image = Rack::Test::UploadedFile.new(Rails.root.join('spec/support/fotos_do_crime.jpeg'))
-    fraud = FactoryBot.create(
+    fraud = create(
       :fraud_report, insurance_company_id: company.id,
                      registration_number: '12345678911', description: 'Tentou fraudar o seguro.',
                      status: :pending,

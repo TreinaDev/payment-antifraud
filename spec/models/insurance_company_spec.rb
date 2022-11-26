@@ -44,7 +44,7 @@ RSpec.describe InsuranceCompany, type: :model do
           company_token: 'TOKENEXPIRADODESDE1999',
           token_status: 0
         }
-        local_company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
+        local_company = create(:insurance_company, external_insurance_company: 10)
         result = InsuranceCompany.check_if_external_company_exists_locally(external_company_data)
 
         expect(result).to eq local_company

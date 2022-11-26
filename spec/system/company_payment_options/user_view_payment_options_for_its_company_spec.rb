@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
   it 'a partir da tela da sua seguradora' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    first_payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank')
-    second_payment_method = FactoryBot.create(:payment_method, name: 'Boleto')
-    FactoryBot.create(
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    first_payment_method = create(:payment_method, name: 'Cartão Nubank')
+    second_payment_method = create(:payment_method, name: 'Boleto')
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -14,7 +14,7 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
       max_parcels: 12,
       single_parcel_discount: 0
     )
-    FactoryBot.create(
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -47,8 +47,8 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
   end
 
   it 'e ainda não há meios de pagamento configurados' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit company_payment_options_path
@@ -60,12 +60,12 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
   end
 
   it 'e vê opções de pagamento que outros usuários cadastraram para sua seguradora' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    second_user = FactoryBot.create(:user, insurance_company_id: company.id)
-    first_payment_method = FactoryBot.create(:payment_method, name: 'Cartão C6 Bank')
-    second_payment_method = FactoryBot.create(:payment_method, name: 'Vale Alimentação')
-    FactoryBot.create(
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    second_user = create(:user, insurance_company_id: company.id)
+    first_payment_method = create(:payment_method, name: 'Cartão C6 Bank')
+    second_payment_method = create(:payment_method, name: 'Vale Alimentação')
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -73,7 +73,7 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
       max_parcels: 5,
       single_parcel_discount: 0
     )
-    FactoryBot.create(
+    create(
       :company_payment_option,
       user: second_user,
       insurance_company: company,
@@ -98,10 +98,10 @@ describe 'Usuário vê os meios de pagamentos associados a sua companhia' do
   end
 
   it 'e não vê meios de pagamento inativados pelo administrador' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
-    FactoryBot.create(:payment_method, name: 'Cartão Nubank', tax_percentage: 5, tax_maximum: 4, status: :inactive)
-    FactoryBot.create(:payment_method, name: 'Boleto', tax_percentage: 3, tax_maximum: 10, status: :active)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
+    create(:payment_method, name: 'Cartão Nubank', tax_percentage: 5, tax_maximum: 4, status: :inactive)
+    create(:payment_method, name: 'Boleto', tax_percentage: 3, tax_maximum: 10, status: :active)
 
     login_as user, scope: :user
     visit root_path

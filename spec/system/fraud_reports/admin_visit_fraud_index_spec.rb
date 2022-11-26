@@ -8,13 +8,13 @@ describe 'Administrador visita página de fraudes' do
   end
 
   it 'e vê as fraudes cadastradas de todas as seguradoras' do
-    admin = FactoryBot.create(:admin)
-    company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
-    other_company = FactoryBot.create(:insurance_company, external_insurance_company: 3)
-    FactoryBot.create(:fraud_report, registration_number: 34_568_743_291,
-                                     insurance_company_id: company.id)
-    FactoryBot.create(:fraud_report, registration_number: 42_312_346_578,
-                                     insurance_company_id: other_company.id)
+    admin = create(:admin)
+    company = create(:insurance_company, external_insurance_company: 10)
+    other_company = create(:insurance_company, external_insurance_company: 3)
+    create(:fraud_report, registration_number: 34_568_743_291,
+                          insurance_company_id: company.id)
+    create(:fraud_report, registration_number: 42_312_346_578,
+                          insurance_company_id: other_company.id)
 
     login_as admin, scope: :admin
     visit root_path
@@ -30,7 +30,7 @@ describe 'Administrador visita página de fraudes' do
   end
 
   it 'e não há denúncias cadastradas.' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as admin, scope: :admin
     visit root_path

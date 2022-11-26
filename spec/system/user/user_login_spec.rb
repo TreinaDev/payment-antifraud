@@ -12,14 +12,14 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'se estiver com seu cadastro aprovado' do
-    company = FactoryBot.create(:insurance_company)
-    FactoryBot.create(:user,
-                      email: 'petra@paolaseguros.com.br',
-                      password: 'password',
-                      name: 'Petra',
-                      registration_number: '39401929301',
-                      status: :approved,
-                      insurance_company_id: company.id)
+    company = create(:insurance_company)
+    create(:user,
+           email: 'petra@paolaseguros.com.br',
+           password: 'password',
+           name: 'Petra',
+           registration_number: '39401929301',
+           status: :approved,
+           insurance_company_id: company.id)
 
     visit new_user_session_path
     within('div#login-fields') do
@@ -35,14 +35,14 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e está com o cadastro aguardando aprovação' do
-    company = FactoryBot.create(:insurance_company)
-    FactoryBot.create(:user,
-                      email: 'edicleia@paolaseguros.com.br',
-                      password: 'password',
-                      name: 'Edicleia',
-                      registration_number: '39401929301',
-                      status: :pending,
-                      insurance_company_id: company.id)
+    company = create(:insurance_company)
+    create(:user,
+           email: 'edicleia@paolaseguros.com.br',
+           password: 'password',
+           name: 'Edicleia',
+           registration_number: '39401929301',
+           status: :pending,
+           insurance_company_id: company.id)
 
     visit new_user_session_path
     within('div#login-fields') do
@@ -56,14 +56,14 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e não preenche todos os campos' do
-    company = FactoryBot.create(:insurance_company)
-    FactoryBot.create(:user,
-                      email: 'petra@paolaseguros.com.br',
-                      password: 'password',
-                      name: 'Petra',
-                      registration_number: '39401929301',
-                      status: :approved,
-                      insurance_company_id: company.id)
+    company = create(:insurance_company)
+    create(:user,
+           email: 'petra@paolaseguros.com.br',
+           password: 'password',
+           name: 'Petra',
+           registration_number: '39401929301',
+           status: :approved,
+           insurance_company_id: company.id)
 
     visit root_path
     click_on 'Fazer Login'
@@ -77,14 +77,14 @@ describe 'Funcionário faz login no sistema' do
   end
 
   it 'e vê a barra de navegação com botões das funcionalidades' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user,
-                             email: 'petra@paolaseguros.com.br',
-                             password: 'password',
-                             name: 'Petra',
-                             registration_number: '39401929301',
-                             status: :approved,
-                             insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user,
+                  email: 'petra@paolaseguros.com.br',
+                  password: 'password',
+                  name: 'Petra',
+                  registration_number: '39401929301',
+                  status: :approved,
+                  insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path

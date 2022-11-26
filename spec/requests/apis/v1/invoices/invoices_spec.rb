@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Api::V1::InvoicesController, type: :request do
   describe 'POST#create api/v1/invoices' do
-    context 'when is successful' do
-      it 'return 201 and invoice attributes as JSON' do
+    context 'quando bem sucedido' do
+      it 'retorna 201 e mensagem de sucesso' do
         insurance_company = create(:insurance_company)
         user = create(:user, insurance_company:)
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
@@ -32,7 +32,7 @@ describe Api::V1::InvoicesController, type: :request do
         .with_indifferent_access)
       end
 
-      it 'creates a new invoice' do
+      it 'cria uma cobrança no banco de dados' do
         insurance_company = create(:insurance_company)
         user = create(:user, insurance_company:)
         payment_method = create(:payment_method)
@@ -54,13 +54,13 @@ describe Api::V1::InvoicesController, type: :request do
       end
     end
 
-    context 'when fails' do
-      it 'return 412 and invoice errors as JSON' do
+    context 'quando falha' do
+      it 'retorna 412 e erro em JSON' do
         payment_method = create(:payment_method)
         company = create(:insurance_company)
         user = create(:user, insurance_company: company)
-        FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
-                                                   payment_method_id: payment_method.id, user:)
+        create(:company_payment_option, insurance_company_id: company.id,
+                                        payment_method_id: payment_method.id, user:)
 
         params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
@@ -70,12 +70,12 @@ describe Api::V1::InvoicesController, type: :request do
         expect(response_parsed['errors']).not_to be_empty
       end
 
-      it 'does not creates a new invoice' do
+      it 'não cria a cobrança no banco de dados' do
         payment_method = create(:payment_method)
         company = create(:insurance_company)
         user = create(:user, insurance_company: company)
-        FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
-                                                   payment_method_id: payment_method.id, user:)
+        create(:company_payment_option, insurance_company_id: company.id,
+                                        payment_method_id: payment_method.id, user:)
 
         params = { invoice: { insurance_company_id: company.id, payment_method_id: nil } }
 
@@ -85,15 +85,15 @@ describe Api::V1::InvoicesController, type: :request do
   end
 
   describe 'GET#show api/v1/invoices/' do
-    context 'when is successful' do
-      it 'success' do
+    context 'quando bem sucedido' do
+      it 'retorna 200' do
         allow(SecureRandom).to receive(:alphanumeric).with(20).and_return('A1S2D3F4G5H6J7K8L9ZA')
         allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('S2D3F4G5')
         payment_method = create(:payment_method)
         insurance_company = create(:insurance_company)
         user = create(:user, insurance_company:)
-        FactoryBot.create(:company_payment_option, insurance_company_id: insurance_company.id,
-                                                   payment_method_id: payment_method.id, user:)
+        create(:company_payment_option, insurance_company_id: insurance_company.id,
+                                        payment_method_id: payment_method.id, user:)
         invoice = Invoice.create!(payment_method:,
                                   order_id: 1, registration_number: '12345678987', status: 0,
                                   package_id: 1, insurance_company_id: insurance_company.id,
@@ -108,8 +108,8 @@ describe Api::V1::InvoicesController, type: :request do
         expect(response_parsed['package_id']).to eq(1)
       end
     end
-    context 'when is fails' do
-      it 'fail if invoice not found' do
+    context 'quando falha' do
+      it 'no caso de cobrança na encontrada' do
         get '/api/v1/invoices/9999'
 
         expect(response).to have_http_status(:not_found)
