@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'Funcionário visita a pagina de promoção' do
   it 'e vê promoções cadastradas por usuários da sua seguradora' do
-    company = FactoryBot.create(:insurance_company)
+    company = create(:insurance_company)
     promo_a = create(:promo, insurance_company_id: company.id)
     promo_b = create(:promo, insurance_company_id: company.id)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -26,8 +26,8 @@ describe 'Funcionário visita a pagina de promoção' do
   end
 
   it 'e não há promoções cadastradas' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -40,11 +40,11 @@ describe 'Funcionário visita a pagina de promoção' do
   end
 
   it 'e não vê promoções de outras seguradoras' do
-    company_a = FactoryBot.create(:insurance_company)
-    company_b = FactoryBot.create(:insurance_company)
+    company_a = create(:insurance_company)
+    company_b = create(:insurance_company)
     promo_a = create(:promo, insurance_company_id: company_a.id)
     promo_b = create(:promo, insurance_company_id: company_b.id)
-    user = FactoryBot.create(:user, insurance_company_id: company_a.id)
+    user = create(:user, insurance_company_id: company_a.id)
 
     login_as user, scope: :user
     visit root_path

@@ -3,19 +3,19 @@ require 'rails_helper'
 describe 'CompanyPaymentOptionAPI' do
   context 'GET/api/v1/company_payment_options/id' do
     it 'Usuário obtem dados de meio de pagamento da seguradora' do
-      company = FactoryBot.create(:insurance_company, external_insurance_company: 1)
-      user = FactoryBot.create(:user, insurance_company_id: company.id)
-      first_payment_method = FactoryBot.create(
+      company = create(:insurance_company, external_insurance_company: 1)
+      user = create(:user, insurance_company_id: company.id)
+      first_payment_method = create(
         :payment_method, name: 'Cartão Nubank',
                          payment_type: 'Cartão de Crédito',
                          tax_percentage: 2, tax_maximum: 10
       )
-      second_payment_method = FactoryBot.create(
+      second_payment_method = create(
         :payment_method, name: 'Banco Sanxander',
                          payment_type: 'Boleto', tax_percentage: 1,
                          tax_maximum: 5
       )
-      FactoryBot.create(
+      create(
         :company_payment_option,
         user:,
         insurance_company: company,
@@ -23,7 +23,7 @@ describe 'CompanyPaymentOptionAPI' do
         max_parcels: 12,
         single_parcel_discount: 0
       )
-      FactoryBot.create(
+      create(
         :company_payment_option,
         user:,
         insurance_company: company,

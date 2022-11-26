@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário altera status de uma cobrança' do
   it 'a partir da tela de detalhes' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678987', status: :pending, voucher: 'Black123')
@@ -30,10 +30,10 @@ describe 'Usuário altera status de uma cobrança' do
   end
 
   it 'e vai para formulário de informações adicionais' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678987', status: :pending, voucher: 'Black123')
@@ -57,10 +57,10 @@ describe 'Usuário altera status de uma cobrança' do
   end
 
   it 'com sucesso para Sucesso no Pagamento' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678987', status: :pending, voucher: 'Black123')
@@ -92,10 +92,10 @@ describe 'Usuário altera status de uma cobrança' do
   end
 
   it 'com sucesso para Falha no Pagamento' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678987', status: :pending, voucher: 'Black123')
@@ -127,10 +127,10 @@ describe 'Usuário altera status de uma cobrança' do
   end
 
   it 'para Falha no Pagamento com informações incompletas' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678987', status: :pending, voucher: 'Black123')
@@ -157,10 +157,10 @@ describe 'Usuário altera status de uma cobrança' do
   end
 
   it 'para Sucesso no Pagamento com informações incompletas' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678987', status: :pending, voucher: 'Black123')

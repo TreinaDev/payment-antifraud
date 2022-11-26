@@ -12,7 +12,7 @@ describe UserInsuranceCompanyValidator do
           token_status: 0
         )
         fake_response = double('Faraday::Response', status: 200, body: company.to_json)
-        new_user = FactoryBot.build(:user, email: 'paola@paolaseguros.com.br')
+        new_user = build(:user, email: 'paola@paolaseguros.com.br')
         allow(Faraday)
           .to receive(:get)
           .with(
@@ -26,7 +26,7 @@ describe UserInsuranceCompanyValidator do
 
       it 'e não há seguradoras com o e-mai que o usuário inseriu' do
         fake_response = double('Faraday::Response', status: 404)
-        new_user = FactoryBot.build(:user, email: 'paola@emailquenaoexiste.br')
+        new_user = build(:user, email: 'paola@emailquenaoexiste.br')
         allow(Faraday)
           .to receive(:get)
           .with(

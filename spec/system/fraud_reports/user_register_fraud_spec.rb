@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Funcionário registra nova denúncia de fraude' do
   it 'se estiver autenticado como funcionário' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as admin, scope: :admin
     visit new_fraud_report_path
@@ -11,8 +11,8 @@ describe 'Funcionário registra nova denúncia de fraude' do
   end
 
   it 'a partir de um formulário' do
-    company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company, external_insurance_company: 10)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit fraud_reports_path
@@ -28,8 +28,8 @@ describe 'Funcionário registra nova denúncia de fraude' do
   end
 
   it 'com sucesso' do
-    company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company, external_insurance_company: 10)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit new_fraud_report_path
@@ -48,8 +48,8 @@ describe 'Funcionário registra nova denúncia de fraude' do
   end
 
   it 'com dados incompletos' do
-    company = FactoryBot.create(:insurance_company, external_insurance_company: 10)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company, external_insurance_company: 10)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit fraud_reports_path

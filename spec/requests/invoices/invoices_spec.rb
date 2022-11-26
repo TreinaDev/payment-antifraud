@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'POST#edit comparator/api/v1/invoices/id' do
   it 'aprovação do status de uma cobrança' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
@@ -21,10 +21,10 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
   end
 
   it 'reprovação do status de uma cobrança' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
@@ -39,10 +39,10 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
   end
 
   it 'e acontece um erro interno' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')
@@ -56,10 +56,10 @@ describe 'POST#edit comparator/api/v1/invoices/id' do
   end
 
   it 'e encontra registro vazio (204)' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(:company_payment_option, insurance_company_id: company.id,
+    create(:company_payment_option, insurance_company_id: company.id,
                                                payment_method_id: payment_method.id, user:)
     invoice = create(:invoice, payment_method:, insurance_company_id: company.id, package_id: 10,
                                registration_number: '12345678997', status: :pending, voucher: 'Black123')

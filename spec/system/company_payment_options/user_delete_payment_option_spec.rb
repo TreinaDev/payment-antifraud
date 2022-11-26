@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'Usuário remove opção de pagamento configurada' do
   it 'com sucesso' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id,
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id,
                                     name: 'Bruna de Paula', email: 'bruna@paolaseguros.com.br')
-    payment_method = FactoryBot.create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
-    FactoryBot.create(
+    payment_method = create(:payment_method, name: 'Cartão Nubank', payment_type: 'Cartão de Crédito')
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,

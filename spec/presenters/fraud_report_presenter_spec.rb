@@ -3,8 +3,8 @@ require 'rails_helper'
 describe FraudReportPresenter do
   context '#formatted_registration_number' do
     it 'formata o número de 11 dígitos conforme o padrão do CPF brasileiro' do
-      company = FactoryBot.create(:insurance_company)
-      fraud_report = FactoryBot.build(
+      company = create(:insurance_company)
+      fraud_report = build(
         :fraud_report,
         insurance_company: company,
         registration_number: '12345678911'

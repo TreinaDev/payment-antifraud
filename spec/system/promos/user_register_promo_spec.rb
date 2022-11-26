@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Funcionário cadastra uma promoção' do
   it 'a partir da tela inicial' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -25,8 +25,8 @@ describe 'Funcionário cadastra uma promoção' do
     fake_response = double('Faraday::Response', status: 200, body: json_data)
     allow(Faraday).to receive(:get).with(products_url).and_return(fake_response)
     allow(SecureRandom).to receive(:alphanumeric).and_return('ASDCF123')
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path
@@ -46,8 +46,8 @@ describe 'Funcionário cadastra uma promoção' do
   end
 
   it 'com dados incompletos' do
-    company = FactoryBot.create(:insurance_company)
-    user = FactoryBot.create(:user, insurance_company_id: company.id)
+    company = create(:insurance_company)
+    user = create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
     visit root_path

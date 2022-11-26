@@ -5,7 +5,7 @@ describe 'API Cobranças' do
     company = create(:insurance_company)
     user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,
@@ -28,7 +28,7 @@ describe 'API Cobranças' do
     company = create(:insurance_company)
     user = create(:user, insurance_company_id: company.id)
     payment_method = create(:payment_method)
-    FactoryBot.create(
+    create(
       :company_payment_option,
       user:,
       insurance_company: company,

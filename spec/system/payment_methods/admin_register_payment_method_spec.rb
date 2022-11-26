@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário cadastra novo meio de pagamento' do
   it 'e está autenticado como administrador' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as(admin, scope: :admin)
     visit root_path
@@ -12,7 +12,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
   end
 
   it 'a partir do menu' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as(admin, scope: :admin)
     visit root_path
@@ -30,7 +30,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
   end
 
   it 'com sucesso' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as(admin, scope: :admin)
     visit root_path
@@ -55,7 +55,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
   end
 
   it 'com informações faltando' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as(admin, scope: :admin)
     visit root_path

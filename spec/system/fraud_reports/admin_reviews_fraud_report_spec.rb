@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Admin avalia uma denúncia de fraude' do
   it 'a partir da tela de detalhes, e a aprova' do
-    company = FactoryBot.create(:insurance_company)
-    admin = FactoryBot.create(:admin)
-    fraud_report = FactoryBot.create(
+    company = create(:insurance_company)
+    admin = create(:admin)
+    fraud_report = create(
       :fraud_report, registration_number: '12345678911',
                      insurance_company_id: company.id, description: 'Tentou fraudar o seguro.',
                      status: :pending
@@ -27,9 +27,9 @@ describe 'Admin avalia uma denúncia de fraude' do
   end
 
   it 'a partir da tela de detalhes, e a reprova' do
-    company = FactoryBot.create(:insurance_company)
-    admin = FactoryBot.create(:admin)
-    fraud = FactoryBot.create(
+    company = create(:insurance_company)
+    admin = create(:admin)
+    fraud = create(
       :fraud_report, registration_number: '45687912399',
                      insurance_company_id: company.id, description: 'Possível tentativa de fraudar o seguro.',
                      status: :pending
@@ -48,10 +48,10 @@ describe 'Admin avalia uma denúncia de fraude' do
   end
 
   it 'a partir da tela de detalhes, e a aprova uma denuncia contra um cpf que já está na lista de bloqueio' do
-    company = FactoryBot.create(:insurance_company)
-    admin = FactoryBot.create(:admin)
-    FactoryBot.create(:blocked_registration_number, registration_number: '12345678911')
-    fraud_report = FactoryBot.create(
+    company = create(:insurance_company)
+    admin = create(:admin)
+    create(:blocked_registration_number, registration_number: '12345678911')
+    fraud_report = create(
       :fraud_report, registration_number: '12345678911',
                      insurance_company_id: company.id, description: 'Tentou fraudar o seguro.',
                      status: :pending

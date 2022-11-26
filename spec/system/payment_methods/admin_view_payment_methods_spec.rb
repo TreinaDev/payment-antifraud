@@ -9,11 +9,11 @@ describe 'Usuário vê meios de pagamento' do
   end
 
   it 'e está autenticado como administrador' do
-    admin = FactoryBot.create(:admin)
-    FactoryBot.create(:payment_method, name: 'Laranja',
+    admin = create(:admin)
+    create(:payment_method, name: 'Laranja',
                                        tax_percentage: 5, tax_maximum: 100,
                                        payment_type: 'Cartão de Crédito', status: :active)
-    FactoryBot.create(:payment_method, name: 'Roxo',
+    create(:payment_method, name: 'Roxo',
                                        tax_percentage: 3, tax_maximum: 50,
                                        payment_type: 'Boleto', status: :active)
 
@@ -41,7 +41,7 @@ describe 'Usuário vê meios de pagamento' do
   end
 
   it 'e não existem meios de pagamento cadastrados' do
-    admin = FactoryBot.create(:admin)
+    admin = create(:admin)
 
     login_as(admin, scope: :admin)
     visit root_path

@@ -11,7 +11,7 @@ describe 'Admin tenta fazer login no sistema' do
   end
 
   it 'e faz login com sucesso' do
-    FactoryBot.create(
+    create(
       :admin, name: 'Petra Paola',
               email: 'petrapaola@email.com', password: '12345678'
     )
@@ -30,7 +30,7 @@ describe 'Admin tenta fazer login no sistema' do
   end
 
   it 'e não vê links para funcionalidades de usuários comuns' do
-    admin = FactoryBot.create(
+    admin = create(
       :admin, name: 'Petra Paola',
               email: 'petrapaola@email.com', password: '12345678'
     )
