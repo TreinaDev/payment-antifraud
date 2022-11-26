@@ -11,7 +11,7 @@
             </li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :insurance_company_id %>: <%= @insurance_company_id %></li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :package_id %>: <%= @package_id %></li>
-            <li class="list-group-item"><%= Invoice.human_attribute_name :registration_number %>: <%= @invoice.registration_number %></li>
+            <li class="list-group-item"><%= Invoice.human_attribute_name :registration_number %>: <b><%= format_registration_number(@invoice.registration_number) %></b></li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :order_id %>: <%= @invoice.order_id %></li>
             <li class="list-group-item"><%= Invoice.human_attribute_name :payment_method_id %>: <%= @invoice.payment_method.name %></li>
             <li class="list-group-item"><%= PaymentMethod.human_attribute_name :payment_type %>: <%= @invoice.payment_method.payment_type %></li>

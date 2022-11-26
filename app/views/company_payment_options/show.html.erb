@@ -5,7 +5,7 @@
   </header>
   <main>
     <div class="card-header bg-transparent border-dark"> 
-      <h4> <%= payment_option_with_name(@payment_option.payment_method.name) %> </h4>
+      <h4> <%= @payment_option.decorate.with_payment_method_name %> </h4>
     </div>
       <div class="row g-0">
         <div class="col-md-4">
@@ -31,13 +31,13 @@
               <p>
                 <li class="list-group-item"> 
                   <%= CompanyPaymentOption.human_attribute_name(:single_parcel_discount) %>:
-                  <%= show_discount_if_present(@payment_option.single_parcel_discount) %> 
+                  <%= @payment_option.decorate.show_discount_if_present %> 
                 </li>
               </p>
               <p>
                 <li class="list-group-item"> 
                   <%= CompanyPaymentOption.human_attribute_name(:user_id) %>:
-                  <%= "#{@payment_option.user.name} | #{@payment_option.user.email}" %>
+                  <%= @payment_option.decorate.user_name_and_email %>
                 </li>
               </p>
               <p>

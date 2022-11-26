@@ -22,7 +22,14 @@ describe 'Funcionário faz cadastro no sistema' do
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 0
     )
-    allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return(company)
+    fake_response = double('Faraday::Response', status: 200, body: company.to_json)
+    allow(Faraday)
+      .to receive(:get)
+      .with(
+        "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+        { id: 'petra@paolaseguros.com.br' }
+      )
+      .and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -41,10 +48,9 @@ describe 'Funcionário faz cadastro no sistema' do
     expect(User.count).to eq 1
   end
 
-  it 'e não há seguradoras cadastradas' do
-    companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
-    fake_response = double('Faraday::Response', status: 204, body: {}.to_json)
-    allow(Faraday).to receive(:get).with(companies_url).and_return(fake_response)
+  it 'e não há seguradoras cadastradas na aplicação de seguradoras' do
+    fake_response = double('Faraday::Response', status: 404)
+    allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -63,9 +69,8 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e o sistema de seguradoras está fora do ar' do
-    companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
-    fake_response = double('Faraday::Response', status: 500, body: {}.to_json)
-    allow(Faraday).to receive(:get).with(companies_url).and_return(fake_response)
+    fake_response = double('Faraday::Response', status: 500)
+    allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -84,7 +89,8 @@ describe 'Funcionário faz cadastro no sistema' do
   end
 
   it 'e não há seguradoras que correspondem ao e-mail do usuário' do
-    allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return([])
+    fake_response = double('Faraday::Response', status: 404)
+    allow(Faraday).to receive(:get).and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
@@ -110,7 +116,14 @@ describe 'Funcionário faz cadastro no sistema' do
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 1
     )
-    allow(InsuranceCompany).to receive(:check_if_user_email_match_any_external_company).and_return([])
+    fake_response = double('Faraday::Response', status: 404)
+    allow(Faraday)
+      .to receive(:get)
+      .with(
+        "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
+        { id: 'petra@paolaseguros.com.br' }
+      )
+      .and_return(fake_response)
 
     visit root_path
     click_on 'Fazer Login'
