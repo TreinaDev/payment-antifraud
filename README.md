@@ -48,9 +48,9 @@ Caso queira rodar todos os testes automatizados, utilize o comando  `rspec`
 
 Confira aqui links de páginas com a documentação das APIs disponíveis da aplicação.
 * [API de Meios de Pagamento](#API-de-Meios-de-Pagamento)
-* [API de Meios de Pagamento das Seguradoras](#API-de-Meios-de-Pagamento-de-uma-Seguradora)
-* [API de Promoções das Seguradoras](#API-de-promoções-de-cada-seguradora)
-* [API de CPFs com Denúncias de fraude Confirmadas](#API-de-CPFs-com-Denuncias-Confirmadas)
+* [API de Meios de Pagamento das Seguradoras](#API-de-Meios-de-Pagamento-das-Seguradora)
+* [API de Promoções das Seguradoras](#API-de-Promoções-das-Seguradoras)
+* [API de CPFs com Denúncias de fraude Confirmadas](#API-de-CPFs-com-Denúncias-de-fraude-Confirmadas)
 * [Endpoint para POST de cobrança](#Endpoint-para-POST-de-cobrança)
 
 ### API De Meios de Pagamento
