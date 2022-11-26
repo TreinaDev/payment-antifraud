@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
+  # rubocop:disable Lint/SuppressedException
   def index
     @insurance_companies_sample = insurance_companies_logos
+  rescue StandardError
   end
+  # rubocop:enable Lint/SuppressedException
 
   private
 
