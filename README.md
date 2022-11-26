@@ -220,16 +220,18 @@ CPF não registrado ou sem denúncia de fraude confirmada:
 
   ```json
   {
-   "order_id": 1,
-   "insurance_company_id": 1,
-   "package_id": 1,
-   "package_name": "Pacote de Seguros",
-   "registration_number": "12345678910",
-   "voucher": "ABCD1234",
-   "total_price": 100,
-   "parcels": 12,
-   "status": 5,
-   "token": "JAMDOQNENTOAMDI1293"
+    "invoice": {
+      "order_id": 1,
+      "insurance_company_id": 1,
+      "package_id": 1,
+      "package_name": "Pacote de Seguros",
+      "registration_number": "12345678910",
+      "voucher": "ABCD1234",
+      "total_price": 100,
+      "parcels": 12,
+      "status": 5,
+      "token": "JAMDOQNENTOAMDI1293"
+    }
   }
 ```
 
