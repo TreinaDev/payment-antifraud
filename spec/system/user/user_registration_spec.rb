@@ -41,7 +41,7 @@ describe 'Funcionário faz cadastro no sistema' do
       fill_in 'Nome', with: 'Petra'
       fill_in 'CPF', with: '39410293049'
       click_on 'Registrar'
-      allow(Faraday).to receive(:get).with(Rails.configuration.external_apis['insurance_api']).and_return([])
+      redirect_to new_user_session_path
     end
 
     expect(page).to have_content 'Você se inscreveu com sucesso. ' \
