@@ -22,14 +22,19 @@ describe 'Funcionário faz cadastro no sistema' do
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 0
     )
-    fake_response = double('Faraday::Response', status: 200, body: company.to_json)
+    fake_response_a = double('Faraday::Response', status: 200, body: company.to_json)
+    fake_response_b = double('Faraday::Response', status: 204, body: [])
     allow(Faraday)
       .to receive(:get)
       .with(
         "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
         { id: 'petra@paolaseguros.com.br' }
       )
-      .and_return(fake_response)
+      .and_return(fake_response_a)
+    allow(Faraday)
+      .to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies")
+      .and_return(fake_response_b)
 
     visit new_user_session_path
     click_on 'Criar Conta'
