@@ -15,9 +15,7 @@ class CompanyPaymentOptionsController < ApplicationController
   end
 
   def show
-    unless @company_payment_options.include? @payment_option
-      return redirect_to root_path, alert: t('no_access_granted')
-    end
+    redirect_to root_path, alert: t('no_access_granted') unless @company_payment_options.include? @payment_option
   end
 
   def new
