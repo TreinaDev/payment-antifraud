@@ -12,8 +12,7 @@ describe 'Funcionário edita uma promoção' do
     user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
-    visit root_path
-    click_on 'Promoções'
+    visit promos_path
     click_on promo.voucher
     click_on 'Editar'
 
@@ -37,8 +36,7 @@ describe 'Funcionário edita uma promoção' do
     user = FactoryBot.create(:user, insurance_company_id: company.id)
 
     login_as user, scope: :user
-    visit root_path
-    click_on 'Promoções'
+    visit promos_path
     click_on promo.voucher
     click_on 'Editar'
     fill_in 'Nome', with: 'Promoção Natal'

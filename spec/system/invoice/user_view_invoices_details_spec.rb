@@ -23,8 +23,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
       .and_return(fake_response2)
 
     login_as(user, scope: :user)
-    visit root_path
-    click_on 'Cobranças'
+    visit invoices_path
     within 'article main' do
       click_on 'Ver mais'
     end
@@ -61,8 +60,7 @@ describe 'Usuário vê detalhes de uma cobranças' do
       .and_return(fake_response2)
 
     login_as(user, scope: :user)
-    visit root_path
-    click_on 'Cobranças'
+    visit invoices_path
     within 'article main' do
       click_on 'Ver mais'
     end

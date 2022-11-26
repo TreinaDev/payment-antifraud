@@ -90,7 +90,6 @@ describe 'Funcionário faz login no sistema' do
     visit root_path
 
     expect(page).to have_link 'Minha Seguradora'
-    expect(page).to have_link 'Meios de Pagamento'
     expect(page).to have_link 'Promoções'
     expect(page).to have_link 'Cobranças'
     expect(page).not_to have_link 'Usuários'

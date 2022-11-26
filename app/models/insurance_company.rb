@@ -4,6 +4,7 @@ class InsuranceCompany < ApplicationRecord
   has_many :invoices, dependent: :destroy
   has_many :promos, dependent: :destroy
   has_many :fraud_reports, dependent: :destroy
+  
 
   def self.all_external
     companies_url = "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies"
@@ -17,7 +18,9 @@ class InsuranceCompany < ApplicationRecord
 
   def self.check_if_external_company_exists_locally(company_data)
     local_company = InsuranceCompany.find_by external_insurance_company: company_data[:id]
-    local_company = InsuranceCompany.create!(external_insurance_company: company_data[:id]) if local_company.nil?
-    local_company
+    if local_company.nil?
+    local_company = InsuranceCompany.create!(external_insurance_company: company_data[:id])
+    end
+    local_company    
   end
 end

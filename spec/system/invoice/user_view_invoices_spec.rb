@@ -68,7 +68,7 @@ describe 'Usuário vê cobranças' do
     expect(current_path).to eq invoices_path
     expect(page).to have_content 'BBBS65OFN493OE93MVNA'
     expect(page).to have_content '5'
-    expect(page).to have_content 'Paga'
+    expect(page).to have_content 'aprovado'
     expect(page).not_to have_content 'AAAS65OFN493OE93MVNA'
     expect(page).not_to have_content '10'
     expect(page).not_to have_content 'pendente'

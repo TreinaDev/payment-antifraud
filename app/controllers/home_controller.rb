@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @insurance_companies_sample = get_insurance_companies_logos
+    begin     
+      @insurance_companies_sample = get_insurance_companies_logos
+    rescue    
+    end
   end
 
   private
