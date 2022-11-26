@@ -46,9 +46,11 @@
                 </li>
               </p>
               <p>
-              <li class="list-group-item"> 
-                  <%= button_to t('buttons.remove'), company_payment_option_url(@payment_option.id), method: :delete, class: "btn btn-primary  btn-m" %>
-              </li>
+              <% if current_user.insurance_company.payment_options.include?(@payment_option) %>
+                <li class="list-group-item"> 
+                    <%= button_to t('buttons.remove'), company_payment_option_url(@payment_option.id), method: :delete, class: "btn btn-primary  btn-m" %>
+                </li>
+              <% end %>
               </p>
             </ul>
           </div>
