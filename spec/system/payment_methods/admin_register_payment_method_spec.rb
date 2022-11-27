@@ -51,6 +51,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     expect(page).to have_content 'Cartão Roxinho'
     expect(page).to have_content 'Taxa por Cobrança: 5%'
     expect(page).to have_content 'Taxa Máxima: R$ 2,00'
+    expect(page).to have_content 'Quantidade máxima de parcelas: 12'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
     expect(page).to have_css 'img[src*="icone_cartao_credito_azul.jpg"]'
     expect(page).to have_content 'Status: Ativo'
@@ -74,6 +75,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     expect(page).to have_content 'Nome não pode ficar em branco'
     expect(page).to have_content 'Taxa por Cobrança não pode ficar em branco'
     expect(page).to have_content 'Taxa Máxima não pode ficar em branco'
+    expect(page).to have_content 'Quantidade máxima de parcelas não pode ficar em branco'    
     expect(page).to have_content 'Ícone não pode ficar em branco'
   end
 end

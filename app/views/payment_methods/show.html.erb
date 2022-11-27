@@ -25,6 +25,10 @@
             <%= number_to_currency(@payment_method.tax_maximum) %>
           </li>
           <li class="list-group-item">
+            <strong><%= PaymentMethod.human_attribute_name(:max_parcels)%>:</strong>
+            <%= @payment_method.max_parcels %>
+          </li>
+          <li class="list-group-item">
             <strong><%= PaymentMethod.human_attribute_name(:payment_type)%>:</strong>
             <%= @payment_method.payment_type %>
           </li>
