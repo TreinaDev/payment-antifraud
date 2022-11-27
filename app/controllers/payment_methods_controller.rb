@@ -48,7 +48,8 @@ class PaymentMethodsController < ApplicationController
   private
 
   def payment_method_params
-    params.require(:payment_method).permit(:name, :tax_percentage, :tax_maximum, :payment_type, :status, :image)
+    params.require(:payment_method).permit(:name, :tax_percentage, :tax_maximum, :max_parcels,
+                                           :payment_type, :status, :image)
   end
 
   def set_payment_method

@@ -14,7 +14,8 @@ module Api
           payment_type: @payment_method.payment_type,
           image_url: url_for(@payment_method.image),
           tax_percentage: @payment_method.tax_percentage,
-          tax_maximum: @payment_method.tax_maximum
+          tax_maximum: @payment_method.tax_maximum,
+          max_parcels: @payment_method.max_parcels
         }.as_json
       end
     end

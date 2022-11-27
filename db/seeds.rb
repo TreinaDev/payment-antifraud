@@ -32,13 +32,13 @@ Promo.create!(name: 'Promo Relâmpago', starting_date: Time.zone.today, ending_d
               discount_max: 5000, discount_percentage: 10, usages_max: 150, insurance_company_id: company.id)
 
 payment_method1 = FactoryBot.create(:payment_method, name: 'Laranja',
-                                                     tax_percentage: 5, tax_maximum: 100,
+                                                     tax_percentage: 5, tax_maximum: 100, max_parcels: 12,
                                                      payment_type: 'Cartão de Crédito', status: :active)
 payment_method2 = FactoryBot.create(:payment_method, name: 'Roxo',
-                                                     tax_percentage: 3, tax_maximum: 50,
+                                                     tax_percentage: 3, tax_maximum: 50, max_parcels: 1,
                                                      payment_type: 'Boleto', status: :active)
 payment_method3 = FactoryBot.create(:payment_method, name: 'Amarelo',
-                                                     tax_percentage: 0, tax_maximum: 20,
+                                                     tax_percentage: 0, tax_maximum: 20, max_parcels: 1,
                                                      payment_type: 'Pix', status: :active)
 
 FactoryBot.create(
