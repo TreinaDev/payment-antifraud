@@ -1,5 +1,35 @@
-<h3>Boas vindas ao sistema de pagamento e antifraude!</h3>
-<h4><%= t 'waiting_for_approval' if current_user&.pending? %></h4>                  
+<h4><%= t 'waiting_for_approval' if current_user&.pending? %></h4>
+<div class="row">
+
+<div class="card col-6 border-0" style="padding: 3%; width: 50%;">
+ <div class="position-relative overflow-hidden text-left">
+      <div class="text-center">
+        <%= image_tag("cobraseguro.png", width: 500, height:170, class: 'mb-5') %>
+        <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in
+        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus PageMaker
+        including versions of Lorem Ipsu.</p>
+      </div>
+
+    <div class="product-device box-shadow d-none d-md-block"></div>
+    <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+  </div>
+</div>
+<div class="card  col-6 border-0" style="padding: 3%; width: 50%;">
+  <%= image_tag "/images/home_image.png", width: 600, height:500 %>
+</div>
 
 
-
+<div class="lead text-center text-secondary">  
+  <h2>Conheça algumas de nossas empresas parceiras!</h2>
+  <hr class="mb-5">
+  <% if @insurance_companies_sample.present? %>
+    <% @insurance_companies_sample.each do |company| %>
+      <span class="mr-5" style="margin-right: 2%;"><%= image_tag company[:logo], height: 200, width: 300 %></span>
+    <% end %>
+  <% end %>
+</div>

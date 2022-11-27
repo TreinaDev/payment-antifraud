@@ -17,22 +17,26 @@ describe 'Funcionário faz cadastro no sistema' do
   it 'com sucesso' do
     company = ExternalInsuranceCompany.new(
       id: 1,
-      email_domain: 'petra@paolaseguros.com.br',
+      email_domain: '@paolaseguros.com.br',
       company_status: 0,
       company_token: 'TOKENEXPIRADODESDE1999',
       token_status: 0
     )
-    fake_response = double('Faraday::Response', status: 200, body: company.to_json)
+    fake_response_a = double('Faraday::Response', status: 200, body: company.to_json)
+    fake_response_b = double('Faraday::Response', status: 204, body: [])
     allow(Faraday)
       .to receive(:get)
       .with(
         "#{Rails.configuration.external_apis['insurance_api']}/insurance_companies/query",
         { id: 'petra@paolaseguros.com.br' }
       )
-      .and_return(fake_response)
+      .and_return(fake_response_a)
+    allow(Faraday)
+      .to receive(:get)
+      .with("#{Rails.configuration.external_apis['insurance_api']}/insurance_companies")
+      .and_return(fake_response_b)
 
-    visit root_path
-    click_on 'Fazer Login'
+    visit new_user_session_path
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
@@ -52,8 +56,7 @@ describe 'Funcionário faz cadastro no sistema' do
     fake_response = double('Faraday::Response', status: 404)
     allow(Faraday).to receive(:get).and_return(fake_response)
 
-    visit root_path
-    click_on 'Fazer Login'
+    visit new_user_session_path
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
@@ -72,8 +75,7 @@ describe 'Funcionário faz cadastro no sistema' do
     fake_response = double('Faraday::Response', status: 500)
     allow(Faraday).to receive(:get).and_return(fake_response)
 
-    visit root_path
-    click_on 'Fazer Login'
+    visit new_user_session_path
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'
@@ -92,8 +94,7 @@ describe 'Funcionário faz cadastro no sistema' do
     fake_response = double('Faraday::Response', status: 404)
     allow(Faraday).to receive(:get).and_return(fake_response)
 
-    visit root_path
-    click_on 'Fazer Login'
+    visit new_user_session_path
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@SEGURADORAQUENAOEXISTEGLUGLUGLUGLU.COM.BR'
@@ -125,8 +126,7 @@ describe 'Funcionário faz cadastro no sistema' do
       )
       .and_return(fake_response)
 
-    visit root_path
-    click_on 'Fazer Login'
+    visit new_user_session_path
     click_on 'Criar Conta'
     within('div#signup-fields') do
       fill_in 'E-mail', with: 'petra@paolaseguros.com.br'

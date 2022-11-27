@@ -1,8 +1,5 @@
 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
   <li>
-    <%= link_to "Meios de Pagamento", payment_methods_url , class: nav_link_class('payment_methods') %>
-  </li>
-  <li>
     <%= link_to "Promoções", promos_url , class: nav_link_class('promos') %>
   </li>
   <li>
@@ -13,7 +10,7 @@
   </li>
     <%= link_to "Minha Seguradora", company_payment_options_url, class: nav_link_class('company_payment_options') %>
   </li>
-</ul> 
+</ul>
 <span class="nav-link text-secondary-light px-2"> <%= user_greetings(current_user) %> </span>
 <div class="dropdown text-end">
   <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

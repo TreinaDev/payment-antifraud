@@ -15,8 +15,7 @@ describe 'Usuário vê mais detalhes de uma promoção' do
                    insurance_company_id: company.id)
 
     login_as user, scope: :user
-    visit root_path
-    click_on 'Promoções'
+    visit promos_path
     click_on '3MVGTOVW'
 
     expect(page).to have_content "Data de início: #{Time.zone.today.strftime('%d/%m/%Y')}"

@@ -21,8 +21,7 @@ describe 'Usuário altera status de uma cobrança' do
       .and_return(fake_response2)
 
     login_as(user, scope: :user)
-    visit root_path
-    click_on 'Cobranças'
+    visit invoices_path
     click_on 'Ver mais'
 
     expect(page).to have_link 'Sucesso no Pagamento'

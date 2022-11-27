@@ -20,8 +20,7 @@ describe 'Funcionário remove um produto a uma promoção' do
     promo = create(:promo, insurance_company_id: company.id)
 
     login_as user, scope: :user
-    visit root_path
-    click_on 'Promoções'
+    visit promos_path
     click_on promo.voucher
     select 'TV 32', from: 'Adicionar produto na promoção:'
     click_on 'Selecionar Produto'
