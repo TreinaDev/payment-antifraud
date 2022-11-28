@@ -38,11 +38,11 @@ RSpec.describe InsuranceCompany, type: :model do
     context 'Verifica se a seguradora possui registro na aplicação' do
       it 'e devolve a seguradora existente' do
         external_company_data = {
-          id: 10,
-          email_domain: 'paolaseguros.com.br',
-          company_status: 0,
-          company_token: 'TOKENEXPIRADODESDE1999',
-          token_status: 0
+          "id" => 10,
+          "email_domain" => 'paolaseguros.com.br',
+          "company_status"=> 0,
+          "company_token" => 'TOKENEXPIRADODESDE1999',
+          "token_status" => 0
         }
         local_company = create(:insurance_company, external_insurance_company: 10)
         result = InsuranceCompany.check_if_external_company_exists_locally(external_company_data)
@@ -53,11 +53,11 @@ RSpec.describe InsuranceCompany, type: :model do
 
       it 'e cria um novo registro para a seguradora' do
         external_company_data = {
-          id: 10,
-          email_domain: 'paolaseguros.com.br',
-          company_status: 0,
-          company_token: 'TOKENEXPIRADODESDE1999',
-          token_status: 0
+          "id" => 10,
+          "email_domain" => 'paolaseguros.com.br',
+          "company_status"=> 0,
+          "company_token" => 'TOKENEXPIRADODESDE1999',
+          "token_status" => 0
         }
         result = InsuranceCompany.check_if_external_company_exists_locally(external_company_data)
 
