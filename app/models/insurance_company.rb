@@ -16,8 +16,8 @@ class InsuranceCompany < ApplicationRecord
   end
 
   def self.check_if_external_company_exists_locally(company_data)
-    local_company = InsuranceCompany.find_by external_insurance_company: company_data[:id]
-    local_company = InsuranceCompany.create!(external_insurance_company: company_data[:id]) if local_company.nil?
+    local_company = InsuranceCompany.find_by external_insurance_company: company_data['id']
+    local_company = InsuranceCompany.create!(external_insurance_company: company_data['id']) if local_company.nil?
     local_company
   end
 end
