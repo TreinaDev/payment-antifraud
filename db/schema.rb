@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_203310) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_27_185655) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_203310) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -115,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_203310) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "max_parcels"
   end
 
   create_table "promo_products", force: :cascade do |t|
@@ -136,7 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_203310) do
     t.string "voucher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "insurance_company_id"
+    t.integer "insurance_company_id", null: false
     t.index ["insurance_company_id"], name: "index_promos_on_insurance_company_id"
   end
 

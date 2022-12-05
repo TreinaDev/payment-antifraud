@@ -37,6 +37,13 @@ RSpec.describe PaymentMethod, type: :model do
 
         expect(payment_method.errors.include?(:image)).to eq true
       end
+
+      it 'Quantidade máxima de parcelas é obrigatório' do
+        payment_method = build(:payment_method, max_parcels: '')
+        payment_method.valid?
+
+        expect(payment_method.errors.include?(:max_parcels)).to eq true
+      end
     end
 
     context 'atributo postivo' do
@@ -52,6 +59,13 @@ RSpec.describe PaymentMethod, type: :model do
         payment_method.valid?
 
         expect(payment_method.errors.include?(:tax_maximum)).to eq true
+      end
+
+      it 'Quantidade máxima de parcelas é positivo' do
+        payment_method = build(:payment_method, max_parcels: -8)
+        payment_method.valid?
+
+        expect(payment_method.errors.include?(:max_parcels)).to eq true
       end
     end
 

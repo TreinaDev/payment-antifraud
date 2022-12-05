@@ -18,6 +18,7 @@ describe 'CompanyPaymentOptionAPI' do
       expect(json_data['payment_type']).to eq 'Cartão de Crédito'
       expect(json_data['tax_percentage']).to eq 2
       expect(json_data['tax_maximum']).to eq 10
+      expect(json_data['max_parcels']).to eq 12
       expect(json_data.keys).not_to include 'created_at'
       expect(json_data.keys).not_to include 'updated_at'
       expect(json_data.keys).to include 'image_url'

@@ -16,4 +16,5 @@ pt-BR:
         payment_type: 'Tipo de Pagamento'
         status: 'Status'
         image: 'Ícone'
+        max_parcels: 'Quantidade máxima de parcelas'
      

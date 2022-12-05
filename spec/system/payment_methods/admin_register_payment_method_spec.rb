@@ -24,6 +24,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Taxa por Cobrança'
     expect(page).to have_field 'Taxa Máxima'
+    expect(page).to have_field 'Quantidade máxima de parcelas'
     expect(page).to have_field 'Tipo de Pagamento'
     expect(page).to have_field 'Ícone'
     expect(page).to have_button 'Salvar'
@@ -39,6 +40,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     fill_in 'Nome', with: 'Cartão Roxinho'
     fill_in 'Taxa por Cobrança', with: 5
     fill_in 'Taxa Máxima', with: 2
+    fill_in 'Quantidade máxima de parcelas', with: 12
     select 'Cartão de Crédito', from: 'Tipo de Pagamento'
     attach_file 'Ícone', Rails.root.join('spec/support/icone_cartao_credito_azul.jpg')
     click_on 'Salvar'
@@ -49,6 +51,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     expect(page).to have_content 'Cartão Roxinho'
     expect(page).to have_content 'Taxa por Cobrança: 5%'
     expect(page).to have_content 'Taxa Máxima: R$ 2,00'
+    expect(page).to have_content 'Quantidade máxima de parcelas: 12'
     expect(page).to have_content 'Tipo de Pagamento: Cartão de Crédito'
     expect(page).to have_css 'img[src*="icone_cartao_credito_azul.jpg"]'
     expect(page).to have_content 'Status: Ativo'
@@ -64,6 +67,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     fill_in 'Nome', with: ''
     fill_in 'Taxa por Cobrança', with: ''
     fill_in 'Taxa Máxima', with: ''
+    fill_in 'Quantidade máxima de parcelas', with: ''
     select 'Cartão de Crédito', from: 'Tipo de Pagamento'
     click_on 'Salvar'
 
@@ -71,6 +75,7 @@ describe 'Usuário cadastra novo meio de pagamento' do
     expect(page).to have_content 'Nome não pode ficar em branco'
     expect(page).to have_content 'Taxa por Cobrança não pode ficar em branco'
     expect(page).to have_content 'Taxa Máxima não pode ficar em branco'
+    expect(page).to have_content 'Quantidade máxima de parcelas não pode ficar em branco'
     expect(page).to have_content 'Ícone não pode ficar em branco'
   end
 end

@@ -23,6 +23,10 @@
     <%= f.text_field :tax_maximum, class: "form-control", style: "max-width: 30rem" %>
   </div>
   <div>
+    <%= f.label :max_parcels %>
+    <%= f.number_field :max_parcels, class: "form-control", style: "max-width: 30rem" %>
+  </div>
+  <div>
     <%= f.label :payment_type %>
     <%= f.select :payment_type, @payment_types, {}, class: "form-select" , style: "max-width: 30rem"  %>
   </div>
